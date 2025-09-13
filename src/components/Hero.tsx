@@ -1,14 +1,14 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowDown, Linkedin, Mail } from 'lucide-react'
+import { ArrowDown, Download, Linkedin, Mail } from 'lucide-react'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 
 export default function Hero() {
   const { t } = useTranslationSafe()
   
-  const scrollToAbout = () => {
-    const element = document.querySelector('#about')
+  const scrollToContact = () => {
+    const element = document.querySelector('#contact')
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
     }
@@ -64,7 +64,7 @@ export default function Hero() {
             className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
           >
             <button
-              onClick={scrollToAbout}
+              onClick={scrollToContact}
               className="bg-kevin-blue text-white px-8 py-3 rounded-full font-semibold hover:bg-kevin-blue-dark transition-colors duration-300 shadow-lg hover:shadow-xl"
             >
 {t('hero.getInTouch', '聯繫我')}
@@ -81,6 +81,15 @@ export default function Hero() {
             >
 {t('hero.viewWork', '查看作品')}
             </button>
+            
+            <a
+              href="/Kevin_CV.pdf"
+              download="Kevin_CV.pdf"
+              className="flex items-center gap-2 border-2 border-gray-300 text-gray-700 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 hover:border-gray-400 transition-all duration-300"
+            >
+              <Download size={18} />
+{t('hero.downloadCV', '下載履歷')}
+            </a>
           </motion.div>
 
           {/* Social Links */}
@@ -114,7 +123,7 @@ export default function Hero() {
             className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
           >
             <button
-              onClick={scrollToAbout}
+              onClick={scrollToContact}
               className="text-gray-400 hover:text-kevin-blue transition-colors duration-300"
             >
               <ArrowDown size={24} />

@@ -20,7 +20,8 @@ const zhResources = {
     subtitle: '設計師 & 開發者',
     description: '畢業於數位科技與媒體設計系，專注於創造以使用者為中心的數位體驗。<br />結合設計美感與技術實作能力，將設計概念轉化為互動式的網頁應用。',
     viewWork: '查看作品',
-    getInTouch: '聯繫我'
+    getInTouch: '聯繫我',
+    downloadCV: '下載履歷'
   },
   about: {
     title: '關於 Kevin',
@@ -125,7 +126,8 @@ const enResources = {
     subtitle: 'Designer & Developer',
     description: 'Graduated from Digital Technology and Media Design Department, focused on creating user-centered digital experiences.<br />Combining design aesthetics with technical implementation to transform design concepts into interactive web applications.',
     viewWork: 'View Work',
-    getInTouch: 'Get In Touch'
+    getInTouch: 'Get In Touch',
+    downloadCV: 'Download CV'
   },
   about: {
     title: 'About Kevin',
