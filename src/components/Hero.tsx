@@ -104,12 +104,14 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 hover:text-kevin-blue transition-colors duration-300"
+              aria-label={t('socialMedia.linkedin', 'LinkedIn')}
             >
               <Linkedin size={24} />
             </a>
             <a
               href="mailto:tyouxipindao@gmail.com"
               className="text-gray-600 hover:text-kevin-blue transition-colors duration-300"
+              aria-label={t('socialMedia.email', '電子郵件')}
             >
               <Mail size={24} />
             </a>

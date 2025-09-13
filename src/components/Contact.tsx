@@ -54,7 +54,7 @@ export default function Contact() {
   const contactInfo = [
     {
       icon: Mail,
-      title: 'Email',
+      title: t('socialMedia.email', '電子郵件'),
       value: 'tyouxipindao@gmail.com',
       href: 'mailto:tyouxipindao@gmail.com'
     },
@@ -70,12 +70,12 @@ export default function Contact() {
     {
       icon: Linkedin,
       href: 'https://www.linkedin.com/in/%E6%A2%93%E6%95%AC-%E9%99%B3-5ba547230/',
-      label: 'LinkedIn'
+      label: t('socialMedia.linkedin', 'LinkedIn')
     },
     {
       icon: Mail,
       href: 'mailto:tyouxipindao@gmail.com',
-      label: 'Email'
+      label: t('socialMedia.email', '電子郵件')
     }
   ]
 
@@ -141,7 +141,7 @@ export default function Contact() {
 
             {/* Social Links */}
             <div>
-              <h4 className="font-semibold text-gray-800 mb-4">社群媒體</h4>
+              <h4 className="font-semibold text-gray-800 mb-4">{t('socialMedia.socialMedia', '社群媒體')}</h4>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => (
                   <a

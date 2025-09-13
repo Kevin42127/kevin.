@@ -2,9 +2,6 @@ import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
 
-// 確保在客戶端環境中運行
-if (typeof window !== 'undefined') {
-
 // 中文翻譯資源
 const zhResources = {
   navigation: {
@@ -108,6 +105,11 @@ const zhResources = {
     location: '彰化縣, 台灣',
     madeWith: 'Made with ❤️ by Kevin',
     copyright: '© 2024 Kevin. All rights reserved.'
+  },
+  socialMedia: {
+    linkedin: 'LinkedIn',
+    email: '電子郵件',
+    socialMedia: '社群媒體'
   }
 }
 
@@ -214,9 +216,16 @@ const enResources = {
     location: 'Changhua County, Taiwan',
     madeWith: 'Made with ❤️ by Kevin',
     copyright: '© 2024 Kevin. All rights reserved.'
+  },
+  socialMedia: {
+    linkedin: 'LinkedIn',
+    email: 'Email',
+    socialMedia: 'Social Media'
   }
 }
 
+// 確保在客戶端環境中運行
+if (typeof window !== 'undefined') {
   i18n
     .use(LanguageDetector)
     .use(initReactI18next)
@@ -233,6 +242,22 @@ const enResources = {
       detection: {
         order: ['localStorage', 'navigator', 'htmlTag'],
         caches: ['localStorage']
+      }
+    })
+} else {
+  // 服務端初始化，使用預設語言
+  i18n
+    .use(initReactI18next)
+    .init({
+      resources: {
+        zh: { translation: zhResources },
+        en: { translation: enResources }
+      },
+      fallbackLng: 'zh',
+      lng: 'zh', // 服務端預設使用中文
+      debug: false,
+      interpolation: {
+        escapeValue: false
       }
     })
 }

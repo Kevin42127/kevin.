@@ -12,12 +12,12 @@ export default function Footer() {
     {
       icon: Linkedin,
       href: 'https://www.linkedin.com/in/%E6%A2%93%E6%95%AC-%E9%99%B3-5ba547230/',
-      label: 'LinkedIn'
+      label: t('socialMedia.linkedin', 'LinkedIn')
     },
     {
       icon: Mail,
       href: 'mailto:tyouxipindao@gmail.com',
-      label: 'Email'
+      label: t('socialMedia.email', '電子郵件')
     }
   ]
 
