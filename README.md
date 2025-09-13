@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kevin. - 現代化個人網站
 
-## Getting Started
+一個以藍色為品牌色的現代化個人網站，展示專業技能與創意作品。
 
-First, run the development server:
+## 🎨 設計特色
 
+- **極簡現代風格**：簡潔清晰的設計，強調內容可讀性
+- **藍色品牌色**：深藍色 (#1e40af) 作為主品牌色
+- **響應式設計**：完美適配各種設備尺寸
+- **微動畫效果**：使用 Framer Motion 實現流暢動畫
+- **現代化組件**：卡片式佈局、漸層效果、玻璃擬態
+
+## 🚀 技術棧
+
+- **框架**：Next.js 14 + React 18
+- **樣式**：Tailwind CSS
+- **動畫**：Framer Motion
+- **圖標**：Lucide React
+- **語言**：TypeScript
+
+## 📦 安裝與運行
+
+1. 安裝依賴：
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. 啟動開發服務器：
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. 打開瀏覽器訪問 [http://localhost:3000](http://localhost:3000)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🎯 功能特色
 
-## Learn More
+- ✅ 響應式導覽列
+- ✅ 英雄區塊與動畫效果
+- ✅ 關於我區塊
+- ✅ 作品集展示
+- ✅ 技能展示
+- ✅ 聯繫表單
+- ✅ 社交媒體連結
+- ✅ 平滑滾動效果
+- ✅ 現代化動畫
 
-To learn more about Next.js, take a look at the following resources:
+## 📱 響應式設計
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+網站完美支援：
+- 桌面端 (1200px+)
+- 平板端 (768px - 1199px)
+- 手機端 (320px - 767px)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🎨 色彩方案
 
-## Deploy on Vercel
+- **主色調**：深藍色 (#1e40af)
+- **輔助色**：淺藍色 (#3b82f6)
+- **背景色**：純白色 (#ffffff) 和淺灰色 (#f8fafc)
+- **文字色**：深灰色 (#1f2937)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📄 頁面結構
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **導覽列** - 品牌標題 "Kevin." 和導航菜單
+2. **英雄區塊** - 主要介紹和 CTA 按鈕
+3. **關於我** - 個人介紹和核心技能
+4. **作品集** - 精選專案展示
+5. **技能** - 技術技能和經驗
+6. **聯繫** - 聯繫表單和資訊
+7. **頁腳** - 社交連結和版權資訊
+
+## 🛠️ 開發指令
+
+```bash
+# 開發模式
+npm run dev
+
+# 構建生產版本
+npm run build
+
+# 啟動生產服務器
+npm start
+
+# 代碼檢查
+npm run lint
+```
+
+## 📝 自定義
+
+您可以輕鬆自定義：
+- 個人資訊和內容
+- 色彩方案
+- 專案作品
+- 技能列表
+- 聯繫資訊
+
+## 📄 授權
+
+此專案採用 MIT 授權條款。
