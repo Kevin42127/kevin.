@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { ExternalLink, Github } from 'lucide-react'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
+import ShareButton from './ShareButton'
 
 export default function Portfolio() {
   const { t } = useTranslationSafe()
@@ -109,7 +110,7 @@ export default function Portfolio() {
                   <p className="text-gray-600 mb-4 leading-relaxed">
                     {project.description}
                   </p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
@@ -118,6 +119,14 @@ export default function Portfolio() {
                         {tech}
                       </span>
                     ))}
+                  </div>
+                  <div className="flex justify-end">
+                    <ShareButton 
+                      title={`${project.title} - Kevin's Portfolio`}
+                      description={project.description}
+                      url={project.demo || project.github}
+                      size="sm"
+                    />
                   </div>
                 </div>
               </motion.div>

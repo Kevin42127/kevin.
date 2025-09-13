@@ -5,6 +5,7 @@ import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 import LanguageSwitcher from './LanguageSwitcher'
+import ShareButton from './ShareButton'
 
 export default function Navigation() {
   const { t } = useTranslationSafe()
@@ -75,7 +76,14 @@ export default function Navigation() {
                 </button>
               ))}
             </div>
-            <LanguageSwitcher />
+            <div className="flex items-center space-x-4">
+              <ShareButton 
+                title="Kevin. - 現代化個人網站"
+                description="一個以藍色為品牌色的現代化個人網站，展示專業技能與創意作品。"
+                size="sm"
+              />
+              <LanguageSwitcher />
+            </div>
           </div>
 
           {/* Mobile menu button */}
@@ -109,7 +117,12 @@ export default function Navigation() {
                   {item.name}
                 </button>
               ))}
-              <div className="px-3 py-2">
+              <div className="px-3 py-2 flex items-center justify-between">
+                <ShareButton 
+                  title="Kevin. - 現代化個人網站"
+                  description="一個以藍色為品牌色的現代化個人網站，展示專業技能與創意作品。"
+                  size="sm"
+                />
                 <LanguageSwitcher />
               </div>
             </div>

@@ -110,6 +110,13 @@ const zhResources = {
     linkedin: 'LinkedIn',
     email: '電子郵件',
     socialMedia: '社群媒體'
+  },
+  share: {
+    share: '分享',
+    shareTo: '分享到',
+    copyLink: '複製連結',
+    copied: '已複製',
+    email: 'Email'
   }
 }
 
@@ -221,6 +228,13 @@ const enResources = {
     linkedin: 'LinkedIn',
     email: 'Email',
     socialMedia: 'Social Media'
+  },
+  share: {
+    share: 'Share',
+    shareTo: 'Share to',
+    copyLink: 'Copy Link',
+    copied: 'Copied',
+    email: 'Email'
   }
 }
 
