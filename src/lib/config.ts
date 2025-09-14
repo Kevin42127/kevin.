@@ -11,6 +11,9 @@ export const clientConfig = {
   site: {
     url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
     name: process.env.NEXT_PUBLIC_SITE_NAME || 'Kevin.',
+  },
+  contact: {
+    email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'tyouxipindao@gmail.com',
   }
 }
 
