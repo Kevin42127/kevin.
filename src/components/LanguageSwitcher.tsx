@@ -21,7 +21,7 @@ export default function LanguageSwitcher() {
   if (!mounted) {
     return (
       <button
-        className="flex items-center space-x-2 text-gray-700 hover:text-kevin-blue transition-colors duration-200"
+        className="flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-kevin-blue dark:hover:text-blue-400 transition-colors duration-200"
         disabled
       >
         <Globe size={20} />
@@ -33,7 +33,7 @@ export default function LanguageSwitcher() {
   return (
     <button
       onClick={toggleLanguage}
-      className="flex items-center space-x-2 text-gray-700 hover:text-kevin-blue transition-colors duration-200"
+      className="flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-kevin-blue dark:hover:text-blue-400 transition-colors duration-200"
       title={i18n.language === 'zh' ? 'Switch to English' : '切換到中文'}
     >
       <Globe size={20} />

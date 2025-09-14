@@ -55,14 +55,12 @@ export default function Contact() {
     {
       icon: Mail,
       title: t('socialMedia.email', '電子郵件'),
-      value: 'tyouxipindao@gmail.com',
-      href: 'mailto:tyouxipindao@gmail.com'
+      value: 'tyouxipindao@gmail.com'
     },
     {
       icon: MapPin,
       title: t('contact.locationLabel', '位置'),
-      value: t('contact.location', '彰化縣, 台灣'),
-      href: '#'
+      value: t('contact.location', '彰化縣, 台灣')
     }
   ]
 
@@ -80,7 +78,7 @@ export default function Contact() {
   ]
 
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section id="contact" className="py-20 bg-white dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -89,10 +87,10 @@ export default function Contact() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-{t('contact.title', '聯繫 我').split(' ')[0]} <span className="text-kevin-blue">{t('contact.title', '聯繫 我').split(' ')[1]}</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-gray-200 mb-4">
+{t('contact.title', '聯繫 我').split(' ')[0]} <span className="text-kevin-blue dark:text-blue-400">{t('contact.title', '聯繫 我').split(' ')[1]}</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
 {t('contact.description', '有專案想法或合作機會？歡迎與我聯繫')}
           </p>
         </motion.div>
@@ -105,10 +103,10 @@ export default function Contact() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold text-gray-800 mb-6">
+            <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-6">
 {t('contact.subtitle', '讓我們開始對話')}
             </h3>
-            <p className="text-gray-600 mb-8 leading-relaxed">
+            <p className="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
 {t('contact.contactInfo', '歡迎隨時聯繫我，討論專案需求或合作機會。')}
             </p>
 
@@ -123,17 +121,14 @@ export default function Contact() {
                   viewport={{ once: true }}
                   className="flex items-center space-x-4"
                 >
-                  <div className="w-12 h-12 bg-kevin-blue/10 rounded-xl flex items-center justify-center">
-                    <info.icon className="text-kevin-blue" size={20} />
+                  <div className="w-12 h-12 bg-kevin-blue/10 dark:bg-blue-900/30 rounded-xl flex items-center justify-center">
+                    <info.icon className="text-kevin-blue dark:text-blue-400" size={20} />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-800">{info.title}</h4>
-                    <a
-                      href={info.href}
-                      className="text-gray-600 hover:text-kevin-blue transition-colors duration-300"
-                    >
+                    <h4 className="font-semibold text-gray-800 dark:text-gray-200">{info.title}</h4>
+                    <span className="text-gray-600 dark:text-gray-400">
                       {info.value}
-                    </a>
+                    </span>
                   </div>
                 </motion.div>
               ))}
@@ -141,13 +136,13 @@ export default function Contact() {
 
             {/* Social Links */}
             <div>
-              <h4 className="font-semibold text-gray-800 mb-4">{t('socialMedia.socialMedia', '社群媒體')}</h4>
+              <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-4">{t('socialMedia.socialMedia', '社群媒體')}</h4>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => (
                   <a
                     key={social.label}
                     href={social.href}
-                    className="w-10 h-10 bg-kevin-blue/10 rounded-xl flex items-center justify-center hover:bg-kevin-blue hover:text-white transition-all duration-300"
+                    className="w-10 h-10 bg-kevin-blue/10 dark:bg-blue-900/30 rounded-xl flex items-center justify-center hover:bg-kevin-blue hover:text-white transition-all duration-300"
                     aria-label={social.label}
                   >
                     <social.icon size={18} />
@@ -163,15 +158,15 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="bg-gray-50 rounded-2xl p-8"
+            className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8"
           >
-            <h3 className="text-2xl font-bold text-gray-800 mb-6">
+            <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-6">
               {t('contact.sendMessage')}
             </h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     {t('contact.name', '姓名')} *
                   </label>
                   <input
@@ -181,12 +176,12 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-kevin-blue focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-kevin-blue focus:border-transparent transition-all duration-300 placeholder-gray-500 dark:placeholder-gray-400"
                     placeholder={t('contact.namePlaceholder', '您的姓名')}
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     {t('contact.email', '電子郵件')} *
                   </label>
                   <input
@@ -196,14 +191,14 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-kevin-blue focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-kevin-blue focus:border-transparent transition-all duration-300 placeholder-gray-500 dark:placeholder-gray-400"
                     placeholder={t('contact.emailPlaceholder', 'your@email.com')}
                   />
                 </div>
               </div>
               
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   {t('contact.subject', '主題')} *
                 </label>
                 <input
@@ -213,13 +208,13 @@ export default function Contact() {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-kevin-blue focus:border-transparent transition-all duration-300"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-kevin-blue focus:border-transparent transition-all duration-300"
                   placeholder={t('contact.subjectPlaceholder', '訊息主題')}
                 />
               </div>
               
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   {t('contact.message', '訊息')} *
                 </label>
                 <textarea
@@ -229,7 +224,7 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   rows={6}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-kevin-blue focus:border-transparent transition-all duration-300 resize-none"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-kevin-blue focus:border-transparent transition-all duration-300 resize-none placeholder-gray-500 dark:placeholder-gray-400"
                   placeholder={t('contact.messagePlaceholder', '請描述您的需求或想法...')}
                 />
               </div>
@@ -239,7 +234,7 @@ export default function Contact() {
                 disabled={isSubmitting}
                 className={`w-full py-3 px-6 rounded-lg font-semibold transition-colors duration-300 flex items-center justify-center space-x-2 ${
                   isSubmitting
-                    ? 'bg-gray-400 text-gray-200 cursor-not-allowed'
+                    ? 'bg-gray-400 dark:bg-gray-600 text-gray-200 dark:text-gray-300 cursor-not-allowed'
                     : 'bg-kevin-blue text-white hover:bg-kevin-blue-dark'
                 }`}
               >

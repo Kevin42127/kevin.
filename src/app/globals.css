@@ -9,6 +9,12 @@
   --background-end-rgb: 248, 250, 252;
 }
 
+.dark {
+  --foreground-rgb: 243, 244, 246;
+  --background-start-rgb: 17, 24, 39;
+  --background-end-rgb: 31, 41, 55;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -58,10 +64,27 @@ a:focus {
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
+.dark .glass {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 /* Gradient text */
 .gradient-text {
   background: linear-gradient(135deg, #1e40af, #3b82f6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+
+/* Selection styles */
+::selection {
+  background: #3b82f6;
+  color: white;
+}
+
+.dark ::selection {
+  background: #60a5fa;
+  color: white;
 }

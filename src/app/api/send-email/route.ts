@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
+import { getGmailConfig } from '@/lib/config'
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,19 +14,22 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // 獲取 Gmail 配置（包含驗證）
+    const gmailConfig = getGmailConfig()
+
     // 建立 Nodemailer transporter
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.GMAIL_USER || 'tyouxipindao@gmail.com',
-        pass: process.env.GMAIL_APP_PASSWORD || 'ecaouqoalpxxsswi'
+        user: gmailConfig.user,
+        pass: gmailConfig.password
       }
     })
 
     // 郵件內容
     const mailOptions = {
-      from: process.env.GMAIL_USER || 'tyouxipindao@gmail.com',
-      to: process.env.GMAIL_USER || 'tyouxipindao@gmail.com',
+      from: gmailConfig.user,
+      to: gmailConfig.user,
       subject: `[個人網站] ${subject}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

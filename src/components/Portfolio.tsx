@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion'
 import { ExternalLink, Github } from 'lucide-react'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
-import ShareButton from './ShareButton'
 
 export default function Portfolio() {
   const { t } = useTranslationSafe()
@@ -42,7 +41,7 @@ export default function Portfolio() {
   ]
 
   return (
-    <section id="portfolio" className="py-20 bg-white">
+    <section id="portfolio" className="py-20 bg-white dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -51,10 +50,10 @@ export default function Portfolio() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-{t('portfolio.title', '我的 作品').split(' ')[0]} <span className="text-kevin-blue">{t('portfolio.title', '我的 作品').split(' ')[1]}</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-gray-200 mb-4">
+{t('portfolio.title', '我的 作品').split(' ')[0]} <span className="text-kevin-blue dark:text-blue-400">{t('portfolio.title', '我的 作品').split(' ')[1]}</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
 {t('portfolio.subtitle', '精選專案展示，展現技術實力和創意思維')}
           </p>
         </motion.div>
@@ -69,7 +68,7 @@ export default function Portfolio() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group"
+                className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group"
               >
                 <div className="relative overflow-hidden">
                   <img
@@ -86,7 +85,7 @@ export default function Portfolio() {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white/20 backdrop-blur-sm p-3 rounded-full hover:bg-white/30 transition-colors duration-300"
+                        className="bg-white/20 dark:bg-black/20 backdrop-blur-sm p-3 rounded-full hover:bg-white/30 dark:hover:bg-black/30 transition-colors duration-300"
                       >
                         <Github className="text-white" size={20} />
                       </a>
@@ -96,7 +95,7 @@ export default function Portfolio() {
                         href={project.demo}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white/20 backdrop-blur-sm p-3 rounded-full hover:bg-white/30 transition-colors duration-300"
+                        className="bg-white/20 dark:bg-black/20 backdrop-blur-sm p-3 rounded-full hover:bg-white/30 dark:hover:bg-black/30 transition-colors duration-300"
                       >
                         <ExternalLink className="text-white" size={20} />
                       </a>
@@ -104,29 +103,21 @@ export default function Portfolio() {
                   </div>
                 </div>
                 <div className="p-6">
-                  <h4 className="text-xl font-bold text-gray-800 mb-3">
+                  <h4 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-3">
                     {project.title}
                   </h4>
-                  <p className="text-gray-600 mb-4 leading-relaxed">
+                  <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 bg-kevin-blue/10 text-kevin-blue text-sm rounded-full"
+                        className="px-3 py-1 bg-kevin-blue/10 dark:bg-blue-900/30 text-kevin-blue dark:text-blue-400 text-sm rounded-full"
                       >
                         {tech}
                       </span>
                     ))}
-                  </div>
-                  <div className="flex justify-end">
-                    <ShareButton 
-                      title={`${project.title} - Kevin's Portfolio`}
-                      description={project.description}
-                      url={project.demo || project.github}
-                      size="sm"
-                    />
                   </div>
                 </div>
               </motion.div>

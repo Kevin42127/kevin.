@@ -37,7 +37,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gray-900 dark:bg-gray-950 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-3 gap-8">
           {/* Brand Section */}
@@ -58,7 +58,7 @@ export default function Footer() {
                 <a
                   key={social.label}
                   href={social.href}
-                  className="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-kevin-blue transition-all duration-300"
+                  className="w-10 h-10 bg-gray-800 dark:bg-gray-700 rounded-xl flex items-center justify-center hover:bg-kevin-blue transition-all duration-300"
                   aria-label={social.label}
                 >
                   <social.icon size={18} />
@@ -116,7 +116,7 @@ export default function Footer() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true }}
-          className="border-t border-gray-800 mt-8 pt-8 relative"
+          className="border-t border-gray-800 dark:border-gray-700 mt-8 pt-8 relative"
         >
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-400">

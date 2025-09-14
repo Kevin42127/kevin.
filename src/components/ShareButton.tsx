@@ -148,7 +148,7 @@ export default function ShareButton({
       {/* 主要分享按鈕 */}
       <motion.button
         onClick={handleNativeShare}
-        className={`${sizeClasses[size]} bg-kevin-blue/10 hover:bg-kevin-blue hover:text-white text-kevin-blue rounded-xl flex items-center justify-center transition-all duration-300 group`}
+        className={`${sizeClasses[size]} bg-kevin-blue/10 dark:bg-blue-900/30 hover:bg-kevin-blue hover:text-white text-kevin-blue dark:text-blue-400 rounded-xl flex items-center justify-center transition-all duration-300 group`}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         aria-label={t('share.share', '分享')}
@@ -174,15 +174,15 @@ export default function ShareButton({
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.8, y: 20 }}
-              className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-white rounded-2xl shadow-2xl border border-gray-200 p-4 z-50 min-w-[280px]"
+              className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 p-4 z-50 min-w-[280px]"
             >
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-semibold text-gray-800">
+                <h3 className="font-semibold text-gray-800 dark:text-gray-200">
                   {t('share.shareTo', '分享到')}
                 </h3>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="text-gray-400 hover:text-gray-600 transition-colors"
+                  className="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
                 >
                   ×
                 </button>
@@ -197,12 +197,12 @@ export default function ShareButton({
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                     onClick={option.onClick}
-                    className={`flex flex-col items-center p-3 rounded-xl bg-gray-50 ${option.color} text-white transition-all duration-300 group`}
+                    className={`flex flex-col items-center p-3 rounded-xl bg-gray-50 dark:bg-gray-700 ${option.color} text-white transition-all duration-300 group`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     <option.icon size={20} className="mb-1" />
-                    <span className="text-xs font-medium text-gray-700 group-hover:text-white">
+                    <span className="text-xs font-medium text-gray-700 dark:text-gray-300 group-hover:text-white">
                       {option.label}
                     </span>
                   </motion.button>
@@ -215,7 +215,7 @@ export default function ShareButton({
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
                 onClick={handleCopyLink}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl transition-all duration-300"
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-xl transition-all duration-300"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
