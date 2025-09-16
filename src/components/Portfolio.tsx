@@ -13,7 +13,7 @@ export default function Portfolio() {
       title: t('portfolio.simpleNotes.title', 'Simple Notes'),
       description: t('portfolio.simpleNotes.description', '簡潔的筆記應用，專注於內容創作'),
       image: '/simple-notes.jpg',
-      technologies: ['HTML', 'CSS'],
+      technologies: ['HTML', 'CSS', t('portfolio.aiCollaboration', 'AI協作')],
       github: '#',
       demo: 'https://smoothness.netlify.app/',
       featured: true
@@ -23,7 +23,7 @@ export default function Portfolio() {
       title: t('portfolio.resumecraft.title', 'ResumeCraft'),
       description: t('portfolio.resumecraft.description', '專業履歷生成器，幫助求職者快速建立精美履歷'),
       image: '/resumecraft.jpg',
-      technologies: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'react-hook-form', 'Puppeteer'],
+      technologies: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'react-hook-form', 'Puppeteer', t('portfolio.aiCollaboration', 'AI協作')],
       github: '#',
       demo: 'https://resumecraaft-beta.netlify.app/',
       featured: true
@@ -33,10 +33,30 @@ export default function Portfolio() {
       title: t('portfolio.personalWebsite.title', 'Kevin. - 個人網站'),
       description: t('portfolio.personalWebsite.description', '響應式個人作品集網站，展示設計與開發能力'),
       image: '/personal-website.jpg',
-      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', t('portfolio.aiCollaboration', 'AI協作')],
       github: '#',
-      demo: '#',
+      demo: 'https://kevin-tau.vercel.app/',
       featured: false
+    },
+    {
+      id: 4,
+      title: t('portfolio.weatherApp.title', '天氣儀表板'),
+      description: t('portfolio.weatherApp.description', '現代化天氣應用程式，提供即時天氣資訊與優雅的使用者介面'),
+      image: '/weather-app.jpg',
+      technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Open-Meteo', t('portfolio.aiCollaboration', 'AI協作')],
+      github: '#',
+      demo: 'https://weather-eight-black.vercel.app/',
+      featured: true
+    },
+    {
+      id: 5,
+      title: t('portfolio.taskblue.title', 'TaskBlue'),
+      description: t('portfolio.taskblue.description', '高效的任務管理應用程式，提供簡約現代的任務管理體驗'),
+      image: '/taskblue.jpg',
+      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', t('portfolio.aiCollaboration', 'AI協作')],
+      github: '#',
+      demo: 'https://taskblue.vercel.app/',
+      featured: true
     }
   ]
 

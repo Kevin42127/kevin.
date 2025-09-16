@@ -14,8 +14,8 @@ const zhResources = {
   },
   hero: {
     title: 'Kevin.',
-    subtitle: '設計師 & 開發者',
-    description: '畢業於數位科技與媒體設計系，專注於創造以使用者為中心的數位體驗。<br />結合設計美感與技術實作能力，將設計概念轉化為互動式的網頁應用。',
+    subtitle: '產品設計師 & 數位創作者',
+    description: '畢業於數位科技與媒體設計系，專注於創造以使用者為中心的數位體驗。<br />運用AI協作開發與現代化工具，將設計概念轉化為高品質的數位產品。',
     viewWork: '查看作品',
     getInTouch: '聯繫我',
     downloadCV: '下載履歷'
@@ -23,19 +23,19 @@ const zhResources = {
   about: {
     title: '關於 Kevin',
     subtitle: '個人簡介',
-    content: '您好，我是陳梓敬 (Kevin)，畢業於吳鳳科技大學數位科技與媒體設計系。在設計領域中，我專注於創造以使用者為中心的數位體驗。透過系統性的設計思維，我將複雜的需求轉化為簡潔優雅的解決方案。我相信設計的力量在於解決問題並創造價值。每個專案都是學習與成長的機會，我期待能與您合作，一起打造令人印象深刻的設計作品。',
+    content: '您好，我是陳梓敬 (Kevin)，畢業於吳鳳科技大學數位科技與媒體設計系。我專注於創造以使用者為中心的數位體驗，運用AI協作開發與現代化工具來實現設計概念。我的核心能力包括需求分析、產品設計、使用者體驗優化以及品質控制測試。透過系統性的設計思維和AI輔助開發，我將複雜的需求轉化為高品質的數位產品。我相信設計的力量在於解決問題並創造價值，每個專案都是學習與成長的機會。',
     coreSkills: '核心技能',
     uiDesign: {
       title: 'UI/UX 設計',
       description: '專注於使用者體驗設計，創造直觀且美觀的介面'
     },
-    frontendDev: {
-      title: '前端開發',
-      description: '使用現代化技術建構響應式網頁應用'
+    productDesign: {
+      title: '產品設計',
+      description: '專注於需求分析與產品規劃，將想法轉化為可行的數位解決方案'
     },
-    prototyping: {
-      title: '原型設計',
-      description: '快速驗證設計概念，確保產品方向正確'
+    qualityControl: {
+      title: '品質控制',
+      description: '透過系統性測試確保產品穩定性，優化使用者體驗'
     },
     aiCollaboration: {
       title: '與AI協作',
@@ -49,16 +49,25 @@ const zhResources = {
     viewCode: '查看程式碼',
     simpleNotes: {
       title: 'Simple Notes',
-      description: '簡潔的筆記應用，專注於內容創作'
+      description: '簡潔的筆記應用，專注於內容創作。透過AI協作快速建立基礎架構，再進行客製化調整'
     },
     resumecraft: {
       title: 'ResumeCraft',
-      description: '專業履歷生成器，幫助求職者快速建立精美履歷'
+      description: '專業履歷生成器，幫助求職者快速建立精美履歷。結合AI生成與人工優化，提升開發效率'
     },
     personalWebsite: {
       title: 'Kevin. - 個人網站',
-      description: '響應式個人作品集網站，展示設計與開發能力'
-    }
+      description: '響應式個人作品集網站，展示設計與開發能力。運用AI輔助開發，快速迭代優化使用者體驗'
+    },
+    weatherApp: {
+      title: '天氣儀表板',
+      description: '現代化天氣儀表板，提供即時天氣資訊與優雅的使用者介面。透過AI協作加速開發流程'
+    },
+    taskblue: {
+      title: 'TaskBlue',
+      description: '高效的任務管理應用程式，提供簡約現代的任務管理體驗。採用AI輔助開發模式，提升專案效率'
+    },
+    aiCollaboration: 'AI協作'
   },
   skills: {
     title: '技術 技能',
@@ -99,7 +108,7 @@ const zhResources = {
     error: '發送失敗，請稍後再試'
   },
   footer: {
-    description: '設計師 & 開發者，專注於創造以使用者為中心的數位體驗。結合設計美感與技術實作，將想法轉化為現實。',
+    description: '產品設計師 & 數位創作者，專注於創造以使用者為中心的數位體驗。運用AI協作開發與現代化工具，將設計概念轉化為高品質的數位產品。',
     quickLinks: '快速連結',
     contactInfo: '聯繫資訊',
     location: '彰化縣, 台灣',
@@ -145,8 +154,8 @@ const enResources = {
   },
   hero: {
     title: 'Kevin.',
-    subtitle: 'Designer & Developer',
-    description: 'Graduated from Digital Technology and Media Design Department, focused on creating user-centered digital experiences.<br />Combining design aesthetics with technical implementation to transform design concepts into interactive web applications.',
+    subtitle: 'Product Designer & Digital Creator',
+    description: 'Graduated from Digital Technology and Media Design Department, focused on creating user-centered digital experiences.<br />Leveraging AI-assisted development and modern tools to transform design concepts into high-quality digital products.',
     viewWork: 'View Work',
     getInTouch: 'Get In Touch',
     downloadCV: 'Download CV'
@@ -154,19 +163,19 @@ const enResources = {
   about: {
     title: 'About Kevin',
     subtitle: 'Personal Introduction',
-    content: 'Hello, I am Chen Zi-Jing (Kevin), graduated from WuFeng University of Technology, Department of Digital Technology and Media Design. In the field of design, I focus on creating user-centered digital experiences. Through systematic design thinking, I transform complex requirements into simple and elegant solutions. I believe the power of design lies in solving problems and creating value. Every project is an opportunity to learn and grow, and I look forward to working with you to create impressive design works.',
+    content: 'Hello, I am Chen Zi-Jing (Kevin), graduated from WuFeng University of Technology, Department of Digital Technology and Media Design. I focus on creating user-centered digital experiences, leveraging AI-assisted development and modern tools to bring design concepts to life. My core competencies include requirements analysis, product design, user experience optimization, and quality control testing. Through systematic design thinking and AI-assisted development, I transform complex requirements into high-quality digital products. I believe the power of design lies in solving problems and creating value, and every project is an opportunity to learn and grow.',
     coreSkills: 'Core Skills',
     uiDesign: {
       title: 'UI/UX Design',
       description: 'Focused on user experience design, creating intuitive and beautiful interfaces'
     },
-    frontendDev: {
-      title: 'Frontend Development',
-      description: 'Building responsive web applications using modern technologies'
+    productDesign: {
+      title: 'Product Design',
+      description: 'Focused on requirements analysis and product planning, transforming ideas into viable digital solutions'
     },
-    prototyping: {
-      title: 'Prototyping',
-      description: 'Rapidly validating design concepts to ensure correct product direction'
+    qualityControl: {
+      title: 'Quality Control',
+      description: 'Ensuring product stability through systematic testing and user experience optimization'
     },
     aiCollaboration: {
       title: 'AI Collaboration',
@@ -180,16 +189,25 @@ const enResources = {
     viewCode: 'View Code',
     simpleNotes: {
       title: 'Simple Notes',
-      description: 'Clean note-taking application focused on content creation'
+      description: 'Clean note-taking application focused on content creation. Built with AI collaboration for rapid prototyping and custom optimization'
     },
     resumecraft: {
       title: 'ResumeCraft',
-      description: 'Professional resume generator helping job seekers create beautiful resumes quickly'
+      description: 'Professional resume generator helping job seekers create beautiful resumes quickly. Enhanced development efficiency through AI-assisted coding'
     },
     personalWebsite: {
       title: 'Kevin. - Personal Website',
-      description: 'Responsive personal portfolio website showcasing design and development capabilities'
-    }
+      description: 'Responsive personal portfolio website showcasing design and development capabilities. Leveraged AI-assisted development for rapid iteration and UX optimization'
+    },
+    weatherApp: {
+      title: 'Weather Dashboard',
+      description: 'Modern weather dashboard providing real-time weather information with elegant user interface. Accelerated development through AI collaboration'
+    },
+    taskblue: {
+      title: 'TaskBlue',
+      description: 'Efficient task management application providing clean and modern task management experience. Developed using AI-assisted workflow for enhanced productivity'
+    },
+    aiCollaboration: 'AI Collaboration'
   },
   skills: {
     title: 'Technical Skills',
@@ -230,7 +248,7 @@ const enResources = {
     error: 'Failed to send message, please try again later'
   },
   footer: {
-    description: 'Designer & Developer, focused on creating user-centered digital experiences. Combining design aesthetics with technical implementation to turn ideas into reality.',
+    description: 'Product Designer & Digital Creator, focused on creating user-centered digital experiences. Leveraging AI-assisted development and modern tools to transform design concepts into high-quality digital products.',
     quickLinks: 'Quick Links',
     contactInfo: 'Contact Info',
     location: 'Changhua County, Taiwan',

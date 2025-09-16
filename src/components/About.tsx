@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Code, Palette, Zap, Users } from 'lucide-react'
+import { Palette, Target, CheckCircle, Users } from 'lucide-react'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 
 export default function About() {
@@ -9,21 +9,21 @@ export default function About() {
   
   const skills = [
     {
-      icon: Code,
-      title: t('about.frontendDev.title', '前端開發'),
-      description: t('about.frontendDev.description', '使用現代化技術建構響應式網頁應用'),
-      color: 'from-blue-500 to-blue-600'
-    },
-    {
       icon: Palette,
       title: t('about.uiDesign.title', 'UI/UX 設計'),
       description: t('about.uiDesign.description', '專注於使用者體驗設計，創造直觀且美觀的介面'),
       color: 'from-purple-500 to-purple-600'
     },
     {
-      icon: Zap,
-      title: t('about.prototyping.title', '原型設計'),
-      description: t('about.prototyping.description', '快速驗證設計概念，確保產品方向正確'),
+      icon: Target,
+      title: t('about.productDesign.title', '產品設計'),
+      description: t('about.productDesign.description', '專注於需求分析與產品規劃，將想法轉化為可行的數位解決方案'),
+      color: 'from-blue-500 to-blue-600'
+    },
+    {
+      icon: CheckCircle,
+      title: t('about.qualityControl.title', '品質控制'),
+      description: t('about.qualityControl.description', '透過系統性測試確保產品穩定性，優化使用者體驗'),
       color: 'from-yellow-500 to-orange-500'
     },
     {
