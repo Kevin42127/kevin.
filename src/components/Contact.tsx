@@ -1,8 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Mail, MapPin, Send, Linkedin } from 'lucide-react'
-import { useState } from 'react'
+import { Mail, MapPin, Send, Linkedin, CheckCircle, XCircle } from 'lucide-react'
+import { useState, useEffect } from 'react'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 
 export default function Contact() {
@@ -14,6 +14,21 @@ export default function Contact() {
     message: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [toast, setToast] = useState<{
+    show: boolean
+    type: 'success' | 'error'
+    message: string
+  }>({ show: false, type: 'success', message: '' })
+
+  // Auto-hide toast after 5 seconds
+  useEffect(() => {
+    if (toast.show) {
+      const timer = setTimeout(() => {
+        setToast({ ...toast, show: false })
+      }, 5000)
+      return () => clearTimeout(timer)
+    }
+  }, [toast])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -38,14 +53,26 @@ export default function Contact() {
       const result = await response.json()
 
       if (response.ok) {
-        alert('訊息發送成功！我會盡快回覆您。')
+        setToast({
+          show: true,
+          type: 'success',
+          message: t('contact.success', '訊息已發送！')
+        })
         setFormData({ name: '', email: '', subject: '', message: '' })
       } else {
-        alert(result.error || '發送失敗，請稍後再試')
+        setToast({
+          show: true,
+          type: 'error',
+          message: result.error || t('contact.error', '發送失敗，請稍後再試')
+        })
       }
     } catch (error) {
       console.error('發送錯誤:', error)
-      alert('發送失敗，請檢查網路連線後再試')
+      setToast({
+        show: true,
+        type: 'error',
+        message: t('contact.error', '發送失敗，請檢查網路連線後再試')
+      })
     } finally {
       setIsSubmitting(false)
     }
@@ -79,6 +106,35 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-20 bg-white dark:bg-gray-900">
+      {/* Toast Notification */}
+      {toast.show && (
+        <motion.div
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -50 }}
+          className="fixed top-4 right-4 z-50"
+        >
+          <div className={`flex items-center space-x-3 px-6 py-4 rounded-lg shadow-lg ${
+            toast.type === 'success' 
+              ? 'bg-green-500 text-white' 
+              : 'bg-red-500 text-white'
+          }`}>
+            {toast.type === 'success' ? (
+              <CheckCircle size={20} />
+            ) : (
+              <XCircle size={20} />
+            )}
+            <span className="font-medium">{toast.message}</span>
+            <button
+              onClick={() => setToast({ ...toast, show: false })}
+              className="ml-2 hover:opacity-70 transition-opacity"
+            >
+              <XCircle size={16} />
+            </button>
+          </div>
+        </motion.div>
+      )}
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
