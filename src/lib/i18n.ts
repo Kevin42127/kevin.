@@ -117,7 +117,20 @@ const zhResources = {
     copyLink: '複製連結',
     copied: '已複製',
     email: 'Email'
-  }
+  },
+  search: {
+    search: '搜索',
+    openSearch: '打開搜索',
+    placeholder: '搜索網站內容...',
+    searching: '搜索中...',
+    noResults: '沒有找到相關結果',
+    tryDifferent: '試試其他關鍵字',
+    startTyping: '開始輸入以搜索內容',
+    aboutDescription: '了解我的背景、技能和專業經驗',
+    portfolioDescription: '查看我的精選專案和作品集',
+    skillsDescription: '了解我的技術能力和專業技能',
+    contactDescription: '透過各種方式與我聯繫'
+  },
 }
 
 // 英文翻譯資源
@@ -235,7 +248,20 @@ const enResources = {
     copyLink: 'Copy Link',
     copied: 'Copied',
     email: 'Email'
-  }
+  },
+  search: {
+    search: 'Search',
+    openSearch: 'Open Search',
+    placeholder: 'Search website content...',
+    searching: 'Searching...',
+    noResults: 'No results found',
+    tryDifferent: 'Try different keywords',
+    startTyping: 'Start typing to search content',
+    aboutDescription: 'Learn about my background, skills and professional experience',
+    portfolioDescription: 'View my featured projects and portfolio',
+    skillsDescription: 'Understand my technical abilities and professional skills',
+    contactDescription: 'Contact me through various methods'
+  },
 }
 
 // 確保在客戶端環境中運行
