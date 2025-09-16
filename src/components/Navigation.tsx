@@ -23,7 +23,7 @@ export default function Navigation() {
   }, [])
 
 
-  const navItems = [
+  const navItems: Array<{ name: string; href: string }> = [
     { name: t('navigation.home', '首頁'), href: '#home' },
     { name: t('navigation.about', '關於'), href: '#about' },
     { name: t('navigation.portfolio', '作品'), href: '#portfolio' },
@@ -31,7 +31,7 @@ export default function Navigation() {
     { name: t('navigation.contact', '聯繫'), href: '#contact' },
   ]
 
-  const externalLinks = []
+  const externalLinks: Array<{ name: string; href: string; external: boolean }> = []
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href)
