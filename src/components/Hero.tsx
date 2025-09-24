@@ -19,38 +19,38 @@ export default function Hero() {
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-20 left-10 w-72 h-72 bg-kevin-blue/10 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-brand-blue-300/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }}></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-brand-blue-300/10 rounded-full blur-3xl animate-float"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
           {/* Main Heading */}
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
             className="text-5xl md:text-7xl font-bold mb-6"
           >
             <span className="text-kevin-blue dark:text-blue-400">{t('hero.title', 'Kevin.')}</span>
           </motion.h1>
 
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
             className="text-2xl md:text-4xl font-semibold text-gray-700 dark:text-gray-300 mb-4"
           >
 {t('hero.subtitle', '設計師 & 開發者')}
           </motion.h2>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
             className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl mx-auto leading-relaxed"
             dangerouslySetInnerHTML={{ __html: t('hero.description', '畢業於數位科技與媒體設計系，專注於創造以使用者為中心的數位體驗。<br />結合設計美感與技術實作能力，將設計概念轉化為互動式的網頁應用。') }}
           >
@@ -58,9 +58,9 @@ export default function Hero() {
 
           {/* CTA Buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
           >
             <button
@@ -70,7 +70,7 @@ export default function Hero() {
                   element.scrollIntoView({ behavior: 'smooth' })
                 }
               }}
-              className="bg-kevin-blue text-white px-8 py-3 rounded-full font-semibold hover:bg-kevin-blue-dark transition-colors duration-300 shadow-lg hover:shadow-xl"
+              className="bg-kevin-blue text-white px-8 py-3 rounded-full font-semibold hover:bg-kevin-blue-dark transition-colors duration-300 shadow-lg hover:shadow-xl min-h-[48px]"
             >
 {t('hero.getInTouch', '聯繫我')}
             </button>
@@ -82,7 +82,7 @@ export default function Hero() {
                   element.scrollIntoView({ behavior: 'smooth' })
                 }
               }}
-              className="border-2 border-kevin-blue dark:border-blue-400 text-kevin-blue dark:text-blue-400 px-8 py-3 rounded-full font-semibold hover:bg-kevin-blue dark:hover:bg-blue-500 hover:text-white dark:hover:text-white transition-all duration-300"
+              className="border-2 border-kevin-blue dark:border-blue-400 text-kevin-blue dark:text-blue-400 px-8 py-3 rounded-full font-semibold hover:bg-kevin-blue dark:hover:bg-blue-500 hover:text-white dark:hover:text-white transition-all duration-300 min-h-[48px]"
             >
 {t('hero.viewWork', '查看作品')}
             </button>
@@ -90,7 +90,7 @@ export default function Hero() {
             <a
               href="/Kevin_CV.pdf"
               download="Kevin_CV.pdf"
-              className="flex items-center gap-2 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-300"
+              className="inline-flex items-center justify-center gap-2 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-300 min-h-[48px]"
             >
               <Download size={18} />
 {t('hero.downloadCV', '下載履歷')}
@@ -99,9 +99,9 @@ export default function Hero() {
 
           {/* Social Links */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
             className="flex justify-center space-x-6 mb-16"
           >
             <a
@@ -126,7 +126,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.2 }}
+            transition={{ duration: 1 }}
             className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
           >
             <button

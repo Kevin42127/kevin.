@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Search, X, FileText, Briefcase, Code, User, Mail } from 'lucide-react'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 
@@ -184,7 +184,7 @@ export default function DropdownSearch() {
             onChange={handleSearch}
             onFocus={() => setIsOpen(true)}
             placeholder={t('search.placeholder', '搜索網站內容...')}
-            className="w-full pl-10 pr-10 py-2 text-sm bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-kevin-blue focus:border-transparent transition-all duration-200 placeholder-gray-500 dark:placeholder-gray-400"
+            className="w-full pl-10 pr-10 py-2 text-sm bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg transition-all duration-200 placeholder-gray-500 dark:placeholder-gray-400"
           />
           {query && (
             <button
@@ -198,15 +198,8 @@ export default function DropdownSearch() {
       </div>
 
       {/* 下拉搜索結果 */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-xl z-50 max-h-96 overflow-y-auto"
-          >
+      {isOpen && (
+        <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-xl z-50 max-h-96 overflow-y-auto">
             {isLoading ? (
               <div className="p-4 text-center">
                 <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-kevin-blue mx-auto"></div>
@@ -221,11 +214,8 @@ export default function DropdownSearch() {
                   const typeColor = getTypeColor(result.type)
                   
                   return (
-                    <motion.button
+                    <button
                       key={result.id}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05 }}
                       onClick={() => handleResultClick(result)}
                       className="w-full text-left p-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200"
                     >
@@ -242,7 +232,7 @@ export default function DropdownSearch() {
                           </p>
                         </div>
                       </div>
-                    </motion.button>
+                    </button>
                   )
                 })}
               </div>
@@ -264,9 +254,8 @@ export default function DropdownSearch() {
                 </p>
               </div>
             )}
-          </motion.div>
-        )}
-      </AnimatePresence>
+        </div>
+      )}
     </div>
   )
 }

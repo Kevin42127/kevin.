@@ -109,8 +109,8 @@ export default function Contact() {
       {/* Toast Notification */}
       {toast.show && (
         <motion.div
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           exit={{ opacity: 0, y: -50 }}
           className="fixed top-4 right-4 z-50"
         >
@@ -137,10 +137,9 @@ export default function Contact() {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-gray-200 mb-4">
@@ -154,10 +153,9 @@ export default function Contact() {
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Information */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
           >
             <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-6">
 {t('contact.subtitle', '讓我們開始對話')}
@@ -171,10 +169,9 @@ export default function Contact() {
               {contactInfo.map((info, index) => (
                 <motion.div
                   key={info.title}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6 }}
                   className="flex items-center space-x-4"
                 >
                   <div className="w-12 h-12 bg-kevin-blue/10 dark:bg-blue-900/30 rounded-xl flex items-center justify-center">
@@ -210,10 +207,9 @@ export default function Contact() {
 
           {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
             className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8"
           >
             <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-6">
@@ -232,7 +228,7 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-kevin-blue focus:border-transparent transition-all duration-300 placeholder-gray-500 dark:placeholder-gray-400"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg  transition-all duration-300 placeholder-gray-500 dark:placeholder-gray-400"
                     placeholder={t('contact.namePlaceholder', '您的姓名')}
                   />
                 </div>
@@ -247,7 +243,7 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-kevin-blue focus:border-transparent transition-all duration-300 placeholder-gray-500 dark:placeholder-gray-400"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg  transition-all duration-300 placeholder-gray-500 dark:placeholder-gray-400"
                     placeholder={t('contact.emailPlaceholder', 'your@email.com')}
                   />
                 </div>
@@ -264,7 +260,7 @@ export default function Contact() {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-kevin-blue focus:border-transparent transition-all duration-300"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg  transition-all duration-300"
                   placeholder={t('contact.subjectPlaceholder', '訊息主題')}
                 />
               </div>
@@ -280,7 +276,7 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   rows={6}
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-kevin-blue focus:border-transparent transition-all duration-300 resize-none placeholder-gray-500 dark:placeholder-gray-400"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg  transition-all duration-300 resize-none placeholder-gray-500 dark:placeholder-gray-400"
                   placeholder={t('contact.messagePlaceholder', '請描述您的需求或想法...')}
                 />
               </div>

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Share2, Copy, Check, Facebook, Twitter, Linkedin, MessageCircle, Mail } from 'lucide-react'
 import { useTranslationSafe } from '@/hooks/useTranslationSafe'
 
@@ -157,25 +157,16 @@ export default function ShareButton({
       </motion.button>
 
       {/* 分享選單 */}
-      <AnimatePresence>
-        {isOpen && (
-          <>
-            {/* 背景遮罩 */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
-              onClick={() => setIsOpen(false)}
-            />
+      {isOpen && (
+        <>
+          {/* 背景遮罩 */}
+          <div
+            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+            onClick={() => setIsOpen(false)}
+          />
 
-            {/* 分享選單 */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.8, y: 20 }}
-              className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 p-4 z-50 min-w-[280px]"
-            >
+          {/* 分享選單 */}
+          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 p-4 z-50 min-w-[280px]">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-semibold text-gray-800 dark:text-gray-200">
                   {t('share.shareTo', '分享到')}
@@ -191,33 +182,23 @@ export default function ShareButton({
               {/* 分享選項 */}
               <div className="grid grid-cols-3 gap-3 mb-4">
                 {shareOptions.map((option, index) => (
-                  <motion.button
+                  <button
                     key={option.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
                     onClick={option.onClick}
-                    className={`flex flex-col items-center p-3 rounded-xl bg-gray-50 dark:bg-gray-700 ${option.color} text-white transition-all duration-300 group`}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    className={`flex flex-col items-center p-3 rounded-xl bg-gray-50 dark:bg-gray-700 ${option.color} text-white transition-all duration-300 group hover:scale-105 active:scale-95`}
                   >
                     <option.icon size={20} className="mb-1" />
                     <span className="text-xs font-medium text-gray-700 dark:text-gray-300 group-hover:text-white">
                       {option.label}
                     </span>
-                  </motion.button>
+                  </button>
                 ))}
               </div>
 
               {/* 複製連結 */}
-              <motion.button
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
+              <button
                 onClick={handleCopyLink}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-xl transition-all duration-300"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-xl transition-all duration-300 hover:scale-102 active:scale-98"
               >
                 {copied ? (
                   <>
@@ -234,11 +215,10 @@ export default function ShareButton({
                     </span>
                   </>
                 )}
-              </motion.button>
-            </motion.div>
+              </button>
+            </div>
           </>
         )}
-      </AnimatePresence>
     </div>
   )
 }

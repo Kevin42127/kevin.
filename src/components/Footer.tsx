@@ -42,10 +42,9 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-8">
           {/* Brand Section */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
           >
             <h3 className="text-2xl font-bold text-white mb-4">
               {t('navigation.kevin', 'Kevin.')}
@@ -69,20 +68,18 @@ export default function Footer() {
 
           {/* Quick Links */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
           >
             <h4 className="text-lg font-semibold mb-4">{t('footer.quickLinks', '快速連結')}</h4>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <motion.li
                   key={link.name}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6 }}
                 >
                   <button
                     onClick={() => scrollToSection(link.href)}
@@ -97,10 +94,9 @@ export default function Footer() {
 
           {/* Contact Info */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
           >
             <h4 className="text-lg font-semibold mb-4">{t('footer.contactInfo', '聯繫資訊')}</h4>
             <div className="space-y-3 text-gray-300">
@@ -113,9 +109,8 @@ export default function Footer() {
         {/* Bottom Section */}
         <motion.div
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
           className="border-t border-gray-800 dark:border-gray-700 mt-8 pt-8 relative"
         >
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
@@ -124,9 +119,8 @@ export default function Footer() {
             </p>
             <motion.p
               initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8 }}
               className="text-gray-400 flex items-center space-x-1"
             >
               <span>Made with</span>
