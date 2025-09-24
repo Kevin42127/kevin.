@@ -520,7 +520,7 @@ const zhResources = {
       thirdPlace: '第三名',
       completed: '已完成',
       competitionPeriod: '2023年',
-      councilPeriod: '2022年-2025年',
+      councilPeriod: '2021年~2022年',
       competitionDesc: '參與校園專題競賽，運用設計思維與技術能力獲得第三名佳績',
       councilDesc: '曾負責學生會文書處理與活動規劃，展現組織協調與專案管理能力'
     },
@@ -1063,7 +1063,7 @@ const enResources = {
       thirdPlace: 'Third Place',
       completed: 'Completed',
       competitionPeriod: '2023',
-      councilPeriod: '2022-2025',
+      councilPeriod: '2021~2022',
       competitionDesc: 'Participated in campus project competition, achieved third place using design thinking and technical skills',
       councilDesc: 'Previously responsible for student council documentation and event planning, demonstrating organizational coordination and project management skills'
     },
