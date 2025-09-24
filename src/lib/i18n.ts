@@ -9,6 +9,7 @@ const zhResources = {
     about: '關於',
     portfolio: '作品',
     skills: '技能',
+    experience: '經驗',
     contact: '聯繫',
     kevin: 'Kevin.'
   },
@@ -494,6 +495,53 @@ const zhResources = {
     modalContent: '您確定要執行此操作嗎？',
     confirm: '確認',
     cancel: '取消'
+  },
+  experience: {
+    title: '相關 經驗',
+    subtitle: '語言能力、證照認證與實務經驗展示',
+    languageSkills: '語言能力',
+    languages: {
+      chinese: '中文',
+      english: '英文',
+      native: '母語',
+      beginner: '初級'
+    },
+    certifications: {
+      title: '證照與認證',
+      international: '國際認證',
+      viewCertificate: '查看證書'
+    },
+    activities: {
+      title: '課外活動',
+      competition: '專題競賽',
+      organization: '組織經驗',
+      competitionTitle: '校園專題競賽',
+      studentCouncil: '學生會資訊職務',
+      thirdPlace: '第三名',
+      completed: '已完成',
+      competitionPeriod: '2023年',
+      councilPeriod: '2022年-2025年',
+      competitionDesc: '參與校園專題競賽，運用設計思維與技術能力獲得第三名佳績',
+      councilDesc: '曾負責學生會文書處理與活動規劃，展現組織協調與專案管理能力'
+    },
+    responsibilities: {
+      title: '主要職責',
+      meetingRecords: '會議紀錄整理與文書處理',
+      fairPlanning: '園遊會攤位規劃與活動執行',
+      concertSupport: '校園演唱會籌備與現場支援'
+    },
+    skills: {
+      title: '相關技能',
+      projectExecution: '專案執行',
+      creativeThinking: '創意思考',
+      problemSolving: '問題解決',
+      technicalApplication: '技術應用',
+      documentProcessing: '文書處理',
+      eventPlanning: '活動規劃',
+      teamCollaboration: '團隊協作',
+      projectManagement: '專案管理',
+      onSiteExecution: '現場執行'
+    }
   }
 }
 
@@ -504,6 +552,7 @@ const enResources = {
     about: 'About',
     portfolio: 'Portfolio',
     skills: 'Skills',
+    experience: 'Experience',
     contact: 'Contact',
     kevin: 'Kevin.'
   },
@@ -989,6 +1038,53 @@ const enResources = {
     modalContent: 'Are you sure you want to perform this action?',
     confirm: 'Confirm',
     cancel: 'Cancel'
+  },
+  experience: {
+    title: 'Related Experience',
+    subtitle: 'Language skills, certifications and practical experience showcase',
+    languageSkills: 'Language Skills',
+    languages: {
+      chinese: 'Chinese',
+      english: 'English',
+      native: 'Native',
+      beginner: 'Beginner'
+    },
+    certifications: {
+      title: 'Certifications',
+      international: 'International Certification',
+      viewCertificate: 'View Certificate'
+    },
+    activities: {
+      title: 'Extracurricular Activities',
+      competition: 'Project Competition',
+      organization: 'Organizational Experience',
+      competitionTitle: 'Campus Project Competition',
+      studentCouncil: 'Student Council IT Position',
+      thirdPlace: 'Third Place',
+      completed: 'Completed',
+      competitionPeriod: '2023',
+      councilPeriod: '2022-2025',
+      competitionDesc: 'Participated in campus project competition, achieved third place using design thinking and technical skills',
+      councilDesc: 'Previously responsible for student council documentation and event planning, demonstrating organizational coordination and project management skills'
+    },
+    responsibilities: {
+      title: 'Key Responsibilities',
+      meetingRecords: 'Meeting records organization and documentation processing',
+      fairPlanning: 'Campus fair booth planning and event execution',
+      concertSupport: 'Campus concert preparation and on-site support'
+    },
+    skills: {
+      title: 'Related Skills',
+      projectExecution: 'Project Execution',
+      creativeThinking: 'Creative Thinking',
+      problemSolving: 'Problem Solving',
+      technicalApplication: 'Technical Application',
+      documentProcessing: 'Document Processing',
+      eventPlanning: 'Event Planning',
+      teamCollaboration: 'Team Collaboration',
+      projectManagement: 'Project Management',
+      onSiteExecution: 'On-site Execution'
+    }
   }
 }
 

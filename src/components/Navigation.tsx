@@ -28,6 +28,7 @@ export default function Navigation() {
     { name: t('navigation.about', '關於'), href: '#about' },
     { name: t('navigation.portfolio', '作品'), href: '#portfolio' },
     { name: t('navigation.skills', '技能'), href: '#skills' },
+    { name: t('navigation.experience', '經驗'), href: '#experience' },
     { name: t('navigation.contact', '聯繫'), href: '#contact' },
   ]
 

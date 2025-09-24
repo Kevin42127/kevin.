@@ -26,6 +26,7 @@ export default function Footer() {
     { name: t('navigation.about'), href: '#about' },
     { name: t('navigation.portfolio'), href: '#portfolio' },
     { name: t('navigation.skills'), href: '#skills' },
+    { name: t('navigation.experience'), href: '#experience' },
     { name: t('navigation.contact'), href: '#contact' }
   ]
 
