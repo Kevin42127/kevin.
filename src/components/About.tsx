@@ -3,9 +3,11 @@
 import { motion } from 'framer-motion'
 import { Palette, Target, CheckCircle, Users } from 'lucide-react'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
+import { useProtectedImage } from '../hooks/useProtectedImage'
 
 export default function About() {
   const { t } = useTranslationSafe()
+  const { imageUrl, isLoading } = useProtectedImage()
   
   const skills = [
     {
@@ -66,15 +68,62 @@ export default function About() {
               transition={{ duration: 0.8 }}
               className="flex justify-center lg:justify-start"
             >
-              <div className="w-48 h-48 rounded-full overflow-hidden shadow-xl border-4 border-white dark:border-gray-800">
-                <img
-                  src="/profile.jpg"
-                  alt="Kevin 陳梓敬"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiBmaWxsPSIjRjNGNEY2Ii8+CjxjaXJjbGUgY3g9Ijk2IiBjeT0iNzIiIHI9IjI0IiBmaWxsPSIjOUNBM0FGIi8+CjxwYXRoIGQ9Ik0xNDQgMTQ0QzE0NCAxMjIuMTA5IDEyNi4xMDkgMTA0IDEwNCAxMDRIODhDNjUuOTA5MSAxMDQgNDggMTIyLjEwOSA0OCAxNDRWMjAwSDE0NFYxNDRaIiBmaWxsPSIjOUNBM0FGIi8+Cjwvc3ZnPgo='
+              <div 
+                className="w-48 h-48 rounded-full overflow-hidden shadow-xl border-4 border-white dark:border-gray-800 select-none relative"
+                onContextMenu={(e) => e.preventDefault()}
+                onDragStart={(e) => e.preventDefault()}
+                style={{ 
+                  userSelect: 'none',
+                  WebkitUserSelect: 'none',
+                  MozUserSelect: 'none',
+                  msUserSelect: 'none'
+                }}
+              >
+                {/* 主圖片 */}
+                {isLoading ? (
+                  <div className="w-full h-full bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-full bg-gray-300 dark:bg-gray-600"></div>
+                  </div>
+                ) : (
+                  <img
+                    src={imageUrl}
+                    alt="Kevin 陳梓敬"
+                    className="w-full h-full object-cover pointer-events-none"
+                    onContextMenu={(e) => e.preventDefault()}
+                    onDragStart={(e) => e.preventDefault()}
+                    onError={(e) => {
+                      e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiBmaWxsPSIjRjNGNEY2Ii8+CjxjaXJjbGUgY3g9Ijk2IiBjeT0iNzIiIHI9IjI0IiBmaWxsPSIjOUNBM0FGIi8+CjxwYXRoIGQ9Ik0xNDQgMTQ0QzE0NCAxMjIuMTA5IDEyNi4xMDkgMTA0IDEwNCAxMDRIODhDNjUuOTA5MSAxMDQgNDggMTIyLjEwOSA0OCAxNDRWMjAwSDE0NFYxNDRaIiBmaWxsPSIjOUNBM0FGIi8+Cjwvc3ZnPgo='
+                    }}
+                    style={{ 
+                      userSelect: 'none',
+                      WebkitUserSelect: 'none',
+                      MozUserSelect: 'none',
+                      msUserSelect: 'none',
+                      WebkitUserDrag: 'none',
+                      WebkitTouchCallout: 'none'
+                    }}
+                  />
+                )}
+                
+                {/* 透明水印層 */}
+                <div 
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: 'repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px)',
+                    mixBlendMode: 'overlay'
                   }}
                 />
+                
+                {/* 版權文字水印 */}
+                <div 
+                  className="absolute bottom-2 right-2 text-white text-xs opacity-50 pointer-events-none"
+                  style={{
+                    textShadow: '1px 1px 2px rgba(0,0,0,0.8)',
+                    fontFamily: 'monospace'
+                  }}
+                >
+                  © Kevin Chen
+                </div>
               </div>
             </motion.div>
 
