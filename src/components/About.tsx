@@ -77,7 +77,7 @@ export default function About() {
                   WebkitUserSelect: 'none',
                   MozUserSelect: 'none',
                   msUserSelect: 'none'
-                }}
+                } as React.CSSProperties}
               >
                 {/* 主圖片 */}
                 {isLoading ? (
@@ -101,7 +101,7 @@ export default function About() {
                       msUserSelect: 'none',
                       WebkitUserDrag: 'none',
                       WebkitTouchCallout: 'none'
-                    }}
+                    } as React.CSSProperties}
                   />
                 )}
                 
@@ -111,7 +111,7 @@ export default function About() {
                   style={{
                     background: 'repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px)',
                     mixBlendMode: 'overlay'
-                  }}
+                  } as React.CSSProperties}
                 />
                 
                 {/* 版權文字水印 */}
@@ -120,7 +120,7 @@ export default function About() {
                   style={{
                     textShadow: '1px 1px 2px rgba(0,0,0,0.8)',
                     fontFamily: 'monospace'
-                  }}
+                  } as React.CSSProperties}
                 >
                   © Kevin Chen
                 </div>
