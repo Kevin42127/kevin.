@@ -68,6 +68,10 @@ const zhResources = {
       title: 'TaskBlue',
       description: '高效的任務管理應用程式，提供簡約現代的任務管理體驗。採用AI輔助開發模式，提升專案效率'
     },
+    tinylink: {
+      title: 'TinyLink',
+      description: '簡潔、快速、私密的短網址服務，支援自定義短碼與過期時間設定。採用AI協作開發，提供優質的使用者體驗'
+    },
     aiCollaboration: 'AI協作'
   },
   skills: {
@@ -610,6 +614,10 @@ const enResources = {
     taskblue: {
       title: 'TaskBlue',
       description: 'Efficient task management application providing clean and modern task management experience. Developed using AI-assisted workflow for enhanced productivity'
+    },
+    tinylink: {
+      title: 'TinyLink',
+      description: 'Clean, fast, and private URL shortening service with custom short codes and expiration settings. Built with AI collaboration for optimal user experience'
     },
     aiCollaboration: 'AI Collaboration'
   },

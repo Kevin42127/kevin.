@@ -57,6 +57,16 @@ export default function Portfolio() {
       github: '#',
       demo: 'https://taskblue.vercel.app/',
       featured: true
+    },
+    {
+      id: 6,
+      title: t('portfolio.tinylink.title', 'TinyLink'),
+      description: t('portfolio.tinylink.description', '簡潔、快速、私密的短網址服務，支援自定義短碼與過期時間設定'),
+      image: '/tinylink.jpg',
+      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', t('portfolio.aiCollaboration', 'AI協作')],
+      github: '#',
+      demo: 'https://tinylink-seven.vercel.app/',
+      featured: true
     }
   ]
 
