@@ -2,14 +2,14 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { Search, X, FileText, Briefcase, Code, User, Mail } from 'lucide-react'
+import { Search, X, FileText, Briefcase, Code, User, Mail, Award } from 'lucide-react'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 
 interface SearchResult {
   id: string
   title: string
   description: string
-  type: 'about' | 'portfolio' | 'skills' | 'contact' | 'project'
+  type: 'about' | 'portfolio' | 'skills' | 'experience' | 'contact' | 'project'
   href: string
   icon: any
 }
@@ -50,6 +50,14 @@ export default function DropdownSearch() {
       icon: Code
     },
     {
+      id: 'experience',
+      title: t('navigation.experience', '經驗'),
+      description: t('search.experienceDescription', '查看我的語言能力、證照認證與實務經驗'),
+      type: 'experience',
+      href: '#experience',
+      icon: Award
+    },
+    {
       id: 'contact',
       title: t('navigation.contact', '聯繫'),
       description: t('search.contactDescription', '透過各種方式與我聯繫'),
@@ -76,7 +84,31 @@ export default function DropdownSearch() {
     {
       id: 'personal-website',
       title: t('portfolio.personalWebsite.title', 'Kevin. - 個人網站'),
-      description: t('portfolio.personalWebsite.description', '響應式個人作品集網站，展示設計與開發能力'),
+      description: t('portfolio.personalWebsite.description', '綜合技能展示專案，整合所學技術打造個人品牌網站'),
+      type: 'project',
+      href: '#portfolio',
+      icon: FileText
+    },
+    {
+      id: 'weather-app',
+      title: t('portfolio.weatherApp.title', '天氣儀表板'),
+      description: t('portfolio.weatherApp.description', '學習 API 整合的專案，掌握外部數據獲取和現代化 UI 設計'),
+      type: 'project',
+      href: '#portfolio',
+      icon: FileText
+    },
+    {
+      id: 'taskblue',
+      title: t('portfolio.taskblue.title', 'TaskBlue'),
+      description: t('portfolio.taskblue.description', 'React 狀態管理練習專案，學習複雜組件間的數據流管理'),
+      type: 'project',
+      href: '#portfolio',
+      icon: FileText
+    },
+    {
+      id: 'tinylink',
+      title: t('portfolio.tinylink.title', 'TinyLink'),
+      description: t('portfolio.tinylink.description', '後端概念學習專案，理解數據庫設計、API 開發和部署流程'),
       type: 'project',
       href: '#portfolio',
       icon: FileText
@@ -141,6 +173,7 @@ export default function DropdownSearch() {
       case 'about': return User
       case 'portfolio': return Briefcase
       case 'skills': return Code
+      case 'experience': return Award
       case 'contact': return Mail
       case 'project': return FileText
       default: return FileText
@@ -153,6 +186,7 @@ export default function DropdownSearch() {
       case 'about': return 'text-blue-500'
       case 'portfolio': return 'text-purple-500'
       case 'skills': return 'text-green-500'
+      case 'experience': return 'text-yellow-500'
       case 'contact': return 'text-orange-500'
       case 'project': return 'text-indigo-500'
       default: return 'text-gray-500'

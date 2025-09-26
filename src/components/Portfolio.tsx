@@ -11,61 +11,61 @@ export default function Portfolio() {
     {
       id: 1,
       title: t('portfolio.simpleNotes.title', 'Simple Notes'),
-      description: t('portfolio.simpleNotes.description', '簡潔的筆記應用，專注於內容創作'),
+      description: t('portfolio.simpleNotes.description', '我的第一個完整前端專案，從零開始學習 HTML/CSS 基礎，專注於響應式設計實踐'),
       image: '/simple-notes.jpg',
-      technologies: ['HTML', 'CSS', t('portfolio.aiCollaboration', 'AI協作')],
+      technologies: ['HTML', 'CSS', t('portfolio.aiCollaboration', 'AI協作'), t('portfolio.basicPractice', '基礎練習')],
       github: '#',
       demo: 'https://smoothness.netlify.app/',
       featured: true
     },
     {
       id: 2,
-      title: t('portfolio.resumecraft.title', 'ResumeCraft'),
-      description: t('portfolio.resumecraft.description', '專業履歷生成器，幫助求職者快速建立精美履歷'),
-      image: '/resumecraft.jpg',
-      technologies: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'react-hook-form', 'Puppeteer', t('portfolio.aiCollaboration', 'AI協作')],
-      github: '#',
-      demo: 'https://resumecraaft-beta.netlify.app/',
-      featured: true
-    },
-    {
-      id: 3,
-      title: t('portfolio.personalWebsite.title', 'Kevin. - 個人網站'),
-      description: t('portfolio.personalWebsite.description', '響應式個人作品集網站，展示設計與開發能力'),
-      image: '/personal-website.jpg',
-      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', t('portfolio.aiCollaboration', 'AI協作')],
-      github: '#',
-      demo: 'https://kevin-tau.vercel.app/',
-      featured: false
-    },
-    {
-      id: 4,
       title: t('portfolio.weatherApp.title', '天氣儀表板'),
-      description: t('portfolio.weatherApp.description', '現代化天氣應用程式，提供即時天氣資訊與優雅的使用者介面'),
+      description: t('portfolio.weatherApp.description', '學習 API 整合的專案，掌握外部數據獲取和現代化 UI 設計'),
       image: '/weather-app.jpg',
-      technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Open-Meteo', t('portfolio.aiCollaboration', 'AI協作')],
+      technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Open-Meteo API', t('portfolio.aiCollaboration', 'AI協作'), t('portfolio.apiLearning', 'API 學習')],
       github: '#',
       demo: 'https://weather-eight-black.vercel.app/',
       featured: true
     },
     {
-      id: 5,
+      id: 3,
       title: t('portfolio.taskblue.title', 'TaskBlue'),
-      description: t('portfolio.taskblue.description', '高效的任務管理應用程式，提供簡約現代的任務管理體驗'),
+      description: t('portfolio.taskblue.description', 'React 狀態管理練習專案，學習複雜組件間的數據流管理'),
       image: '/taskblue.jpg',
-      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', t('portfolio.aiCollaboration', 'AI協作')],
+      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', t('portfolio.aiCollaboration', 'AI協作'), t('portfolio.stateManagementPractice', '狀態管理練習')],
       github: '#',
       demo: 'https://taskblue.vercel.app/',
       featured: true
     },
     {
-      id: 6,
+      id: 4,
+      title: t('portfolio.resumecraft.title', 'ResumeCraft'),
+      description: t('portfolio.resumecraft.description', '複雜表單處理學習專案，掌握表單驗證、數據處理和 PDF 生成技術'),
+      image: '/resumecraft.jpg',
+      technologies: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'react-hook-form', 'Puppeteer', t('portfolio.aiCollaboration', 'AI協作'), t('portfolio.formHandlingLearning', '表單處理學習')],
+      github: '#',
+      demo: 'https://resumecraaft-beta.netlify.app/',
+      featured: true
+    },
+    {
+      id: 5,
       title: t('portfolio.tinylink.title', 'TinyLink'),
-      description: t('portfolio.tinylink.description', '簡潔、快速、私密的短網址服務，支援自定義短碼與過期時間設定'),
+      description: t('portfolio.tinylink.description', '後端概念學習專案，理解數據庫設計、API 開發和部署流程'),
       image: '/tinylink.jpg',
-      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', t('portfolio.aiCollaboration', 'AI協作')],
+      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', t('portfolio.aiCollaboration', 'AI協作'), t('portfolio.backendConceptsLearning', '後端概念學習')],
       github: '#',
       demo: 'https://tinylink-seven.vercel.app/',
+      featured: true
+    },
+    {
+      id: 6,
+      title: t('portfolio.personalWebsite.title', 'Kevin. - 個人網站'),
+      description: t('portfolio.personalWebsite.description', '綜合技能展示專案，整合所學技術打造個人品牌網站'),
+      image: '/personal-website.jpg',
+      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', t('portfolio.aiCollaboration', 'AI協作'), t('portfolio.comprehensiveShowcase', '綜合展示')],
+      github: '#',
+      demo: 'https://kevin-tau.vercel.app/',
       featured: true
     }
   ]

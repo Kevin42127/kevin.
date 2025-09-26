@@ -15,7 +15,7 @@ const zhResources = {
   },
   hero: {
     title: 'Kevin.',
-    subtitle: '產品設計師 & 數位創作者',
+    subtitle: '設計師 & 開發者',
     description: '畢業於數位科技與媒體設計系，專注於創造以使用者為中心的數位體驗。<br />運用AI協作開發與現代化工具，將設計概念轉化為高品質的數位產品。',
     viewWork: '查看作品',
     getInTouch: '聯繫我',
@@ -50,29 +50,35 @@ const zhResources = {
     viewCode: '查看程式碼',
     simpleNotes: {
       title: 'Simple Notes',
-      description: '簡潔的筆記應用，專注於內容創作。透過AI協作快速建立基礎架構，再進行客製化調整'
-    },
-    resumecraft: {
-      title: 'ResumeCraft',
-      description: '專業履歷生成器，幫助求職者快速建立精美履歷。結合AI生成與人工優化，提升開發效率'
-    },
-    personalWebsite: {
-      title: 'Kevin. - 個人網站',
-      description: '響應式個人作品集網站，展示設計與開發能力。運用AI輔助開發，快速迭代優化使用者體驗'
+      description: '我的第一個完整前端專案，從零開始學習 HTML/CSS 基礎，專注於響應式設計實踐'
     },
     weatherApp: {
       title: '天氣儀表板',
-      description: '現代化天氣儀表板，提供即時天氣資訊與優雅的使用者介面。透過AI協作加速開發流程'
+      description: '學習 API 整合的專案，掌握外部數據獲取和現代化 UI 設計'
     },
     taskblue: {
       title: 'TaskBlue',
-      description: '高效的任務管理應用程式，提供簡約現代的任務管理體驗。採用AI輔助開發模式，提升專案效率'
+      description: 'React 狀態管理練習專案，學習複雜組件間的數據流管理'
+    },
+    resumecraft: {
+      title: 'ResumeCraft',
+      description: '複雜表單處理學習專案，掌握表單驗證、數據處理和 PDF 生成技術'
     },
     tinylink: {
       title: 'TinyLink',
-      description: '簡潔、快速、私密的短網址服務，支援自定義短碼與過期時間設定。採用AI協作開發，提供優質的使用者體驗'
+      description: '後端概念學習專案，理解數據庫設計、API 開發和部署流程'
     },
-    aiCollaboration: 'AI協作'
+    personalWebsite: {
+      title: 'Kevin. - 個人網站',
+      description: '綜合技能展示專案，整合所學技術打造個人品牌網站'
+    },
+    aiCollaboration: 'AI協作',
+    basicPractice: '基礎練習',
+    apiLearning: 'API 學習',
+    stateManagementPractice: '狀態管理練習',
+    formHandlingLearning: '表單處理學習',
+    backendConceptsLearning: '後端概念學習',
+    comprehensiveShowcase: '綜合展示'
   },
   skills: {
     title: '技術 技能',
@@ -113,7 +119,7 @@ const zhResources = {
     error: '發送失敗，請稍後再試'
   },
   footer: {
-    description: '產品設計師 & 數位創作者，專注於創造以使用者為中心的數位體驗。運用AI協作開發與現代化工具，將設計概念轉化為高品質的數位產品。',
+    description: '設計師 & 開發者，專注於創造以使用者為中心的數位體驗。運用AI協作開發與現代化工具，將設計概念轉化為高品質的數位產品。',
     quickLinks: '快速連結',
     contactInfo: '聯繫資訊',
     location: '彰化縣, 台灣',
@@ -143,6 +149,7 @@ const zhResources = {
     aboutDescription: '了解我的背景、技能和專業經驗',
     portfolioDescription: '查看我的精選專案和作品集',
     skillsDescription: '了解我的技術能力和專業技能',
+    experienceDescription: '查看我的語言能力、證照認證與實務經驗',
     contactDescription: '透過各種方式與我聯繫'
   },
   designSystem: {
@@ -562,7 +569,7 @@ const enResources = {
   },
   hero: {
     title: 'Kevin.',
-    subtitle: 'Product Designer & Digital Creator',
+    subtitle: 'Designer & Developer',
     description: 'Graduated from Digital Technology and Media Design Department, focused on creating user-centered digital experiences.<br />Leveraging AI-assisted development and modern tools to transform design concepts into high-quality digital products.',
     viewWork: 'View Work',
     getInTouch: 'Get In Touch',
@@ -597,29 +604,35 @@ const enResources = {
     viewCode: 'View Code',
     simpleNotes: {
       title: 'Simple Notes',
-      description: 'Clean note-taking application focused on content creation. Built with AI collaboration for rapid prototyping and custom optimization'
-    },
-    resumecraft: {
-      title: 'ResumeCraft',
-      description: 'Professional resume generator helping job seekers create beautiful resumes quickly. Enhanced development efficiency through AI-assisted coding'
-    },
-    personalWebsite: {
-      title: 'Kevin. - Personal Website',
-      description: 'Responsive personal portfolio website showcasing design and development capabilities. Leveraged AI-assisted development for rapid iteration and UX optimization'
+      description: 'My first complete frontend project, learning HTML/CSS fundamentals from scratch, focusing on responsive design practice'
     },
     weatherApp: {
       title: 'Weather Dashboard',
-      description: 'Modern weather dashboard providing real-time weather information with elegant user interface. Accelerated development through AI collaboration'
+      description: 'API integration learning project, mastering external data fetching and modern UI design'
     },
     taskblue: {
       title: 'TaskBlue',
-      description: 'Efficient task management application providing clean and modern task management experience. Developed using AI-assisted workflow for enhanced productivity'
+      description: 'React state management practice project, learning complex component data flow management'
+    },
+    resumecraft: {
+      title: 'ResumeCraft',
+      description: 'Complex form handling learning project, mastering form validation, data processing, and PDF generation'
     },
     tinylink: {
       title: 'TinyLink',
-      description: 'Clean, fast, and private URL shortening service with custom short codes and expiration settings. Built with AI collaboration for optimal user experience'
+      description: 'Backend concepts learning project, understanding database design, API development, and deployment workflow'
     },
-    aiCollaboration: 'AI Collaboration'
+    personalWebsite: {
+      title: 'Kevin. - Personal Website',
+      description: 'Comprehensive skills showcase project, integrating learned technologies to build personal brand website'
+    },
+    aiCollaboration: 'AI Collaboration',
+    basicPractice: 'Basic Practice',
+    apiLearning: 'API Learning',
+    stateManagementPractice: 'State Management Practice',
+    formHandlingLearning: 'Form Handling Learning',
+    backendConceptsLearning: 'Backend Concepts Learning',
+    comprehensiveShowcase: 'Comprehensive Showcase'
   },
   skills: {
     title: 'Technical Skills',
@@ -660,7 +673,7 @@ const enResources = {
     error: 'Failed to send message, please try again later'
   },
   footer: {
-    description: 'Product Designer & Digital Creator, focused on creating user-centered digital experiences. Leveraging AI-assisted development and modern tools to transform design concepts into high-quality digital products.',
+    description: 'Designer & Developer, focused on creating user-centered digital experiences. Leveraging AI-assisted development and modern tools to transform design concepts into high-quality digital products.',
     quickLinks: 'Quick Links',
     contactInfo: 'Contact Info',
     location: 'Changhua County, Taiwan',
@@ -690,6 +703,7 @@ const enResources = {
     aboutDescription: 'Learn about my background, skills and professional experience',
     portfolioDescription: 'View my featured projects and portfolio',
     skillsDescription: 'Understand my technical abilities and professional skills',
+    experienceDescription: 'View my language skills, certifications and practical experience',
     contactDescription: 'Contact me through various methods'
   },
   designSystem: {
