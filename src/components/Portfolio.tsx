@@ -10,12 +10,12 @@ export default function Portfolio() {
   const projects = [
     {
       id: 1,
-      title: t('portfolio.simpleNotes.title', 'Simple Notes'),
-      description: t('portfolio.simpleNotes.description', '我的第一個完整前端專案，從零開始學習 HTML/CSS 基礎，專注於響應式設計實踐'),
+      title: t('portfolio.simpleNotes.title', 'AuthPrototype'),
+      description: t('portfolio.simpleNotes.description', '我的第一個完整前端專案，學習 Angular/Tailwindcss 基礎，建立登入/註冊的原型設計'),
       image: '/simple-notes.jpg',
-      technologies: ['HTML', 'CSS', t('portfolio.aiCollaboration', 'AI協作'), t('portfolio.basicPractice', '基礎練習')],
+      technologies: ['Angular', 'Tailwind CSS', t('portfolio.aiCollaboration', 'AI協作')],
       github: '#',
-      demo: 'https://smoothness.netlify.app/',
+      demo: 'https://authprototype.vercel.app/',
       featured: true
     },
     {

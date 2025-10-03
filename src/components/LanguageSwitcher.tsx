@@ -45,7 +45,7 @@ export default function LanguageSwitcher() {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-kevin-blue dark:hover:text-blue-400 transition-colors duration-200 px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-kevin-blue dark:hover:border-blue-400"
+        className="flex items-center justify-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-kevin-blue dark:hover:text-blue-400 transition-colors duration-200 px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-kevin-blue dark:hover:border-blue-400 min-w-[90px]"
         title="選擇語言 / Select Language"
       >
         <Globe size={16} />

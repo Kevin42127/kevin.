@@ -49,8 +49,8 @@ const zhResources = {
     viewProject: '查看專案',
     viewCode: '查看程式碼',
     simpleNotes: {
-      title: 'Simple Notes',
-      description: '我的第一個完整前端專案，從零開始學習 HTML/CSS 基礎，專注於響應式設計實踐'
+      title: 'AuthPrototype',
+      description: '我的第一個完整前端專案，學習 Angular/Tailwindcss 基礎，建立登入/註冊的原型設計'
     },
     weatherApp: {
       title: '天氣儀表板',
@@ -151,42 +151,6 @@ const zhResources = {
     skillsDescription: '了解我的技術能力和專業技能',
     experienceDescription: '查看我的語言能力、證照認證與實務經驗',
     contactDescription: '透過各種方式與我聯繫'
-  },
-  designSystem: {
-    title: '設計系統',
-    subtitle: '建立一致的設計語言，確保產品體驗的統一性和可擴展性',
-    designPrinciples: '設計原則',
-    designPrinciplesSubtitle: '基於使用者體驗和技術可行性的設計指導原則',
-    consistency: '一致性',
-    consistencyDesc: '保持視覺和互動的一致性，建立可預期的使用者體驗',
-    accessibility: '可訪問性',
-    accessibilityDesc: '確保所有使用者都能輕鬆使用，符合無障礙設計標準',
-    efficiency: '效率',
-    efficiencyDesc: '簡化操作流程，減少認知負擔，提升使用效率',
-    aesthetics: '美觀',
-    aestheticsDesc: '追求視覺美感，創造愉悅的使用體驗',
-    systemComponents: '系統組件',
-    systemComponentsSubtitle: '可重用的 UI 組件和設計模式',
-    colors: '色彩系統',
-    colorsDesc: '建立一致的視覺語言，確保品牌識別和用戶體驗的統一性',
-    typography: '字體系統',
-    typographyDesc: '建立清晰的文字層級，確保內容的可讀性和視覺層次',
-    spacing: '間距系統',
-    spacingDesc: '建立一致的間距規範，確保佈局的平衡和視覺和諧',
-    animations: '動畫系統',
-    animationsDesc: '建立流暢的動畫體驗，提升用戶互動和視覺吸引力',
-    components: '組件庫',
-    componentsDesc: '可重用的 UI 組件和設計模式',
-    wireframes: '線框圖',
-    wireframesDesc: '網站的視覺藍圖和響應式設計展示',
-    exploreComponents: '查看組件庫',
-    exploreWireframes: '查看線框圖',
-    usageGuidelines: '使用指南',
-    usageGuidelinesDesc: '如何有效使用設計系統來建立一致的產品體驗',
-    breadcrumb: {
-      home: '首頁',
-      designSystem: '設計系統'
-    }
   },
   colors: {
     title: '色彩系統',
@@ -496,8 +460,8 @@ const zhResources = {
     modalDesc: '模態框組件，用於重要操作確認',
     alert: 'Alert',
     alertDesc: '警告組件，顯示重要訊息',
-    primaryButton: 'Primary Button',
-    secondaryButton: 'Secondary Button',
+    primaryButton: '主要按鈕',
+    secondaryButton: '次要按鈕',
     showToast: '顯示提示',
     hideToast: '隱藏提示',
     toastMessage: '這是一個提示訊息！',
@@ -603,8 +567,8 @@ const enResources = {
     viewProject: 'View Project',
     viewCode: 'View Code',
     simpleNotes: {
-      title: 'Simple Notes',
-      description: 'My first complete frontend project, learning HTML/CSS fundamentals from scratch, focusing on responsive design practice'
+      title: 'AuthPrototype',
+      description: 'My first complete frontend project, learning Angular/Tailwind CSS fundamentals and building an authentication prototype (login/register).'
     },
     weatherApp: {
       title: 'Weather Dashboard',
@@ -705,42 +669,6 @@ const enResources = {
     skillsDescription: 'Understand my technical abilities and professional skills',
     experienceDescription: 'View my language skills, certifications and practical experience',
     contactDescription: 'Contact me through various methods'
-  },
-  designSystem: {
-    title: 'Design System',
-    subtitle: 'Establishing a consistent design language to ensure unified and scalable product experiences',
-    designPrinciples: 'Design Principles',
-    designPrinciplesSubtitle: 'Design guidelines based on user experience and technical feasibility',
-    consistency: 'Consistency',
-    consistencyDesc: 'Maintain visual and interactive consistency to create predictable user experiences',
-    accessibility: 'Accessibility',
-    accessibilityDesc: 'Ensure all users can easily use the interface, meeting accessibility design standards',
-    efficiency: 'Efficiency',
-    efficiencyDesc: 'Simplify workflows, reduce cognitive load, and improve usability',
-    aesthetics: 'Aesthetics',
-    aestheticsDesc: 'Pursue visual beauty and create delightful user experiences',
-    systemComponents: 'System Components',
-    systemComponentsSubtitle: 'Reusable UI components and design patterns',
-    colors: 'Color System',
-    colorsDesc: 'Establish consistent visual language to ensure brand identity and user experience unity',
-    typography: 'Typography System',
-    typographyDesc: 'Establish clear text hierarchy to ensure content readability and visual hierarchy',
-    spacing: 'Spacing System',
-    spacingDesc: 'Establish consistent spacing standards to ensure layout balance and visual harmony',
-    animations: 'Animation System',
-    animationsDesc: 'Create smooth animation experiences to enhance user interaction and visual appeal',
-    components: 'Component Library',
-    componentsDesc: 'Reusable UI components and design patterns',
-    wireframes: 'Wireframes',
-    wireframesDesc: 'Visual blueprints and responsive design showcase of the website',
-    exploreComponents: 'Explore Components',
-    exploreWireframes: 'Explore Wireframes',
-    usageGuidelines: 'Usage Guidelines',
-    usageGuidelinesDesc: 'How to effectively use the design system to create consistent product experiences',
-    breadcrumb: {
-      home: 'Home',
-      designSystem: 'Design System'
-    }
   },
   colors: {
     title: 'Color System',

@@ -67,8 +67,8 @@ export default function DropdownSearch() {
     },
     {
       id: 'simple-notes',
-      title: t('portfolio.simpleNotes.title', 'Simple Notes'),
-      description: t('portfolio.simpleNotes.description', '簡潔的筆記應用，專注於內容創作'),
+      title: t('portfolio.simpleNotes.title', 'AuthPrototype'),
+      description: t('portfolio.simpleNotes.description', '我的第一個完整前端專案，學習 Angular/Tailwindcss 基礎，建立登入/註冊的原型設計'),
       type: 'project',
       href: '#portfolio',
       icon: FileText
