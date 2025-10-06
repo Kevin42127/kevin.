@@ -14,7 +14,7 @@ export default function Experience() {
     },
     {
       language: t('experience.languages.english', '英文'),
-      level: t('experience.languages.beginner', '初級')
+      level: t('experience.languages.intermediate', '中級')
     }
   ]
 
@@ -101,7 +101,7 @@ export default function Experience() {
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="card p-6"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
@@ -140,7 +140,7 @@ export default function Experience() {
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="card p-6"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
@@ -190,7 +190,7 @@ export default function Experience() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.2 }}
-                  className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="card p-8"
                 >
                   <div className="flex items-start justify-between mb-6">
                     <div className="flex items-center">

@@ -218,7 +218,7 @@ export default function DropdownSearch() {
             onChange={handleSearch}
             onFocus={() => setIsOpen(true)}
             placeholder={t('search.placeholder', '搜索網站內容...')}
-            className="w-full pl-10 pr-10 py-2 text-sm bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg transition-all duration-200 placeholder-gray-500 dark:placeholder-gray-400"
+            className="w-full pl-10 pr-10 py-2 text-sm bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-kevin-blue dark:focus:border-blue-400 transition-all duration-200 placeholder-gray-500 dark:placeholder-gray-400"
           />
           {query && (
             <button

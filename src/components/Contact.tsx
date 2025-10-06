@@ -228,7 +228,7 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg  transition-all duration-300 placeholder-gray-500 dark:placeholder-gray-400"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:border-kevin-blue dark:focus:border-blue-400 transition-all duration-300 placeholder-gray-500 dark:placeholder-gray-400"
                     placeholder={t('contact.namePlaceholder', '您的姓名')}
                   />
                 </div>
@@ -243,7 +243,7 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg  transition-all duration-300 placeholder-gray-500 dark:placeholder-gray-400"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:border-kevin-blue dark:focus:border-blue-400 transition-all duration-300 placeholder-gray-500 dark:placeholder-gray-400"
                     placeholder={t('contact.emailPlaceholder', 'your@email.com')}
                   />
                 </div>
@@ -260,7 +260,7 @@ export default function Contact() {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg  transition-all duration-300"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:border-kevin-blue dark:focus:border-blue-400 transition-all duration-300"
                   placeholder={t('contact.subjectPlaceholder', '訊息主題')}
                 />
               </div>
@@ -276,7 +276,7 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   rows={6}
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg  transition-all duration-300 resize-none placeholder-gray-500 dark:placeholder-gray-400"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:border-kevin-blue dark:focus:border-blue-400 transition-all duration-300 resize-none placeholder-gray-500 dark:placeholder-gray-400"
                   placeholder={t('contact.messagePlaceholder', '請描述您的需求或想法...')}
                 />
               </div>

@@ -137,3 +137,32 @@ a:focus {
   background: #60a5fa;
   color: white;
 }
+
+/* Card Component Styles */
+@layer components {
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 relative overflow-hidden transition-all duration-300;
+  }
+
+  .card:hover {
+    @apply shadow-xl border-kevin-blue dark:border-blue-400;
+  }
+
+  /* 卡片頂部藍色線：由中間向兩側展開 */
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 3px;
+    width: 100%;
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    background: linear-gradient(90deg, transparent, var(--color-primary-light), transparent);
+    transition: transform var(--transition-normal);
+  }
+
+  .card:hover::before {
+    transform: translateX(-50%) scaleX(1);
+  }
+}

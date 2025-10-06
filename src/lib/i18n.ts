@@ -479,7 +479,8 @@ const zhResources = {
       chinese: '中文',
       english: '英文',
       native: '母語',
-      beginner: '初級'
+      beginner: '初級',
+      intermediate: '中級'
     },
     certifications: {
       title: '證照與認證',
@@ -997,7 +998,8 @@ const enResources = {
       chinese: 'Chinese',
       english: 'English',
       native: 'Native',
-      beginner: 'Beginner'
+      beginner: 'Beginner',
+      intermediate: 'Intermediate'
     },
     certifications: {
       title: 'Certifications',

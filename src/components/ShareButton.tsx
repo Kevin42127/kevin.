@@ -149,7 +149,6 @@ export default function ShareButton({
       <motion.button
         onClick={handleNativeShare}
         className={`${sizeClasses[size]} bg-kevin-blue/10 dark:bg-blue-900/30 hover:bg-kevin-blue hover:text-white text-kevin-blue dark:text-blue-400 rounded-xl flex items-center justify-center transition-all duration-300 group`}
-        whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         aria-label={t('share.share', '分享')}
       >
@@ -185,7 +184,7 @@ export default function ShareButton({
                   <button
                     key={option.id}
                     onClick={option.onClick}
-                    className={`flex flex-col items-center p-3 rounded-xl bg-gray-50 dark:bg-gray-700 ${option.color} text-white transition-all duration-300 group hover:scale-105 active:scale-95`}
+                    className={`flex flex-col items-center p-3 rounded-xl bg-gray-50 dark:bg-gray-700 ${option.color} text-white transition-all duration-300 group active:scale-95`}
                   >
                     <option.icon size={20} className="mb-1" />
                     <span className="text-xs font-medium text-gray-700 dark:text-gray-300 group-hover:text-white">
@@ -198,7 +197,7 @@ export default function ShareButton({
               {/* 複製連結 */}
               <button
                 onClick={handleCopyLink}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-xl transition-all duration-300 hover:scale-102 active:scale-98"
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-xl transition-all duration-300 active:scale-98"
               >
                 {copied ? (
                   <>
