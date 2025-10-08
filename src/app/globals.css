@@ -166,3 +166,21 @@ a:focus {
     transform: translateX(-50%) scaleX(1);
   }
 }
+
+/* Animation utilities */
+@layer utilities {
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-down {
+    animation: fadeInDown 0.2s ease-out;
+  }
+}

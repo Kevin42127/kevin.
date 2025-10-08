@@ -116,7 +116,14 @@ const zhResources = {
     messagePlaceholder: '請描述您的需求或想法...',
     sending: '發送中...',
     success: '訊息已發送！',
-    error: '發送失敗，請稍後再試'
+    error: '發送失敗，請稍後再試',
+    validation: {
+      nameRequired: '請填寫姓名',
+      emailRequired: '請填寫電子郵件',
+      emailInvalid: '請輸入有效的電子郵件地址',
+      subjectRequired: '請填寫主題',
+      messageRequired: '請填寫訊息內容'
+    }
   },
   footer: {
     description: '設計師 & 開發者，專注於創造以使用者為中心的數位體驗。運用AI協作開發與現代化工具，將設計概念轉化為高品質的數位產品。',
@@ -635,7 +642,14 @@ const enResources = {
     messagePlaceholder: 'Please describe your needs or ideas...',
     sending: 'Sending...',
     success: 'Message sent successfully!',
-    error: 'Failed to send message, please try again later'
+    error: 'Failed to send message, please try again later',
+    validation: {
+      nameRequired: 'Please enter your name',
+      emailRequired: 'Please enter your email',
+      emailInvalid: 'Please enter a valid email address',
+      subjectRequired: 'Please enter a subject',
+      messageRequired: 'Please enter your message'
+    }
   },
   footer: {
     description: 'Designer & Developer, focused on creating user-centered digital experiences. Leveraging AI-assisted development and modern tools to transform design concepts into high-quality digital products.',

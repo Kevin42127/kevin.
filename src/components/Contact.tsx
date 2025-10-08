@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 
 export default function Contact() {
-  const { t } = useTranslationSafe()
+  const { t, i18n } = useTranslationSafe()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -30,6 +30,51 @@ export default function Contact() {
     }
   }, [toast])
 
+  // Update validation messages when language changes
+  useEffect(() => {
+    // Only run on client side to avoid hydration mismatch
+    if (typeof window === 'undefined') return
+
+    const nameInput = document.getElementById('name') as HTMLInputElement
+    const emailInput = document.getElementById('email') as HTMLInputElement
+    const subjectInput = document.getElementById('subject') as HTMLInputElement
+    const messageInput = document.getElementById('message') as HTMLTextAreaElement
+
+    if (nameInput) {
+      nameInput.setCustomValidity(t('contact.validation.nameRequired', '請填寫姓名'))
+      nameInput.oninput = () => nameInput.setCustomValidity('')
+    }
+
+    if (emailInput) {
+      if (emailInput.validity.valueMissing) {
+        emailInput.setCustomValidity(t('contact.validation.emailRequired', '請填寫電子郵件'))
+      } else if (emailInput.validity.typeMismatch) {
+        emailInput.setCustomValidity(t('contact.validation.emailInvalid', '請輸入有效的電子郵件地址'))
+      } else {
+        emailInput.setCustomValidity('')
+      }
+      emailInput.oninput = () => {
+        if (emailInput.validity.valueMissing) {
+          emailInput.setCustomValidity(t('contact.validation.emailRequired', '請填寫電子郵件'))
+        } else if (emailInput.validity.typeMismatch) {
+          emailInput.setCustomValidity(t('contact.validation.emailInvalid', '請輸入有效的電子郵件地址'))
+        } else {
+          emailInput.setCustomValidity('')
+        }
+      }
+    }
+
+    if (subjectInput) {
+      subjectInput.setCustomValidity(t('contact.validation.subjectRequired', '請填寫主題'))
+      subjectInput.oninput = () => subjectInput.setCustomValidity('')
+    }
+
+    if (messageInput) {
+      messageInput.setCustomValidity(t('contact.validation.messageRequired', '請填寫訊息內容'))
+      messageInput.oninput = () => messageInput.setCustomValidity('')
+    }
+  }, [t, i18n.language])
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
@@ -39,6 +84,22 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Get the form element
+    const form = e.currentTarget as HTMLFormElement
+    
+    // Check if form is valid before proceeding
+    if (!form.checkValidity()) {
+      // Trigger validation for all fields
+      const inputs = form.querySelectorAll('input[required], textarea[required]')
+      inputs.forEach((input) => {
+        if (input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement) {
+          input.reportValidity()
+        }
+      })
+      return
+    }
+    
     setIsSubmitting(true)
     
     try {

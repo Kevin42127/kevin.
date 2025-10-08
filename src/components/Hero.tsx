@@ -5,7 +5,12 @@ import { ArrowDown, Download, Linkedin, Mail } from 'lucide-react'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 
 export default function Hero() {
-  const { t } = useTranslationSafe()
+  const { t, i18n } = useTranslationSafe()
+  
+  // 根據當前語言選擇對應的履歷文件
+  const currentLanguage = i18n?.language || 'zh'
+  const cvFileName = currentLanguage === 'en' ? 'Kevin_CV_EN.pdf' : 'Kevin_CV_TC.pdf'
+  const cvPath = `/${cvFileName}`
   
   const scrollToNext = () => {
     const element = document.querySelector('#about')
@@ -16,12 +21,6 @@ export default function Hero() {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-kevin-blue/10 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-brand-blue-300/10 rounded-full blur-3xl animate-float"></div>
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0 }}
@@ -88,12 +87,12 @@ export default function Hero() {
             </button>
             
             <a
-              href="/Kevin_CV.pdf"
-              download="Kevin_CV.pdf"
+              href={cvPath}
+              download={cvFileName}
               className="inline-flex items-center justify-center gap-2 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-300 min-h-[48px]"
             >
               <Download size={18} />
-{t('hero.downloadCV', '下載履歷')}
+              {t('hero.downloadCV', '下載履歷')}
             </a>
           </motion.div>
 
@@ -102,7 +101,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="flex justify-center space-x-6 mb-16"
+            className="flex justify-center space-x-6 mb-4"
           >
             <a
               href="https://www.linkedin.com/in/%E6%A2%93%E6%95%AC-%E9%99%B3-5ba547230/"
@@ -120,6 +119,20 @@ export default function Hero() {
             >
               <Mail size={24} />
             </a>
+          </motion.div>
+
+          {/* CV Language Hint */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              {currentLanguage === 'en' 
+                ? '📌 Downloading: English CV | 繁體中文版請切換語言' 
+                : '📌 下載：繁體中文版履歷 | EN version: switch language'}
+            </p>
           </motion.div>
 
           {/* Scroll Indicator */}
