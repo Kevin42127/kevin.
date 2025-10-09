@@ -40,12 +40,12 @@ export default function Portfolio() {
     },
     {
       id: 4,
-      title: t('portfolio.resumecraft.title', 'ResumeCraft'),
-      description: t('portfolio.resumecraft.description', '複雜表單處理學習專案，掌握表單驗證、數據處理和 PDF 生成技術'),
+      title: t('portfolio.resumecraft.title'),
+      description: t('portfolio.resumecraft.description'),
       image: '/resumecraft.jpg',
-      technologies: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'react-hook-form', 'Puppeteer', t('portfolio.aiCollaboration', 'AI協作'), t('portfolio.formHandlingLearning', '表單處理學習')],
+      technologies: ['Angular 18', 'TypeScript', 'Webpack', 'PWA', t('portfolio.aiCollaboration', 'AI協作')],
       github: '#',
-      demo: 'https://resumecraaft-beta.netlify.app/',
+      demo: 'https://dozle.vercel.app/',
       featured: true
     },
     {

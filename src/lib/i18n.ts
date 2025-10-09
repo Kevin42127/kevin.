@@ -61,8 +61,8 @@ const zhResources = {
       description: 'React 狀態管理練習專案，學習複雜組件間的數據流管理'
     },
     resumecraft: {
-      title: 'ResumeCraft',
-      description: '複雜表單處理學習專案，掌握表單驗證、數據處理和 PDF 生成技術'
+      title: 'Dozle',
+      description: 'PWA 應用開發學習專案，運用 Angular 18 與 AI 協作打造現代筆記應用'
     },
     tinylink: {
       title: 'TinyLink',
@@ -587,8 +587,8 @@ const enResources = {
       description: 'React state management practice project, learning complex component data flow management'
     },
     resumecraft: {
-      title: 'ResumeCraft',
-      description: 'Complex form handling learning project, mastering form validation, data processing, and PDF generation'
+      title: 'Dozle',
+      description: 'PWA application development learning project, utilizing Angular 18 and AI collaboration to build modern note-taking app'
     },
     tinylink: {
       title: 'TinyLink',
