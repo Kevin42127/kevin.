@@ -40,38 +40,51 @@ export default function Contact() {
     const subjectInput = document.getElementById('subject') as HTMLInputElement
     const messageInput = document.getElementById('message') as HTMLTextAreaElement
 
+    // Set up custom validation handlers
     if (nameInput) {
-      nameInput.setCustomValidity(t('contact.validation.nameRequired', '請填寫姓名'))
-      nameInput.oninput = () => nameInput.setCustomValidity('')
+      nameInput.oninvalid = () => {
+        if (!nameInput.value) {
+          nameInput.setCustomValidity(t('contact.validation.nameRequired', '請填寫姓名'))
+        }
+      }
+      nameInput.oninput = () => {
+        nameInput.setCustomValidity('')
+      }
     }
 
     if (emailInput) {
-      if (emailInput.validity.valueMissing) {
-        emailInput.setCustomValidity(t('contact.validation.emailRequired', '請填寫電子郵件'))
-      } else if (emailInput.validity.typeMismatch) {
-        emailInput.setCustomValidity(t('contact.validation.emailInvalid', '請輸入有效的電子郵件地址'))
-      } else {
-        emailInput.setCustomValidity('')
-      }
-      emailInput.oninput = () => {
-        if (emailInput.validity.valueMissing) {
+      emailInput.oninvalid = () => {
+        if (!emailInput.value) {
           emailInput.setCustomValidity(t('contact.validation.emailRequired', '請填寫電子郵件'))
         } else if (emailInput.validity.typeMismatch) {
           emailInput.setCustomValidity(t('contact.validation.emailInvalid', '請輸入有效的電子郵件地址'))
-        } else {
-          emailInput.setCustomValidity('')
         }
+      }
+      emailInput.oninput = () => {
+        emailInput.setCustomValidity('')
       }
     }
 
     if (subjectInput) {
-      subjectInput.setCustomValidity(t('contact.validation.subjectRequired', '請填寫主題'))
-      subjectInput.oninput = () => subjectInput.setCustomValidity('')
+      subjectInput.oninvalid = () => {
+        if (!subjectInput.value) {
+          subjectInput.setCustomValidity(t('contact.validation.subjectRequired', '請填寫主題'))
+        }
+      }
+      subjectInput.oninput = () => {
+        subjectInput.setCustomValidity('')
+      }
     }
 
     if (messageInput) {
-      messageInput.setCustomValidity(t('contact.validation.messageRequired', '請填寫訊息內容'))
-      messageInput.oninput = () => messageInput.setCustomValidity('')
+      messageInput.oninvalid = () => {
+        if (!messageInput.value) {
+          messageInput.setCustomValidity(t('contact.validation.messageRequired', '請填寫訊息內容'))
+        }
+      }
+      messageInput.oninput = () => {
+        messageInput.setCustomValidity('')
+      }
     }
   }, [t, i18n.language])
 
@@ -90,13 +103,16 @@ export default function Contact() {
     
     // Check if form is valid before proceeding
     if (!form.checkValidity()) {
-      // Trigger validation for all fields
+      // Report first invalid field only
       const inputs = form.querySelectorAll('input[required], textarea[required]')
-      inputs.forEach((input) => {
+      for (const input of Array.from(inputs)) {
         if (input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement) {
-          input.reportValidity()
+          if (!input.validity.valid) {
+            input.reportValidity()
+            break // Only show first invalid field
+          }
         }
-      })
+      }
       return
     }
     
