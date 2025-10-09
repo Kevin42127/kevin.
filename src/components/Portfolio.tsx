@@ -43,7 +43,7 @@ export default function Portfolio() {
       title: t('portfolio.resumecraft.title'),
       description: t('portfolio.resumecraft.description'),
       image: '/resumecraft.jpg',
-      technologies: ['Angular 18', 'TypeScript', 'Webpack', 'PWA', t('portfolio.aiCollaboration', 'AI協作')],
+      technologies: ['Angular', 'TypeScript', 'Webpack', 'PWA', t('portfolio.aiCollaboration', 'AI協作')],
       github: '#',
       demo: 'https://dozle.vercel.app/',
       featured: true
