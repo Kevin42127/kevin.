@@ -156,7 +156,7 @@ export default function Navigation() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center space-x-3">
+          <div className="md:hidden flex items-center space-x-3 ml-auto">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-gray-700 dark:text-gray-300 hover:text-kevin-blue dark:hover:text-blue-400 p-2 transition-colors duration-200"
@@ -169,7 +169,15 @@ export default function Navigation() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg">
+        <>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-black/20 dark:bg-black/40 z-40 md:hidden"
+            onClick={() => setIsMenuOpen(false)}
+          />
+          
+          {/* Menu Content */}
+          <div className="relative md:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg z-50">
             <div className="px-2 pt-3 pb-4 space-y-2">
               {/* Mobile Search */}
               <div className="px-3 py-2 mb-2">
@@ -211,7 +219,8 @@ export default function Navigation() {
                 </div>
               </div>
             </div>
-        </div>
+          </div>
+        </>
       )}
     </motion.nav>
   )
