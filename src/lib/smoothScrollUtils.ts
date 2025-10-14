@@ -89,9 +89,11 @@ export const polyfillSmoothScroll = () => {
   }
 
   // 简单的 polyfill 实现
-  const originalScrollTo = window.scrollTo
+  const originalScrollTo = window.scrollTo.bind(window)
   
-  window.scrollTo = function(options: any) {
+  window.scrollTo = function(...args: any[]) {
+    const options = args[0]
+    
     if (typeof options === 'object' && options.behavior === 'smooth') {
       const targetY = options.top || 0
       const startY = window.pageYOffset
@@ -118,7 +120,7 @@ export const polyfillSmoothScroll = () => {
 
       window.requestAnimationFrame(step)
     } else {
-      originalScrollTo.call(window, options)
+      originalScrollTo(...args)
     }
   }
 }
