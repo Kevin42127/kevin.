@@ -2,10 +2,9 @@
 
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 import LanguageSwitcher from './LanguageSwitcher'
-import ShareButton from './ShareButton'
 import { ThemeToggle } from './ThemeToggle'
 import DropdownSearch from './DropdownSearch'
 
@@ -13,8 +12,11 @@ export default function Navigation() {
   const { t } = useTranslationSafe()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
+    setIsClient(true)
+    
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20)
     }
@@ -93,33 +95,30 @@ export default function Navigation() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg'
+          ? 'bg-white dark:bg-gray-900 backdrop-blur-md shadow-lg'
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center h-20">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-          <button
-            onClick={() => handleNavigation('#home')}
-            className="text-2xl font-bold text-kevin-blue dark:text-blue-400 py-2 px-1"
-          >
-            {t('navigation.kevin', 'Kevin.')}
-          </button>
-          </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center justify-between flex-1 ml-8">
-            {/* Navigation Items */}
-            <div className="flex items-center space-x-6">
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex items-center justify-between">
+          {/* Left Side - Logo + Navigation */}
+          <div className="flex items-center">
+            <button
+              onClick={() => handleNavigation('#home')}
+              className="text-2xl font-bold text-kevin-blue dark:text-blue-500"
+            >
+              {t('navigation.kevin', 'Kevin.')}
+            </button>
+            
+            {/* Desktop Navigation - Traditional Top Navigation */}
+            <div className="hidden lg:flex items-center space-x-4 ml-8">
               {navItems.map((item) => (
                 <button
                   key={item.name}
                   onClick={() => handleNavigation(item.href)}
-                  className="text-gray-700 dark:text-gray-300 hover:text-kevin-blue dark:hover:text-blue-400 font-medium transition-colors duration-200 py-2 px-1"
+                  className="text-gray-700 dark:text-gray-300 hover:text-kevin-blue dark:hover:text-blue-400 font-medium transition-colors duration-300 btn-nav"
                 >
                   {item.name}
                 </button>
@@ -128,99 +127,87 @@ export default function Navigation() {
                 <button
                   key={item.name}
                   onClick={() => handleNavigation(item.href, item.external)}
-                  className="text-gray-700 dark:text-gray-300 hover:text-kevin-blue dark:hover:text-blue-400 font-medium transition-colors duration-200 py-2 px-1"
+                  className="text-gray-700 dark:text-gray-300 hover:text-kevin-blue dark:hover:text-blue-400 font-medium transition-colors duration-300 btn-nav"
                 >
                   {item.name}
                 </button>
               ))}
             </div>
-            
-            {/* Search and Actions */}
-            <div className="flex items-center space-x-4">
-              {/* Dropdown Search */}
-              <div className="w-64">
-                <DropdownSearch />
-              </div>
-              
-              {/* Action Buttons */}
-              <div className="flex items-center space-x-4">
-                <ThemeToggle />
-                <ShareButton 
-                  title="Kevin. - 現代化個人網站"
-                  description="一個以藍色為品牌色的現代化個人網站，展示專業技能與創意作品。"
-                  size="sm"
-                />
-                <LanguageSwitcher />
-              </div>
-            </div>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center space-x-3 ml-auto">
+          {/* Right Side - Actions */}
+          <div className="hidden lg:flex items-center space-x-4">
+            <DropdownSearch />
+            <LanguageSwitcher />
+            <ThemeToggle />
+          </div>
+
+          {/* Mobile/Tablet Actions */}
+          <div className="lg:hidden flex items-center space-x-2 sm:space-x-3">
+            <DropdownSearch />
+            <LanguageSwitcher />
+            <ThemeToggle />
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-700 dark:text-gray-300 hover:text-kevin-blue dark:hover:text-blue-400 p-2 transition-colors duration-200"
+              className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-kevin-blue dark:hover:bg-blue-500 hover:text-white transition-all duration-300 flex items-center justify-center"
+              aria-label="打开菜单"
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Navigation */}
-      {isMenuOpen && (
-        <>
-          {/* Backdrop */}
-          <div
-            className="fixed inset-0 bg-black/20 dark:bg-black/40 z-40 md:hidden"
-            onClick={() => setIsMenuOpen(false)}
-          />
-          
-          {/* Menu Content */}
-          <div className="relative md:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg z-50">
-            <div className="px-2 pt-3 pb-4 space-y-2">
-              {/* Mobile Search */}
-              <div className="px-3 py-2 mb-2">
-                <DropdownSearch />
-              </div>
-              
-              {/* Navigation Items */}
-              {navItems.map((item, index) => (
+      {/* Mobile/Tablet Menu - Hamburger Menu */}
+      {isClient && (
+        <AnimatePresence>
+          {isMenuOpen && (
+          <motion.div
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ 
+              duration: 0.1
+            }}
+            className="fixed top-0 right-0 h-screen w-80 bg-white dark:bg-gray-900 shadow-2xl border-l-2 border-gray-200 dark:border-gray-700 overflow-y-auto"
+            style={{ zIndex: 9999 }}
+          >
+            {/* Close Button */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+              <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200">{t('navigation.menu', '選單')}</h2>
+              <button
+                onClick={() => setIsMenuOpen(false)}
+                className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-kevin-blue dark:hover:bg-blue-500 hover:text-white transition-all duration-300 flex items-center justify-center"
+                aria-label="关闭菜单"
+              >
+                <X size={20} />
+              </button>
+            </div>
+            
+            {/* Navigation Items */}
+            <nav className="p-6 space-y-2">
+              {navItems.map((item) => (
                 <button
                   key={item.name}
                   onClick={() => handleNavigation(item.href)}
-                  className="block w-full text-left px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-kevin-blue dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium transition-colors duration-200 rounded-md"
+                  className="block w-full text-left px-4 py-3 text-lg font-medium text-gray-800 dark:text-gray-200 hover:bg-kevin-blue dark:hover:bg-blue-500 hover:text-white rounded-full transition-all duration-300"
                 >
                   {item.name}
                 </button>
               ))}
-              
-              {/* External Links */}
-              {externalLinks.map((item, index) => (
+              {externalLinks.map((item) => (
                 <button
                   key={item.name}
                   onClick={() => handleNavigation(item.href, item.external)}
-                  className="block w-full text-left px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-kevin-blue dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium transition-colors duration-200 rounded-md"
+                  className="block w-full text-left px-4 py-3 text-lg font-medium text-gray-800 dark:text-gray-200 hover:bg-kevin-blue dark:hover:bg-blue-500 hover:text-white rounded-full transition-all duration-300"
                 >
                   {item.name}
                 </button>
               ))}
-              
-              {/* Mobile Actions */}
-              <div className="px-3 py-2 border-t border-gray-200 dark:border-gray-700 mt-2">
-                <div className="flex items-center justify-between">
-                  <ThemeToggle />
-                  <ShareButton 
-                    title="Kevin. - 現代化個人網站"
-                    description="一個以藍色為品牌色的現代化個人網站，展示專業技能與創意作品。"
-                    size="sm"
-                  />
-                  <LanguageSwitcher />
-                </div>
-              </div>
-            </div>
-          </div>
-        </>
+            </nav>
+          </motion.div>
+          )}
+        </AnimatePresence>
       )}
     </motion.nav>
   )

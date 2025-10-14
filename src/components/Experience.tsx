@@ -67,18 +67,18 @@ export default function Experience() {
   ]
 
   return (
-    <section id="experience" className="py-20 bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="experience" className="py-12 sm:py-16 md:py-20 bg-gray-50 dark:bg-gray-900">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-14 md:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-gray-200 mb-4">
-            {t('experience.title', '相關 經驗').split(' ')[0]} <span className="text-kevin-blue dark:text-blue-400">{t('experience.title', '相關 經驗').split(' ')[1]}</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 dark:text-gray-200 mb-3 sm:mb-4 px-4">
+            {t('experience.title', '相關經驗')}
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto px-4">
             {t('experience.subtitle', '語言能力、證照認證與實務經驗展示')}
           </p>
         </motion.div>
@@ -94,13 +94,13 @@ export default function Experience() {
               <Globe className="text-kevin-blue dark:text-blue-400 mr-3" size={32} />
               {t('experience.languageSkills', '語言能力')}
             </h3>
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
               {languageSkills.map((skill, index) => (
                 <motion.div
                   key={skill.language}
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  transition={{ duration: 0.6 }}
                   className="card p-6"
                 >
                   <div className="flex items-center justify-between">
@@ -127,19 +127,19 @@ export default function Experience() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8 }}
           >
             <h3 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-8 flex items-center">
               <FileText className="text-kevin-blue dark:text-blue-400 mr-3" size={32} />
               {t('experience.certifications.title', '證照與認證')}
             </h3>
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
               {certifications.map((cert, index) => (
                 <motion.div
                   key={cert.name}
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  transition={{ duration: 0.6 }}
                   className="card p-6"
                 >
                   <div className="flex items-center justify-between">
@@ -177,7 +177,7 @@ export default function Experience() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.8 }}
           >
             <h3 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-8 flex items-center">
               <Award className="text-kevin-blue dark:text-blue-400 mr-3" size={32} />
@@ -189,7 +189,7 @@ export default function Experience() {
                   key={activity.title}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  transition={{ duration: 0.6 }}
                   className="card p-8"
                 >
                   <div className="flex items-start justify-between mb-6">

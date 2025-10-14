@@ -11,7 +11,8 @@ const zhResources = {
     skills: '技能',
     experience: '經驗',
     contact: '聯繫',
-    kevin: 'Kevin.'
+    kevin: 'Kevin.',
+    menu: '選單'
   },
   hero: {
     title: 'Kevin.',
@@ -22,7 +23,7 @@ const zhResources = {
     downloadCV: '下載履歷'
   },
   about: {
-    title: '關於 Kevin',
+    title: '關於Kevin',
     subtitle: '個人簡介',
     content: '您好，我是陳梓敬 (Kevin)，畢業於吳鳳科技大學數位科技與媒體設計系。我專注於創造以使用者為中心的數位體驗，運用AI協作開發與現代化工具來實現設計概念。我的核心能力包括需求分析、產品設計、使用者體驗優化以及品質控制測試。透過系統性的設計思維和AI輔助開發，我將複雜的需求轉化為高品質的數位產品。我相信設計的力量在於解決問題並創造價值，每個專案都是學習與成長的機會。',
     coreSkills: '核心技能',
@@ -44,7 +45,7 @@ const zhResources = {
     }
   },
   portfolio: {
-    title: '我的 作品',
+    title: '我的作品',
     subtitle: '精選專案',
     viewProject: '查看專案',
     viewCode: '查看程式碼',
@@ -81,7 +82,7 @@ const zhResources = {
     comprehensiveShowcase: '綜合展示'
   },
   skills: {
-    title: '技術 技能',
+    title: '技術技能',
     subtitle: '專業能力',
     frontend: '前端開發',
     backend: '後端開發',
@@ -99,9 +100,9 @@ const zhResources = {
     qualityControl: '品質控制'
   },
   contact: {
-    title: '聯繫 我',
-    subtitle: '讓我們開始對話',
-    description: '有專案想法或合作機會？歡迎與我聯繫',
+    title: '聯繫我',
+    subtitle: '歡迎與我聯繫',
+    description: '歡迎與我聯繫',
     contactInfo: '歡迎隨時聯繫我，討論專案需求或合作機會。',
     location: '彰化縣, 台灣',
     locationLabel: '位置',
@@ -153,6 +154,8 @@ const zhResources = {
     noResults: '沒有找到相關結果',
     tryDifferent: '試試其他關鍵字',
     startTyping: '開始輸入以搜索內容',
+    quickNavigation: '快速導航',
+    featuredProjects: '精選專案',
     aboutDescription: '了解我的背景、技能和專業經驗',
     portfolioDescription: '查看我的精選專案和作品集',
     skillsDescription: '了解我的技術能力和專業技能',
@@ -479,7 +482,7 @@ const zhResources = {
     cancel: '取消'
   },
   experience: {
-    title: '相關 經驗',
+    title: '相關經驗',
     subtitle: '語言能力、證照認證與實務經驗展示',
     languageSkills: '語言能力',
     languages: {
@@ -537,7 +540,8 @@ const enResources = {
     skills: 'Skills',
     experience: 'Experience',
     contact: 'Contact',
-    kevin: 'Kevin.'
+    kevin: 'Kevin.',
+    menu: 'Menu'
   },
   hero: {
     title: 'Kevin.',
@@ -626,8 +630,8 @@ const enResources = {
   },
   contact: {
     title: 'Contact Me',
-    subtitle: 'Let\'s Start a Conversation',
-    description: 'Have a project idea or collaboration opportunity? Feel free to contact me',
+    subtitle: 'Feel Free to Reach Out',
+    description: 'Feel Free to Reach Out',
     contactInfo: 'Feel free to contact me anytime to discuss project requirements or collaboration opportunities.',
     location: 'Changhua County, Taiwan',
     locationLabel: 'Location',
@@ -679,6 +683,8 @@ const enResources = {
     noResults: 'No results found',
     tryDifferent: 'Try different keywords',
     startTyping: 'Start typing to search content',
+    quickNavigation: 'Quick Navigation',
+    featuredProjects: 'Featured Projects',
     aboutDescription: 'Learn about my background, skills and professional experience',
     portfolioDescription: 'View my featured projects and portfolio',
     skillsDescription: 'Understand my technical abilities and professional skills',

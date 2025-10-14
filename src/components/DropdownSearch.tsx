@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { Search, X, FileText, Briefcase, Code, User, Mail, Award } from 'lucide-react'
+import { Search, X, FileText, Briefcase, Code, User, Mail, Award, Zap, ChevronRight } from 'lucide-react'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 
 interface SearchResult {
@@ -22,6 +22,46 @@ export default function DropdownSearch() {
   const [isLoading, setIsLoading] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+
+  // 快速導航連結
+  const quickLinks = [
+    {
+      id: 'quick-about',
+      name: t('navigation.about', '關於'),
+      description: t('search.aboutDescription', '了解我的背景、技能和專業經驗'),
+      icon: User,
+      href: '#about',
+      color: 'text-blue-600 dark:text-blue-400',
+      bgColor: 'bg-blue-100 dark:bg-blue-900/30'
+    },
+    {
+      id: 'quick-portfolio',
+      name: t('navigation.portfolio', '作品'),
+      description: t('search.portfolioDescription', '查看我的精選專案和作品集'),
+      icon: Briefcase,
+      href: '#portfolio',
+      color: 'text-purple-600 dark:text-purple-400',
+      bgColor: 'bg-purple-100 dark:bg-purple-900/30'
+    },
+    {
+      id: 'quick-skills',
+      name: t('navigation.skills', '技能'),
+      description: t('search.skillsDescription', '了解我的技術能力和專業技能'),
+      icon: Code,
+      href: '#skills',
+      color: 'text-green-600 dark:text-green-400',
+      bgColor: 'bg-green-100 dark:bg-green-900/30'
+    },
+    {
+      id: 'quick-contact',
+      name: t('navigation.contact', '聯繫'),
+      description: t('search.contactDescription', '透過各種方式與我聯繫'),
+      icon: Mail,
+      href: '#contact',
+      color: 'text-orange-600 dark:text-orange-400',
+      bgColor: 'bg-orange-100 dark:bg-orange-900/30'
+    }
+  ]
 
   // 搜索資料
   const searchData: SearchResult[] = [
@@ -160,6 +200,20 @@ export default function DropdownSearch() {
     setResults([])
   }
 
+  // 處理快速連結點擊
+  const handleQuickLinkClick = (href: string) => {
+    if (href.startsWith('#')) {
+      const element = document.querySelector(href)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
+    } else {
+      window.location.href = href
+    }
+    setIsOpen(false)
+    setQuery('')
+  }
+
   // 清除搜索
   const clearSearch = () => {
     setQuery('')
@@ -218,12 +272,12 @@ export default function DropdownSearch() {
             onChange={handleSearch}
             onFocus={() => setIsOpen(true)}
             placeholder={t('search.placeholder', '搜索網站內容...')}
-            className="w-full pl-10 pr-10 py-2 text-sm bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-kevin-blue dark:focus:border-blue-400 transition-all duration-200 placeholder-gray-500 dark:placeholder-gray-400"
+            className="w-full pl-10 pr-10 py-2 text-sm bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-kevin-blue dark:focus:border-blue-400 transition-all duration-300 placeholder-gray-500 dark:placeholder-gray-400"
           />
           {query && (
             <button
               onClick={clearSearch}
-              className="absolute right-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+              className="absolute right-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-300"
             >
               <X size={16} />
             </button>
@@ -251,7 +305,7 @@ export default function DropdownSearch() {
                     <button
                       key={result.id}
                       onClick={() => handleResultClick(result)}
-                      className="w-full text-left p-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200"
+                      className="w-full text-left p-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-300"
                     >
                       <div className="flex items-start gap-3">
                         <div className={`w-8 h-8 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center ${typeColor}`}>
@@ -281,11 +335,41 @@ export default function DropdownSearch() {
                 </p>
               </div>
             ) : (
-              <div className="p-4 text-center">
-                <Search className="text-gray-400 mx-auto mb-2" size={24} />
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  {t('search.startTyping', '開始輸入以搜索內容')}
-                </p>
+              <div className="py-3">
+                {/* 快速導航區塊 */}
+                <div>
+                  <div className="px-4 py-2 flex items-center gap-2">
+                    <Zap size={14} className="text-gray-400" />
+                    <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+                      {t('search.quickNavigation', '快速導航')}
+                    </h3>
+                  </div>
+                  <div>
+                    {quickLinks.map((link) => {
+                      const IconComponent = link.icon
+                      return (
+                        <button
+                          key={link.id}
+                          onClick={() => handleQuickLinkClick(link.href)}
+                          className="group w-full flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-300"
+                        >
+                          <div className={`w-8 h-8 rounded-lg ${link.bgColor} flex items-center justify-center ${link.color}`}>
+                            <IconComponent size={16} />
+                          </div>
+                          <div className="flex-1 text-left min-w-0">
+                            <div className="font-medium text-gray-900 dark:text-gray-100 text-sm">
+                              {link.name}
+                            </div>
+                            <div className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                              {link.description}
+                            </div>
+                          </div>
+                          <ChevronRight className="text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" size={16} />
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
               </div>
             )}
         </div>

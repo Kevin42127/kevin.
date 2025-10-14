@@ -70,12 +70,350 @@
   margin: 0;
 }
 
-html,
+/* 启用全局平滑滚动 */
+html {
+  scroll-behavior: smooth;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  scroll-behavior: smooth;
 }
+
+/* 尊重用户的动画偏好设置（无障碍） */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* 优化滚动性能 */
+html {
+  /* 启用硬件加速 */
+  -webkit-overflow-scrolling: touch;
+  /* 优化滚动条渲染 */
+  scrollbar-gutter: stable;
+}
+
+
+/* ========================================
+   视差滚动效果 (Animation Timeline)
+   ======================================== */
+
+/* 1. 基础视差滚动 - 慢速移动 */
+@keyframes parallax-slow {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50px);
+  }
+}
+
+.parallax-slow {
+  animation: parallax-slow linear;
+  animation-timeline: scroll();
+  animation-range: entry 0% exit 100%;
+}
+
+/* 2. 中速视差 */
+@keyframes parallax-medium {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100px);
+  }
+}
+
+.parallax-medium {
+  animation: parallax-medium linear;
+  animation-timeline: scroll();
+  animation-range: entry 0% exit 100%;
+}
+
+/* 3. 快速视差 */
+@keyframes parallax-fast {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-150px);
+  }
+}
+
+.parallax-fast {
+  animation: parallax-fast linear;
+  animation-timeline: scroll();
+  animation-range: entry 0% exit 100%;
+}
+
+/* 4. 淡入效果（滚动进入） */
+@keyframes fade-in-scroll {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-scroll {
+  animation: fade-in-scroll linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 30%;
+}
+
+/* 5. 放大效果 */
+@keyframes scale-in-scroll {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.scale-in-scroll {
+  animation: scale-in-scroll linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 30%;
+}
+
+/* 6. 旋转淡入 */
+@keyframes rotate-in-scroll {
+  from {
+    opacity: 0;
+    transform: rotate(-10deg) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg) translateY(0);
+  }
+}
+
+.rotate-in-scroll {
+  animation: rotate-in-scroll linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+
+/* 7. 从左滑入 */
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-left {
+  animation: slide-in-left linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 30%;
+}
+
+/* 8. 从右滑入 */
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-right {
+  animation: slide-in-right linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 30%;
+}
+
+/* 9. 弹性缩放 */
+@keyframes bounce-in-scroll {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.bounce-in-scroll {
+  animation: bounce-in-scroll ease-out;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+
+/* 10. 标题视差 - 放大淡出 */
+@keyframes title-parallax {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+}
+
+.title-parallax {
+  animation: title-parallax linear;
+  animation-timeline: scroll();
+  animation-range: entry 0% exit 50%;
+}
+
+/* 11. 粘性标题效果 */
+@keyframes sticky-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sticky-reveal {
+  animation: sticky-reveal linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 20%;
+}
+
+/* 12. 3D 翻转效果 */
+@keyframes flip-in-scroll {
+  from {
+    opacity: 0;
+    transform: perspective(1000px) rotateY(-90deg);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(1000px) rotateY(0deg);
+  }
+}
+
+.flip-in-scroll {
+  animation: flip-in-scroll ease-out;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+
+/* 13. 模糊到清晰 */
+@keyframes blur-in-scroll {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.blur-in-scroll {
+  animation: blur-in-scroll linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 30%;
+}
+
+/* 14. 彩色渐变效果 */
+@keyframes gradient-scroll {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 100% 50%;
+  }
+}
+
+.gradient-scroll {
+  background-size: 200% 200%;
+  animation: gradient-scroll linear;
+  animation-timeline: scroll();
+  animation-range: entry 0% exit 100%;
+}
+
+/* 15. 组合视差 - 上移+淡入+放大 */
+@keyframes combined-parallax {
+  from {
+    opacity: 0;
+    transform: translateY(80px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.combined-parallax {
+  animation: combined-parallax ease-out;
+  animation-timeline: view();
+  animation-range: entry 0% cover 35%;
+}
+
+/* 回退支持（不支持 animation-timeline 的浏览器） */
+@supports not (animation-timeline: scroll()) {
+  .parallax-slow,
+  .parallax-medium,
+  .parallax-fast,
+  .fade-in-scroll,
+  .scale-in-scroll,
+  .rotate-in-scroll,
+  .slide-in-left,
+  .slide-in-right,
+  .bounce-in-scroll,
+  .title-parallax,
+  .sticky-reveal,
+  .flip-in-scroll,
+  .blur-in-scroll,
+  .gradient-scroll,
+  .combined-parallax {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* 尊重用户的动画偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .parallax-slow,
+  .parallax-medium,
+  .parallax-fast,
+  .fade-in-scroll,
+  .scale-in-scroll,
+  .rotate-in-scroll,
+  .slide-in-left,
+  .slide-in-right,
+  .bounce-in-scroll,
+  .title-parallax,
+  .sticky-reveal,
+  .flip-in-scroll,
+  .blur-in-scroll,
+  .gradient-scroll,
+  .combined-parallax {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
 
 body {
   color: rgb(var(--foreground-rgb));
@@ -164,6 +502,90 @@ a:focus {
 
   .card:hover::before {
     transform: translateX(-50%) scaleX(1);
+  }
+
+  /* 统一按钮系统 */
+  .btn-primary {
+    @apply px-6 sm:px-8 py-3 rounded-full bg-kevin-blue dark:bg-blue-500 text-white font-semibold 
+           hover:shadow-xl transition-all duration-300 inline-flex items-center justify-center gap-2
+           min-h-[44px] touch-manipulation;
+  }
+
+  .btn-secondary {
+    @apply px-6 sm:px-8 py-3 rounded-full border-2 border-kevin-blue dark:border-blue-400 
+           text-kevin-blue dark:text-blue-400 font-semibold 
+           hover:bg-kevin-blue dark:hover:bg-blue-500 hover:text-white 
+           transition-all duration-300 inline-flex items-center justify-center gap-2
+           min-h-[44px] touch-manipulation;
+  }
+
+  .btn-tertiary {
+    @apply px-6 sm:px-8 py-3 rounded-full border-2 border-gray-300 dark:border-gray-600 
+           text-gray-700 dark:text-gray-300 font-semibold 
+           hover:bg-gray-100 dark:hover:bg-gray-800 
+           hover:border-gray-400 dark:hover:border-gray-500 
+           transition-all duration-300 inline-flex items-center justify-center gap-2
+           min-h-[44px] touch-manipulation;
+  }
+
+  .btn-nav {
+    @apply px-5 py-2 rounded-full text-gray-700 dark:text-gray-300 font-medium 
+           hover:bg-kevin-blue hover:text-white 
+           dark:hover:bg-blue-500 dark:hover:text-white
+           transition-all duration-300;
+  }
+
+  /* 确保深色模式下胶囊式按钮悬停时内部文字颜色为白色 */
+  .dark .btn-nav:hover {
+    @apply text-white;
+    color: white !important;
+  }
+  
+  /* 确保所有胶囊式按钮内部的文字在悬停时都是白色 */
+  .btn-nav:hover {
+    color: white !important;
+  }
+
+  .btn-icon {
+    @apply w-12 h-12 min-w-[48px] min-h-[48px] rounded-full flex items-center justify-center 
+           transition-all duration-300 shadow-lg hover:shadow-xl touch-manipulation;
+  }
+
+  .btn-icon-sm {
+    @apply w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl flex items-center justify-center 
+           transition-all duration-300 touch-manipulation;
+  }
+
+  /* 统一圆角规范 */
+  .rounded-button {
+    @apply rounded-full;
+  }
+
+  .rounded-card {
+    @apply rounded-2xl;
+  }
+
+  .rounded-icon {
+    @apply rounded-xl;
+  }
+
+  .rounded-input {
+    @apply rounded-lg;
+  }
+
+  /* 统一输入框样式 */
+  .input-base {
+    @apply w-full px-4 py-3 rounded-lg border-2 border-gray-300 dark:border-gray-600 
+           bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 
+           focus:border-kevin-blue dark:focus:border-blue-400 focus:outline-none 
+           transition-all duration-300;
+  }
+
+  .textarea-base {
+    @apply w-full px-4 py-3 rounded-lg border-2 border-gray-300 dark:border-gray-600 
+           bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 
+           focus:border-kevin-blue dark:focus:border-blue-400 focus:outline-none 
+           transition-all duration-300 min-h-[120px] resize-none;
   }
 }
 

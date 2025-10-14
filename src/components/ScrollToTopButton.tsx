@@ -36,11 +36,12 @@ export default function ScrollToTopButton() {
         scale: isVisible ? 1 : 0 
       }}
       transition={{ duration: 0.3 }}
-      className="fixed bottom-6 right-6 z-50 px-4 py-2 border-2 border-kevin-blue dark:border-blue-400 text-kevin-blue dark:text-blue-400 bg-white dark:bg-gray-900 rounded-full shadow-lg transition-all duration-300 flex items-center justify-center text-sm font-medium"
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+      className="fixed bottom-6 right-6 z-50 w-12 h-12 bg-white dark:bg-blue-500 text-kevin-blue dark:text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
       aria-label="返回頂部"
     >
-      <ChevronUp size={16} className="mr-1" />
-      <span>TOP</span>
+      <ChevronUp size={20} />
     </motion.button>
   )
 }

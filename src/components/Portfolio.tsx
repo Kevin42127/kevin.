@@ -71,25 +71,25 @@ export default function Portfolio() {
   ]
 
   return (
-    <section id="portfolio" className="py-20 bg-white dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="portfolio" className="py-12 sm:py-16 md:py-20 bg-white dark:bg-gray-900">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-14 md:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-gray-200 mb-4">
-{t('portfolio.title', '我的 作品').split(' ')[0]} <span className="text-kevin-blue dark:text-blue-400">{t('portfolio.title', '我的 作品').split(' ')[1]}</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 dark:text-gray-200 mb-3 sm:mb-4 px-4">
+{t('portfolio.title', '我的作品')}
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto px-4">
 {t('portfolio.subtitle', '精選專案展示，展現技術實力和創意思維')}
           </p>
         </motion.div>
 
         {/* All Projects */}
         <div>
-          <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}

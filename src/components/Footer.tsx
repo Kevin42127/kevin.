@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Heart, Linkedin, Mail } from 'lucide-react'
+import { Heart, Linkedin, Mail, ChevronUp } from 'lucide-react'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 
 export default function Footer() {
@@ -37,8 +37,24 @@ export default function Footer() {
     }
   }
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
+
   return (
-    <footer className="bg-gray-950 text-white">
+    <footer className="bg-gray-950 text-white relative">
+      {/* 返回頂部按鈕 */}
+      <button
+        onClick={scrollToTop}
+        className="absolute bottom-8 right-6 btn-icon bg-white dark:bg-blue-500 text-kevin-blue dark:text-white z-10"
+        aria-label="返回頂部"
+      >
+        <ChevronUp size={20} />
+      </button>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-3 gap-8">
           {/* Brand Section */}
@@ -58,10 +74,10 @@ export default function Footer() {
                 <a
                   key={social.label}
                   href={social.href}
-                  className="w-10 h-10 bg-gray-800 dark:bg-gray-700 rounded-xl flex items-center justify-center hover:bg-kevin-blue transition-all duration-300"
+                  className="btn-icon-sm bg-gray-800 dark:bg-gray-700 hover:bg-kevin-blue"
                   aria-label={social.label}
                 >
-                  <social.icon size={18} />
+                  <social.icon size={20} />
                 </a>
               ))}
             </div>

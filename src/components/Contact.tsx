@@ -182,7 +182,7 @@ export default function Contact() {
   ]
 
   return (
-    <section id="contact" className="py-20 bg-white dark:bg-gray-900">
+    <section id="contact" className="py-12 sm:py-16 md:py-20 bg-white dark:bg-gray-900">
       {/* Toast Notification */}
       {toast.show && (
         <motion.div
@@ -212,84 +212,30 @@ export default function Contact() {
         </motion.div>
       )}
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-14 md:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-gray-200 mb-4">
-{t('contact.title', '聯繫 我').split(' ')[0]} <span className="text-kevin-blue dark:text-blue-400">{t('contact.title', '聯繫 我').split(' ')[1]}</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 dark:text-gray-200 mb-3 sm:mb-4 px-4">
+{t('contact.title', '聯繫我')}
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-{t('contact.description', '有專案想法或合作機會？歡迎與我聯繫')}
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto px-4">
+{t('contact.description', '歡迎與我聯繫')}
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
+        {/* Contact Form - Centered */}
+        <div className="max-w-2xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
+            className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 sm:p-8"
           >
-            <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-6">
-{t('contact.subtitle', '讓我們開始對話')}
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
-{t('contact.contactInfo', '歡迎隨時聯繫我，討論專案需求或合作機會。')}
-            </p>
-
-            {/* Contact Details */}
-            <div className="space-y-6 mb-8">
-              {contactInfo.map((info, index) => (
-                <motion.div
-                  key={info.title}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.6 }}
-                  className="flex items-center space-x-4"
-                >
-                  <div className="w-12 h-12 bg-kevin-blue/10 dark:bg-blue-900/30 rounded-xl flex items-center justify-center">
-                    <info.icon className="text-kevin-blue dark:text-blue-400" size={20} />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800 dark:text-gray-200">{info.title}</h4>
-                    <span className="text-gray-600 dark:text-gray-400">
-                      {info.value}
-                    </span>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Social Links */}
-            <div>
-              <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-4">{t('socialMedia.socialMedia', '社群媒體')}</h4>
-              <div className="flex space-x-4">
-                {socialLinks.map((social, index) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    className="w-10 h-10 bg-kevin-blue/10 dark:bg-blue-900/30 rounded-xl flex items-center justify-center hover:bg-kevin-blue hover:text-white transition-all duration-300"
-                    aria-label={social.label}
-                  >
-                    <social.icon size={18} />
-                  </a>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8"
-          >
-            <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-6">
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-200 mb-4 sm:mb-6">
               {t('contact.sendMessage')}
             </h3>
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -305,7 +251,7 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:border-kevin-blue dark:focus:border-blue-400 transition-all duration-300 placeholder-gray-500 dark:placeholder-gray-400"
+                    className="input-base"
                     placeholder={t('contact.namePlaceholder', '您的姓名')}
                   />
                 </div>
@@ -320,7 +266,7 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:border-kevin-blue dark:focus:border-blue-400 transition-all duration-300 placeholder-gray-500 dark:placeholder-gray-400"
+                    className="input-base"
                     placeholder={t('contact.emailPlaceholder', 'your@email.com')}
                   />
                 </div>
@@ -337,7 +283,7 @@ export default function Contact() {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:border-kevin-blue dark:focus:border-blue-400 transition-all duration-300"
+                  className="input-base"
                   placeholder={t('contact.subjectPlaceholder', '訊息主題')}
                 />
               </div>
@@ -353,7 +299,7 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   rows={6}
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:border-kevin-blue dark:focus:border-blue-400 transition-all duration-300 resize-none placeholder-gray-500 dark:placeholder-gray-400"
+                  className="textarea-base"
                   placeholder={t('contact.messagePlaceholder', '請描述您的需求或想法...')}
                 />
               </div>
@@ -361,10 +307,8 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full py-3 px-6 rounded-lg font-semibold transition-colors duration-300 flex items-center justify-center space-x-2 ${
-                  isSubmitting
-                    ? 'bg-gray-400 dark:bg-gray-600 text-gray-200 dark:text-gray-300 cursor-not-allowed'
-                    : 'bg-kevin-blue text-white hover:bg-kevin-blue-dark'
+                className={`w-full btn-primary min-h-[48px] ${
+                  isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
               >
                 <Send size={20} />
