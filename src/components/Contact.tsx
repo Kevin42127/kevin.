@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Mail, MapPin, Send, Linkedin, CheckCircle, XCircle } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
@@ -184,33 +184,36 @@ export default function Contact() {
   return (
     <section id="contact" className="py-12 sm:py-16 md:py-20 bg-white dark:bg-gray-900">
       {/* Toast Notification */}
-      {toast.show && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0, y: -50 }}
-          className="fixed top-4 right-4 z-50"
-        >
-          <div className={`flex items-center space-x-3 px-6 py-4 rounded-lg shadow-lg ${
-            toast.type === 'success' 
-              ? 'bg-green-500 text-white' 
-              : 'bg-red-500 text-white'
-          }`}>
-            {toast.type === 'success' ? (
-              <CheckCircle size={20} />
-            ) : (
-              <XCircle size={20} />
-            )}
-            <span className="font-medium">{toast.message}</span>
-            <button
-              onClick={() => setToast({ ...toast, show: false })}
-              className="ml-2 hover:opacity-70 transition-opacity"
-            >
-              <XCircle size={16} />
-            </button>
-          </div>
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {toast.show && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -50 }}
+            className="fixed top-20 right-4 sm:top-24 sm:right-6"
+            style={{ zIndex: 10001 }}
+          >
+            <div className={`flex items-center space-x-3 px-6 py-4 rounded-lg shadow-lg ${
+              toast.type === 'success' 
+                ? 'bg-green-500 text-white' 
+                : 'bg-red-500 text-white'
+            }`}>
+              {toast.type === 'success' ? (
+                <CheckCircle size={20} />
+              ) : (
+                <XCircle size={20} />
+              )}
+              <span className="font-medium">{toast.message}</span>
+              <button
+                onClick={() => setToast({ ...toast, show: false })}
+                className="ml-2 hover:opacity-70 transition-opacity"
+              >
+                <XCircle size={16} />
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <motion.div
