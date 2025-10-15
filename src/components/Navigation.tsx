@@ -135,6 +135,11 @@ export default function Navigation() {
             </div>
           </div>
 
+          {/* Center - Mobile Search */}
+          <div className="lg:hidden flex-1 flex justify-center mx-4">
+            <DropdownSearch />
+          </div>
+
           {/* Right Side - Actions */}
           <div className="hidden lg:flex items-center space-x-4">
             <DropdownSearch />
@@ -142,14 +147,11 @@ export default function Navigation() {
             <ThemeToggle />
           </div>
 
-          {/* Mobile/Tablet Actions */}
-          <div className="lg:hidden flex items-center space-x-2 sm:space-x-3">
-            <DropdownSearch />
-            <LanguageSwitcher />
-            <ThemeToggle />
+          {/* Mobile/Tablet Menu Button */}
+          <div className="lg:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-kevin-blue dark:hover:bg-blue-500 hover:text-white transition-all duration-300 flex items-center justify-center"
+              className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-kevin-blue dark:hover:bg-blue-500 hover:text-white transition-all duration-300 flex items-center justify-center flex-shrink-0"
               aria-label="打开菜单"
             >
               {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -205,6 +207,29 @@ export default function Navigation() {
                 </button>
               ))}
             </nav>
+
+            {/* Settings Section */}
+            <div className="px-6 pb-6 border-t border-gray-200 dark:border-gray-700 pt-4 space-y-3">
+              <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 px-4 mb-3">
+                {t('navigation.settings', '設定')}
+              </h3>
+              
+              {/* Language Switcher */}
+              <div className="flex items-center justify-between px-4 py-2">
+                <span className="text-gray-700 dark:text-gray-300 font-medium">
+                  {t('navigation.language', '語言')}
+                </span>
+                <LanguageSwitcher />
+              </div>
+
+              {/* Theme Toggle */}
+              <div className="flex items-center justify-between px-4 py-2">
+                <span className="text-gray-700 dark:text-gray-300 font-medium">
+                  {t('navigation.theme', '主題')}
+                </span>
+                <ThemeToggle />
+              </div>
+            </div>
           </motion.div>
           )}
         </AnimatePresence>

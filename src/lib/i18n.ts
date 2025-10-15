@@ -12,7 +12,10 @@ const zhResources = {
     experience: '經驗',
     contact: '聯繫',
     kevin: 'Kevin.',
-    menu: '選單'
+    menu: '選單',
+    settings: '設定',
+    language: '語言',
+    theme: '主題'
   },
   hero: {
     title: 'Kevin.',
@@ -541,7 +544,10 @@ const enResources = {
     experience: 'Experience',
     contact: 'Contact',
     kevin: 'Kevin.',
-    menu: 'Menu'
+    menu: 'Menu',
+    settings: 'Settings',
+    language: 'Language',
+    theme: 'Theme'
   },
   hero: {
     title: 'Kevin.',
