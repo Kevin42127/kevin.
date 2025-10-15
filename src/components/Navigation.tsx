@@ -171,11 +171,11 @@ export default function Navigation() {
             transition={{ 
               duration: 0.1
             }}
-            className="fixed top-0 right-0 h-screen w-80 bg-white dark:bg-gray-900 shadow-2xl border-l-2 border-gray-200 dark:border-gray-700 overflow-y-auto"
+            className="fixed top-0 right-0 h-screen w-80 bg-white dark:bg-gray-900 shadow-2xl border-l-2 border-gray-200 dark:border-gray-700 flex flex-col"
             style={{ zIndex: 9999 }}
           >
-            {/* Close Button */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+            {/* Close Button - Fixed Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
               <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200">{t('navigation.menu', '選單')}</h2>
               <button
                 onClick={() => setIsMenuOpen(false)}
@@ -186,48 +186,51 @@ export default function Navigation() {
               </button>
             </div>
             
-            {/* Navigation Items */}
-            <nav className="p-6 space-y-2">
-              {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => handleNavigation(item.href)}
-                  className="block w-full text-left px-4 py-3 text-lg font-medium text-gray-800 dark:text-gray-200 hover:bg-kevin-blue dark:hover:bg-blue-500 hover:text-white rounded-full transition-all duration-300"
-                >
-                  {item.name}
-                </button>
-              ))}
-              {externalLinks.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => handleNavigation(item.href, item.external)}
-                  className="block w-full text-left px-4 py-3 text-lg font-medium text-gray-800 dark:text-gray-200 hover:bg-kevin-blue dark:hover:bg-blue-500 hover:text-white rounded-full transition-all duration-300"
-                >
-                  {item.name}
-                </button>
-              ))}
-            </nav>
+            {/* Scrollable Content */}
+            <div className="flex-1 overflow-y-auto">
+              {/* Navigation Items */}
+              <nav className="p-6 space-y-2">
+                {navItems.map((item) => (
+                  <button
+                    key={item.name}
+                    onClick={() => handleNavigation(item.href)}
+                    className="block w-full text-left px-4 py-3 text-lg font-medium text-gray-800 dark:text-gray-200 hover:bg-kevin-blue dark:hover:bg-blue-500 hover:text-white rounded-full transition-all duration-300"
+                  >
+                    {item.name}
+                  </button>
+                ))}
+                {externalLinks.map((item) => (
+                  <button
+                    key={item.name}
+                    onClick={() => handleNavigation(item.href, item.external)}
+                    className="block w-full text-left px-4 py-3 text-lg font-medium text-gray-800 dark:text-gray-200 hover:bg-kevin-blue dark:hover:bg-blue-500 hover:text-white rounded-full transition-all duration-300"
+                  >
+                    {item.name}
+                  </button>
+                ))}
+              </nav>
 
-            {/* Settings Section */}
-            <div className="px-6 pb-6 border-t border-gray-200 dark:border-gray-700 pt-4 space-y-3">
-              <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 px-4 mb-3">
-                {t('navigation.settings', '設定')}
-              </h3>
-              
-              {/* Language Switcher */}
-              <div className="flex items-center justify-between px-4 py-2">
-                <span className="text-gray-700 dark:text-gray-300 font-medium">
-                  {t('navigation.language', '語言')}
-                </span>
-                <LanguageSwitcher />
-              </div>
+              {/* Settings Section */}
+              <div className="px-6 pb-6 border-t border-gray-200 dark:border-gray-700 pt-4 space-y-3">
+                <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 px-4 mb-3">
+                  {t('navigation.settings', '設定')}
+                </h3>
+                
+                {/* Language Switcher */}
+                <div className="flex items-center justify-between px-4 py-2">
+                  <span className="text-gray-700 dark:text-gray-300 font-medium">
+                    {t('navigation.language', '語言')}
+                  </span>
+                  <LanguageSwitcher />
+                </div>
 
-              {/* Theme Toggle */}
-              <div className="flex items-center justify-between px-4 py-2">
-                <span className="text-gray-700 dark:text-gray-300 font-medium">
-                  {t('navigation.theme', '主題')}
-                </span>
-                <ThemeToggle />
+                {/* Theme Toggle */}
+                <div className="flex items-center justify-between px-4 py-2">
+                  <span className="text-gray-700 dark:text-gray-300 font-medium">
+                    {t('navigation.theme', '主題')}
+                  </span>
+                  <ThemeToggle />
+                </div>
               </div>
             </div>
           </motion.div>
