@@ -107,7 +107,7 @@ export default function Navigation() {
           <div className="flex items-center">
             <button
               onClick={() => handleNavigation('#home')}
-              className="text-2xl font-bold text-kevin-blue dark:text-blue-500"
+              className="text-2xl font-bold text-kevin-blue dark:text-blue-400"
             >
               {t('navigation.kevin', 'Kevin.')}
             </button>

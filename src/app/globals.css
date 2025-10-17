@@ -512,11 +512,28 @@ a:focus {
   }
 
   .btn-secondary {
-    @apply px-6 sm:px-8 py-3 rounded-full border-2 border-kevin-blue dark:border-blue-400 
-           text-kevin-blue dark:text-blue-400 font-semibold 
-           hover:bg-kevin-blue dark:hover:bg-blue-500 hover:text-white 
+    @apply px-6 sm:px-8 py-3 rounded-full border-2 font-semibold 
            transition-all duration-300 inline-flex items-center justify-center gap-2
            min-h-[44px] touch-manipulation;
+    /* Light mode */
+    border-color: #1e40af;
+    color: #1e40af;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #1e40af;
+    color: white !important;
+  }
+  
+  /* Dark mode */
+  .dark .btn-secondary {
+    border-color: #60a5fa;
+    color: #60a5fa;
+  }
+  
+  .dark .btn-secondary:hover {
+    background-color: #3b82f6 !important;
+    color: white !important;
   }
 
   .btn-tertiary {
@@ -550,10 +567,28 @@ a:focus {
     @apply w-12 h-12 min-w-[48px] min-h-[48px] rounded-full flex items-center justify-center 
            transition-all duration-300 shadow-lg hover:shadow-xl touch-manipulation;
   }
+  
+  /* 确保深色模式下图标按钮 hover 时文字/图标为白色 */
+  .dark .btn-icon:hover {
+    color: white !important;
+  }
+  
+  .dark .btn-icon:hover svg {
+    color: white !important;
+  }
 
   .btn-icon-sm {
     @apply w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl flex items-center justify-center 
            transition-all duration-300 touch-manipulation;
+  }
+  
+  /* 确保深色模式下图标按钮 hover 时文字/图标为白色 */
+  .dark .btn-icon-sm:hover {
+    color: white !important;
+  }
+  
+  .dark .btn-icon-sm:hover svg {
+    color: white !important;
   }
 
   /* 统一圆角规范 */
