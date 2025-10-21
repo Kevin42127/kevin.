@@ -23,7 +23,6 @@ export default function DropdownSearch() {
   const inputRef = useRef<HTMLInputElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  // 快速導航連結
   const quickLinks = [
     {
       id: 'quick-about',
@@ -63,7 +62,6 @@ export default function DropdownSearch() {
     }
   ]
 
-  // 搜索資料
   const searchData: SearchResult[] = [
     {
       id: 'about',
@@ -155,7 +153,6 @@ export default function DropdownSearch() {
     }
   ]
 
-  // 搜索功能
   const performSearch = (searchQuery: string) => {
     if (!searchQuery.trim()) {
       setResults([])
@@ -164,7 +161,6 @@ export default function DropdownSearch() {
 
     setIsLoading(true)
     
-    // 模擬搜索延遲
     setTimeout(() => {
       const filteredResults = searchData.filter(item =>
         item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -176,23 +172,19 @@ export default function DropdownSearch() {
     }, 150)
   }
 
-  // 處理搜索輸入
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     setQuery(value)
     performSearch(value)
   }
 
-  // 處理結果點擊
   const handleResultClick = (result: SearchResult) => {
     if (result.href.startsWith('#')) {
-      // 內部錨點連結
       const element = document.querySelector(result.href)
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' })
       }
     } else {
-      // 外部連結
       window.location.href = result.href
     }
     setIsOpen(false)
@@ -200,7 +192,6 @@ export default function DropdownSearch() {
     setResults([])
   }
 
-  // 處理快速連結點擊
   const handleQuickLinkClick = (href: string) => {
     if (href.startsWith('#')) {
       const element = document.querySelector(href)
@@ -214,14 +205,12 @@ export default function DropdownSearch() {
     setQuery('')
   }
 
-  // 清除搜索
   const clearSearch = () => {
     setQuery('')
     setResults([])
     inputRef.current?.focus()
   }
 
-  // 獲取類型圖示
   const getTypeIcon = (type: string) => {
     switch (type) {
       case 'about': return User
@@ -234,7 +223,6 @@ export default function DropdownSearch() {
     }
   }
 
-  // 獲取類型顏色
   const getTypeColor = (type: string) => {
     switch (type) {
       case 'about': return 'text-blue-500'
@@ -247,7 +235,6 @@ export default function DropdownSearch() {
     }
   }
 
-  // 點擊外部關閉
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
@@ -260,8 +247,7 @@ export default function DropdownSearch() {
   }, [])
 
   return (
-    <div ref={containerRef} className="relative">
-      {/* 搜索輸入框 */}
+    <div ref={containerRef} className="relative w-48 lg:w-56">
       <div className="relative">
         <div className="flex items-center">
           <Search className="absolute left-3 text-gray-400" size={18} />
@@ -271,7 +257,7 @@ export default function DropdownSearch() {
             value={query}
             onChange={handleSearch}
             onFocus={() => setIsOpen(true)}
-            placeholder={t('search.placeholder', '搜索網站內容...')}
+            placeholder={t('search.placeholder', '搜索...')}
             className="w-full pl-10 pr-10 py-2 text-sm bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-kevin-blue dark:focus:border-blue-400 transition-all duration-300 placeholder-gray-500 dark:placeholder-gray-400"
           />
           {query && (
@@ -285,7 +271,6 @@ export default function DropdownSearch() {
         </div>
       </div>
 
-      {/* 下拉搜索結果 */}
       {isOpen && (
         <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-xl z-50 max-h-96 overflow-y-auto">
             {isLoading ? (
@@ -336,7 +321,6 @@ export default function DropdownSearch() {
               </div>
             ) : (
               <div className="py-3">
-                {/* 快速導航區塊 */}
                 <div>
                   <div className="px-4 py-2 flex items-center gap-2">
                     <Zap size={14} className="text-gray-400" />

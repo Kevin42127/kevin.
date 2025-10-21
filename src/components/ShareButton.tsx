@@ -50,7 +50,6 @@ export default function ShareButton({
         console.log('分享被取消或發生錯誤:', error)
       }
     } else {
-      // 如果不支援原生分享，打開分享選單
       setIsOpen(true)
     }
   }
@@ -145,7 +144,6 @@ export default function ShareButton({
 
   return (
     <div className={`relative ${className}`}>
-      {/* 主要分享按鈕 */}
       <motion.button
         onClick={handleNativeShare}
         className={`${sizeClasses[size]} bg-kevin-blue/10 dark:bg-blue-900/30 hover:bg-kevin-blue hover:text-white text-kevin-blue dark:text-blue-400 rounded-xl flex items-center justify-center transition-all duration-300 group`}
@@ -155,16 +153,13 @@ export default function ShareButton({
         <Share2 size={iconSizes[size]} />
       </motion.button>
 
-      {/* 分享選單 */}
       {isOpen && (
         <>
-          {/* 背景遮罩 */}
           <div
             className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
             onClick={() => setIsOpen(false)}
           />
 
-          {/* 分享選單 */}
           <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 p-4 z-50 min-w-[280px]">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-semibold text-gray-800 dark:text-gray-200">
@@ -178,7 +173,6 @@ export default function ShareButton({
                 </button>
               </div>
 
-              {/* 分享選項 */}
               <div className="grid grid-cols-3 gap-3 mb-4">
                 {shareOptions.map((option, index) => (
                   <button
@@ -194,7 +188,6 @@ export default function ShareButton({
                 ))}
               </div>
 
-              {/* 複製連結 */}
               <button
                 onClick={handleCopyLink}
                 className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-xl transition-all duration-300 active:scale-98"

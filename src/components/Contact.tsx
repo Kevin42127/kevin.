@@ -20,7 +20,6 @@ export default function Contact() {
     message: string
   }>({ show: false, type: 'success', message: '' })
 
-  // Auto-hide toast after 5 seconds
   useEffect(() => {
     if (toast.show) {
       const timer = setTimeout(() => {
@@ -30,9 +29,7 @@ export default function Contact() {
     }
   }, [toast])
 
-  // Update validation messages when language changes
   useEffect(() => {
-    // Only run on client side to avoid hydration mismatch
     if (typeof window === 'undefined') return
 
     const nameInput = document.getElementById('name') as HTMLInputElement
@@ -40,7 +37,6 @@ export default function Contact() {
     const subjectInput = document.getElementById('subject') as HTMLInputElement
     const messageInput = document.getElementById('message') as HTMLTextAreaElement
 
-    // Set up custom validation handlers
     if (nameInput) {
       nameInput.oninvalid = () => {
         if (!nameInput.value) {
@@ -98,18 +94,15 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    // Get the form element
     const form = e.currentTarget as HTMLFormElement
     
-    // Check if form is valid before proceeding
     if (!form.checkValidity()) {
-      // Report first invalid field only
       const inputs = form.querySelectorAll('input[required], textarea[required]')
       for (const input of Array.from(inputs)) {
         if (input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement) {
           if (!input.validity.valid) {
             input.reportValidity()
-            break // Only show first invalid field
+            break
           }
         }
       }
@@ -183,7 +176,6 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-12 sm:py-16 md:py-20 bg-white dark:bg-gray-900">
-      {/* Toast Notification */}
       <AnimatePresence>
         {toast.show && (
           <motion.div
@@ -230,7 +222,6 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        {/* Contact Form - Centered */}
         <div className="max-w-2xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}

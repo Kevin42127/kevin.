@@ -9,7 +9,6 @@ export function useTranslationSafe() {
     setIsClient(true)
   }, [])
 
-  // 在客戶端渲染完成前，使用 fallback 文字
   const safeT = (key: string, fallback?: string) => {
     if (!isClient || !ready) {
       return fallback || key

@@ -10,7 +10,6 @@ export const useProtectedImage = () => {
       try {
         setIsLoading(true)
         
-        // 嘗試從保護的 API 端點載入圖片
         const response = await fetch('/api/protected-image', {
           method: 'GET',
           headers: {
@@ -29,7 +28,6 @@ export const useProtectedImage = () => {
         setError(null)
       } catch (err) {
         console.warn('Protected image failed, falling back to static image')
-        // 如果保護圖片失敗，回退到靜態圖片
         setImageUrl('/profile.jpg')
         setError(err instanceof Error ? err.message : 'Unknown error')
       } finally {
@@ -39,7 +37,6 @@ export const useProtectedImage = () => {
 
     loadProtectedImage()
 
-    // 清理函數
     return () => {
       if (imageUrl && imageUrl.startsWith('blob:')) {
         URL.revokeObjectURL(imageUrl)

@@ -54,14 +54,12 @@ export default function About() {
         </motion.div>
 
         <div className="max-w-5xl mx-auto mb-16 sm:mb-18 md:mb-20">
-          {/* Content */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="grid lg:grid-cols-3 gap-6 sm:gap-8 items-center"
           >
-            {/* Profile Image */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -79,7 +77,6 @@ export default function About() {
                   msUserSelect: 'none'
                 } as React.CSSProperties}
               >
-                {/* 主圖片 */}
                 {isLoading ? (
                   <div className="w-full h-full bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center">
                     <div className="w-16 h-16 rounded-full bg-gray-300 dark:bg-gray-600"></div>
@@ -105,7 +102,6 @@ export default function About() {
                   />
                 )}
                 
-                {/* 透明水印層 */}
                 <div 
                   className="absolute inset-0 pointer-events-none"
                   style={{
@@ -114,7 +110,6 @@ export default function About() {
                   } as React.CSSProperties}
                 />
                 
-                {/* 版權文字水印 */}
                 <div 
                   className="absolute bottom-2 right-2 text-white text-xs opacity-50 pointer-events-none"
                   style={{
@@ -127,7 +122,6 @@ export default function About() {
               </div>
             </motion.div>
 
-            {/* Text Content */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -141,7 +135,6 @@ export default function About() {
           </motion.div>
         </div>
 
-        {/* Skills Grid */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

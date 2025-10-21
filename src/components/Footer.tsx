@@ -46,7 +46,6 @@ export default function Footer() {
 
   return (
     <footer className="bg-gray-950 text-white relative">
-      {/* 返回頂部按鈕 */}
       <button
         onClick={scrollToTop}
         className="absolute bottom-8 right-6 btn-icon bg-white dark:bg-blue-500 text-kevin-blue dark:text-white z-10"
@@ -57,7 +56,6 @@ export default function Footer() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-3 gap-8">
-          {/* Brand Section */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -83,7 +81,6 @@ export default function Footer() {
             </div>
           </motion.div>
 
-          {/* Quick Links */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -109,7 +106,6 @@ export default function Footer() {
             </ul>
           </motion.div>
 
-          {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -123,7 +119,6 @@ export default function Footer() {
           </motion.div>
         </div>
 
-        {/* Bottom Section */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

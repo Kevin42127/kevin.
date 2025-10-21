@@ -11,6 +11,11 @@ export const metadata: Metadata = {
   description: '現代化個人網站，展示專業技能與創意作品',
   keywords: 'Kevin, 個人網站, 作品集, 開發者',
   authors: [{ name: 'Kevin' }],
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
 }
 
 export const viewport = {

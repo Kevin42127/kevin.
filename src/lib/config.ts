@@ -1,4 +1,3 @@
-// 服務端配置（不會暴露給客戶端）
 export const serverConfig = {
   gmail: {
     user: process.env.GMAIL_USER,
@@ -6,7 +5,6 @@ export const serverConfig = {
   }
 }
 
-// 客戶端配置（可以安全暴露）
 export const clientConfig = {
   site: {
     url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
@@ -17,7 +15,6 @@ export const clientConfig = {
   }
 }
 
-// 驗證服務端配置
 export function validateServerConfig() {
   const missing = []
   
@@ -31,7 +28,6 @@ export function validateServerConfig() {
   return true
 }
 
-// 安全地獲取 Gmail 配置
 export function getGmailConfig() {
   validateServerConfig()
   return {

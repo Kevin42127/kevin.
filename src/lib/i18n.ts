@@ -2,7 +2,6 @@ import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
 
-// 中文翻譯資源
 const zhResources = {
   navigation: {
     home: '首頁',
@@ -152,7 +151,7 @@ const zhResources = {
   search: {
     search: '搜索',
     openSearch: '打開搜索',
-    placeholder: '搜索網站內容...',
+    placeholder: '搜索...',
     searching: '搜索中...',
     noResults: '沒有找到相關結果',
     tryDifferent: '試試其他關鍵字',
@@ -534,7 +533,6 @@ const zhResources = {
   }
 }
 
-// 英文翻譯資源
 const enResources = {
   navigation: {
     home: 'Home',
@@ -684,7 +682,7 @@ const enResources = {
   search: {
     search: 'Search',
     openSearch: 'Open Search',
-    placeholder: 'Search website content...',
+    placeholder: 'Search...',
     searching: 'Searching...',
     noResults: 'No results found',
     tryDifferent: 'Try different keywords',
@@ -1066,7 +1064,6 @@ const enResources = {
   }
 }
 
-// 確保在客戶端環境中運行
 if (typeof window !== 'undefined') {
   i18n
     .use(LanguageDetector)
@@ -1087,7 +1084,6 @@ if (typeof window !== 'undefined') {
       }
     })
 } else {
-  // 服務端初始化，使用預設語言
   i18n
     .use(initReactI18next)
     .init({

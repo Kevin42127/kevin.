@@ -87,7 +87,6 @@ export default function Portfolio() {
           </p>
         </motion.div>
 
-        {/* All Projects */}
         <div>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
             {projects.map((project, index) => (

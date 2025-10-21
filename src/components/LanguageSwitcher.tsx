@@ -19,13 +19,12 @@ export default function LanguageSwitcher() {
   }
 
   const languages = [
-    { code: 'zh', name: '中文', nativeName: '繁體中文' },
+    { code: 'zh', name: 'Taiwan', nativeName: '繁體中文' },
     { code: 'en', name: 'English', nativeName: 'English' }
   ]
 
   const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0]
 
-  // Prevent hydration mismatch by not rendering until mounted
   if (!mounted) {
     return (
       <div className="relative">
@@ -56,7 +55,6 @@ export default function LanguageSwitcher() {
         />
       </button>
 
-      {/* Dropdown Menu */}
       {isOpen && (
         <div className="absolute bottom-full lg:bottom-auto lg:top-full right-0 mb-2 lg:mt-2 w-52 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-xl z-50 animate-fade-in-down">
           {languages.map((language) => (
@@ -83,7 +81,6 @@ export default function LanguageSwitcher() {
         </div>
       )}
 
-      {/* Backdrop */}
       {isOpen && (
         <div
           className="fixed inset-0 z-40"

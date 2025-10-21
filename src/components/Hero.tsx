@@ -7,7 +7,6 @@ import { useTranslationSafe } from '../hooks/useTranslationSafe'
 export default function Hero() {
   const { t, i18n } = useTranslationSafe()
   
-  // 根據當前語言選擇對應的履歷文件
   const currentLanguage = i18n?.language || 'zh'
   const cvFileName = currentLanguage === 'en' ? 'Kevin_CV_EN.pdf' : 'Kevin_CV_TC.pdf'
   const cvPath = `/${cvFileName}`
@@ -27,7 +26,6 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
-          {/* Main Heading */}
           <motion.h1
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -55,7 +53,6 @@ export default function Hero() {
           >
           </motion.p>
 
-          {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -96,7 +93,6 @@ export default function Hero() {
             </a>
           </motion.div>
 
-          {/* Social Links */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -121,7 +117,6 @@ export default function Hero() {
             </a>
           </motion.div>
 
-          {/* CV Language Hint */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -135,7 +130,6 @@ export default function Hero() {
             </p>
           </motion.div>
 
-          {/* Scroll Indicator */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

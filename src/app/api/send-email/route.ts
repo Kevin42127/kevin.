@@ -6,7 +6,6 @@ export async function POST(request: NextRequest) {
   try {
     const { name, email, subject, message } = await request.json()
 
-    // 驗證必要欄位
     if (!name || !email || !subject || !message) {
       return NextResponse.json(
         { error: '所有欄位都是必填的' },
@@ -14,10 +13,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // 獲取 Gmail 配置（包含驗證）
     const gmailConfig = getGmailConfig()
 
-    // 建立 Nodemailer transporter
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -26,7 +23,6 @@ export async function POST(request: NextRequest) {
       }
     })
 
-    // 郵件內容
     const mailOptions = {
       from: gmailConfig.user,
       to: gmailConfig.user,
@@ -57,7 +53,6 @@ export async function POST(request: NextRequest) {
       `
     }
 
-    // 發送郵件
     await transporter.sendMail(mailOptions)
 
     return NextResponse.json(
