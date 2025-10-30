@@ -6,7 +6,7 @@ export async function GET(request: NextRequest) {
   const referer = headersList.get('referer')
   
   const allowedOrigins = [
-    'https://kevin-tau.vercel.app',
+    'https://kevinoffical.vercel.app',
     'http://localhost:3000',
     'http://127.0.0.1:3000'
   ]

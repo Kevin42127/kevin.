@@ -65,7 +65,7 @@ export default function Portfolio() {
       image: '/personal-website.jpg',
       technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', t('portfolio.aiCollaboration', 'AI協作'), t('portfolio.comprehensiveShowcase', '綜合展示')],
       github: '#',
-      demo: 'https://kevin-tau.vercel.app/',
+      demo: 'https://kevinoffical.vercel.app/',
       featured: true
     }
   ]
