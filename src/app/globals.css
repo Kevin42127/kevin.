@@ -83,6 +83,22 @@ body {
   @apply bg-white text-gray-900 dark:bg-black dark:text-white;
 }
 
+/* Smooth theme transition - scoped to common containers to reduce jank */
+@media (prefers-reduced-motion: no-preference) {
+  html.theme-transition,
+  .theme-transition body,
+  .theme-transition nav,
+  .theme-transition section,
+  .theme-transition .card,
+  .theme-transition .btn-primary,
+  .theme-transition .btn-tertiary,
+  .theme-transition .btn-nav,
+  .theme-transition .btn-icon,
+  .theme-transition .btn-icon-sm {
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease !important;
+  }
+}
+
 
 @media (prefers-reduced-motion: reduce) {
   html {

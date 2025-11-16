@@ -8,6 +8,14 @@ export function ThemeToggle() {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
 
+  const triggerThemeTransition = () => {
+    const root = document.documentElement
+    root.classList.add('theme-transition')
+    window.setTimeout(() => {
+      root.classList.remove('theme-transition')
+    }, 220)
+  }
+
   useEffect(() => {
     setMounted(true)
   }, [])
@@ -18,7 +26,13 @@ export function ThemeToggle() {
 
   return (
     <button
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+      onClick={() => {
+        triggerThemeTransition()
+        // Next tick to let class apply before theme swap
+        requestAnimationFrame(() => {
+          setTheme(theme === 'dark' ? 'light' : 'dark')
+        })
+      }}
       className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
       aria-label="切換深淺模式"
     >
