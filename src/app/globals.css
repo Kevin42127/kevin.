@@ -486,8 +486,13 @@ a:focus {
   color: white;
 }
 
+/* Brand selection color */
+::selection {
+  background: #1e40af; /* kevin-blue primary */
+  color: white;
+}
 .dark ::selection {
-  background: #60a5fa;
+  background: #1e40af; /* keep consistent brand color in dark mode */
   color: white;
 }
 
