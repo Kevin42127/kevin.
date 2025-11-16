@@ -90,7 +90,7 @@ export default function Navigation() {
       transition={{ duration: 0.8 }}
       className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
         isScrolled
-          ? 'bg-white dark:bg-gray-900 backdrop-blur-md shadow-lg'
+          ? 'bg-white dark:bg-black backdrop-blur-md shadow-lg'
           : 'bg-transparent'
       }`}
     >
@@ -158,7 +158,7 @@ export default function Navigation() {
             transition={{ 
               duration: 0.1
             }}
-            className="fixed top-0 right-0 h-screen w-80 bg-white dark:bg-gray-900 shadow-2xl border-l-2 border-gray-200 dark:border-gray-700 flex flex-col"
+            className="fixed top-0 right-0 h-screen w-80 bg-white dark:bg-black shadow-2xl border-l-2 border-gray-200 dark:border-gray-700 flex flex-col"
             style={{ zIndex: 9999 }}
           >
             <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">

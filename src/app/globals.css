@@ -80,7 +80,7 @@ html {
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  @apply bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100;
+  @apply bg-white text-gray-900 dark:bg-black dark:text-white;
 }
 
 
@@ -478,11 +478,11 @@ a:focus {
 
 @layer components {
   .card {
-    @apply bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 relative overflow-hidden transition-all duration-300;
+    @apply bg-white dark:bg-neutral-900 rounded-2xl shadow-lg border border-gray-200 dark:border-neutral-800 relative overflow-hidden transition-all duration-300;
   }
 
   .card:hover {
-    @apply shadow-xl border-kevin-blue dark:border-kevin-blue;
+    @apply shadow-xl border-kevin-blue dark:border-neutral-700;
   }
 
   
@@ -499,16 +499,21 @@ a:focus {
     transition: transform var(--transition-normal);
   }
 
+  .dark .card::before {
+    background: linear-gradient(90deg, transparent, #ffffff, transparent);
+  }
+
   .card:hover::before {
     transform: translateX(-50%) scaleX(1);
   }
 
   
   .btn-primary {
-    @apply px-6 sm:px-8 py-3 rounded-full bg-kevin-blue dark:bg-gray-700 text-white font-semibold 
+    @apply px-6 sm:px-8 py-3 rounded-full bg-kevin-blue dark:bg-white dark:text-black text-white font-semibold 
            hover:shadow-xl transition-all duration-300 inline-flex items-center justify-center gap-2
            min-h-[44px] touch-manipulation;
   }
+  .dark .btn-primary:hover { @apply bg-neutral-200; }
 
   .btn-secondary {
     @apply px-6 sm:px-8 py-3 rounded-full border-2 font-semibold 
@@ -536,18 +541,18 @@ a:focus {
   }
 
   .btn-tertiary {
-    @apply px-6 sm:px-8 py-3 rounded-full border-2 border-gray-300 dark:border-gray-600 
-           text-gray-700 dark:text-gray-300 font-semibold 
-           hover:bg-gray-100 dark:hover:bg-gray-800 
-           hover:border-gray-400 dark:hover:border-gray-500 
+    @apply px-6 sm:px-8 py-3 rounded-full border-2 border-gray-300 dark:border-neutral-700 
+           text-gray-700 dark:text-white font-semibold 
+           hover:bg-gray-100 dark:hover:bg-neutral-900 
+           hover:border-gray-400 dark:hover:border-neutral-600 
            transition-all duration-300 inline-flex items-center justify-center gap-2
            min-h-[44px] touch-manipulation;
   }
 
   .btn-nav {
-    @apply px-5 py-2 rounded-full text-gray-700 dark:text-gray-300 font-medium 
+    @apply px-5 py-2 rounded-full text-gray-700 dark:text-white font-medium 
            hover:bg-kevin-blue hover:text-white 
-           dark:hover:bg-gray-600 dark:hover:text-white
+           dark:hover:bg-neutral-700 dark:hover:text-white
            transition-all duration-300;
   }
 

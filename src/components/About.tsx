@@ -37,7 +37,7 @@ export default function About() {
   ]
 
   return (
-    <section id="about" className="py-12 sm:py-16 md:py-20 bg-gray-50 dark:bg-gray-900">
+  <section id="about" className="py-12 sm:py-16 md:py-20 bg-gray-50 dark:bg-black">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <motion.div
           initial={{ opacity: 0 }}

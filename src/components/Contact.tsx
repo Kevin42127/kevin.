@@ -175,7 +175,7 @@ export default function Contact() {
   ]
 
   return (
-    <section id="contact" className="py-12 sm:py-16 md:py-20 bg-white dark:bg-gray-900">
+  <section id="contact" className="py-12 sm:py-16 md:py-20 bg-white dark:bg-black">
       <AnimatePresence>
         {toast.show && (
           <motion.div
