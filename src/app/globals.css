@@ -499,42 +499,24 @@ a:focus {
 
 @layer components {
   .card {
-    @apply bg-white dark:bg-neutral-900 rounded-2xl shadow-lg border border-gray-200 dark:border-neutral-800 relative overflow-hidden transition-all duration-300;
+    @apply bg-white dark:bg-neutral-900 rounded-2xl shadow-none border border-gray-200 dark:border-neutral-800 relative overflow-hidden transition-colors duration-200;
   }
 
   .card:hover {
-    @apply shadow-xl border-kevin-blue dark:border-neutral-700;
+    @apply border-gray-300 dark:border-neutral-700;
   }
 
   
-  .card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    height: 3px;
-    width: 100%;
-    transform: translateX(-50%) scaleX(0);
-    transform-origin: center;
-    background: linear-gradient(90deg, transparent, var(--color-primary-light), transparent);
-    transition: transform var(--transition-normal);
-  }
-
-  .dark .card::before {
-    background: linear-gradient(90deg, transparent, #ffffff, transparent);
-  }
-
-  .card:hover::before {
-    transform: translateX(-50%) scaleX(1);
-  }
+  /* flat design: remove top highlight */
 
   
   .btn-primary {
     @apply px-6 sm:px-8 py-3 rounded-full bg-kevin-blue dark:bg-white dark:text-black text-white font-semibold 
-           hover:shadow-xl transition-all duration-300 inline-flex items-center justify-center gap-2
+           shadow-none transition-colors duration-200 inline-flex items-center justify-center gap-2
            min-h-[44px] touch-manipulation;
   }
-  .dark .btn-primary:hover { @apply bg-neutral-200; }
+  .btn-primary:hover { @apply opacity-95; }
+  .dark .btn-primary:hover { @apply bg-neutral-200 opacity-100; }
 
   .btn-secondary {
     @apply px-6 sm:px-8 py-3 rounded-full border-2 font-semibold 
@@ -590,7 +572,7 @@ a:focus {
 
   .btn-icon {
     @apply w-12 h-12 min-w-[48px] min-h-[48px] rounded-full flex items-center justify-center 
-           transition-all duration-300 shadow-lg hover:shadow-xl touch-manipulation;
+           transition-colors duration-200 shadow-none touch-manipulation;
   }
   
   
@@ -604,7 +586,7 @@ a:focus {
 
   .btn-icon-sm {
     @apply w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl flex items-center justify-center 
-           transition-all duration-300 touch-manipulation;
+           transition-colors duration-200 touch-manipulation;
   }
   
   

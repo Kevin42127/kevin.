@@ -147,14 +147,14 @@ export default function Portfolio() {
             <button
               onClick={() => scrollByCards('left')}
               aria-label="上一個"
-              className="hidden md:inline-flex w-10 h-10 rounded-full bg-white hover:bg-kevin-blue hover:text-white shadow items-center justify-center border border-gray-200 transition-colors duration-200"
+              className="hidden md:inline-flex w-10 h-10 rounded-full bg-white hover:bg-kevin-blue hover:text-white items-center justify-center border border-gray-200 transition-colors duration-200"
             >
               <svg width="18" height="18" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/></svg>
             </button>
             <button
               onClick={() => scrollByCards('right')}
               aria-label="下一個"
-              className="hidden md:inline-flex w-10 h-10 rounded-full bg-white hover:bg-kevin-blue hover:text-white shadow items-center justify-center border border-gray-200 transition-colors duration-200"
+              className="hidden md:inline-flex w-10 h-10 rounded-full bg-white hover:bg-kevin-blue hover:text-white items-center justify-center border border-gray-200 transition-colors duration-200"
             >
               <svg width="18" height="18" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/></svg>
             </button>

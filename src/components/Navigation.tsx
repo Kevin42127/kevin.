@@ -88,11 +88,7 @@ export default function Navigation() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white dark:bg-black backdrop-blur-md shadow-lg'
-          : 'bg-transparent'
-      }`}
+      className="w-full bg-white"
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
