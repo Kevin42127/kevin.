@@ -93,7 +93,7 @@ export default function Portfolio() {
       id: 9,
       title: t('portfolio.aiToolLaboratory.title', 'AI ToolLaboratory - AI 工具集合'),
       description: t('portfolio.aiToolLaboratory.description', '蒐集實用 AI 工具與連結的索引站，支援分類瀏覽與快速導引'),
-      image: '/AI ToolLaboratory.png?v=20251116',
+      image: '/ToolLaboratory.png?v=20251116',
       technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', t('portfolio.aiCollaboration', 'AI協作')],
       github: '#',
       demo: 'https://toollaboratory.vercel.app/',
