@@ -5,7 +5,7 @@ import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 import LanguageSwitcher from './LanguageSwitcher'
-import { ThemeToggle } from './ThemeToggle'
+// import { ThemeToggle } from './ThemeToggle'
 import DropdownSearch from './DropdownSearch'
 
 export default function Navigation() {
@@ -133,7 +133,6 @@ export default function Navigation() {
           <div className="hidden lg:flex items-center space-x-4">
             <DropdownSearch />
             <LanguageSwitcher />
-            <ThemeToggle />
           </div>
 
           <div className="lg:hidden">
@@ -206,12 +205,7 @@ export default function Navigation() {
                   <LanguageSwitcher />
                 </div>
 
-                <div className="flex items-center justify-between px-4 py-2">
-                  <span className="text-gray-700 dark:text-gray-300 font-medium">
-                    {t('navigation.theme', '主題')}
-                  </span>
-                  <ThemeToggle />
-                </div>
+                {/* Theme toggle removed - forced light mode */}
               </div>
             </div>
           </motion.div>
