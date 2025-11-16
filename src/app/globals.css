@@ -482,15 +482,7 @@ a:focus {
   }
 
   .card:hover {
-    @apply shadow-xl;
-    /* Use gradient border to match the top highlight line */
-    border-color: transparent;
-    border-image: linear-gradient(90deg, transparent, var(--color-primary-light), transparent) 1;
-  }
-
-  /* Dark mode: use neutral gray gradient for border highlight */
-  .dark .card:hover {
-    border-image: linear-gradient(90deg, transparent, #9CA3AF, transparent) 1;
+    @apply shadow-xl border-kevin-blue dark:border-kevin-blue;
   }
 
   
