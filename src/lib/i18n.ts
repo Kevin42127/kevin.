@@ -75,6 +75,18 @@ const zhResources = {
       title: 'Kevin. - 個人網站',
       description: '綜合技能展示專案，整合所學技術打造個人品牌網站'
     },
+    devkit: {
+      title: 'DevKit - 開發者工具大全',
+      description: '精選 100+ 開發者工具的一站式網站，分類清晰、快速存取常用工具'
+    },
+    virid: {
+      title: 'Virid - 綠意設計單頁',
+      description: '以自然綠意為主題的單頁網站設計與實作，重視版面與層次'
+    },
+    aiToolLaboratory: {
+      title: 'AI ToolLaboratory - AI 工具集合',
+      description: '蒐集實用 AI 工具與連結的索引站，支援分類瀏覽與快速導引'
+    },
     aiCollaboration: 'AI協作',
     basicPractice: '基礎練習',
     apiLearning: 'API 學習',
@@ -605,6 +617,18 @@ const enResources = {
     personalWebsite: {
       title: 'Kevin. - Personal Website',
       description: 'Comprehensive skills showcase project, integrating learned technologies to build personal brand website'
+    },
+    devkit: {
+      title: 'DevKit - Developer Tools Hub',
+      description: 'A one-stop site featuring 100+ curated developer tools with clear categorization and quick access'
+    },
+    virid: {
+      title: 'Virid - Nature-themed Single Page',
+      description: 'A nature-green themed single-page website focusing on layout hierarchy and clean visuals'
+    },
+    aiToolLaboratory: {
+      title: 'AI ToolLaboratory - AI Tools Collection',
+      description: 'An index site collecting practical AI tools and links, supporting categorized browsing and fast navigation'
     },
     aiCollaboration: 'AI Collaboration',
     basicPractice: 'Basic Practice',

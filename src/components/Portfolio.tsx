@@ -68,6 +68,37 @@ export default function Portfolio() {
       demo: 'https://kevinoffical.vercel.app/',
       featured: true
     }
+    ,
+    {
+      id: 7,
+      title: t('portfolio.devkit.title', 'DevKit - 開發者工具大全'),
+      description: t('portfolio.devkit.description', '精選 100+ 開發者工具的一站式網站，分類清晰、快速存取常用工具'),
+      image: '/DevKit.png',
+      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', t('portfolio.aiCollaboration', 'AI協作')],
+      github: '#',
+      demo: 'https://devkitofficial.vercel.app/',
+      featured: true
+    },
+    {
+      id: 8,
+      title: t('portfolio.virid.title', 'Virid - 綠意設計單頁'),
+      description: t('portfolio.virid.description', '以自然綠意為主題的單頁網站設計與實作，重視版面與層次'),
+      image: '/Virid.png',
+      technologies: ['HTML', 'CSS', 'JavaScript'],
+      github: '#',
+      demo: 'https://virid-seven.vercel.app/',
+      featured: true
+    },
+    {
+      id: 9,
+      title: t('portfolio.aiToolLaboratory.title', 'AI ToolLaboratory - AI 工具集合'),
+      description: t('portfolio.aiToolLaboratory.description', '蒐集實用 AI 工具與連結的索引站，支援分類瀏覽與快速導引'),
+      image: '/AI ToolLaboratory.png',
+      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', t('portfolio.aiCollaboration', 'AI協作')],
+      github: '#',
+      demo: 'https://toollaboratory.vercel.app/',
+      featured: true
+    }
   ]
 
   return (
