@@ -32,7 +32,7 @@ export default function Hero() {
             transition={{ duration: 0.8 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6"
           >
-            <span className="text-kevin-blue dark:text-blue-400">{t('hero.title', 'Kevin.')}</span>
+            <span className="text-kevin-blue dark:text-gray-100">{t('hero.title', 'Kevin.')}</span>
           </motion.h1>
 
           <motion.h2
@@ -103,14 +103,14 @@ export default function Hero() {
               href="https://www.linkedin.com/in/%E6%A2%93%E6%95%AC-%E9%99%B3-5ba547230/"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-icon-sm bg-gray-100 dark:bg-gray-800 hover:bg-kevin-blue dark:hover:bg-blue-500 text-gray-600 dark:text-gray-400 hover:text-white"
+              className="btn-icon-sm bg-gray-100 dark:bg-gray-800 hover:bg-kevin-blue dark:hover:bg-gray-600 text-gray-600 dark:text-gray-400 hover:text-white"
               aria-label={t('socialMedia.linkedin', 'LinkedIn')}
             >
               <Linkedin size={20} />
             </a>
             <a
               href="mailto:tyouxipindao@gmail.com"
-              className="btn-icon-sm bg-gray-100 dark:bg-gray-800 hover:bg-kevin-blue dark:hover:bg-blue-500 text-gray-600 dark:text-gray-400 hover:text-white"
+              className="btn-icon-sm bg-gray-100 dark:bg-gray-800 hover:bg-kevin-blue dark:hover:bg-gray-600 text-gray-600 dark:text-gray-400 hover:text-white"
               aria-label={t('socialMedia.email', '電子郵件')}
             >
               <Mail size={20} />
@@ -138,7 +138,7 @@ export default function Hero() {
           >
             <button
               onClick={scrollToNext}
-              className="btn-icon bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:text-kevin-blue dark:hover:text-blue-400"
+              className="btn-icon bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:text-kevin-blue dark:hover:text-gray-100"
             >
               <ArrowDown size={24} />
             </button>

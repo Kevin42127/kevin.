@@ -81,8 +81,8 @@ export default function Portfolio() {
     },
     {
       id: 8,
-      title: t('portfolio.virid.title', 'Virid - 綠意設計單頁'),
-      description: t('portfolio.virid.description', '以自然綠意為主題的單頁網站設計與實作，重視版面與層次'),
+      title: t('portfolio.virid.title', 'Virid - CSS 網格佈局'),
+      description: t('portfolio.virid.description', '以 CSS Grid 佈局實作的單頁網站，使用純 HTML/CSS/JavaScript，強調版面編排與層次表現'),
       image: '/Virid.png',
       technologies: ['HTML', 'CSS', 'JavaScript'],
       github: '#',
@@ -171,7 +171,7 @@ export default function Portfolio() {
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 bg-kevin-blue/10 dark:bg-blue-900/30 text-kevin-blue dark:text-blue-400 text-sm rounded-full"
+                        className="px-3 py-1 bg-kevin-blue/10 dark:bg-gray-700/30 text-kevin-blue dark:text-gray-200 text-sm rounded-full"
                       >
                         {tech}
                       </span>

@@ -92,14 +92,14 @@ export default function Skills() {
                   >
                     <div className="flex justify-between items-center mb-2">
                       <span className="text-gray-700 dark:text-gray-300 font-medium">{skill.name}</span>
-                      <span className="text-kevin-blue dark:text-blue-400 font-semibold">{skill.level}%</span>
+                      <span className="text-kevin-blue dark:text-gray-200 font-semibold">{skill.level}%</span>
                     </div>
                     <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${skill.level}%` }}
                         transition={{ duration: 1 }}
-                        className="bg-kevin-blue dark:bg-blue-400 h-2 rounded-full"
+                        className="bg-kevin-blue dark:bg-gray-300 h-2 rounded-full"
                       ></motion.div>
                     </div>
                   </motion.div>

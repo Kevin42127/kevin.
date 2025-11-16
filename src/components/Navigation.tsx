@@ -99,7 +99,7 @@ export default function Navigation() {
           <div className="flex items-center">
             <button
               onClick={() => handleNavigation('#home')}
-              className="text-2xl font-bold text-kevin-blue dark:text-blue-400"
+              className="text-2xl font-bold text-kevin-blue dark:text-gray-100"
             >
               {t('navigation.kevin', 'Kevin.')}
             </button>
@@ -109,7 +109,7 @@ export default function Navigation() {
                 <button
                   key={item.name}
                   onClick={() => handleNavigation(item.href)}
-                  className="text-gray-700 dark:text-gray-300 hover:text-kevin-blue dark:hover:text-blue-400 font-medium transition-colors duration-300 btn-nav"
+                  className="text-gray-700 dark:text-gray-300 hover:text-kevin-blue dark:hover:text-gray-100 font-medium transition-colors duration-300 btn-nav"
                 >
                   {item.name}
                 </button>
@@ -118,7 +118,7 @@ export default function Navigation() {
                 <button
                   key={item.name}
                   onClick={() => handleNavigation(item.href, item.external)}
-                  className="text-gray-700 dark:text-gray-300 hover:text-kevin-blue dark:hover:text-blue-400 font-medium transition-colors duration-300 btn-nav"
+                  className="text-gray-700 dark:text-gray-300 hover:text-kevin-blue dark:hover:text-gray-100 font-medium transition-colors duration-300 btn-nav"
                 >
                   {item.name}
                 </button>
@@ -139,7 +139,7 @@ export default function Navigation() {
           <div className="lg:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-kevin-blue dark:hover:bg-blue-500 hover:text-white transition-all duration-300 flex items-center justify-center flex-shrink-0"
+              className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-kevin-blue dark:hover:bg-gray-600 hover:text-white transition-all duration-300 flex items-center justify-center flex-shrink-0"
               aria-label="打开菜单"
             >
               {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -165,7 +165,7 @@ export default function Navigation() {
               <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200">{t('navigation.menu', '選單')}</h2>
               <button
                 onClick={() => setIsMenuOpen(false)}
-                className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-kevin-blue dark:hover:bg-blue-500 hover:text-white transition-all duration-300 flex items-center justify-center"
+                className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-kevin-blue dark:hover:bg-gray-600 hover:text-white transition-all duration-300 flex items-center justify-center"
                 aria-label="关闭菜单"
               >
                 <X size={20} />
@@ -178,7 +178,7 @@ export default function Navigation() {
                   <button
                     key={item.name}
                     onClick={() => handleNavigation(item.href)}
-                    className="block w-full text-left px-4 py-3 text-lg font-medium text-gray-800 dark:text-gray-200 hover:bg-kevin-blue dark:hover:bg-blue-500 hover:text-white rounded-full transition-all duration-300"
+                    className="block w-full text-left px-4 py-3 text-lg font-medium text-gray-800 dark:text-gray-200 hover:bg-kevin-blue dark:hover:bg-gray-600 hover:text-white rounded-full transition-all duration-300"
                   >
                     {item.name}
                   </button>
@@ -187,7 +187,7 @@ export default function Navigation() {
                   <button
                     key={item.name}
                     onClick={() => handleNavigation(item.href, item.external)}
-                    className="block w-full text-left px-4 py-3 text-lg font-medium text-gray-800 dark:text-gray-200 hover:bg-kevin-blue dark:hover:bg-blue-500 hover:text-white rounded-full transition-all duration-300"
+                    className="block w-full text-left px-4 py-3 text-lg font-medium text-gray-800 dark:text-gray-200 hover:bg-kevin-blue dark:hover:bg-gray-600 hover:text-white rounded-full transition-all duration-300"
                   >
                     {item.name}
                   </button>

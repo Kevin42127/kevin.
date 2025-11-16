@@ -48,7 +48,7 @@ export default function Footer() {
     <footer className="bg-gray-950 text-white relative">
       <button
         onClick={scrollToTop}
-        className="absolute bottom-8 right-6 btn-icon bg-white dark:bg-blue-500 text-kevin-blue dark:text-white z-10"
+        className="absolute bottom-8 right-6 btn-icon bg-white dark:bg-gray-700 text-kevin-blue dark:text-white z-10"
         aria-label="返回頂部"
       >
         <ChevronUp size={20} />

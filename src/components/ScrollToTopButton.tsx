@@ -38,7 +38,7 @@ export default function ScrollToTopButton() {
       transition={{ duration: 0.3 }}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className="fixed bottom-6 right-6 z-50 w-12 h-12 bg-white dark:bg-blue-500 text-kevin-blue dark:text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
+      className="fixed bottom-6 right-6 z-50 w-12 h-12 bg-white dark:bg-gray-700 text-kevin-blue dark:text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
       aria-label="返回頂部"
     >
       <ChevronUp size={20} />

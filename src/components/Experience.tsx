@@ -91,7 +91,7 @@ export default function Experience() {
             transition={{ duration: 0.8 }}
           >
             <h3 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-8 flex items-center">
-              <Globe className="text-kevin-blue dark:text-blue-400 mr-3" size={32} />
+              <Globe className="text-kevin-blue dark:text-gray-200 mr-3" size={32} />
               {t('experience.languageSkills', '語言能力')}
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
@@ -130,7 +130,7 @@ export default function Experience() {
             transition={{ duration: 0.8 }}
           >
             <h3 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-8 flex items-center">
-              <FileText className="text-kevin-blue dark:text-blue-400 mr-3" size={32} />
+              <FileText className="text-kevin-blue dark:text-gray-200 mr-3" size={32} />
               {t('experience.certifications.title', '證照與認證')}
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
@@ -161,7 +161,7 @@ export default function Experience() {
                         href={cert.certificateUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center space-x-2 px-3 py-2 bg-kevin-blue/10 dark:bg-blue-900/30 text-kevin-blue dark:text-blue-400 rounded-lg hover:bg-kevin-blue/20 dark:hover:bg-blue-900/50 transition-all duration-300"
+                        className="flex items-center space-x-2 px-3 py-2 bg-kevin-blue/10 dark:bg-gray-700/30 text-kevin-blue dark:text-gray-200 rounded-lg hover:bg-kevin-blue/20 dark:hover:bg-gray-700/50 transition-all duration-300"
                       >
                         <span className="text-sm font-medium">{t('experience.certifications.viewCertificate', '查看證書')}</span>
                         <ExternalLink size={16} />
@@ -180,7 +180,7 @@ export default function Experience() {
             transition={{ duration: 0.8 }}
           >
             <h3 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-8 flex items-center">
-              <Award className="text-kevin-blue dark:text-blue-400 mr-3" size={32} />
+              <Award className="text-kevin-blue dark:text-gray-200 mr-3" size={32} />
               {t('experience.activities.title', '課外活動')}
             </h3>
             <div className="space-y-8">
@@ -203,7 +203,7 @@ export default function Experience() {
                       </div>
                       <div>
                         <div className="flex items-center mb-2">
-                          <span className="px-3 py-1 bg-kevin-blue/10 dark:bg-blue-900/30 text-kevin-blue dark:text-blue-400 text-sm rounded-full mr-3">
+                          <span className="px-3 py-1 bg-kevin-blue/10 dark:bg-gray-700/30 text-kevin-blue dark:text-gray-200 text-sm rounded-full mr-3">
                             {activity.type}
                           </span>
                           <span className="text-gray-500 dark:text-gray-400 text-sm flex items-center">
@@ -234,7 +234,7 @@ export default function Experience() {
                       <ul className="space-y-2">
                         {activity.responsibilities.map((responsibility, idx) => (
                           <li key={idx} className="flex items-start text-gray-600 dark:text-gray-400">
-                            <span className="w-2 h-2 bg-kevin-blue dark:bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            <span className="w-2 h-2 bg-kevin-blue dark:bg-gray-200 rounded-full mt-2 mr-3 flex-shrink-0"></span>
                             {responsibility}
                           </li>
                         ))}
@@ -250,7 +250,7 @@ export default function Experience() {
                       {activity.skills.map((skill, idx) => (
                         <span
                           key={idx}
-                          className="px-3 py-1 bg-kevin-blue/10 dark:bg-blue-900/30 text-kevin-blue dark:text-blue-400 text-sm rounded-full"
+                          className="px-3 py-1 bg-kevin-blue/10 dark:bg-gray-700/30 text-kevin-blue dark:text-gray-200 text-sm rounded-full"
                         >
                           {skill}
                         </span>

@@ -146,7 +146,7 @@ export default function ShareButton({
     <div className={`relative ${className}`}>
       <motion.button
         onClick={handleNativeShare}
-        className={`${sizeClasses[size]} bg-kevin-blue/10 dark:bg-blue-900/30 hover:bg-kevin-blue hover:text-white text-kevin-blue dark:text-blue-400 rounded-xl flex items-center justify-center transition-all duration-300 group`}
+        className={`${sizeClasses[size]} bg-kevin-blue/10 dark:bg-gray-700/30 hover:bg-kevin-blue hover:text-white text-kevin-blue dark:text-gray-200 rounded-xl flex items-center justify-center transition-all duration-300 group`}
         whileTap={{ scale: 0.95 }}
         aria-label={t('share.share', '分享')}
       >

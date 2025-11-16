@@ -80,8 +80,8 @@ const zhResources = {
       description: '精選 100+ 開發者工具的一站式網站，分類清晰、快速存取常用工具'
     },
     virid: {
-      title: 'Virid - 綠意設計單頁',
-      description: '以自然綠意為主題的單頁網站設計與實作，重視版面與層次'
+      title: 'Virid - CSS 網格佈局',
+      description: '以 CSS Grid 佈局實作的單頁網站，使用純 HTML/CSS/JavaScript，強調版面編排與層次表現'
     },
     aiToolLaboratory: {
       title: 'AI ToolLaboratory - AI 工具集合',
@@ -624,7 +624,7 @@ const enResources = {
     },
     virid: {
       title: 'Virid - Nature-themed Single Page',
-      description: 'A nature-green themed single-page website focusing on layout hierarchy and clean visuals'
+      description: 'Single-page website built with CSS Grid layout using pure HTML/CSS/JavaScript, focusing on layout composition and visual hierarchy'
     },
     aiToolLaboratory: {
       title: 'AI ToolLaboratory - AI Tools Collection',

@@ -30,8 +30,8 @@ export default function DropdownSearch() {
       description: t('search.aboutDescription', '了解我的背景、技能和專業經驗'),
       icon: User,
       href: '#about',
-      color: 'text-blue-600 dark:text-blue-400',
-      bgColor: 'bg-blue-100 dark:bg-blue-900/30'
+      color: 'text-blue-600 dark:text-gray-200',
+      bgColor: 'bg-blue-100 dark:bg-gray-700/30'
     },
     {
       id: 'quick-portfolio',
@@ -258,7 +258,7 @@ export default function DropdownSearch() {
             onChange={handleSearch}
             onFocus={() => setIsOpen(true)}
             placeholder={t('search.placeholder', '搜索...')}
-            className="w-full pl-10 pr-10 py-2 text-sm bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-kevin-blue dark:focus:border-blue-400 transition-all duration-300 placeholder-gray-500 dark:placeholder-gray-400"
+            className="w-full pl-10 pr-10 py-2 text-sm bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:border-kevin-blue dark:focus:border-gray-500 transition-all duration-300 placeholder-gray-500 dark:placeholder-gray-400"
           />
           {query && (
             <button
