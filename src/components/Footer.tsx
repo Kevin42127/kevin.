@@ -25,9 +25,12 @@ export default function Footer() {
       </button>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="pt-6 text-center">
-          <p className="text-gray-400">
-            {t('footer.copyright', '© 2024 Kevin. All rights reserved.').replace('2024', currentYear.toString())}
+        <div className="pt-2 text-center">
+          <p className="text-white font-medium">
+            ©{' '}
+            <span className="font-semibold text-white">
+              {t('navigation.kevin', 'Kevin.')}
+            </span>
           </p>
         </div>
       </div>

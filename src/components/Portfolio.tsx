@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { ExternalLink, Github } from 'lucide-react'
+import { useRef, useEffect } from 'react'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 
 export default function Portfolio() {
@@ -101,6 +102,29 @@ export default function Portfolio() {
     }
   ]
 
+  const scrollerRef = useRef<HTMLDivElement | null>(null)
+
+  const scrollByCards = (direction: 'left' | 'right') => {
+    const el = scrollerRef.current
+    if (!el) return
+    const firstCard = el.querySelector<HTMLElement>('.card')
+    const cardWidth = firstCard?.offsetWidth || el.clientWidth
+    const gap = 24 // gap-6
+    const delta = (cardWidth + gap) * (direction === 'left' ? -1 : 1)
+    el.scrollBy({ left: delta, behavior: 'smooth' })
+  }
+
+  useEffect(() => {
+    const el = scrollerRef.current
+    if (!el) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') scrollByCards('right')
+      if (e.key === 'ArrowLeft') scrollByCards('left')
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
+
   return (
     <section id="portfolio" className="py-12 sm:py-16 md:py-20 bg-white dark:bg-black">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
@@ -118,25 +142,49 @@ export default function Portfolio() {
           </p>
         </motion.div>
 
-        <div>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="card group"
-              >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-64 object-cover"
-                    onError={(e) => {
-                      e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMUU0MEFGIi8+Cjx0ZXh0IHg9IjMwMCIgeT0iMjAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7nrqHnkIblk6E8L3RleHQ+Cjwvc3ZnPgo='
-                    }}
-                  />
+        <div className="relative">
+          <div className="flex justify-between items-center mb-4">
+            <button
+              onClick={() => scrollByCards('left')}
+              aria-label="上一個"
+              className="hidden md:inline-flex w-10 h-10 rounded-full bg-white hover:bg-kevin-blue hover:text-white shadow items-center justify-center border border-gray-200 transition-colors duration-200"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/></svg>
+            </button>
+            <button
+              onClick={() => scrollByCards('right')}
+              aria-label="下一個"
+              className="hidden md:inline-flex w-10 h-10 rounded-full bg-white hover:bg-kevin-blue hover:text-white shadow items-center justify-center border border-gray-200 transition-colors duration-200"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/></svg>
+            </button>
+          </div>
+
+          <div
+            ref={scrollerRef}
+            className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2"
+            style={{ scrollbarWidth: 'none' }}
+          >
+            {projects.map((project) => (
+              <div key={project.id} className="snap-start shrink-0 w-[85%] sm:w-[60%] md:w-[45%] lg:w-[32%]">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="card group h-[460px] flex flex-col"
+                >
+                  <div className="relative w-full overflow-hidden rounded-t-2xl">
+                    <div className="relative w-full aspect-[16/9]">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="absolute inset-0 w-full h-full object-cover"
+                        onError={(e) => {
+                          e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMUU0MEFGIi8+Cjx0ZXh0IHg9IjMwMCIgeT0iMjAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7nrqHnkIblk6E8L3RleHQ+Cjwvc3ZnPgo='
+                        }}
+                      />
+                    </div>
+                  </div>
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
                     {project.github !== '#' && (
                       <a
@@ -159,26 +207,26 @@ export default function Portfolio() {
                       </a>
                     )}
                   </div>
-                </div>
-                <div className="p-6">
-                  <h4 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-3">
-                    {project.title}
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 bg-kevin-blue/10 dark:bg-gray-700/30 text-kevin-blue dark:text-gray-200 text-sm rounded-full"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                  <div className="p-6 flex-1 flex flex-col">
+                    <h4 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-3">
+                      {project.title}
+                    </h4>
+                    <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed line-clamp-2">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mt-auto">
+                      {project.technologies.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-3 py-1 bg-kevin-blue/10 dark:bg-gray-700/30 text-kevin-blue dark:text-gray-200 text-sm rounded-full"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </div>
             ))}
           </div>
         </div>
