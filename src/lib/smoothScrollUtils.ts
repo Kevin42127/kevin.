@@ -1,33 +1,23 @@
-export const smoothScrollToElement = (elementId: string, offset: number = 64) => {
-  const element = document.querySelector(elementId)
-  
-  if (!element) {
-    console.warn(`Element not found: ${elementId}`)
+export const locoScrollTo = (target: string | Element | number, options: { offset?: number; duration?: number } = {}) => {
+  // Native smooth scroll with optional offset
+  if (typeof target === 'number') {
+    window.scrollTo({ top: target, behavior: 'smooth' })
     return
   }
-
-  const elementPosition = element.getBoundingClientRect().top
-  const offsetPosition = elementPosition + window.pageYOffset - offset
-
-  window.scrollTo({
-    top: offsetPosition,
-    behavior: 'smooth'
-  })
+  const el = typeof target === 'string' ? document.querySelector(target) : target
+  if (!el) return
+  const rect = (el as Element).getBoundingClientRect()
+  const top = rect.top + window.pageYOffset - (options.offset ?? 0)
+  window.scrollTo({ top, behavior: 'smooth' })
 }
 
-export const smoothScrollToTop = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  })
+export const smoothScrollToElement = (elementId: string, offset: number = 64) => {
+  locoScrollTo(elementId, { offset })
 }
 
-export const smoothScrollToBottom = () => {
-  window.scrollTo({
-    top: document.documentElement.scrollHeight,
-    behavior: 'smooth'
-  })
-}
+export const smoothScrollToTop = () => locoScrollTo(0)
+
+export const smoothScrollToBottom = () => locoScrollTo(document.body.scrollHeight)
 
 export const isElementInViewport = (element: Element): boolean => {
   const rect = element.getBoundingClientRect()

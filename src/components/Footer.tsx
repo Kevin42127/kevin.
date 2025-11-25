@@ -1,6 +1,7 @@
 'use client'
 
 import { ChevronUp } from 'lucide-react'
+import { smoothScrollToTop } from '../lib/smoothScrollUtils'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 
 export default function Footer() {
@@ -8,10 +9,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    })
+    smoothScrollToTop()
   }
 
   return (

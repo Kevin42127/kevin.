@@ -175,13 +175,9 @@ export default function Contact() {
   ]
 
   return (
-  <section id="contact" className="py-12 sm:py-16 md:py-20 bg-white dark:bg-black">
-      <AnimatePresence>
-        {toast.show && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -50 }}
+  <section id="contact" className="py-12 sm:py-16 md:py-20 bg-[#0f172a]">
+      {toast.show && (
+          <div
             className="fixed top-20 right-4 sm:top-24 sm:right-6"
             style={{ zIndex: 10001 }}
           >
@@ -203,99 +199,95 @@ export default function Contact() {
                 <XCircle size={16} />
               </button>
             </div>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
       
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="section-surface">
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-12 sm:mb-14 md:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 dark:text-gray-200 mb-3 sm:mb-4 px-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#00d9ff] mb-3 sm:mb-4 px-4 drop-shadow-[0_0_15px_rgba(0,217,255,0.6)]">
 {t('contact.title', '聯繫我')}
           </h2>
-          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto px-4">
+          <p className="text-lg sm:text-xl text-[#66e5ff]/80 max-w-3xl mx-auto px-4">
 {t('contact.description', '歡迎與我聯繫')}
           </p>
         </motion.div>
 
         <div className="max-w-2xl mx-auto">
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 sm:p-8"
+            className="card p-6 sm:p-8"
           >
-            <h3 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-200 mb-4 sm:mb-6">
+            <h3 className="text-xl sm:text-2xl font-bold text-[#00d9ff] mb-4 sm:mb-6 drop-shadow-[0_0_10px_rgba(0,217,255,0.5)]">
               {t('contact.sendMessage')}
             </h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    {t('contact.name', '姓名')} *
+                <div className="form-field">
+                    <label htmlFor="name" className="form-label">
+                      {t('contact.name', '姓名')} *
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="input-base"
+                      placeholder={t('contact.namePlaceholder', '請輸入您的姓名')}
+                    />
+                </div>
+                <div className="form-field">
+                    <label htmlFor="email" className="form-label">
+                      {t('contact.email', '電子郵件')} *
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="input-base"
+                      placeholder={t('contact.emailPlaceholder', '請輸入您的電子郵件')}
+                    />
+                </div>
+              </div>
+              
+              <div className="form-field">
+                  <label htmlFor="subject" className="form-label">
+                    {t('contact.subject', '主題')} *
                   </label>
                   <input
                     type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
                     onChange={handleChange}
                     required
                     className="input-base"
-                    placeholder={t('contact.namePlaceholder', '您的姓名')}
+                    placeholder={t('contact.subjectPlaceholder', '請輸入訊息主題')}
                   />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    {t('contact.email', '電子郵件')} *
+              </div>
+              
+              <div className="form-field">
+                  <label htmlFor="message" className="form-label">
+                    {t('contact.message', '訊息')} *
                   </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
                     onChange={handleChange}
                     required
-                    className="input-base"
-                    placeholder={t('contact.emailPlaceholder', 'your@email.com')}
+                    rows={6}
+                    className="textarea-base"
+                    placeholder={t('contact.messagePlaceholder', '請輸入您的訊息內容')}
                   />
-                </div>
-              </div>
-              
-              <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  {t('contact.subject', '主題')} *
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="input-base"
-                  placeholder={t('contact.subjectPlaceholder', '訊息主題')}
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  {t('contact.message', '訊息')} *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={6}
-                  className="textarea-base"
-                  placeholder={t('contact.messagePlaceholder', '請描述您的需求或想法...')}
-                />
               </div>
               
               <button
@@ -310,6 +302,7 @@ export default function Contact() {
               </button>
             </form>
           </motion.div>
+        </div>
         </div>
       </div>
     </section>

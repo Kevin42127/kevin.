@@ -1,7 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { ExternalLink, Github } from 'lucide-react'
+// animations removed
 import { useRef, useEffect } from 'react'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 
@@ -126,35 +125,33 @@ export default function Portfolio() {
   }, [])
 
   return (
-    <section id="portfolio" className="py-12 sm:py-16 md:py-20 bg-white dark:bg-black">
+    <section id="portfolio" className="py-12 sm:py-16 md:py-20 bg-[#1e293b]">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
+        <div className="section-surface">
+        <div
           className="text-center mb-12 sm:mb-14 md:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 dark:text-gray-200 mb-3 sm:mb-4 px-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#00d9ff] mb-3 sm:mb-4 px-4 drop-shadow-[0_0_15px_rgba(0,217,255,0.6)]">
 {t('portfolio.title', '我的作品')}
           </h2>
-          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto px-4">
+          <p className="text-lg sm:text-xl text-[#66e5ff]/80 max-w-3xl mx-auto px-4">
 {t('portfolio.subtitle', '精選專案展示，展現技術實力和創意思維')}
           </p>
-        </motion.div>
+        </div>
 
         <div className="relative">
           <div className="flex justify-between items-center mb-4">
             <button
               onClick={() => scrollByCards('left')}
               aria-label="上一個"
-              className="hidden md:inline-flex w-10 h-10 rounded-full bg-white hover:bg-kevin-blue hover:text-white items-center justify-center border border-gray-200 transition-colors duration-200"
+              className="hidden md:inline-flex w-10 h-10 rounded-full bg-transparent hover:bg-[#00d9ff]/20 text-[#00d9ff] hover:text-[#66e5ff] items-center justify-center border border-[#00d9ff] hover:border-[#66e5ff] transition-colors duration-200 shadow-[0_0_10px_rgba(0,217,255,0.3)] hover:shadow-[0_0_15px_rgba(0,217,255,0.5)]"
             >
               <svg width="18" height="18" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/></svg>
             </button>
             <button
               onClick={() => scrollByCards('right')}
               aria-label="下一個"
-              className="hidden md:inline-flex w-10 h-10 rounded-full bg-white hover:bg-kevin-blue hover:text-white items-center justify-center border border-gray-200 transition-colors duration-200"
+              className="hidden md:inline-flex w-10 h-10 rounded-full bg-transparent hover:bg-[#00d9ff]/20 text-[#00d9ff] hover:text-[#66e5ff] items-center justify-center border border-[#00d9ff] hover:border-[#66e5ff] transition-colors duration-200 shadow-[0_0_10px_rgba(0,217,255,0.3)] hover:shadow-[0_0_15px_rgba(0,217,255,0.5)]"
             >
               <svg width="18" height="18" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/></svg>
             </button>
@@ -162,73 +159,62 @@ export default function Portfolio() {
 
           <div
             ref={scrollerRef}
-            className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2"
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-2"
             style={{ scrollbarWidth: 'none' }}
           >
             {projects.map((project) => (
               <div key={project.id} className="snap-start shrink-0 w-[85%] sm:w-[60%] md:w-[45%] lg:w-[32%]">
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                  className="card group h-[460px] flex flex-col"
-                >
-                  <div className="relative w-full overflow-hidden rounded-t-2xl">
-                    <div className="relative w-full aspect-[16/9]">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="absolute inset-0 w-full h-full object-cover"
-                        onError={(e) => {
-                          e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMUU0MEFGIi8+Cjx0ZXh0IHg9IjMwMCIgeT0iMjAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7nrqHnkIblk6E8L3RleHQ+Cjwvc3ZnPgo='
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
-                    {project.github !== '#' && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-white/20 dark:bg-black/20 backdrop-blur-sm p-3 rounded-full hover:bg-white/30 dark:hover:bg-black/30 transition-colors duration-300"
-                      >
-                        <Github className="text-white" size={20} />
-                      </a>
-                    )}
-                    {project.demo !== '#' && (
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-white/20 dark:bg-black/20 backdrop-blur-sm p-3 rounded-full hover:bg-white/30 dark:hover:bg-black/30 transition-colors duration-300"
-                      >
-                        <ExternalLink className="text-white" size={20} />
-                      </a>
-                    )}
+                <div className="card h-[420px] flex flex-col overflow-hidden">
+                  <div className="bg-[#00d9ff] text-[#0a0e1a] flex items-center justify-center h-48 rounded-t-2xl text-lg font-semibold tracking-wide text-center px-4 uppercase shadow-[0_0_20px_rgba(0,217,255,0.6)]">
+                    {project.title}
                   </div>
                   <div className="p-6 flex-1 flex flex-col">
-                    <h4 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-3">
-                      {project.title}
-                    </h4>
-                    <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed line-clamp-2">
+                    <p className="text-[#66e5ff]/80 mb-4 leading-relaxed line-clamp-2">
                       {project.description}
                     </p>
-                    <div className="flex flex-wrap gap-2 mt-auto">
+                    <div className="flex flex-wrap gap-2">
                       {project.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="px-3 py-1 bg-kevin-blue/10 dark:bg-gray-700/30 text-kevin-blue dark:text-gray-200 text-sm rounded-full"
+                          className="px-3 py-1 bg-[#00d9ff]/20 text-[#00d9ff] text-sm rounded-full border border-[#00d9ff]/30"
                         >
                           {tech}
                         </span>
                       ))}
                     </div>
+
+                    <div className="mt-auto pt-4 flex flex-col gap-3">
+                      {project.demo !== '#' && (
+                        <a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full text-sm font-semibold rounded-lg border-2 border-[#00d9ff] bg-transparent text-[#00d9ff] py-3 flex items-center justify-center gap-2 transition-all duration-200 hover:bg-[#00d9ff]/10 hover:shadow-[0_0_15px_rgba(0,217,255,0.5)]"
+                          aria-label={t('portfolio.viewProject', '查看專案')}
+                        >
+                          <span className="material-symbols-outlined text-base">open_in_new</span>
+                          <span>{t('portfolio.view', '查看')}</span>
+                        </a>
+                      )}
+                      {project.github !== '#' && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full text-sm font-semibold rounded-lg border-2 border-[#00d9ff]/50 bg-transparent text-[#66e5ff] py-3 flex items-center justify-center gap-2 transition-all duration-200 hover:bg-[#00d9ff]/10 hover:border-[#00d9ff] hover:shadow-[0_0_10px_rgba(0,217,255,0.3)]"
+                          aria-label={t('portfolio.viewCode', '查看程式碼')}
+                        >
+                          <span className="material-symbols-outlined text-base">code</span>
+                          <span>{t('portfolio.github', 'GitHub')}</span>
+                        </a>
+                      )}
+                    </div>
                   </div>
-                </motion.div>
+                </div>
               </div>
             ))}
           </div>
+        </div>
         </div>
       </div>
     </section>

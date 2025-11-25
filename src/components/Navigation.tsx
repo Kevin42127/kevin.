@@ -1,29 +1,20 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { smoothScrollToElement } from '../lib/smoothScrollUtils'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 import LanguageSwitcher from './LanguageSwitcher'
-// import { ThemeToggle } from './ThemeToggle'
 import DropdownSearch from './DropdownSearch'
 
 export default function Navigation() {
   const { t } = useTranslationSafe()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
   const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
     setIsClient(true)
-    
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
 
   const navItems: Array<{ name: string; href: string }> = [
     { name: t('navigation.home', '首頁'), href: '#home' },
@@ -37,32 +28,8 @@ export default function Navigation() {
   const externalLinks: Array<{ name: string; href: string; external: boolean }> = []
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href)
-    
-    if (element) {
-      setIsMenuOpen(false)
-      
-      requestAnimationFrame(() => {
-        const navHeight = 64
-        const elementRect = element.getBoundingClientRect()
-        const elementTop = elementRect.top + window.scrollY
-        const offsetPosition = Math.max(0, elementTop - navHeight)
-
-        if (offsetPosition <= 0) {
-          element.scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'start'
-          })
-        } else {
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          })
-        }
-      })
-    } else {
-      setIsMenuOpen(false)
-    }
+    smoothScrollToElement(href, 64)
+    setIsMenuOpen(false)
   }
 
   const handleNavigation = (href: string, external: boolean = false) => {
@@ -84,28 +51,23 @@ export default function Navigation() {
   }
 
   return (
-    <motion.nav
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
-      className="w-full bg-white"
-    >
-      <div className="container mx-auto px-4 py-4">
+    <nav className="w-full bg-[#0a0e1a]/95 backdrop-blur-md fixed top-0 left-0 right-0 z-50 border-b border-[#00d9ff] shadow-[0_0_20px_rgba(0,217,255,0.3)]">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <button
               onClick={() => handleNavigation('#home')}
-              className="text-2xl font-bold text-kevin-blue dark:text-gray-100"
+              className="text-2xl font-bold text-[#00d9ff] hover:text-[#66e5ff] transition-colors drop-shadow-[0_0_10px_rgba(0,217,255,0.8)]"
             >
               {t('navigation.kevin', 'Kevin.')}
             </button>
             
-            <div className="hidden lg:flex items-center space-x-4 ml-8">
+            <div className="hidden lg:flex items-center space-x-3 ml-10">
               {navItems.map((item) => (
                 <button
                   key={item.name}
                   onClick={() => handleNavigation(item.href)}
-                  className="text-gray-700 dark:text-gray-300 hover:text-kevin-blue dark:hover:text-gray-100 font-medium transition-colors duration-300 btn-nav"
+                  className="btn-nav-pill"
                 >
                   {item.name}
                 </button>
@@ -114,7 +76,7 @@ export default function Navigation() {
                 <button
                   key={item.name}
                   onClick={() => handleNavigation(item.href, item.external)}
-                  className="text-gray-700 dark:text-gray-300 hover:text-kevin-blue dark:hover:text-gray-100 font-medium transition-colors duration-300 btn-nav"
+                  className="btn-nav-pill"
                 >
                   {item.name}
                 </button>
@@ -134,10 +96,12 @@ export default function Navigation() {
           <div className="lg:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-kevin-blue dark:hover:bg-gray-600 hover:text-white transition-all duration-300 flex items-center justify-center flex-shrink-0"
+              className="w-10 h-10 text-[#00d9ff] hover:text-[#66e5ff] transition-colors flex items-center justify-center"
               aria-label="打开菜单"
             >
-              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+              <span className="material-symbols-outlined text-2xl">
+                {isMenuOpen ? 'close' : 'menu'}
+              </span>
             </button>
           </div>
         </div>
@@ -146,68 +110,79 @@ export default function Navigation() {
       {isClient && (
         <AnimatePresence>
           {isMenuOpen && (
-          <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ 
-              duration: 0.1
-            }}
-            className="fixed top-0 right-0 h-screen w-80 bg-white dark:bg-black shadow-2xl border-l-2 border-gray-200 dark:border-gray-700 flex flex-col"
-            style={{ zIndex: 9999 }}
-          >
-            <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
-              <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200">{t('navigation.menu', '選單')}</h2>
-              <button
-                onClick={() => setIsMenuOpen(false)}
-                className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-kevin-blue dark:hover:bg-gray-600 hover:text-white transition-all duration-300 flex items-center justify-center"
-                aria-label="关闭菜单"
-              >
-                <X size={20} />
-              </button>
-            </div>
-            
-            <div className="flex-1 overflow-y-auto">
-              <nav className="p-6 space-y-2">
-                {navItems.map((item) => (
-                  <button
-                    key={item.name}
-                    onClick={() => handleNavigation(item.href)}
-                    className="block w-full text-left px-4 py-3 text-lg font-medium text-gray-800 dark:text-gray-200 hover:bg-kevin-blue dark:hover:bg-gray-600 hover:text-white rounded-full transition-all duration-300"
-                  >
-                    {item.name}
-                  </button>
-                ))}
-                {externalLinks.map((item) => (
-                  <button
-                    key={item.name}
-                    onClick={() => handleNavigation(item.href, item.external)}
-                    className="block w-full text-left px-4 py-3 text-lg font-medium text-gray-800 dark:text-gray-200 hover:bg-kevin-blue dark:hover:bg-gray-600 hover:text-white rounded-full transition-all duration-300"
-                  >
-                    {item.name}
-                  </button>
-                ))}
-              </nav>
+          <>
+            <div
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm"
+              style={{ zIndex: 9998 }}
+              aria-hidden="true"
+              onClick={() => setIsMenuOpen(false)}
+            />
 
-              <div className="px-6 pb-6 border-t border-gray-200 dark:border-gray-700 pt-4 space-y-3">
-                <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 px-4 mb-3">
-                  {t('navigation.settings', '設定')}
-                </h3>
-                
-                <div className="flex items-center justify-between px-4 py-2">
-                  <span className="text-gray-700 dark:text-gray-300 font-medium">
-                    {t('navigation.language', '語言')}
-                  </span>
-                  <LanguageSwitcher />
-                </div>
-
-                {/* Theme toggle removed - forced light mode */}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ duration: 0.15 }}
+              className="fixed top-0 right-0 h-screen w-80 bg-[#0f172a] flex flex-col shadow-xl border-l border-[#00d9ff] shadow-[0_0_30px_rgba(0,217,255,0.5)]"
+              style={{ zIndex: 9999 }}
+              role="dialog"
+              aria-modal="true"
+            >
+              <div className="flex items-center justify-between p-6 flex-shrink-0 border-b border-[#00d9ff]">
+                <h2 className="text-xl font-bold text-[#00d9ff]">{t('navigation.menu', '選單')}</h2>
+                <button
+                  onClick={() => setIsMenuOpen(false)}
+                  className="w-10 h-10 text-[#00d9ff] hover:text-[#66e5ff] transition-colors flex items-center justify-center"
+                  aria-label="关闭菜单"
+                >
+                  <span className="material-symbols-outlined text-2xl">close</span>
+                </button>
               </div>
-            </div>
-          </motion.div>
+              
+              <div className="flex-1 overflow-y-auto">
+                <nav className="p-4">
+                  {navItems.map((item) => (
+                    <button
+                      key={item.name}
+                      onClick={() => handleNavigation(item.href)}
+                      className="block w-full text-left px-4 py-3 text-base font-medium text-[#00d9ff] hover:text-[#66e5ff] hover:bg-[#00d9ff]/10 transition-colors rounded border border-transparent hover:border-[#00d9ff] hover:shadow-[0_0_10px_rgba(0,217,255,0.3)]"
+                    >
+                      {item.name}
+                    </button>
+                  ))}
+                  {externalLinks.map((item) => (
+                    <button
+                      key={item.name}
+                      onClick={() => handleNavigation(item.href, item.external)}
+                      className="block w-full text-left px-4 py-3 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-kevin-blue dark:hover:text-kevin-blue hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors rounded"
+                    >
+                      {item.name}
+                    </button>
+                  ))}
+                </nav>
+
+                <div className="px-6 pb-6 border-t border-[#00d9ff] pt-4 space-y-3">
+                    <h3 className="text-sm font-semibold text-[#00d9ff]/70 px-4 mb-3">
+                      {t('navigation.settings', '設定')}
+                    </h3>
+                    
+                    <div className="px-4">
+                      <DropdownSearch />
+                    </div>
+                    
+                    <div className="flex items-center justify-between px-4 py-2">
+                      <span className="text-[#00d9ff] font-medium">
+                        {t('navigation.language', '語言')}
+                      </span>
+                      <LanguageSwitcher />
+                    </div>
+                </div>
+              </div>
+            </motion.div>
+          </>
           )}
         </AnimatePresence>
       )}
-    </motion.nav>
+    </nav>
   )
 }

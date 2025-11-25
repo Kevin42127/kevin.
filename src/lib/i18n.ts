@@ -51,6 +51,8 @@ const zhResources = {
     subtitle: '精選專案',
     viewProject: '查看專案',
     viewCode: '查看程式碼',
+    view: '查看',
+    github: 'GitHub',
     simpleNotes: {
       title: 'AuthPrototype',
       description: '我的第一個完整前端專案，學習 Angular/Tailwindcss 基礎，建立登入/註冊的原型設計'
@@ -594,6 +596,8 @@ const enResources = {
     subtitle: 'Featured Projects',
     viewProject: 'View Project',
     viewCode: 'View Code',
+    view: 'View',
+    github: 'GitHub',
     simpleNotes: {
       title: 'AuthPrototype',
       description: 'My first complete frontend project, learning Angular/Tailwind CSS fundamentals and building an authentication prototype (login/register).'

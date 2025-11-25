@@ -67,18 +67,17 @@ export default function Experience() {
   ]
 
   return (
-  <section id="experience" className="py-12 sm:py-16 md:py-20 bg-gray-50 dark:bg-black">
+  <section id="experience" className="py-12 sm:py-16 md:py-20 bg-[#0a0e1a]">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="section-surface">
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-12 sm:mb-14 md:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 dark:text-gray-200 mb-3 sm:mb-4 px-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#00d9ff] mb-3 sm:mb-4 px-4 drop-shadow-[0_0_15px_rgba(0,217,255,0.6)]">
             {t('experience.title', '相關經驗')}
           </h2>
-          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto px-4">
+          <p className="text-lg sm:text-xl text-[#66e5ff]/80 max-w-3xl mx-auto px-4">
             {t('experience.subtitle', '語言能力、證照認證與實務經驗展示')}
           </p>
         </motion.div>
@@ -86,33 +85,29 @@ export default function Experience() {
         <div className="space-y-16">
           {/* Language Skills */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h3 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-8 flex items-center">
-              <Globe className="text-kevin-blue dark:text-gray-200 mr-3" size={32} />
+            <h3 className="text-3xl font-bold text-[#00d9ff] mb-8 flex items-center drop-shadow-[0_0_10px_rgba(0,217,255,0.5)]">
+              <Globe className="text-[#00d9ff] mr-3" size={32} />
               {t('experience.languageSkills', '語言能力')}
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
               {languageSkills.map((skill, index) => (
                 <motion.div
                   key={skill.language}
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6 }}
                   className="card p-6"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center mr-4">
+                      <div className="w-12 h-12 rounded-xl bg-kevin-blue flex items-center justify-center mr-4">
                         <Globe className="text-white" size={24} />
                       </div>
                       <div>
-                        <h4 className="text-xl font-semibold text-gray-800 dark:text-gray-200">
+                        <h4 className="text-xl font-semibold text-[#66e5ff]">
                           {skill.language}
                         </h4>
-                        <p className="text-gray-600 dark:text-gray-400">
+                        <p className="text-[#66e5ff]/80">
                           {skill.level}
                         </p>
                       </div>
@@ -125,33 +120,29 @@ export default function Experience() {
 
           {/* Certifications */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h3 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-8 flex items-center">
-              <FileText className="text-kevin-blue dark:text-gray-200 mr-3" size={32} />
+            <h3 className="text-3xl font-bold text-[#00d9ff] mb-8 flex items-center drop-shadow-[0_0_10px_rgba(0,217,255,0.5)]">
+              <FileText className="text-[#00d9ff] mr-3" size={32} />
               {t('experience.certifications.title', '證照與認證')}
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 px-2 sm:px-0">
               {certifications.map((cert, index) => (
                 <motion.div
                   key={cert.name}
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6 }}
                   className="card p-6"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-green-500 to-green-600 flex items-center justify-center mr-4">
+                      <div className="w-12 h-12 rounded-xl bg-kevin-blue flex items-center justify-center mr-4">
                         <FileText className="text-white" size={24} />
                       </div>
                       <div>
-                        <h4 className="text-xl font-semibold text-gray-800 dark:text-gray-200">
+                        <h4 className="text-xl font-semibold text-[#66e5ff]">
                           {cert.name}
                         </h4>
-                        <p className="text-gray-600 dark:text-gray-400">
+                        <p className="text-[#66e5ff]/80">
                           {cert.type}
                         </p>
                       </div>
@@ -161,7 +152,7 @@ export default function Experience() {
                         href={cert.certificateUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center space-x-2 px-3 py-2 bg-kevin-blue/10 dark:bg-gray-700/30 text-kevin-blue dark:text-gray-200 rounded-lg hover:bg-kevin-blue/20 dark:hover:bg-gray-700/50 transition-all duration-300"
+                        className="flex items-center space-x-2 px-3 py-2 bg-[#00d9ff]/20 text-[#00d9ff] rounded-lg hover:bg-[#00d9ff]/30 border border-[#00d9ff]/30 hover:border-[#00d9ff] hover:shadow-[0_0_10px_rgba(0,217,255,0.3)] transition-all duration-300"
                       >
                         <span className="text-sm font-medium">{t('experience.certifications.viewCertificate', '查看證書')}</span>
                         <ExternalLink size={16} />
@@ -175,26 +166,22 @@ export default function Experience() {
 
           {/* Activities */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h3 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-8 flex items-center">
-              <Award className="text-kevin-blue dark:text-gray-200 mr-3" size={32} />
+            <h3 className="text-3xl font-bold text-[#00d9ff] mb-8 flex items-center drop-shadow-[0_0_10px_rgba(0,217,255,0.5)]">
+              <Award className="text-[#00d9ff] mr-3" size={32} />
               {t('experience.activities.title', '課外活動')}
             </h3>
             <div className="space-y-8">
               {activities.map((activity, index) => (
                 <motion.div
                   key={activity.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
                   className="card p-8"
                 >
                   <div className="flex items-start justify-between mb-6">
                     <div className="flex items-center">
-                      <div className="w-16 h-16 rounded-xl bg-gradient-to-r from-purple-500 to-purple-600 flex items-center justify-center mr-6">
+                      <div className="w-16 h-16 rounded-xl bg-kevin-blue flex items-center justify-center mr-6">
                         {activity.type === t('experience.activities.competition', '專題競賽') ? (
                           <Trophy className="text-white" size={28} />
                         ) : (
@@ -203,18 +190,18 @@ export default function Experience() {
                       </div>
                       <div>
                         <div className="flex items-center mb-2">
-                          <span className="px-3 py-1 bg-kevin-blue/10 dark:bg-gray-700/30 text-kevin-blue dark:text-gray-200 text-sm rounded-full mr-3">
+                          <span className="px-3 py-1 bg-[#00d9ff]/20 text-[#00d9ff] text-sm rounded-full mr-3 border border-[#00d9ff]/30">
                             {activity.type}
                           </span>
-                          <span className="text-gray-500 dark:text-gray-400 text-sm flex items-center">
+                          <span className="text-[#66e5ff]/60 text-sm flex items-center">
                             <Calendar className="mr-1" size={16} />
                             {activity.period}
                           </span>
                         </div>
-                        <h4 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-2">
+                        <h4 className="text-2xl font-bold text-[#66e5ff] mb-2">
                           {activity.title}
                         </h4>
-                        <p className="text-gray-600 dark:text-gray-400">
+                        <p className="text-[#66e5ff]/80">
                           {activity.description}
                         </p>
                       </div>
@@ -228,12 +215,12 @@ export default function Experience() {
 
                   {activity.responsibilities && (
                     <div className="mb-6">
-                      <h5 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">
+                      <h5 className="text-lg font-semibold text-[#66e5ff] mb-3">
                         {t('experience.responsibilities.title', '主要職責')}
                       </h5>
                       <ul className="space-y-2">
                         {activity.responsibilities.map((responsibility, idx) => (
-                          <li key={idx} className="flex items-start text-gray-600 dark:text-gray-400">
+                          <li key={idx} className="flex items-start text-[#66e5ff]/80">
                             <span className="w-2 h-2 bg-kevin-blue dark:bg-gray-200 rounded-full mt-2 mr-3 flex-shrink-0"></span>
                             {responsibility}
                           </li>
@@ -250,7 +237,7 @@ export default function Experience() {
                       {activity.skills.map((skill, idx) => (
                         <span
                           key={idx}
-                          className="px-3 py-1 bg-kevin-blue/10 dark:bg-gray-700/30 text-kevin-blue dark:text-gray-200 text-sm rounded-full"
+                          className="px-3 py-1 bg-[#00d9ff]/20 text-[#00d9ff] text-sm rounded-full border border-[#00d9ff]/30"
                         >
                           {skill}
                         </span>
@@ -261,6 +248,7 @@ export default function Experience() {
               ))}
             </div>
           </motion.div>
+        </div>
         </div>
       </div>
     </section>

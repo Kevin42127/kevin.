@@ -3,8 +3,12 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import I18nProvider from '../components/I18nProvider'
 import { ThemeProvider } from '../components/ThemeProvider'
+import GsapProvider from '../components/GsapProvider'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ 
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700']
+})
 
 export const metadata: Metadata = {
   title: 'Kevin.',
@@ -30,6 +34,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-TW" suppressHydrationWarning>
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,700,0,0"
+          rel="stylesheet"
+        />
+      </head>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
@@ -37,9 +47,11 @@ export default function RootLayout({
           enableSystem={false}
           forcedTheme="light"
         >
-          <I18nProvider>
-            {children}
-          </I18nProvider>
+          <GsapProvider>
+            <I18nProvider>
+              {children}
+            </I18nProvider>
+          </GsapProvider>
         </ThemeProvider>
       </body>
     </html>
