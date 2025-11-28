@@ -26,8 +26,7 @@ export default function SmoothScrollProvider({ children }: Props) {
       duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       gestureOrientation: 'vertical',
-      smoothWheel: true,
-      smoothTouch: false
+      smoothWheel: true
     })
 
     window.__lenis = lenis as unknown as LenisController
