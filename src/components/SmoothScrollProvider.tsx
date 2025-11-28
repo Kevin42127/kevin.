@@ -3,9 +3,13 @@
 import { useEffect, type ReactNode } from 'react'
 import Lenis from 'lenis'
 
+type LenisController = {
+  scrollTo: (target: string | number | Element, options?: { offset?: number }) => void
+}
+
 declare global {
   interface Window {
-    __lenis?: Lenis
+    __lenis?: LenisController
   }
 }
 
@@ -26,7 +30,7 @@ export default function SmoothScrollProvider({ children }: Props) {
       smoothTouch: false
     })
 
-    window.__lenis = lenis
+    window.__lenis = lenis as unknown as LenisController
 
     const onRaf = (time: number) => {
       lenis.raf(time)
