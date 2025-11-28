@@ -5,7 +5,7 @@ import { useTranslationSafe } from '../hooks/useTranslationSafe'
 
 export default function Skills() {
   const { t } = useTranslationSafe()
-  
+
   const skillCategories = [
     {
       title: t('skills.frontend', '前端開發'),
@@ -54,29 +54,29 @@ export default function Skills() {
   ]
 
   return (
-  <section id="skills" className="py-12 sm:py-16 md:py-20 bg-[#0f172a]">
+    <section id="skills" className="py-16 sm:py-20 bg-[var(--color-section-alt)]">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="section-surface">
         <motion.div
           transition={{ duration: 0.8 }}
           className="text-center mb-12 sm:mb-14 md:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#00d9ff] mb-3 sm:mb-4 px-4 drop-shadow-[0_0_15px_rgba(0,217,255,0.6)]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1c1f2c] mb-3 sm:mb-4 px-4">
 {t('skills.title', '技術技能')}
           </h2>
-          <p className="text-lg sm:text-xl text-[#66e5ff]/80 max-w-3xl mx-auto px-4">
+          <p className="text-lg sm:text-xl text-[#4a4455] max-w-3xl mx-auto px-4">
 {t('skills.subtitle', '持續學習新技術，保持技能的與時俱進')}
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 px-2 sm:px-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {skillCategories.map((category, categoryIndex) => (
-            <motion.div
+            <motion.article
               key={category.title}
               transition={{ duration: 0.8 }}
-              className="card p-6"
+              className="border border-[var(--color-divider)] bg-white p-6 flex flex-col gap-4 shadow-[0_20px_45px_rgba(15,15,40,0.08)]"
             >
-              <h3 className="text-2xl font-bold text-[#00d9ff] mb-6 text-center drop-shadow-[0_0_10px_rgba(0,217,255,0.5)]">
+              <h3 className="text-2xl font-bold text-[#1c1f2c] tracking-tight">
                 {category.title}
               </h3>
               <div className="space-y-4">
@@ -86,21 +86,19 @@ export default function Skills() {
                     transition={{ duration: 0.6 }}
                   >
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-[#66e5ff] font-medium">{skill.name}</span>
-                      <span className="text-[#00d9ff] font-semibold drop-shadow-[0_0_8px_rgba(0,217,255,0.6)]">{skill.level}%</span>
+                      <span className="text-[#3f3646] font-medium">{skill.name}</span>
+                      <span className="text-[#ff4d2d] font-semibold">{skill.level}%</span>
                     </div>
-                    <div className="w-full bg-[#00d9ff]/10 border border-[#00d9ff]/20 rounded-full h-2.5 relative overflow-hidden">
+                    <div className="w-full bg-[var(--color-surface-variant)] border border-[var(--color-divider)] h-2.5 relative overflow-hidden">
                       <div
-                        className="bg-[#00d9ff] h-2.5 rounded-full relative shadow-[0_0_10px_rgba(0,217,255,0.6)] transition-all duration-500"
+                        className="bg-[#ff4d2d] h-full transition-all duration-500"
                         style={{ width: `${skill.level}%` }}
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#66e5ff]/50 to-transparent animate-shimmer"></div>
-                      </div>
+                      ></div>
                     </div>
                   </motion.div>
                 ))}
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
 

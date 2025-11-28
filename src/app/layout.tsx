@@ -2,10 +2,10 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import I18nProvider from '../components/I18nProvider'
-import { ThemeProvider } from '../components/ThemeProvider'
 import GsapProvider from '../components/GsapProvider'
+import SmoothScrollProvider from '../components/SmoothScrollProvider'
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700']
 })
@@ -41,18 +41,13 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
-          forcedTheme="light"
-        >
+        <SmoothScrollProvider>
           <GsapProvider>
             <I18nProvider>
               {children}
             </I18nProvider>
           </GsapProvider>
-        </ThemeProvider>
+        </SmoothScrollProvider>
       </body>
     </html>
   )

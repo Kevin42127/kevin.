@@ -1,12 +1,11 @@
 'use client'
 
 // animations removed
-import { useRef, useEffect } from 'react'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 
 export default function Portfolio() {
   const { t } = useTranslationSafe()
-  
+
   const projects = [
     {
       id: 1,
@@ -40,8 +39,8 @@ export default function Portfolio() {
     },
     {
       id: 4,
-      title: t('portfolio.resumecraft.title'),
-      description: t('portfolio.resumecraft.description'),
+      title: t('portfolio.resumecraft.title', 'ResumeCraft'),
+      description: t('portfolio.resumecraft.description', '履歷生成器'),
       image: '/resumecraft.jpg',
       technologies: ['Angular', 'TypeScript', 'Webpack', 'PWA', t('portfolio.aiCollaboration', 'AI協作')],
       github: '#',
@@ -101,119 +100,86 @@ export default function Portfolio() {
     }
   ]
 
-  const scrollerRef = useRef<HTMLDivElement | null>(null)
-
-  const scrollByCards = (direction: 'left' | 'right') => {
-    const el = scrollerRef.current
-    if (!el) return
-    const firstCard = el.querySelector<HTMLElement>('.card')
-    const cardWidth = firstCard?.offsetWidth || el.clientWidth
-    const gap = 24 // gap-6
-    const delta = (cardWidth + gap) * (direction === 'left' ? -1 : 1)
-    el.scrollBy({ left: delta, behavior: 'smooth' })
-  }
-
-  useEffect(() => {
-    const el = scrollerRef.current
-    if (!el) return
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowRight') scrollByCards('right')
-      if (e.key === 'ArrowLeft') scrollByCards('left')
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [])
-
   return (
-    <section id="portfolio" className="py-12 sm:py-16 md:py-20 bg-[#1e293b]">
+    <section id="portfolio" className="py-16 sm:py-20 bg-[var(--color-page)]">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="section-surface">
-        <div
-          className="text-center mb-12 sm:mb-14 md:mb-16"
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#00d9ff] mb-3 sm:mb-4 px-4 drop-shadow-[0_0_15px_rgba(0,217,255,0.6)]">
+        <div className="text-center mb-12 sm:mb-14 md:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1c1f2c] mb-3 sm:mb-4 px-4">
 {t('portfolio.title', '我的作品')}
           </h2>
-          <p className="text-lg sm:text-xl text-[#66e5ff]/80 max-w-3xl mx-auto px-4">
+          <p className="text-lg sm:text-xl text-[#4a4455] max-w-3xl mx-auto px-4">
 {t('portfolio.subtitle', '精選專案展示，展現技術實力和創意思維')}
           </p>
         </div>
 
-        <div className="relative">
-          <div className="flex justify-between items-center mb-4">
-            <button
-              onClick={() => scrollByCards('left')}
-              aria-label="上一個"
-              className="hidden md:inline-flex w-10 h-10 rounded-full bg-transparent hover:bg-[#00d9ff]/20 text-[#00d9ff] hover:text-[#66e5ff] items-center justify-center border border-[#00d9ff] hover:border-[#66e5ff] transition-colors duration-200 shadow-[0_0_10px_rgba(0,217,255,0.3)] hover:shadow-[0_0_15px_rgba(0,217,255,0.5)]"
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+          {projects.map((project) => (
+            <article
+              key={project.id}
+              className="h-full flex flex-col gap-5 border border-[var(--color-divider)] bg-white p-6 shadow-[0_25px_45px_rgba(15,15,40,0.08)]"
             >
-              <svg width="18" height="18" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/></svg>
-            </button>
-            <button
-              onClick={() => scrollByCards('right')}
-              aria-label="下一個"
-              className="hidden md:inline-flex w-10 h-10 rounded-full bg-transparent hover:bg-[#00d9ff]/20 text-[#00d9ff] hover:text-[#66e5ff] items-center justify-center border border-[#00d9ff] hover:border-[#66e5ff] transition-colors duration-200 shadow-[0_0_10px_rgba(0,217,255,0.3)] hover:shadow-[0_0_15px_rgba(0,217,255,0.5)]"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round"/></svg>
-            </button>
-          </div>
-
-          <div
-            ref={scrollerRef}
-            className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-2"
-            style={{ scrollbarWidth: 'none' }}
-          >
-            {projects.map((project) => (
-              <div key={project.id} className="snap-start shrink-0 w-[85%] sm:w-[60%] md:w-[45%] lg:w-[32%]">
-                <div className="card h-[420px] flex flex-col overflow-hidden">
-                  <div className="bg-[#00d9ff] text-[#0a0e1a] flex items-center justify-center h-48 rounded-t-2xl text-lg font-semibold tracking-wide text-center px-4 uppercase shadow-[0_0_20px_rgba(0,217,255,0.6)]">
+              <figure className="h-48 border border-[var(--color-divider)] overflow-hidden flex items-center justify-center bg-[var(--color-panel)]">
+                {project.image ? (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <span className="text-[#1d47ff] text-center text-sm tracking-wide px-4">
                     {project.title}
-                  </div>
-                  <div className="p-6 flex-1 flex flex-col">
-                    <p className="text-[#66e5ff]/80 mb-4 leading-relaxed line-clamp-2">
-                      {project.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-3 py-1 bg-[#00d9ff]/20 text-[#00d9ff] text-sm rounded-full border border-[#00d9ff]/30"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                  </span>
+                )}
+              </figure>
 
-                    <div className="mt-auto pt-4 flex flex-col gap-3">
-                      {project.demo !== '#' && (
-                        <a
-                          href={project.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-full text-sm font-semibold rounded-lg border-2 border-[#00d9ff] bg-transparent text-[#00d9ff] py-3 flex items-center justify-center gap-2 transition-all duration-200 hover:bg-[#00d9ff]/10 hover:shadow-[0_0_15px_rgba(0,217,255,0.5)]"
-                          aria-label={t('portfolio.viewProject', '查看專案')}
-                        >
-                          <span className="material-symbols-outlined text-base">open_in_new</span>
-                          <span>{t('portfolio.view', '查看')}</span>
-                        </a>
-                      )}
-                      {project.github !== '#' && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-full text-sm font-semibold rounded-lg border-2 border-[#00d9ff]/50 bg-transparent text-[#66e5ff] py-3 flex items-center justify-center gap-2 transition-all duration-200 hover:bg-[#00d9ff]/10 hover:border-[#00d9ff] hover:shadow-[0_0_10px_rgba(0,217,255,0.3)]"
-                          aria-label={t('portfolio.viewCode', '查看程式碼')}
-                        >
-                          <span className="material-symbols-outlined text-base">code</span>
-                          <span>{t('portfolio.github', 'GitHub')}</span>
-                        </a>
-                      )}
-                    </div>
-                  </div>
+              <div className="flex-1 flex flex-col gap-4">
+                <h3 className="text-2xl font-semibold text-[#1c1f2c] tracking-tight">
+                  {project.title}
+                </h3>
+                <p className="text-base text-[#4a4455] leading-relaxed">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 border border-[var(--color-divider)] text-[#1d47ff] text-xs tracking-wide bg-[var(--color-chip)]"
+                    >
+                      {tech}
+                    </span>
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
+
+              <div className="flex flex-col gap-3 mt-auto">
+                {project.demo !== '#' && (
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-secondary w-full justify-center text-sm tracking-wide uppercase"
+                    aria-label={t('portfolio.viewProject', '查看專案')}
+                  >
+                    <span className="material-symbols-outlined text-base">open_in_new</span>
+                    <span>{t('portfolio.view', '查看')}</span>
+                  </a>
+                )}
+                {project.github !== '#' && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-tertiary w-full justify-center text-sm tracking-wide uppercase"
+                    aria-label={t('portfolio.viewCode', '查看程式碼')}
+                  >
+                    <span className="material-symbols-outlined text-base">code</span>
+                    <span>{t('portfolio.github', 'GitHub')}</span>
+                  </a>
+                )}
+              </div>
+            </article>
+          ))}
         </div>
         </div>
       </div>

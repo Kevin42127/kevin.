@@ -1,6 +1,5 @@
 'use client'
 
-import { ChevronUp } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
 export default function ScrollToTopButton() {
@@ -26,7 +25,7 @@ export default function ScrollToTopButton() {
       className="scroll-to-top-btn"
       aria-label="返回頂部"
     >
-      <ChevronUp size={20} />
+      <span className="material-symbols-outlined text-base">arrow_upward</span>
     </button>
   )
 }

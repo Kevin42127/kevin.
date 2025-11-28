@@ -1,39 +1,42 @@
 'use client'
 
 import { motion } from 'framer-motion'
-// Use Google Material Symbols via <span className="material-symbols-outlined">...</span>
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 import { smoothScrollToElement } from '../lib/smoothScrollUtils'
-
+import SplitText from './SplitText'
 export default function Hero() {
   const { t, i18n } = useTranslationSafe()
   
   const currentLanguage = i18n?.language || 'zh'
   const cvFileName = currentLanguage === 'en' ? 'Kevin_CV_EN.pdf' : 'Kevin_CV_TC.pdf'
   const cvPath = `/${cvFileName}`
+
   
   const scrollToNext = () => {
     smoothScrollToElement('#about', 0)
   }
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 pb-16 sm:pt-24 sm:pb-20 bg-[#0a0e1a]">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center w-full">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-28 pb-20 bg-[var(--color-page)]">
+      <div className="absolute inset-0 pointer-events-none opacity-50">
+        <div className="w-full h-full mix-blend-multiply" style={{ backgroundImage: 'radial-gradient(circle at 20% 20%, rgba(255,77,45,0.08), transparent 45%), radial-gradient(circle at 80% 10%, rgba(29,71,255,0.08), transparent 40%), radial-gradient(circle at 50% 80%, rgba(0,161,154,0.08), transparent 45%)' }} />
+      </div>
+      <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 text-center w-full relative">
         <motion.div>
-          <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6"
-          >
-            <span className="text-[#00d9ff] drop-shadow-[0_0_20px_rgba(0,217,255,0.8)]">{t('hero.title', 'Kevin.')}</span>
-          </motion.h1>
-
-          <motion.h2
-            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-[#66e5ff] mb-3 sm:mb-4"
-          >
-{t('hero.subtitle', '設計師 & 開發者')}
-          </motion.h2>
+          <SplitText
+            text={t('hero.title', 'Kevin.')}
+            tag="h1"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 text-[#1b1d2c] leading-tight tracking-tight"
+            textAlign="center"
+            splitType="chars"
+            from={{ opacity: 0, y: 40 }}
+            to={{ opacity: 1, y: 0 }}
+            duration={0.6}
+            delay={80}
+          />
 
           <motion.p
-            className="text-base sm:text-lg md:text-xl text-[#00d9ff]/80 mb-8 sm:mb-10 md:mb-12 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0"
+            className="text-base sm:text-lg md:text-xl text-[#3e3a4b] mb-10 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0"
             dangerouslySetInnerHTML={{ __html: t('hero.description', '畢業於數位科技與媒體設計系，專注於創造以使用者為中心的數位體驗。<br />結合設計美感與技術實作能力，將設計概念轉化為互動式的網頁應用。') }}
           >
           </motion.p>
@@ -43,14 +46,14 @@ export default function Hero() {
           >
             <button
               onClick={() => smoothScrollToElement('#contact', 0)}
-              className="btn-primary min-h-[48px] w-full sm:w-auto sm:min-w-[160px] px-6 sm:px-8"
+              className="btn-primary min-h-[54px] w-full sm:w-auto sm:min-w-[180px] px-6 sm:px-8 uppercase tracking-wider"
             >
               {t('hero.getInTouch', '聯繫我')}
             </button>
             
             <button
               onClick={() => smoothScrollToElement('#portfolio', 0)}
-              className="btn-secondary min-h-[48px] w-full sm:w-auto sm:min-w-[160px] px-6 sm:px-8"
+              className="btn-secondary min-h-[54px] w-full sm:w-auto sm:min-w-[180px] px-6 sm:px-8 uppercase tracking-wider"
             >
               {t('hero.viewWork', '查看作品')}
             </button>
@@ -58,7 +61,7 @@ export default function Hero() {
             <a
               href={cvPath}
               download={cvFileName}
-              className="btn-tertiary min-h-[48px] w-full sm:w-auto sm:min-w-[160px] px-6 sm:px-8"
+              className="btn-primary min-h-[54px] w-full sm:w-auto sm:min-w-[180px] px-6 sm:px-8 uppercase tracking-wider"
             >
               <span className="material-symbols-outlined text-base">download</span>
               {t('hero.downloadCV', '下載履歷')}
@@ -67,18 +70,12 @@ export default function Hero() {
 
           
 
-          <div
-            className="text-center mb-12 sm:mb-16 px-4"
-          >
-            <p className="text-xs sm:text-sm text-[#00d9ff]/60 flex items-center justify-center gap-1">
-              <span className="material-symbols-outlined text-base">download</span>
-              {currentLanguage === 'en' 
-                ? 'Downloading: English CV | 繁體中文版請切換語言' 
-                : '下載：繁體中文版履歷 | EN version: switch language'}
+          <div className="text-center mb-12 sm:mb-16 px-4">
+            <p className="text-xs sm:text-sm text-[#6b6371] flex items-center justify-center gap-1">
+              <span className="material-symbols-outlined text-base">info</span>
+              {t('hero.cvInfo', '下載：繁體中文版履歷｜English 版本請切換語言')}
             </p>
           </div>
-
-          
         </motion.div>
       </div>
     </section>

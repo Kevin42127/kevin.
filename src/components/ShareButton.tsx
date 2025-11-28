@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Share2, Copy, Check, Facebook, Twitter, Linkedin, MessageCircle, Mail } from 'lucide-react'
 import { useTranslationSafe } from '@/hooks/useTranslationSafe'
 
 interface ShareButtonProps {
@@ -28,12 +27,6 @@ export default function ShareButton({
     sm: 'w-8 h-8',
     md: 'w-10 h-10',
     lg: 'w-12 h-12'
-  }
-
-  const iconSizes = {
-    sm: 16,
-    md: 20,
-    lg: 24
   }
 
   const shareData = {
@@ -100,44 +93,44 @@ export default function ShareButton({
   const shareOptions = [
     {
       id: 'facebook',
-      icon: Facebook,
+      icon: 'groups',
       label: 'Facebook',
-      color: 'hover:bg-blue-600',
+      color: 'hover:bg-[#385898]',
       onClick: () => handleSocialShare('facebook')
     },
     {
       id: 'twitter',
-      icon: Twitter,
+      icon: 'flutter_dash',
       label: 'Twitter',
-      color: 'hover:bg-sky-500',
+      color: 'hover:bg-[#1d9bf0]',
       onClick: () => handleSocialShare('twitter')
     },
     {
       id: 'linkedin',
-      icon: Linkedin,
+      icon: 'hub',
       label: 'LinkedIn',
-      color: 'hover:bg-blue-700',
+      color: 'hover:bg-[#0a66c2]',
       onClick: () => handleSocialShare('linkedin')
     },
     {
       id: 'whatsapp',
-      icon: MessageCircle,
+      icon: 'chat',
       label: 'WhatsApp',
-      color: 'hover:bg-green-600',
+      color: 'hover:bg-[#25d366]',
       onClick: () => handleSocialShare('whatsapp')
     },
     {
       id: 'telegram',
-      icon: MessageCircle,
+      icon: 'send',
       label: 'Telegram',
-      color: 'hover:bg-blue-500',
+      color: 'hover:bg-[#2aabee]',
       onClick: () => handleSocialShare('telegram')
     },
     {
       id: 'email',
-      icon: Mail,
+      icon: 'mail',
       label: t('share.email', 'Email'),
-      color: 'hover:bg-gray-600',
+      color: 'hover:bg-[#4a5568]',
       onClick: () => handleSocialShare('email')
     }
   ]
@@ -146,10 +139,10 @@ export default function ShareButton({
     <div className={`relative ${className}`}>
       <button
         onClick={handleNativeShare}
-        className={`${sizeClasses[size]} bg-kevin-blue/10 dark:bg-gray-700/30 hover:bg-kevin-blue hover:text-white text-kevin-blue dark:text-gray-200 rounded-xl flex items-center justify-center transition-all duration-300 group`}
+        className={`${sizeClasses[size]} border border-[var(--color-divider)] bg-white text-[#1f1d30] hover:bg-[var(--color-primary)] hover:text-white flex items-center justify-center transition-all duration-300`}
         aria-label={t('share.share', '分享')}
       >
-        <Share2 size={iconSizes[size]} />
+        <span className="material-symbols-outlined text-base">share</span>
       </button>
 
       {isOpen && (
@@ -159,16 +152,16 @@ export default function ShareButton({
             onClick={() => setIsOpen(false)}
           />
 
-          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 p-4 z-50 min-w-[280px]">
+          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-white rounded-none shadow-[0_25px_45px_rgba(15,15,40,0.12)] border border-[var(--color-divider)] p-4 z-50 min-w-[280px]">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-semibold text-gray-800 dark:text-gray-200">
+                <h3 className="font-semibold text-[#1f1d30]">
                   {t('share.shareTo', '分享到')}
                 </h3>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                  className="text-[#9b92a4] hover:text-[#1f1d30] transition-colors"
                 >
-                  ×
+                  <span className="material-symbols-outlined text-base">close</span>
                 </button>
               </div>
 
@@ -177,10 +170,12 @@ export default function ShareButton({
                   <button
                     key={option.id}
                     onClick={option.onClick}
-                    className={`flex flex-col items-center p-3 rounded-xl bg-gray-50 dark:bg-gray-700 ${option.color} text-white transition-all duration-300 group active:scale-95`}
+                    className={`flex flex-col items-center p-3 border border-[var(--color-divider)] bg-[var(--color-surface-variant)] text-[#1f1d30] transition-all duration-300 group active:scale-95 ${option.color}`}
                   >
-                    <option.icon size={20} className="mb-1" />
-                    <span className="text-xs font-medium text-gray-700 dark:text-gray-300 group-hover:text-white">
+                    <span className="material-symbols-outlined text-base mb-1">
+                      {option.icon}
+                    </span>
+                    <span className="text-xs font-medium">
                       {option.label}
                     </span>
                   </button>
@@ -189,18 +184,18 @@ export default function ShareButton({
 
               <button
                 onClick={handleCopyLink}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-xl transition-all duration-300 active:scale-98"
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 border border-[var(--color-divider)] bg-white hover:bg-[var(--color-surface-variant)] text-[#1f1d30] transition-all duration-300 active:scale-95"
               >
                 {copied ? (
                   <>
-                    <Check size={16} className="text-green-600" />
-                    <span className="text-green-600 font-medium">
+                    <span className="material-symbols-outlined text-base text-[#0c5b3a]">task_alt</span>
+                    <span className="text-[#0c5b3a] font-medium">
                       {t('share.copied', '已複製')}
                     </span>
                   </>
                 ) : (
                   <>
-                    <Copy size={16} />
+                    <span className="material-symbols-outlined text-base">content_copy</span>
                     <span className="font-medium">
                       {t('share.copyLink', '複製連結')}
                     </span>

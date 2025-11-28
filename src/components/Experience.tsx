@@ -1,8 +1,13 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Award, Users, Globe, FileText, Trophy, Calendar, ExternalLink } from 'lucide-react'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
+
+const Icon = ({ name, size = '28px', color = '#ff4d2d' }: { name: string; size?: string; color?: string }) => (
+  <span className="material-symbols-outlined" style={{ fontSize: size, color, display: 'inline-flex' }}>
+    {name}
+  </span>
+)
 
 export default function Experience() {
   const { t } = useTranslationSafe()
@@ -67,161 +72,126 @@ export default function Experience() {
   ]
 
   return (
-  <section id="experience" className="py-12 sm:py-16 md:py-20 bg-[#0a0e1a]">
+  <section id="experience" className="py-16 sm:py-20 bg-[var(--color-page)]">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="section-surface">
         <motion.div
           transition={{ duration: 0.8 }}
           className="text-center mb-12 sm:mb-14 md:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#00d9ff] mb-3 sm:mb-4 px-4 drop-shadow-[0_0_15px_rgba(0,217,255,0.6)]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1b1d2c] mb-3 sm:mb-4 px-4">
             {t('experience.title', '相關經驗')}
           </h2>
-          <p className="text-lg sm:text-xl text-[#66e5ff]/80 max-w-3xl mx-auto px-4">
+          <p className="text-lg sm:text-xl text-[#4a4455] max-w-3xl mx-auto px-4">
             {t('experience.subtitle', '語言能力、證照認證與實務經驗展示')}
           </p>
         </motion.div>
 
         <div className="space-y-16">
-          {/* Language Skills */}
-          <motion.div
-            transition={{ duration: 0.8 }}
-          >
-            <h3 className="text-3xl font-bold text-[#00d9ff] mb-8 flex items-center drop-shadow-[0_0_10px_rgba(0,217,255,0.5)]">
-              <Globe className="text-[#00d9ff] mr-3" size={32} />
-              {t('experience.languageSkills', '語言能力')}
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
-              {languageSkills.map((skill, index) => (
-                <motion.div
+          <motion.div transition={{ duration: 0.8 }}>
+            <div className="flex items-center gap-3 mb-8">
+              <Icon name="language" color="#ff4d2d" />
+              <h3 className="text-3xl font-bold text-[#1b1d2c]">
+                {t('experience.languageSkills', '語言能力')}
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+              {languageSkills.map((skill) => (
+                <motion.article
                   key={skill.language}
                   transition={{ duration: 0.6 }}
-                  className="card p-6"
+                  className="border border-[var(--color-divider)] bg-white p-6 flex flex-col gap-2 shadow-[0_25px_45px_rgba(15,15,40,0.08)]"
                 >
+                  <span className="text-xs text-[#6b6371] tracking-[0.35em] uppercase">
+                    {t('experience.languageLabel', '語言')}
+                  </span>
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <div className="w-12 h-12 rounded-xl bg-kevin-blue flex items-center justify-center mr-4">
-                        <Globe className="text-white" size={24} />
-                      </div>
-                      <div>
-                        <h4 className="text-xl font-semibold text-[#66e5ff]">
-                          {skill.language}
-                        </h4>
-                        <p className="text-[#66e5ff]/80">
-                          {skill.level}
-                        </p>
-                      </div>
-                    </div>
+                    <p className="text-2xl font-semibold text-[#1b1d2c]">{skill.language}</p>
+                    <span className="text-[#ff4d2d] font-semibold">{skill.level}</span>
                   </div>
-                </motion.div>
+                </motion.article>
               ))}
             </div>
           </motion.div>
 
-          {/* Certifications */}
-          <motion.div
-            transition={{ duration: 0.8 }}
-          >
-            <h3 className="text-3xl font-bold text-[#00d9ff] mb-8 flex items-center drop-shadow-[0_0_10px_rgba(0,217,255,0.5)]">
-              <FileText className="text-[#00d9ff] mr-3" size={32} />
-              {t('experience.certifications.title', '證照與認證')}
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 px-2 sm:px-0">
-              {certifications.map((cert, index) => (
-                <motion.div
+          <motion.div transition={{ duration: 0.8 }}>
+            <div className="flex items-center gap-3 mb-8">
+              <Icon name="workspace_premium" color="#1d47ff" />
+              <h3 className="text-3xl font-bold text-[#1b1d2c]">
+                {t('experience.certifications.title', '證照與認證')}
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+              {certifications.map((cert) => (
+                <motion.article
                   key={cert.name}
                   transition={{ duration: 0.6 }}
-                  className="card p-6"
+                  className="border border-[var(--color-divider)] bg-white p-6 flex flex-col gap-4 shadow-[0_25px_45px_rgba(15,15,40,0.08)]"
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <div className="w-12 h-12 rounded-xl bg-kevin-blue flex items-center justify-center mr-4">
-                        <FileText className="text-white" size={24} />
-                      </div>
-                      <div>
-                        <h4 className="text-xl font-semibold text-[#66e5ff]">
-                          {cert.name}
-                        </h4>
-                        <p className="text-[#66e5ff]/80">
-                          {cert.type}
-                        </p>
-                      </div>
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                      <p className="text-xs text-[#6b6371] tracking-[0.3em] uppercase mb-1">
+                        {cert.type}
+                      </p>
+                      <h4 className="text-2xl font-semibold text-[#1b1d2c]">
+                        {cert.name}
+                      </h4>
                     </div>
                     {cert.certificateUrl && (
                       <a
                         href={cert.certificateUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center space-x-2 px-3 py-2 bg-[#00d9ff]/20 text-[#00d9ff] rounded-lg hover:bg-[#00d9ff]/30 border border-[#00d9ff]/30 hover:border-[#00d9ff] hover:shadow-[0_0_10px_rgba(0,217,255,0.3)] transition-all duration-300"
+                        className="inline-flex items-center gap-2 px-5 py-2 border border-[var(--color-primary)] text-[var(--color-primary)] text-sm font-semibold tracking-wide uppercase transition-all duration-200 hover:bg-[var(--color-primary)] hover:text-white min-w-[140px] justify-center"
                       >
-                        <span className="text-sm font-medium">{t('experience.certifications.viewCertificate', '查看證書')}</span>
-                        <ExternalLink size={16} />
+                        <span>{t('experience.certifications.viewCertificate', '查看')}</span>
+                        <span className="material-symbols-outlined text-base transition-colors duration-200">
+                          open_in_new
+                        </span>
                       </a>
                     )}
                   </div>
-                </motion.div>
+                </motion.article>
               ))}
             </div>
           </motion.div>
 
-          {/* Activities */}
-          <motion.div
-            transition={{ duration: 0.8 }}
-          >
-            <h3 className="text-3xl font-bold text-[#00d9ff] mb-8 flex items-center drop-shadow-[0_0_10px_rgba(0,217,255,0.5)]">
-              <Award className="text-[#00d9ff] mr-3" size={32} />
-              {t('experience.activities.title', '課外活動')}
-            </h3>
-            <div className="space-y-8">
-              {activities.map((activity, index) => (
-                <motion.div
+          <motion.div transition={{ duration: 0.8 }}>
+            <div className="flex items-center gap-3 mb-8">
+              <Icon name="flag" color="#00a19a" />
+              <h3 className="text-3xl font-bold text-[#1b1d2c]">
+                {t('experience.activities.title', '課外活動')}
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+              {activities.map((activity) => (
+                <motion.article
                   key={activity.title}
                   transition={{ duration: 0.6 }}
-                  className="card p-8"
+                  className="border border-[var(--color-divider)] bg-white p-6 flex flex-col gap-5 h-full shadow-[0_25px_45px_rgba(15,15,40,0.08)]"
                 >
-                  <div className="flex items-start justify-between mb-6">
-                    <div className="flex items-center">
-                      <div className="w-16 h-16 rounded-xl bg-kevin-blue flex items-center justify-center mr-6">
-                        {activity.type === t('experience.activities.competition', '專題競賽') ? (
-                          <Trophy className="text-white" size={28} />
-                        ) : (
-                          <Users className="text-white" size={28} />
-                        )}
-                      </div>
-                      <div>
-                        <div className="flex items-center mb-2">
-                          <span className="px-3 py-1 bg-[#00d9ff]/20 text-[#00d9ff] text-sm rounded-full mr-3 border border-[#00d9ff]/30">
-                            {activity.type}
-                          </span>
-                          <span className="text-[#66e5ff]/60 text-sm flex items-center">
-                            <Calendar className="mr-1" size={16} />
-                            {activity.period}
-                          </span>
-                        </div>
-                        <h4 className="text-2xl font-bold text-[#66e5ff] mb-2">
-                          {activity.title}
-                        </h4>
-                        <p className="text-[#66e5ff]/80">
-                          {activity.description}
-                        </p>
+                  <div className="flex flex-col gap-2">
+                    <div className="flex items-center justify-between text-sm text-[#6b6371]">
+                      <span className="tracking-[0.3em] uppercase">{activity.type}</span>
+                      <div className="flex items-center gap-1">
+                        <Icon name="event" size="18px" color="#1d47ff" />
+                        <span>{activity.period}</span>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <span className="text-sm font-semibold text-yellow-600 dark:text-yellow-400">
-                        {activity.achievement}
-                      </span>
-                    </div>
+                    <h4 className="text-2xl font-semibold text-[#1b1d2c]">{activity.title}</h4>
+                    <p className="text-[#4a4455]">{activity.description}</p>
+                    <span className="text-[#f97316] font-semibold uppercase tracking-wide">{activity.achievement}</span>
                   </div>
 
                   {activity.responsibilities && (
-                    <div className="mb-6">
-                      <h5 className="text-lg font-semibold text-[#66e5ff] mb-3">
+                    <div className="space-y-2">
+                      <h5 className="text-lg font-semibold text-[#1d47ff]">
                         {t('experience.responsibilities.title', '主要職責')}
                       </h5>
-                      <ul className="space-y-2">
+                      <ul className="grid grid-cols-1 gap-2">
                         {activity.responsibilities.map((responsibility, idx) => (
-                          <li key={idx} className="flex items-start text-[#66e5ff]/80">
-                            <span className="w-2 h-2 bg-kevin-blue dark:bg-gray-200 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <li key={idx} className="flex items-start text-[#4a4455] gap-3">
+                            <span className="w-1.5 h-1.5 bg-[#ff4d2d] mt-2"></span>
                             {responsibility}
                           </li>
                         ))}
@@ -229,22 +199,22 @@ export default function Experience() {
                     </div>
                   )}
 
-                  <div>
-                    <h5 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">
+                  <div className="space-y-3">
+                    <h5 className="text-lg font-semibold text-[#1b1d2c]">
                       {t('experience.skills.title', '相關技能')}
                     </h5>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="grid grid-cols-2 gap-2">
                       {activity.skills.map((skill, idx) => (
                         <span
                           key={idx}
-                          className="px-3 py-1 bg-[#00d9ff]/20 text-[#00d9ff] text-sm rounded-full border border-[#00d9ff]/30"
+                          className="px-3 py-1 border border-[var(--color-divider)] text-[#1d47ff] text-sm tracking-wide bg-[var(--color-chip)]"
                         >
                           {skill}
                         </span>
                       ))}
                     </div>
                   </div>
-                </motion.div>
+                </motion.article>
               ))}
             </div>
           </motion.div>

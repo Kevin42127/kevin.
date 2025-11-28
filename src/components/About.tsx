@@ -1,7 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { Palette, Target, CheckCircle, Users } from 'lucide-react'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 import { useProtectedImage } from '../hooks/useProtectedImage'
 
@@ -11,58 +9,49 @@ export default function About() {
   
   const skills = [
     {
-      icon: Palette,
+      icon: 'palette',
       title: t('about.uiDesign.title', 'UI/UX 設計'),
       description: t('about.uiDesign.description', '專注於使用者體驗設計，創造直觀且美觀的介面'),
-      color: 'from-purple-500 to-purple-600'
+      color: '#ffe3d1'
     },
     {
-      icon: Target,
+      icon: 'track_changes',
       title: t('about.productDesign.title', '產品設計'),
       description: t('about.productDesign.description', '專注於需求分析與產品規劃，將想法轉化為可行的數位解決方案'),
-      color: 'from-blue-500 to-blue-600'
+      color: '#e8f0ff'
     },
     {
-      icon: CheckCircle,
+      icon: 'verified',
       title: t('about.qualityControl.title', '品質控制'),
       description: t('about.qualityControl.description', '透過系統性測試確保產品穩定性，優化使用者體驗'),
-      color: 'from-yellow-500 to-orange-500'
+      color: '#fff1c7'
     },
     {
-      icon: Users,
+      icon: 'diversity_3',
       title: t('about.aiCollaboration.title', '與AI協作'),
       description: t('about.aiCollaboration.description', '善於運用AI工具提升工作效率，具備良好的AI協作經驗'),
-      color: 'from-green-500 to-teal-500'
+      color: '#e0fff7'
     }
   ]
 
   return (
-  <section id="about" className="py-12 sm:py-16 md:py-20 bg-[#0f172a]">
+  <section id="about" className="py-16 sm:py-20 bg-[var(--color-section-soft)]">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="section-surface">
-        <motion.div
-          transition={{ duration: 0.8 }}
-          className="text-center mb-12 sm:mb-14 md:mb-16"
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#00d9ff] mb-3 sm:mb-4 px-4 drop-shadow-[0_0_15px_rgba(0,217,255,0.6)]">
+        <div className="text-center mb-12 sm:mb-14 md:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1b1d2c] mb-3 sm:mb-4 px-4">
 {t('about.title', '關於Kevin')}
           </h2>
-          <p className="text-lg sm:text-xl text-[#66e5ff]/80 max-w-3xl mx-auto px-4">
+          <p className="text-lg sm:text-xl text-[#4a4455] max-w-3xl mx-auto px-4">
 {t('about.subtitle', '個人簡介')}
           </p>
-        </motion.div>
+        </div>
 
         <div className="max-w-5xl mx-auto mb-16 sm:mb-18 md:mb-20">
-          <motion.div
-            transition={{ duration: 0.8 }}
-            className="grid lg:grid-cols-3 gap-6 sm:gap-8 items-center"
-          >
-            <motion.div
-              transition={{ duration: 0.8 }}
-              className="flex justify-center lg:justify-start mb-6 lg:mb-0"
-            >
+          <div className="grid lg:grid-cols-3 gap-6 sm:gap-8 items-center">
+            <div className="flex justify-center lg:justify-start mb-6 lg:mb-0">
               <div 
-                className="w-40 h-40 sm:w-48 sm:h-48 rounded-full overflow-hidden shadow-xl border-4 border-[#00d9ff] shadow-[0_0_20px_rgba(0,217,255,0.5)] select-none relative"
+                className="w-40 h-40 sm:w-48 sm:h-48 overflow-hidden shadow-[0_25px_45px_rgba(0,0,0,0.12)] border-4 border-white select-none relative"
                 onContextMenu={(e) => e.preventDefault()}
                 onDragStart={(e) => e.preventDefault()}
                 style={{ 
@@ -73,8 +62,8 @@ export default function About() {
                 } as React.CSSProperties}
               >
                 {isLoading ? (
-                  <div className="w-full h-full bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center">
-                    <div className="w-16 h-16 rounded-full bg-gray-300 dark:bg-gray-600"></div>
+                  <div className="w-full h-full bg-[var(--color-placeholder)] animate-pulse flex items-center justify-center">
+                    <div className="w-16 h-16 bg-white"></div>
                   </div>
                 ) : (
                   <img
@@ -96,63 +85,43 @@ export default function About() {
                     } as React.CSSProperties}
                   />
                 )}
-                
-                <div 
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background: 'repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px)',
-                    mixBlendMode: 'overlay'
-                  } as React.CSSProperties}
-                />
-                
-                <div 
-                  className="absolute bottom-2 right-2 text-white text-xs opacity-50 pointer-events-none"
-                  style={{
-                    textShadow: '1px 1px 2px rgba(0,0,0,0.8)',
-                    fontFamily: 'monospace'
-                  } as React.CSSProperties}
-                >
-                  © Kevin Chen
-                </div>
               </div>
-            </motion.div>
+            </div>
 
             <div
               className="lg:col-span-2"
             >
-              <div className="space-y-3 sm:space-y-4 text-[#66e5ff]/80 leading-relaxed px-4 lg:px-0">
+              <div className="space-y-3 sm:space-y-4 text-[#473f4d] leading-relaxed px-4 lg:px-0">
                 <p className="text-sm sm:text-base" dangerouslySetInnerHTML={{ __html: t('about.content', '您好，我是陳梓敬 (Kevin)，畢業於吳鳳科技大學數位科技與媒體設計系。在設計領域中，我專注於創造以使用者為中心的數位體驗。透過系統性的設計思維，我將複雜的需求轉化為簡潔優雅的解決方案。我相信設計的力量在於解決問題並創造價值。每個專案都是學習與成長的機會，我期待能與您合作，一起打造令人印象深刻的設計作品。') }} />
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
-        <motion.div
-          transition={{ duration: 0.8 }}
-        >
-          <h3 className="text-2xl sm:text-3xl font-bold text-[#00d9ff] text-center mb-8 sm:mb-10 md:mb-12 px-4 drop-shadow-[0_0_15px_rgba(0,217,255,0.6)]">
+        <div>
+          <h3 className="text-2xl sm:text-3xl font-bold text-[#1b1d2c] text-center mb-8 sm:mb-10 md:mb-12 px-4">
             {t('about.coreSkills', '核心技能')}
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 px-2 sm:px-0">
             {skills.map((skill, index) => (
-              <motion.div
+              <div
                 key={skill.title}
-                transition={{ duration: 0.6 }}
-                className="card p-5 sm:p-6"
+                className="card about-skill-card p-5 sm:p-6"
+                style={{ backgroundColor: skill.color }}
               >
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-kevin-blue flex items-center justify-center mb-3 sm:mb-4">
-                  <skill.icon className="text-white" size={24} />
+                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#1b1d2c] flex items-center justify-center mb-3 sm:mb-4">
+                  <span className="material-symbols-outlined text-white text-2xl">{skill.icon}</span>
                 </div>
-                <h4 className="text-lg sm:text-xl font-semibold text-[#00d9ff] mb-2">
+                <h4 className="text-lg sm:text-xl font-semibold text-[#1b1d2c] mb-2">
                   {skill.title}
                 </h4>
-                <p className="text-[#66e5ff]/80 text-sm sm:text-base leading-relaxed">
+                <p className="text-[#3e3545] text-sm sm:text-base leading-relaxed">
                   {skill.description}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
         </div>
       </div>
     </section>

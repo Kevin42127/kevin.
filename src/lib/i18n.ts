@@ -18,11 +18,11 @@ const zhResources = {
   },
   hero: {
     title: 'Kevin.',
-    subtitle: '設計師 & 開發者',
     description: '畢業於數位科技與媒體設計系，專注於創造以使用者為中心的數位體驗。<br />運用AI協作開發與現代化工具，將設計概念轉化為高品質的數位產品。',
     viewWork: '查看作品',
     getInTouch: '聯繫我',
-    downloadCV: '下載履歷'
+    downloadCV: '下載履歷',
+    cvInfo: '下載：繁體中文版履歷｜English 版本請切換語言'
   },
   about: {
     title: '關於Kevin',
@@ -501,6 +501,7 @@ const zhResources = {
     title: '相關經驗',
     subtitle: '語言能力、證照認證與實務經驗展示',
     languageSkills: '語言能力',
+    languageLabel: '語言',
     languages: {
       chinese: '中文',
       english: '英文',
@@ -511,7 +512,7 @@ const zhResources = {
     certifications: {
       title: '證照與認證',
       international: '國際認證',
-      viewCertificate: '查看證書'
+      viewCertificate: '查看'
     },
     activities: {
       title: '課外活動',
@@ -563,11 +564,11 @@ const enResources = {
   },
   hero: {
     title: 'Kevin.',
-    subtitle: 'Designer & Developer',
     description: 'Graduated from Digital Technology and Media Design Department, focused on creating user-centered digital experiences.<br />Leveraging AI-assisted development and modern tools to transform design concepts into high-quality digital products.',
     viewWork: 'View Work',
     getInTouch: 'Get In Touch',
-    downloadCV: 'Download CV'
+    downloadCV: 'Download CV',
+    cvInfo: 'Downloading: English CV | Switch language for the Traditional Chinese version'
   },
   about: {
     title: 'About Kevin',
@@ -1046,6 +1047,7 @@ const enResources = {
     title: 'Related Experience',
     subtitle: 'Language skills, certifications and practical experience showcase',
     languageSkills: 'Language Skills',
+    languageLabel: 'Language',
     languages: {
       chinese: 'Chinese',
       english: 'English',
@@ -1056,7 +1058,7 @@ const enResources = {
     certifications: {
       title: 'Certifications',
       international: 'International Certification',
-      viewCertificate: 'View Certificate'
+      viewCertificate: 'View'
     },
     activities: {
       title: 'Extracurricular Activities',

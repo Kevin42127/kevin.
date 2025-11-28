@@ -13,7 +13,7 @@ export function useTranslationSafe() {
     if (!isClient || !ready) {
       return fallback || key
     }
-    return t(key)
+    return t(key, { defaultValue: fallback || key })
   }
 
   return {
