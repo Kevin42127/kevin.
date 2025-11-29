@@ -495,5 +495,25 @@ a:focus {
     color: #05070f;
     background-color: var(--color-primary-dark);
   }
+
+  .inline-code {
+    background-color: rgba(0, 0, 0, 0.08);
+    padding: 0.125rem 0.375rem;
+    border: 1px solid var(--color-divider);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.875em;
+    border-radius: 0;
+  }
+
+  .text-link {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.2s ease;
+  }
+
+  .text-link:hover {
+    color: var(--color-primary-dark);
+  }
 }
 

@@ -2,6 +2,9 @@ export const serverConfig = {
   gmail: {
     user: process.env.GMAIL_USER,
     password: process.env.GMAIL_APP_PASSWORD,
+  },
+  groq: {
+    apiKey: process.env.GROQ_API_KEY,
   }
 }
 
