@@ -73,6 +73,12 @@ export async function POST(req: NextRequest) {
       stream: false
     }
 
+    console.log('=== Groq API Request ===')
+    console.log('Model:', requestBody.model)
+    console.log('Messages count:', requestBody.messages.length)
+    console.log('Request URL:', 'https://api.groq.com/openai/v1/chat/completions')
+    console.log('========================')
+
     const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -81,6 +87,12 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify(requestBody)
     })
+
+    console.log('=== Groq API Response ===')
+    console.log('Status:', response.status)
+    console.log('Status Text:', response.statusText)
+    console.log('Headers:', Object.fromEntries(response.headers.entries()))
+    console.log('========================')
 
     if (!response.ok) {
       const errorText = await response.text()
@@ -95,15 +107,16 @@ export async function POST(req: NextRequest) {
       }
 
       if (response.status === 403) {
-        errorMessage = 'API Key 無效或權限不足。請檢查 Vercel 環境變數中的 GROQ_API_KEY 是否正確設定。'
+        errorMessage = 'API Key 無效或權限不足。請前往 Groq Console (https://console.groq.com/) 檢查 API Key 狀態，或重新生成新的 API Key。'
         console.error('403 Forbidden - Possible causes:')
-        console.error('1. API Key is invalid or expired')
+        console.error('1. API Key is invalid or expired - 請檢查 Groq Console')
         console.error('2. API Key format is incorrect (should start with "gsk_")')
-        console.error('3. API Key has no access to the model')
+        console.error('3. API Key has no access to the model - 確認模型名稱是否正確')
         console.error('4. Environment variable not properly set in Vercel')
         console.error('5. API Key used:', apiKey ? `${apiKey.substring(0, 10)}...${apiKey.substring(apiKey.length - 5)}` : 'N/A')
         console.error('6. Request URL:', 'https://api.groq.com/openai/v1/chat/completions')
         console.error('7. Request Model:', requestBody.model)
+        console.error('8. 建議：前往 https://console.groq.com/ 重新生成 API Key 並更新 Vercel 環境變數')
       }
       
       return NextResponse.json(
