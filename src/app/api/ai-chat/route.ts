@@ -65,6 +65,7 @@ export async function POST(req: NextRequest) {
     }
 
     // 嘗試多個模型，按優先順序（已移除停用的模型）
+    // 如果模型被停用，會自動跳過並嘗試下一個
     const modelsToTry = [
       'llama-3.3-70b-versatile',  // 替代已停用的 llama-3.1-70b-versatile
       'llama-3.1-8b-versatile',
@@ -115,8 +116,15 @@ export async function POST(req: NextRequest) {
         const errorText = await response.text()
         console.error(`模型 ${model} 失敗 (${response.status}):`, errorText)
         
-        // 如果是 403，繼續嘗試下一個模型
-        if (response.status === 403) {
+        // 檢查是否為停用模型或 403 錯誤，繼續嘗試下一個模型
+        const isDeprecated = errorText.includes('decommissioned') || 
+                            errorText.includes('no longer supported') ||
+                            errorText.includes('deprecated')
+        
+        if (response.status === 403 || isDeprecated) {
+          if (isDeprecated) {
+            console.log(`模型 ${model} 已停用，跳過並嘗試下一個模型`)
+          }
           continue
         }
         
