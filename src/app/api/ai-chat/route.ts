@@ -31,7 +31,16 @@ export async function POST(req: NextRequest) {
 
     if (!apiKey) {
       console.error('GROQ_API_KEY is missing from process.env')
-      return NextResponse.json({ error: '缺少 GROQ_API_KEY 設定。請確認 .env.local 檔案位置和內容。' }, { status: 500 })
+      return NextResponse.json({ 
+        error: '缺少 GROQ_API_KEY 設定。請在 Vercel 環境變數中設定 GROQ_API_KEY。' 
+      }, { status: 500 })
+    }
+
+    if (!apiKey.startsWith('gsk_')) {
+      console.error('GROQ_API_KEY format is invalid. Should start with "gsk_"')
+      return NextResponse.json({ 
+        error: 'GROQ_API_KEY 格式錯誤。API Key 應以 "gsk_" 開頭。' 
+      }, { status: 500 })
     }
 
     const detectedLang = lang || detectLanguage(messages)
@@ -68,6 +77,15 @@ export async function POST(req: NextRequest) {
         errorMessage = errorJson.error?.message || errorJson.error || errorMessage
       } catch {
         errorMessage = errorText || errorMessage
+      }
+
+      if (response.status === 403) {
+        errorMessage = 'API Key 無效或權限不足。請檢查 Vercel 環境變數中的 GROQ_API_KEY 是否正確設定。'
+        console.error('403 Forbidden - Possible causes:')
+        console.error('1. API Key is invalid or expired')
+        console.error('2. API Key format is incorrect (should start with "gsk_")')
+        console.error('3. API Key has no access to the model')
+        console.error('4. Environment variable not properly set in Vercel')
       }
       
       return NextResponse.json(

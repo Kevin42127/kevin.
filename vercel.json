@@ -8,6 +8,9 @@
   "functions": {
     "src/app/api/send-email/route.ts": {
       "maxDuration": 30
+    },
+    "src/app/api/ai-chat/route.ts": {
+      "maxDuration": 30
     }
   },
   "env": {
