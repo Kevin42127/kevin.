@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
-import { getGmailConfig } from '@/lib/config'
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,19 +12,28 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const gmailConfig = getGmailConfig()
+    const gmailUser = process.env.GMAIL_USER
+    const gmailPassword = process.env.GMAIL_APP_PASSWORD
+
+    if (!gmailUser || !gmailPassword) {
+      console.error('Gmail 環境變數未設置')
+      return NextResponse.json(
+        { error: '郵件服務未配置，請聯繫管理員' },
+        { status: 500 }
+      )
+    }
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: gmailConfig.user,
-        pass: gmailConfig.password
+        user: gmailUser,
+        pass: gmailPassword
       }
     })
 
     const mailOptions = {
-      from: gmailConfig.user,
-      to: gmailConfig.user,
+      from: gmailUser,
+      to: gmailUser,
       subject: `[個人網站] ${subject}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
