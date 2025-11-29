@@ -1,17 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { serverConfig } from '@/lib/config'
 
-const GROQ_API_KEY = serverConfig.groq.apiKey
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions'
 const MODEL = 'llama-3.1-8b-instant'
 
-if (!GROQ_API_KEY) {
-  console.error('GROQ_API_KEY 環境變數未設置')
-}
-
 export async function POST(request: NextRequest) {
   try {
+    const GROQ_API_KEY = process.env.GROQ_API_KEY
+    
     if (!GROQ_API_KEY) {
+      console.error('GROQ_API_KEY 環境變數未設置')
       return NextResponse.json(
         { error: 'AI 服務未配置，請聯繫管理員' },
         { status: 500 }
