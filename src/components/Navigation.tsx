@@ -110,7 +110,7 @@ export default function Navigation() {
       {isClient && (
         <AnimatePresence>
           {isMenuOpen && (
-            <>
+          <>
             <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
@@ -155,16 +155,16 @@ export default function Navigation() {
                 </nav>
 
                 <div className="px-6 pb-6 border-t border-[var(--color-divider)] pt-4 space-y-3">
-                  <h3 className="text-sm font-semibold text-[#6b6371] px-4 mb-3">
-                    {t('navigation.settings', '設定')}
-                  </h3>
-
-                  <div className="flex items-center justify-between px-4 py-2">
-                    <span className="text-[#1f1d30] font-medium">
-                      {t('navigation.language', '語言')}
-                    </span>
-                    <LanguageSwitcher />
-                  </div>
+                    <h3 className="text-sm font-semibold text-[#6b6371] px-4 mb-3">
+                      {t('navigation.settings', '設定')}
+                    </h3>
+                    
+                    <div className="flex items-center justify-between px-4 py-2">
+                      <span className="text-[#1f1d30] font-medium">
+                        {t('navigation.language', '語言')}
+                      </span>
+                      <LanguageSwitcher />
+                    </div>
                 </div>
               </div>
             </motion.div>
