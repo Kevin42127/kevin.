@@ -92,22 +92,44 @@ export async function POST(req: NextRequest) {
 
     console.log('=== Groq API Response ===')
     console.log('Status:', response.status)
+    console.log('Status Text:', response.statusText)
+    console.log('Response Headers:', Object.fromEntries(response.headers.entries()))
+    
+    const responseText = await response.text()
+    console.log('Response Body (first 500 chars):', responseText.substring(0, 500))
     console.log('========================')
 
     if (!response.ok) {
-      const errorText = await response.text()
-      console.error('Groq API Error:', response.status, errorText)
+      console.error('Groq API Error:', response.status, responseText)
       
       let errorMessage = `AI 回應失敗 (${response.status})`
+      let errorDetails = ''
+      
       try {
-        const errorJson = JSON.parse(errorText)
+        const errorJson = JSON.parse(responseText)
         errorMessage = errorJson.error?.message || errorJson.error || errorMessage
+        errorDetails = JSON.stringify(errorJson, null, 2)
+        console.error('Parsed Error:', errorDetails)
       } catch {
-        errorMessage = errorText || errorMessage
+        errorMessage = responseText || errorMessage
+        errorDetails = responseText
       }
 
+      // 詳細的錯誤診斷
       if (response.status === 403) {
-        errorMessage = 'API Key 無效或權限不足。請前往 Groq Console (https://console.groq.com/) 檢查 API Key 狀態。'
+        console.error('403 Forbidden - 詳細診斷:')
+        console.error('1. API Key 前綴:', apiKey?.substring(0, 10))
+        console.error('2. API Key 長度:', apiKey?.length)
+        console.error('3. 模型名稱:', model)
+        console.error('4. 環境:', process.env.VERCEL_ENV || 'local')
+        console.error('5. 錯誤詳情:', errorDetails)
+        errorMessage = `API Key 無效或權限不足 (403)。模型: ${model}。請檢查 Vercel 環境變數中的 GROQ_API_KEY 是否正確設定，並確認 API Key 有權限使用此模型。`
+      } else if (response.status === 404) {
+        console.error('404 Not Found - 模型可能不存在或名稱錯誤')
+        errorMessage = `模型不存在 (404)。模型: ${model}。請確認模型名稱是否正確。`
+      } else if (response.status === 400) {
+        console.error('400 Bad Request - 請求格式可能有問題')
+        errorMessage = `請求格式錯誤 (400)。錯誤: ${errorMessage}`
       }
       
       return NextResponse.json(
@@ -116,14 +138,26 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    const data = await response.json()
+    let data
+    try {
+      data = JSON.parse(responseText)
+    } catch (parseError) {
+      console.error('Failed to parse response:', parseError)
+      console.error('Response text:', responseText)
+      return NextResponse.json(
+        { error: '無法解析 API 回應' },
+        { status: 500 }
+      )
+    }
+
     const reply = data.choices?.[0]?.message?.content ?? ''
 
     if (!reply) {
-      console.error('Groq API returned empty reply:', data)
+      console.error('Groq API returned empty reply:', JSON.stringify(data, null, 2))
       return NextResponse.json({ error: 'AI 回應為空' }, { status: 500 })
     }
 
+    console.log('✓ 成功取得 AI 回應，長度:', reply.length)
     return NextResponse.json({ reply })
   } catch (error) {
     console.error('AI Chat API error:', error)
