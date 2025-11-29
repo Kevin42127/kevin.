@@ -4,7 +4,6 @@ import './globals.css'
 import I18nProvider from '../components/I18nProvider'
 import GsapProvider from '../components/GsapProvider'
 import SmoothScrollProvider from '../components/SmoothScrollProvider'
-import AiAssistant from '../components/AiAssistant'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -46,7 +45,6 @@ export default function RootLayout({
           <GsapProvider>
             <I18nProvider>
               {children}
-              <AiAssistant />
             </I18nProvider>
           </GsapProvider>
         </SmoothScrollProvider>
