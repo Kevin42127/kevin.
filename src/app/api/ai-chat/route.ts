@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
     }
 
     // 使用單一可靠的模型
-    const model = 'llama-3.1-8b-versatile'
+    const model = 'openai/gpt-oss-20b'
 
     const requestBody = {
       model,
