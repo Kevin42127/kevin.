@@ -77,8 +77,16 @@ export async function POST(req: NextRequest) {
     }
 
     console.log('=== Groq API Request ===')
+    console.log('Method: POST')
+    console.log('URL: https://api.groq.com/openai/v1/chat/completions')
     console.log('Model:', model)
     console.log('Messages count:', requestBody.messages.length)
+    console.log('Request Body:', JSON.stringify(requestBody, null, 2))
+    console.log('Headers:', {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${apiKey.substring(0, 10)}...`,
+      'User-Agent': 'Mozilla/5.0'
+    })
     console.log('========================')
 
     const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
