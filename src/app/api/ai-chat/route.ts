@@ -64,8 +64,16 @@ export async function POST(req: NextRequest) {
       content: buildSystemMessage(detectedLang)
     }
 
-    const requestBody = {
-      model: 'llama-3.1-8b-instant',
+    // 嘗試多個模型，按優先順序
+    const modelsToTry = [
+      'llama-3.1-70b-versatile',
+      'llama-3.1-8b-versatile',
+      'mixtral-8x7b-32768',
+      'llama-3.1-8b-instant',
+      'gemma-7b-it'
+    ]
+
+    const baseRequestBody = {
       messages: [systemMessage, ...messages],
       temperature: 0.7,
       max_tokens: 600,
@@ -73,67 +81,69 @@ export async function POST(req: NextRequest) {
       stream: false
     }
 
-    console.log('=== Groq API Request ===')
-    console.log('Model:', requestBody.model)
-    console.log('Messages count:', requestBody.messages.length)
-    console.log('Request URL:', 'https://api.groq.com/openai/v1/chat/completions')
-    console.log('========================')
+    // 嘗試所有模型
+    for (const model of modelsToTry) {
+      console.log(`=== 嘗試模型: ${model} ===`)
+      
+      const requestBody = {
+        ...baseRequestBody,
+        model
+      }
 
-    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`
+      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`
+        },
+        body: JSON.stringify(requestBody)
+      })
+
+      console.log(`模型 ${model} 回應狀態:`, response.status)
+
+      if (response.ok) {
+        const data = await response.json()
+        const reply = data.choices?.[0]?.message?.content ?? ''
+        
+        if (reply) {
+          console.log(`✓ 成功使用模型: ${model}`)
+          return NextResponse.json({ reply })
+        } else {
+          console.error(`模型 ${model} 回應為空`)
+        }
+      } else {
+        const errorText = await response.text()
+        console.error(`模型 ${model} 失敗 (${response.status}):`, errorText)
+        
+        // 如果是 403，繼續嘗試下一個模型
+        if (response.status === 403) {
+          continue
+        }
+        
+        // 其他錯誤，返回錯誤訊息
+        let errorMessage = `AI 回應失敗 (${response.status})`
+        try {
+          const errorJson = JSON.parse(errorText)
+          errorMessage = errorJson.error?.message || errorJson.error || errorMessage
+        } catch {
+          errorMessage = errorText || errorMessage
+        }
+        
+        return NextResponse.json(
+          { error: errorMessage },
+          { status: 500 }
+        )
+      }
+    }
+
+    // 所有模型都失敗
+    console.error('所有模型都失敗')
+    return NextResponse.json(
+      { 
+        error: `API Key 無效或權限不足。已嘗試模型: ${modelsToTry.join(', ')}。請前往 Groq Console (https://console.groq.com/) 檢查 API Key 狀態。` 
       },
-      body: JSON.stringify(requestBody)
-    })
-
-    console.log('=== Groq API Response ===')
-    console.log('Status:', response.status)
-    console.log('Status Text:', response.statusText)
-    console.log('Headers:', Object.fromEntries(response.headers.entries()))
-    console.log('========================')
-
-    if (!response.ok) {
-      const errorText = await response.text()
-      console.error('Groq API Error:', response.status, errorText)
-      
-      let errorMessage = `AI 回應失敗 (${response.status})`
-      try {
-        const errorJson = JSON.parse(errorText)
-        errorMessage = errorJson.error?.message || errorJson.error || errorMessage
-      } catch {
-        errorMessage = errorText || errorMessage
-      }
-
-      if (response.status === 403) {
-        errorMessage = 'API Key 無效或權限不足。請前往 Groq Console (https://console.groq.com/) 檢查 API Key 狀態，或重新生成新的 API Key。'
-        console.error('403 Forbidden - Possible causes:')
-        console.error('1. API Key is invalid or expired - 請檢查 Groq Console')
-        console.error('2. API Key format is incorrect (should start with "gsk_")')
-        console.error('3. API Key has no access to the model - 確認模型名稱是否正確')
-        console.error('4. Environment variable not properly set in Vercel')
-        console.error('5. API Key used:', apiKey ? `${apiKey.substring(0, 10)}...${apiKey.substring(apiKey.length - 5)}` : 'N/A')
-        console.error('6. Request URL:', 'https://api.groq.com/openai/v1/chat/completions')
-        console.error('7. Request Model:', requestBody.model)
-        console.error('8. 建議：前往 https://console.groq.com/ 重新生成 API Key 並更新 Vercel 環境變數')
-      }
-      
-      return NextResponse.json(
-        { error: errorMessage },
-        { status: 500 }
-      )
-    }
-
-    const data = await response.json()
-    const reply = data.choices?.[0]?.message?.content ?? ''
-
-    if (!reply) {
-      console.error('Groq API returned empty reply:', data)
-      return NextResponse.json({ error: 'AI 回應為空' }, { status: 500 })
-    }
-
-    return NextResponse.json({ reply })
+      { status: 500 }
+    )
   } catch (error) {
     console.error('AI Chat API error:', error)
     const errorMessage = error instanceof Error ? error.message : '未知錯誤'
