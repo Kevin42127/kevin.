@@ -65,7 +65,8 @@ export async function POST(req: NextRequest) {
     }
 
     // 使用單一可靠的模型
-    const model = 'openai/gpt-oss-20b'
+    // 如果此模型不可用，可嘗試：llama-3.1-8b-versatile, mixtral-8x7b-32768
+    const model = 'llama-3.1-8b-versatile'
 
     const requestBody = {
       model,
