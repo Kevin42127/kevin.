@@ -27,7 +27,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: '缺少對話內容' }, { status: 400 })
     }
 
-    const rawApiKey = process.env.GROQ_API_KEY
+    // 統一使用 GROQ_API_KEY，同時支援 VITE_GROQ_API_KEY 以保持向後兼容
+    const rawApiKey = process.env.GROQ_API_KEY || process.env.VITE_GROQ_API_KEY
     const apiKey = rawApiKey?.trim()
 
     console.log('=== Environment Check ===')
