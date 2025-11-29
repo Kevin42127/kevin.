@@ -27,7 +27,21 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: '缺少對話內容' }, { status: 400 })
     }
 
-    const apiKey = process.env.GROQ_API_KEY
+    const rawApiKey = process.env.GROQ_API_KEY
+    const apiKey = rawApiKey?.trim()
+
+    console.log('=== Environment Check ===')
+    console.log('hasApiKey:', !!apiKey)
+    console.log('rawApiKeyLength:', rawApiKey?.length || 0)
+    console.log('apiKeyLength:', apiKey?.length || 0)
+    console.log('apiKeyPrefix:', apiKey?.substring(0, 7) || 'N/A')
+    console.log('apiKeyFirst10:', apiKey?.substring(0, 10) || 'N/A')
+    console.log('apiKeyLast10:', apiKey ? apiKey.substring(apiKey.length - 10) : 'N/A')
+    console.log('hasWhitespace:', rawApiKey !== apiKey)
+    console.log('nodeEnv:', process.env.NODE_ENV)
+    console.log('vercelEnv:', process.env.VERCEL_ENV)
+    console.log('allEnvKeys:', Object.keys(process.env).filter(k => k.includes('GROQ')))
+    console.log('========================')
 
     if (!apiKey) {
       console.error('GROQ_API_KEY is missing from process.env')
@@ -38,6 +52,7 @@ export async function POST(req: NextRequest) {
 
     if (!apiKey.startsWith('gsk_')) {
       console.error('GROQ_API_KEY format is invalid. Should start with "gsk_"')
+      console.error('Actual prefix:', apiKey.substring(0, 10))
       return NextResponse.json({ 
         error: 'GROQ_API_KEY 格式錯誤。API Key 應以 "gsk_" 開頭。' 
       }, { status: 500 })
@@ -86,6 +101,9 @@ export async function POST(req: NextRequest) {
         console.error('2. API Key format is incorrect (should start with "gsk_")')
         console.error('3. API Key has no access to the model')
         console.error('4. Environment variable not properly set in Vercel')
+        console.error('5. API Key used:', apiKey ? `${apiKey.substring(0, 10)}...${apiKey.substring(apiKey.length - 5)}` : 'N/A')
+        console.error('6. Request URL:', 'https://api.groq.com/openai/v1/chat/completions')
+        console.error('7. Request Model:', requestBody.model)
       }
       
       return NextResponse.json(
