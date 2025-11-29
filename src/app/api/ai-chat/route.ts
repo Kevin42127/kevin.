@@ -64,6 +64,27 @@ export async function POST(req: NextRequest) {
       content: buildSystemMessage(detectedLang)
     }
 
+    // 先嘗試獲取可用模型列表（用於診斷）
+    try {
+      const modelsResponse = await fetch('https://api.groq.com/openai/v1/models', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`
+        }
+      })
+      
+      if (modelsResponse.ok) {
+        const modelsData = await modelsResponse.json()
+        console.log('=== 可用模型列表 ===')
+        console.log('Models:', modelsData.data?.map((m: any) => m.id).join(', ') || 'N/A')
+        console.log('====================')
+      } else {
+        console.error('無法獲取模型列表:', modelsResponse.status)
+      }
+    } catch (err) {
+      console.error('獲取模型列表時發生錯誤:', err)
+    }
+
     // 使用單一可靠的模型
     // 如果此模型不可用，可嘗試：llama-3.1-8b-versatile, mixtral-8x7b-32768
     const model = 'llama-3.1-8b-versatile'
