@@ -64,17 +64,11 @@ export async function POST(req: NextRequest) {
       content: buildSystemMessage(detectedLang)
     }
 
-    // 嘗試多個模型，按優先順序（已移除停用的模型）
-    // 如果模型被停用，會自動跳過並嘗試下一個
-    const modelsToTry = [
-      'llama-3.3-70b-versatile',  // 替代已停用的 llama-3.1-70b-versatile
-      'llama-3.1-8b-versatile',
-      'mixtral-8x7b-32768',
-      'llama-3.1-8b-instant',
-      'gemma-7b-it'
-    ]
+    // 使用單一可靠的模型
+    const model = 'llama-3.1-8b-versatile'
 
-    const baseRequestBody = {
+    const requestBody = {
+      model,
       messages: [systemMessage, ...messages],
       temperature: 0.7,
       max_tokens: 600,
@@ -82,76 +76,55 @@ export async function POST(req: NextRequest) {
       stream: false
     }
 
-    // 嘗試所有模型
-    for (const model of modelsToTry) {
-      console.log(`=== 嘗試模型: ${model} ===`)
+    console.log('=== Groq API Request ===')
+    console.log('Model:', model)
+    console.log('Messages count:', requestBody.messages.length)
+    console.log('========================')
+
+    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
+      },
+      body: JSON.stringify(requestBody)
+    })
+
+    console.log('=== Groq API Response ===')
+    console.log('Status:', response.status)
+    console.log('========================')
+
+    if (!response.ok) {
+      const errorText = await response.text()
+      console.error('Groq API Error:', response.status, errorText)
       
-      const requestBody = {
-        ...baseRequestBody,
-        model
+      let errorMessage = `AI 回應失敗 (${response.status})`
+      try {
+        const errorJson = JSON.parse(errorText)
+        errorMessage = errorJson.error?.message || errorJson.error || errorMessage
+      } catch {
+        errorMessage = errorText || errorMessage
       }
 
-      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`
-        },
-        body: JSON.stringify(requestBody)
-      })
-
-      console.log(`模型 ${model} 回應狀態:`, response.status)
-
-      if (response.ok) {
-        const data = await response.json()
-        const reply = data.choices?.[0]?.message?.content ?? ''
-        
-        if (reply) {
-          console.log(`✓ 成功使用模型: ${model}`)
-          return NextResponse.json({ reply })
-        } else {
-          console.error(`模型 ${model} 回應為空`)
-        }
-      } else {
-        const errorText = await response.text()
-        console.error(`模型 ${model} 失敗 (${response.status}):`, errorText)
-        
-        // 檢查是否為停用模型或 403 錯誤，繼續嘗試下一個模型
-        const isDeprecated = errorText.includes('decommissioned') || 
-                            errorText.includes('no longer supported') ||
-                            errorText.includes('deprecated')
-        
-        if (response.status === 403 || isDeprecated) {
-          if (isDeprecated) {
-            console.log(`模型 ${model} 已停用，跳過並嘗試下一個模型`)
-          }
-          continue
-        }
-        
-        // 其他錯誤，返回錯誤訊息
-        let errorMessage = `AI 回應失敗 (${response.status})`
-        try {
-          const errorJson = JSON.parse(errorText)
-          errorMessage = errorJson.error?.message || errorJson.error || errorMessage
-        } catch {
-          errorMessage = errorText || errorMessage
-        }
-        
-        return NextResponse.json(
-          { error: errorMessage },
-          { status: 500 }
-        )
+      if (response.status === 403) {
+        errorMessage = 'API Key 無效或權限不足。請前往 Groq Console (https://console.groq.com/) 檢查 API Key 狀態。'
       }
+      
+      return NextResponse.json(
+        { error: errorMessage },
+        { status: 500 }
+      )
     }
 
-    // 所有模型都失敗
-    console.error('所有模型都失敗')
-    return NextResponse.json(
-      { 
-        error: `API Key 無效或權限不足。已嘗試模型: ${modelsToTry.join(', ')}。請前往 Groq Console (https://console.groq.com/) 檢查 API Key 狀態。` 
-      },
-      { status: 500 }
-    )
+    const data = await response.json()
+    const reply = data.choices?.[0]?.message?.content ?? ''
+
+    if (!reply) {
+      console.error('Groq API returned empty reply:', data)
+      return NextResponse.json({ error: 'AI 回應為空' }, { status: 500 })
+    }
+
+    return NextResponse.json({ reply })
   } catch (error) {
     console.error('AI Chat API error:', error)
     const errorMessage = error instanceof Error ? error.message : '未知錯誤'
