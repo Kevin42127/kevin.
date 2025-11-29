@@ -64,9 +64,9 @@ export async function POST(req: NextRequest) {
       content: buildSystemMessage(detectedLang)
     }
 
-    // 嘗試多個模型，按優先順序
+    // 嘗試多個模型，按優先順序（已移除停用的模型）
     const modelsToTry = [
-      'llama-3.1-70b-versatile',
+      'llama-3.3-70b-versatile',  // 替代已停用的 llama-3.1-70b-versatile
       'llama-3.1-8b-versatile',
       'mixtral-8x7b-32768',
       'llama-3.1-8b-instant',
