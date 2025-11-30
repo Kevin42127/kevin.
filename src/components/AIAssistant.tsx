@@ -24,6 +24,14 @@ const QUICK_QUESTIONS = [
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions'
 const MODEL = 'llama-3.1-8b-instant'
 
+// 允許的域名（用於額外的安全檢查）
+const ALLOWED_ORIGINS = [
+  'https://kevinoffical.vercel.app',
+  'http://localhost:3000',
+  'http://localhost:3001',
+  'http://127.0.0.1:3000',
+]
+
 const SYSTEM_PROMPT = `您是 Kevin（陳梓敬）個人網站的專屬 AI 助理。您的職責是回答訪客關於 Kevin 及其個人網站的問題。
 
 以下是 Kevin 的個人資訊：
@@ -124,6 +132,24 @@ export default function AIAssistant() {
   const handleSend = async (question?: string) => {
     const messageContent = question || input.trim()
     if (!messageContent || isLoading || isStreaming) return
+
+    // 檢查是否在允許的域名下運行（額外的安全檢查）
+    if (typeof window !== 'undefined') {
+      const currentOrigin = window.location.origin
+      const isAllowed = ALLOWED_ORIGINS.some(allowed => 
+        currentOrigin === allowed || currentOrigin.startsWith(allowed)
+      )
+      
+      if (!isAllowed) {
+        console.warn('當前域名不在允許列表中:', currentOrigin)
+        const errorMessage: Message = {
+          role: 'assistant',
+          content: 'AI 服務僅在授權域名下可用'
+        }
+        setMessages(prev => [...prev, errorMessage])
+        return
+      }
+    }
 
     const apiKey = process.env.NEXT_PUBLIC_GROQ_API_KEY
     if (!apiKey) {
