@@ -98,11 +98,23 @@ export default function AIAssistant() {
       })
 
       if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.error || '請求失敗')
+        let errorMessage = '請求失敗'
+        try {
+          const errorData = await response.json()
+          errorMessage = errorData.error || errorMessage
+        } catch (e) {
+          const errorText = await response.text()
+          errorMessage = errorText || errorMessage
+        }
+        throw new Error(errorMessage)
       }
 
       const reader = response.body?.getReader()
+      
+      if (!reader) {
+        throw new Error('無法讀取 AI 回應流')
+      }
+
       const decoder = new TextDecoder()
       let accumulatedContent = ''
 
@@ -113,7 +125,7 @@ export default function AIAssistant() {
 
       setMessages(prev => [...prev, assistantMessage])
 
-      if (reader) {
+      try {
         while (true) {
           const { done, value } = await reader.read()
           
@@ -123,8 +135,10 @@ export default function AIAssistant() {
           const lines = chunk.split('\n')
 
           for (const line of lines) {
+            if (!line.trim()) continue
+            
             if (line.startsWith('data: ')) {
-              const data = line.slice(6)
+              const data = line.slice(6).trim()
               if (data === '[DONE]') {
                 setIsStreaming(false)
                 setIsLoading(false)
@@ -145,11 +159,19 @@ export default function AIAssistant() {
                   })
                 }
               } catch (e) {
-                // 忽略解析錯誤
+                // 忽略解析錯誤，可能是空行或其他格式
               }
             }
           }
         }
+      } catch (streamError: any) {
+        console.error('讀取流式數據錯誤:', streamError)
+        throw new Error(`讀取 AI 回應時發生錯誤: ${streamError.message || '未知錯誤'}`)
+      }
+
+      // 如果沒有收到任何內容
+      if (!accumulatedContent.trim()) {
+        throw new Error('AI 沒有返回任何內容')
       }
 
       setIsStreaming(false)
@@ -159,13 +181,27 @@ export default function AIAssistant() {
         return
       }
       console.error('發送訊息錯誤:', error)
-      const errorMessage: Message = {
-        role: 'assistant',
-        content: '抱歉，發生錯誤。請稍後再試。'
-      }
-      setMessages(prev => [...prev, errorMessage])
+      
+      // 檢查最後一條訊息是否為空的助手訊息，如果是則替換它
+      setMessages(prev => {
+        const newMessages = [...prev]
+        const lastMessage = newMessages[newMessages.length - 1]
+        const errorMessage: Message = {
+          role: 'assistant',
+          content: error.message || '抱歉，發生錯誤。請稍後再試。'
+        }
+        
+        if (lastMessage && lastMessage.role === 'assistant' && lastMessage.content === '') {
+          newMessages[newMessages.length - 1] = errorMessage
+        } else {
+          newMessages.push(errorMessage)
+        }
+        return newMessages
+      })
+      
       setIsStreaming(false)
       setIsLoading(false)
+      abortControllerRef.current = null
     }
   }
 
@@ -472,4 +508,5 @@ export default function AIAssistant() {
     </>
   )
 }
+
 
