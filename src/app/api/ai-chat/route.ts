@@ -7,8 +7,20 @@ export async function POST(request: NextRequest) {
   try {
     const GROQ_API_KEY = process.env.GROQ_API_KEY?.trim()
     
+    // 調試日誌（部署後在 Vercel Runtime Logs 查看）
+    console.log('=== Groq API 環境變數調試 ===')
+    console.log('GROQ_API_KEY 是否存在:', !!process.env.GROQ_API_KEY)
+    console.log('GROQ_API_KEY 是否為空:', !GROQ_API_KEY)
+    console.log('GROQ_API_KEY 類型:', typeof GROQ_API_KEY)
+    console.log('GROQ_API_KEY 長度:', GROQ_API_KEY?.length || 0)
+    if (GROQ_API_KEY) {
+      console.log('GROQ_API_KEY 前 10 個字符:', GROQ_API_KEY.substring(0, 10))
+      console.log('GROQ_API_KEY 是否以 gsk_ 開頭:', GROQ_API_KEY.startsWith('gsk_'))
+    }
+    console.log('所有包含 GROQ 的環境變數鍵:', Object.keys(process.env).filter(k => k.toUpperCase().includes('GROQ')))
+    
     if (!GROQ_API_KEY) {
-      console.error('GROQ_API_KEY 環境變數未設置')
+      console.error('❌ GROQ_API_KEY 環境變數未設置或為空')
       return NextResponse.json(
         { error: 'AI 服務未配置，請聯繫管理員' },
         { status: 500 }
@@ -87,6 +99,10 @@ export async function POST(request: NextRequest) {
     ]
 
     if (stream) {
+      console.log('準備發送流式請求到 Groq API...')
+      console.log('API URL:', GROQ_API_URL)
+      console.log('Model:', MODEL)
+      
       const response = await fetch(GROQ_API_URL, {
         method: 'POST',
         headers: {
@@ -103,11 +119,34 @@ export async function POST(request: NextRequest) {
         }),
       })
 
+      console.log('Groq API 回應狀態:', response.status)
+      console.log('Groq API 回應是否成功:', response.ok)
+      console.log('Groq API 回應狀態文字:', response.statusText)
+
       if (!response.ok) {
         const errorData = await response.text()
-        console.error('Groq API 錯誤:', errorData)
+        console.error('❌ Groq API 錯誤詳情:')
+        console.error('Status:', response.status)
+        console.error('Status Text:', response.statusText)
+        console.error('Error Response:', errorData)
+        
+        // 嘗試解析錯誤訊息
+        let parsedError = null
+        try {
+          parsedError = JSON.parse(errorData)
+          console.error('解析後的錯誤:', parsedError)
+          if (parsedError.error?.message) {
+            console.error('錯誤訊息:', parsedError.error.message)
+          }
+        } catch (e) {
+          console.error('無法解析錯誤響應為 JSON')
+        }
+        
         return NextResponse.json(
-          { error: 'AI 服務暫時無法使用，請稍後再試' },
+          { 
+            error: 'AI 服務暫時無法使用，請稍後再試',
+            status: response.status
+          },
           { status: response.status }
         )
       }
@@ -171,6 +210,8 @@ export async function POST(request: NextRequest) {
       })
     }
 
+    console.log('準備發送非流式請求到 Groq API...')
+    
     const response = await fetch(GROQ_API_URL, {
       method: 'POST',
       headers: {
@@ -187,9 +228,22 @@ export async function POST(request: NextRequest) {
       }),
     })
 
+    console.log('Groq API 回應狀態:', response.status)
+    console.log('Groq API 回應是否成功:', response.ok)
+
     if (!response.ok) {
       const errorData = await response.text()
-      console.error('Groq API 錯誤:', errorData)
+      console.error('❌ Groq API 錯誤詳情:')
+      console.error('Status:', response.status)
+      console.error('Error Response:', errorData)
+      
+      try {
+        const parsedError = JSON.parse(errorData)
+        console.error('解析後的錯誤:', parsedError)
+      } catch (e) {
+        console.error('無法解析錯誤響應為 JSON')
+      }
+      
       return NextResponse.json(
         { error: 'AI 服務暫時無法使用，請稍後再試' },
         { status: response.status }
