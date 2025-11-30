@@ -142,7 +142,7 @@ export default function Experience() {
                         href={cert.certificateUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-5 py-2 border border-[var(--color-primary)] text-[var(--color-primary)] text-sm font-semibold tracking-wide uppercase transition-all duration-200 hover:bg-[var(--color-primary)] hover:text-white min-w-[140px] justify-center"
+                        className="inline-flex items-center gap-2 px-5 py-2 border border-[var(--color-primary)] text-[var(--color-primary)] text-sm font-semibold tracking-wide uppercase transition-all duration-200 hover:bg-[var(--color-primary)] hover:text-white min-w-[140px] justify-center rounded-[24px]"
                       >
                         <span>{t('experience.certifications.viewCertificate', '查看')}</span>
                         <span className="material-symbols-outlined text-base transition-colors duration-200">

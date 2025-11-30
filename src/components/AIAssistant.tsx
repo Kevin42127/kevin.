@@ -334,7 +334,7 @@ export default function AIAssistant() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-50 w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center bg-[var(--color-primary)] text-white border-2 border-[var(--color-primary)] shadow-[var(--shadow-md)] transition-all duration-200 hover:bg-[var(--color-primary-dark)] hover:border-[var(--color-primary-dark)] hover:shadow-[var(--shadow-lg)] active:scale-95"
+          className="fixed bottom-[120px] right-6 z-50 w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center bg-[var(--color-primary)] text-white border-2 border-[var(--color-primary)] shadow-[var(--shadow-md)] transition-all duration-200 hover:bg-[var(--color-primary-dark)] hover:border-[var(--color-primary-dark)] hover:shadow-[var(--shadow-lg)] active:scale-95 rounded-full"
           aria-label="開啟 AI 助理"
         >
           <span className="material-symbols-outlined text-2xl">
@@ -344,7 +344,7 @@ export default function AIAssistant() {
       )}
 
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-40 w-[calc(100vw-3rem)] sm:w-[90vw] sm:max-w-md h-[calc(100vh-8rem)] sm:h-[600px] md:h-[700px] max-h-[85vh] flex flex-col bg-[var(--color-surface)] border-2 border-[var(--color-divider)] shadow-[var(--shadow-lg)]">
+        <div className="fixed bottom-[120px] right-6 z-40 w-[calc(100vw-3rem)] sm:w-[90vw] sm:max-w-md h-[calc(100vh-8rem)] sm:h-[600px] md:h-[700px] max-h-[85vh] flex flex-col bg-[var(--color-surface)] border-2 border-[var(--color-divider)] shadow-[var(--shadow-lg)]">
           <div className="flex items-center justify-between p-4 border-b border-[var(--color-divider)] bg-[var(--color-surface-variant)]">
             <div className="flex items-center gap-2">
               <span className="material-symbols-outlined text-[var(--color-primary)]">

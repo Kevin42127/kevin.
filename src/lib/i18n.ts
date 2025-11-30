@@ -89,6 +89,10 @@ const zhResources = {
       title: 'AI ToolLaboratory - AI 工具集合',
       description: '蒐集實用 AI 工具與連結的索引站，支援分類瀏覽與快速導引'
     },
+    kevinAI: {
+      title: 'Kevin AI',
+      description: '整合 Groq AI 打造智能對話介面'
+    },
     aiCollaboration: 'AI協作',
     basicPractice: '基礎練習',
     apiLearning: 'API 學習',
@@ -634,6 +638,10 @@ const enResources = {
     aiToolLaboratory: {
       title: 'AI ToolLaboratory - AI Tools Collection',
       description: 'An index site collecting practical AI tools and links, supporting categorized browsing and fast navigation'
+    },
+    kevinAI: {
+      title: 'Kevin AI',
+      description: 'Integrating Groq AI to build an intelligent conversation interface'
     },
     aiCollaboration: 'AI Collaboration',
     basicPractice: 'Basic Practice',

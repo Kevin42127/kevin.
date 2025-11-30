@@ -97,6 +97,16 @@ export default function Portfolio() {
       github: '#',
       demo: 'https://toollaboratory.vercel.app/',
       featured: true
+    },
+    {
+      id: 10,
+      title: t('portfolio.kevinAI.title', 'Kevin AI'),
+      description: t('portfolio.kevinAI.description', 'AI 協作專案，運用 React 與 Vite 打造現代化應用'),
+      image: '/Kevin AI.png',
+      technologies: ['React', 'Vite', t('portfolio.aiCollaboration', 'AI協作')],
+      github: '#',
+      demo: 'https://kevinaiofficial.vercel.app/',
+      featured: true
     }
   ]
 

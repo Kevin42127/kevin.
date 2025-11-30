@@ -53,7 +53,7 @@ export default function Hero() {
             
             <button
               onClick={() => smoothScrollToElement('#portfolio', 0)}
-              className="btn-secondary min-h-[54px] w-full sm:w-auto sm:min-w-[180px] px-6 sm:px-8 uppercase tracking-wider"
+              className="btn-secondary min-h-[54px] w-full sm:w-auto sm:min-w-[180px] px-6 sm:px-8 uppercase tracking-wider rounded-none"
             >
               {t('hero.viewWork', '查看作品')}
             </button>
