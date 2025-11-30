@@ -12,8 +12,8 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const gmailUser = process.env.GMAIL_USER
-    const gmailPassword = process.env.GMAIL_APP_PASSWORD
+    const gmailUser = process.env.GMAIL_USER?.trim()
+    const gmailPassword = process.env.GMAIL_APP_PASSWORD?.trim()
 
     if (!gmailUser || !gmailPassword) {
       console.error('Gmail 環境變數未設置')

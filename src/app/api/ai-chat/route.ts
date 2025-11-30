@@ -5,7 +5,7 @@ const MODEL = 'llama-3.1-8b-instant'
 
 export async function POST(request: NextRequest) {
   try {
-    const GROQ_API_KEY = process.env.GROQ_API_KEY
+    const GROQ_API_KEY = process.env.GROQ_API_KEY?.trim()
     
     if (!GROQ_API_KEY) {
       console.error('GROQ_API_KEY 環境變數未設置')
