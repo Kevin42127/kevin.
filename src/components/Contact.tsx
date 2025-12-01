@@ -12,6 +12,12 @@ export default function Contact() {
     subject: '',
     message: ''
   })
+  const [errors, setErrors] = useState<{
+    name?: string
+    email?: string
+    subject?: string
+    message?: string
+  }>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [toast, setToast] = useState<{
     show: boolean
@@ -29,27 +35,48 @@ export default function Contact() {
   }, [toast])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
     })
+    if (errors[name as keyof typeof errors]) {
+      setErrors({
+        ...errors,
+        [name]: undefined
+      })
+    }
+  }
+
+  const validateForm = (): boolean => {
+    const newErrors: typeof errors = {}
+    
+    if (!formData.name.trim()) {
+      newErrors.name = t('contact.validation.nameRequired', '請填寫姓名')
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = t('contact.validation.emailRequired', '請填寫電子郵件')
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = t('contact.validation.emailInvalid', '請輸入有效的電子郵件地址')
+    }
+    
+    if (!formData.subject.trim()) {
+      newErrors.subject = t('contact.validation.subjectRequired', '請填寫主題')
+    }
+    
+    if (!formData.message.trim()) {
+      newErrors.message = t('contact.validation.messageRequired', '請填寫訊息內容')
+    }
+    
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    const form = e.currentTarget as HTMLFormElement
-    
-    if (!form.checkValidity()) {
-      const inputs = form.querySelectorAll('input[required], textarea[required]')
-      for (const input of Array.from(inputs)) {
-        if (input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement) {
-          if (!input.validity.valid) {
-            input.reportValidity()
-            break
-          }
-        }
-      }
+    if (!validateForm()) {
       return
     }
     
@@ -73,6 +100,7 @@ export default function Contact() {
           message: t('contact.success', '訊息已發送！')
         })
         setFormData({ name: '', email: '', subject: '', message: '' })
+        setErrors({})
       } else {
         setToast({
           show: true,
@@ -98,7 +126,7 @@ export default function Contact() {
         <div className="fixed top-20 right-4 sm:top-24 sm:right-6 z-[10001]">
           <div
             className={`flex items-center space-x-3 px-6 py-4 border border-[var(--color-divider)] shadow-[0_20px_45px_rgba(15,15,40,0.12)] bg-white ${
-              toast.type === 'success' ? 'text-[#0c5b3a]' : 'text-[#7f1d1d]'
+              toast.type === 'success' ? 'text-[#0c5b3a]' : 'text-[#ef4444]'
             }`}
           >
             <span className="material-symbols-outlined text-base">
@@ -137,7 +165,7 @@ export default function Contact() {
             <h3 className="text-xl sm:text-2xl font-bold text-[#1b1d2c] mb-4 sm:mb-6">
               {t('contact.sendMessage', '留下訊息')}
             </h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} noValidate className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="form-field">
                   <div className="floating-field">
@@ -147,14 +175,18 @@ export default function Contact() {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      required
-                      className="floating-input peer"
+                      className={`floating-input peer ${errors.name ? 'border-[#ef4444] focus:border-[#ef4444]' : ''}`}
                       placeholder=" "
                     />
                     <label htmlFor="name" className="floating-label">
                       {t('contact.name', '姓名')} *
                     </label>
                   </div>
+                  {errors.name && (
+                    <p className="text-sm text-[#ef4444] mt-1.5">
+                      {errors.name}
+                    </p>
+                  )}
                 </div>
                 <div className="form-field">
                   <div className="floating-field">
@@ -164,14 +196,18 @@ export default function Contact() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      required
-                      className="floating-input peer"
+                      className={`floating-input peer ${errors.email ? 'border-[#ef4444] focus:border-[#ef4444]' : ''}`}
                       placeholder=" "
                     />
                     <label htmlFor="email" className="floating-label">
                       {t('contact.email', '電子郵件')} *
                     </label>
                   </div>
+                  {errors.email && (
+                    <p className="text-sm text-[#ef4444] mt-1.5">
+                      {errors.email}
+                    </p>
+                  )}
                 </div>
               </div>
               
@@ -183,14 +219,18 @@ export default function Contact() {
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    required
-                    className="floating-input peer"
+                    className={`floating-input peer ${errors.subject ? 'border-[#ef4444] focus:border-[#ef4444]' : ''}`}
                     placeholder=" "
                   />
                   <label htmlFor="subject" className="floating-label">
                     {t('contact.subject', '主題')} *
                   </label>
                 </div>
+                {errors.subject && (
+                  <p className="text-sm text-[#ef4444] mt-1.5">
+                    {errors.subject}
+                  </p>
+                )}
               </div>
               
               <div className="form-field">
@@ -200,15 +240,19 @@ export default function Contact() {
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    required
                     rows={6}
-                    className="floating-textarea peer resize-none"
+                    className={`floating-textarea peer resize-none ${errors.message ? 'border-[#ef4444] focus:border-[#ef4444]' : ''}`}
                     placeholder=" "
                   />
                   <label htmlFor="message" className="floating-label">
                     {t('contact.message', '訊息')} *
                   </label>
                 </div>
+                {errors.message && (
+                  <p className="text-sm text-[#ef4444] mt-1.5">
+                    {errors.message}
+                  </p>
+                )}
               </div>
               
               <button

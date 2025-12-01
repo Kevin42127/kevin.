@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import { useTranslationSafe } from '../hooks/useTranslationSafe'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -8,18 +9,34 @@ interface Message {
 }
 
 const STORAGE_KEY = 'ai-assistant-messages'
-const DEFAULT_MESSAGE: Message = {
-  role: 'assistant',
-  content: '您好！我是 Kevin 的 AI 助理，可以協助您快速了解 Kevin 的專業背景、技能、作品集和職涯資訊。請問有什麼想了解的嗎？'
+
+const DEFAULT_MESSAGES = {
+  zh: {
+    role: 'assistant' as const,
+    content: '您好！我是 Kevin 的 AI 助理，可以協助您快速了解 Kevin 的專業背景、技能、作品集和職涯資訊。請問有什麼想了解的嗎？'
+  },
+  en: {
+    role: 'assistant' as const,
+    content: 'Hello! I am Kevin\'s AI assistant. I can help you quickly understand Kevin\'s professional background, skills, portfolio, and career information. What would you like to know?'
+  }
 }
 
-const QUICK_QUESTIONS = [
-  'Kevin 的核心技能是什麼？',
-  'Kevin 有哪些前端開發經驗？',
-  '可以介紹一下 Kevin 的作品集嗎？',
-  'Kevin 的專業背景和學歷？',
-  'Kevin 有哪些專案經驗？'
-]
+const QUICK_QUESTIONS = {
+  zh: [
+    'Kevin 的核心技能是什麼？',
+    'Kevin 有哪些前端開發經驗？',
+    '可以介紹一下 Kevin 的作品集嗎？',
+    'Kevin 的專業背景和學歷？',
+    'Kevin 有哪些專案經驗？'
+  ],
+  en: [
+    'What are Kevin\'s core skills?',
+    'What frontend development experience does Kevin have?',
+    'Can you introduce Kevin\'s portfolio?',
+    'What is Kevin\'s professional background and education?',
+    'What project experience does Kevin have?'
+  ]
+}
 
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions'
 const MODEL = 'llama-3.1-8b-instant'
@@ -83,7 +100,11 @@ const SYSTEM_PROMPT = `您是 Kevin（陳梓敬）個人網站的專屬 AI 助�
 3. 針對 HR 常見問題（如技能匹配、專案經驗、團隊協作能力等）提供詳細且具體的回答
 4. 如果問題超出 Kevin 的個人資訊範圍，禮貌地引導詢問者通過聯繫表單直接聯繫 Kevin
 5. 強調 Kevin 的優勢：UI/UX 設計與前端開發的結合、與 AI 協作的經驗、持續學習的能力
-6. 使用繁體中文回答（如果詢問者使用英文，也可以用英文回答）
+6. 【重要】語言回應規則：
+   - 如果用戶使用英文提問，請用英文回答
+   - 如果用戶使用繁體中文或簡體中文提問，請用繁體中文回答
+   - 自動檢測用戶輸入的語言，並使用相同語言回應
+   - 保持專業且自然的語言風格
 
 【回答風格】
 - 專業但親和：展現 Kevin 的專業能力，同時保持友善的溝通風格
@@ -94,8 +115,14 @@ const SYSTEM_PROMPT = `您是 Kevin（陳梓敬）個人網站的專屬 AI 助�
 請根據以上資訊，以專業且友善的態度協助 HR 和招聘方了解 Kevin。`
 
 export default function AIAssistant() {
+  const { i18n } = useTranslationSafe()
+  const currentLanguage = (i18n?.language || 'zh') as 'zh' | 'en'
+  
+  const getDefaultMessage = (): Message => DEFAULT_MESSAGES[currentLanguage]
+  const getQuickQuestions = (): string[] => QUICK_QUESTIONS[currentLanguage]
+  
   const [isOpen, setIsOpen] = useState(false)
-  const [messages, setMessages] = useState<Message[]>([DEFAULT_MESSAGE])
+  const [messages, setMessages] = useState<Message[]>([getDefaultMessage()])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [isStreaming, setIsStreaming] = useState(false)
@@ -113,13 +140,30 @@ export default function AIAssistant() {
       try {
         const parsed = JSON.parse(savedMessages)
         if (Array.isArray(parsed) && parsed.length > 0) {
-          setMessages(parsed)
+          const firstMessage = parsed[0]
+          const isDefaultMessage = 
+            firstMessage.role === 'assistant' && 
+            (firstMessage.content === DEFAULT_MESSAGES.zh.content || 
+             firstMessage.content === DEFAULT_MESSAGES.en.content)
+          
+          if (isDefaultMessage) {
+            parsed[0] = DEFAULT_MESSAGES[currentLanguage]
+            setMessages(parsed)
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed))
+          } else {
+            setMessages(parsed)
+          }
+        } else {
+          setMessages([DEFAULT_MESSAGES[currentLanguage]])
         }
       } catch (error) {
         console.error('載入對話歷史失敗:', error)
+        setMessages([DEFAULT_MESSAGES[currentLanguage]])
       }
+    } else {
+      setMessages([DEFAULT_MESSAGES[currentLanguage]])
     }
-  }, [])
+  }, [currentLanguage])
 
   useEffect(() => {
     if (messages.length > 0) {
@@ -145,7 +189,9 @@ export default function AIAssistant() {
       console.error('NEXT_PUBLIC_GROQ_API_KEY 環境變數未設置')
       const errorMessage: Message = {
         role: 'assistant',
-        content: 'AI 服務未配置，請聯繫管理員'
+        content: currentLanguage === 'en' 
+          ? 'AI service is not configured. Please contact the administrator.'
+          : 'AI 服務未配置，請聯繫管理員'
       }
       setMessages(prev => [...prev, errorMessage])
       return
@@ -296,7 +342,9 @@ export default function AIAssistant() {
         const lastMessage = newMessages[newMessages.length - 1]
         const errorMessage: Message = {
           role: 'assistant',
-          content: error.message || '抱歉，發生錯誤。請稍後再試。'
+          content: error.message || (currentLanguage === 'en' 
+            ? 'Sorry, an error occurred. Please try again later.'
+            : '抱歉，發生錯誤。請稍後再試。')
         }
         
         if (lastMessage && lastMessage.role === 'assistant' && lastMessage.content === '') {
@@ -325,7 +373,7 @@ export default function AIAssistant() {
   }
 
   const handleClear = () => {
-    setMessages([DEFAULT_MESSAGE])
+    setMessages([getDefaultMessage()])
     localStorage.removeItem(STORAGE_KEY)
   }
 
@@ -335,7 +383,7 @@ export default function AIAssistant() {
         <button
           onClick={() => setIsOpen(true)}
           className="fixed bottom-[120px] right-6 z-50 w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center bg-[var(--color-primary)] text-white border-2 border-[var(--color-primary)] shadow-[var(--shadow-md)] transition-all duration-200 hover:bg-[var(--color-primary-dark)] hover:border-[var(--color-primary-dark)] hover:shadow-[var(--shadow-lg)] active:scale-95 rounded-full"
-          aria-label="開啟 AI 助理"
+          aria-label={currentLanguage === 'en' ? 'Open AI Assistant' : '開啟 AI 助理'}
         >
           <span className="material-symbols-outlined text-2xl">
             smart_toy
@@ -350,13 +398,21 @@ export default function AIAssistant() {
               <span className="material-symbols-outlined text-[var(--color-primary)]">
                 smart_toy
               </span>
-              <h3 className="font-semibold text-lg">AI 助理</h3>
+              <h3 className="font-semibold text-lg">
+                {currentLanguage === 'en' ? 'AI Assistant' : 'AI 助理'}
+              </h3>
+              <div className="flex items-center gap-1.5">
+                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                <span className="text-xs text-[var(--color-text-muted)]">
+                  {currentLanguage === 'en' ? 'Online' : '在線中'}
+                </span>
+              </div>
             </div>
             <div className="flex items-center gap-2">
               <button
                 onClick={handleClear}
                 className="w-8 h-8 flex items-center justify-center hover:bg-[var(--color-surface)] transition-colors"
-                aria-label="清除對話"
+                aria-label={currentLanguage === 'en' ? 'Clear conversation' : '清除對話'}
               >
                 <span className="material-symbols-outlined text-sm">
                   delete_outline
@@ -365,7 +421,7 @@ export default function AIAssistant() {
               <button
                 onClick={() => setIsOpen(false)}
                 className="w-8 h-8 flex items-center justify-center hover:bg-[var(--color-surface)] transition-colors"
-                aria-label="關閉"
+                aria-label={currentLanguage === 'en' ? 'Close' : '關閉'}
               >
                 <span className="material-symbols-outlined text-sm">
                   close
@@ -571,9 +627,11 @@ export default function AIAssistant() {
 
           {messages.length === 1 && (
             <div className="px-4 py-3 border-t border-[var(--color-divider)] bg-[var(--color-surface-variant)] max-h-[120px] sm:max-h-none overflow-y-auto">
-              <div className="text-xs text-[var(--color-text-muted)] mb-2 font-medium">快捷問題：</div>
+              <div className="text-xs text-[var(--color-text-muted)] mb-2 font-medium">
+                {currentLanguage === 'en' ? 'Quick Questions:' : '快捷問題：'}
+              </div>
               <div className="flex flex-wrap gap-2">
-                {QUICK_QUESTIONS.map((question, index) => (
+                {getQuickQuestions().map((question, index) => (
                   <button
                     key={index}
                     onClick={() => handleQuickQuestion(question)}
@@ -595,7 +653,7 @@ export default function AIAssistant() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder="輸入訊息..."
+                placeholder={currentLanguage === 'en' ? 'Type a message...' : '輸入訊息...'}
                 disabled={isLoading || isStreaming}
                 className="flex-1 px-4 py-2 bg-white border border-[var(--color-divider)] text-[rgb(var(--foreground-rgb))] focus:outline-none focus:border-[var(--color-primary)] disabled:opacity-50"
               />
@@ -603,7 +661,7 @@ export default function AIAssistant() {
                 onClick={() => handleSend()}
                 disabled={isLoading || isStreaming || !input.trim()}
                 className="px-4 py-2 bg-[var(--color-primary)] text-white border-2 border-[var(--color-primary)] transition-all duration-200 hover:bg-[var(--color-primary-dark)] hover:border-[var(--color-primary-dark)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
-                aria-label="發送"
+                aria-label={currentLanguage === 'en' ? 'Send' : '發送'}
               >
                 <span className="material-symbols-outlined">
                   send
