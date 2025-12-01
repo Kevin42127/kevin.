@@ -105,6 +105,7 @@ const SYSTEM_PROMPT = `您是 Kevin（陳梓敬）個人網站的專屬 AI 助�
    - 如果用戶使用繁體中文或簡體中文提問，請用繁體中文回答
    - 自動檢測用戶輸入的語言，並使用相同語言回應
    - 保持專業且自然的語言風格
+   - 嚴格遵守：用戶用什麼語言提問，就用什麼語言回答，絕對不要混用語言
 
 【回答風格】
 - 專業但親和：展現 Kevin 的專業能力，同時保持友善的溝通風格
@@ -132,6 +133,21 @@ export default function AIAssistant() {
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  const detectLanguage = (text: string): 'zh' | 'en' => {
+    const englishPattern = /[a-zA-Z]/g
+    const chinesePattern = /[\u4e00-\u9fa5]/g
+    const englishMatches = (text.match(englishPattern) || []).length
+    const chineseMatches = (text.match(chinesePattern) || []).length
+    
+    if (englishMatches > 0 && englishMatches >= chineseMatches * 2) {
+      return 'en'
+    }
+    if (chineseMatches > 0) {
+      return 'zh'
+    }
+    return englishMatches > 0 ? 'en' : 'zh'
   }
 
   useEffect(() => {
@@ -211,11 +227,18 @@ export default function AIAssistant() {
     abortControllerRef.current = new AbortController()
 
     try {
+      const userLanguage = detectLanguage(messageContent)
+      const languageInstruction = userLanguage === 'en'
+        ? '\n\n【CRITICAL LANGUAGE RULE】You MUST respond in English ONLY. The user asked in English, so you must respond in English. Do not use Chinese or any other language. Respond in clear, professional English.'
+        : '\n\n【重要語言規則】請務必使用繁體中文回答。用戶使用中文提問，請只用繁體中文回答。不要使用英文或其他語言。使用清晰、專業的繁體中文回答。'
+      
+      const dynamicSystemPrompt = SYSTEM_PROMPT + languageInstruction
+      
       // 組合消息，包含 system prompt
       const messagesWithSystem = [
         {
           role: 'system' as const,
-          content: SYSTEM_PROMPT
+          content: dynamicSystemPrompt
         },
         ...updatedMessages.map(msg => ({
           role: msg.role,
