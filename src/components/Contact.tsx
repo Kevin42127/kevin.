@@ -125,7 +125,7 @@ export default function Contact() {
       {toast.show && (
         <div className="fixed top-20 right-4 sm:top-24 sm:right-6 z-[10001]">
           <div
-            className={`flex items-center space-x-3 px-6 py-4 border border-[var(--color-divider)] shadow-[0_20px_45px_rgba(15,15,40,0.12)] bg-white ${
+            className={`flex items-center space-x-3 px-6 py-4 border border-[var(--color-divider)] shadow-[0_20px_45px_rgba(15,15,40,0.12)] bg-white rounded-xl ${
               toast.type === 'success' ? 'text-[#0c5b3a]' : 'text-[#ef4444]'
             }`}
           >
@@ -160,7 +160,7 @@ export default function Contact() {
         <div className="max-w-2xl mx-auto">
           <motion.div
             transition={{ duration: 0.8 }}
-            className="bg-white border border-[var(--color-divider)] p-6 sm:p-8 shadow-[0_20px_35px_rgba(15,15,40,0.08)]"
+            className="bg-white border border-[var(--color-divider)] p-6 sm:p-8 shadow-[0_20px_35px_rgba(15,15,40,0.08)] rounded-xl"
           >
             <h3 className="text-xl sm:text-2xl font-bold text-[#1b1d2c] mb-4 sm:mb-6">
               {t('contact.sendMessage', '留下訊息')}

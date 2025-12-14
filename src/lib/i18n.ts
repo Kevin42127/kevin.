@@ -49,6 +49,7 @@ const zhResources = {
   portfolio: {
     title: '我的作品',
     subtitle: '精選專案',
+    note: '備註：如果網頁打開是空白畫面，請按 Ctrl + F5 重新整理',
     viewProject: '查看專案',
     viewCode: '查看程式碼',
     view: '查看',
@@ -91,7 +92,35 @@ const zhResources = {
     },
     kevinAI: {
       title: 'Kevin AI',
-      description: '整合 Groq AI 打造智能對話介面'
+      description: '整合 Groq AI 打造智能對話介面，提供即時 AI 對話體驗'
+    },
+    lineBot: {
+      title: 'LINE BOT',
+      description: '運用 TypeScript 與 Express 打造的 LINE 聊天機器人，整合 AI 協作功能，提供智能對話服務'
+    },
+    chefAI: {
+      title: 'ChefAI',
+      description: '運用 Vue 與 Vite 打造 AI 食譜生成平台，提供智能食譜推薦與生成功能'
+    },
+    aiTeacher: {
+      title: 'AI老師',
+      description: '運用 Vue 與 Vite 打造 AI 教學助手平台，提供智能學習輔助功能'
+    },
+    sumVid: {
+      title: 'SumVid',
+      description: '讓 AI 為您快速提取影片重點'
+    },
+    discordAIBot: {
+      title: 'Discord AI Bot',
+      description: '運用 Python 打造的 Discord AI 聊天機器人，提供智能對話服務'
+    },
+    acadAI: {
+      title: 'AcadAI',
+      description: 'AI 自動幫你整理商品重點'
+    },
+    taiwanWeatherAI: {
+      title: '臺灣氣象AI助手',
+      description: '查詢天氣與 AI 問答'
     },
     aiCollaboration: 'AI協作',
     basicPractice: '基礎練習',
@@ -152,7 +181,8 @@ const zhResources = {
     contactInfo: '聯繫資訊',
     location: '彰化縣, 台灣',
     madeWith: 'Made with ❤️ by Kevin',
-    copyright: '© 2024 Kevin. All rights reserved.'
+    copyright: '© 2024 Kevin. All rights reserved.',
+    note: '備註：如果網頁打開是空白畫面，請按 Ctrl + F5 重新整理'
   },
   socialMedia: {
     linkedin: 'LinkedIn',
@@ -599,6 +629,7 @@ const enResources = {
   portfolio: {
     title: 'My Portfolio',
     subtitle: 'Featured Projects',
+    note: 'Note: If the page appears blank, please press Ctrl + F5 to refresh',
     viewProject: 'View Project',
     viewCode: 'View Code',
     view: 'View',
@@ -641,7 +672,35 @@ const enResources = {
     },
     kevinAI: {
       title: 'Kevin AI',
-      description: 'Integrating Groq AI to build an intelligent conversation interface'
+      description: 'Integrating Groq AI to build an intelligent conversation interface, providing real-time AI chat experience'
+    },
+    lineBot: {
+      title: 'LINE BOT',
+      description: 'LINE chatbot built with TypeScript and Express, integrating AI collaboration features to provide intelligent conversation services'
+    },
+    chefAI: {
+      title: 'ChefAI',
+      description: 'AI recipe generation platform built with Vue and Vite, providing intelligent recipe recommendations and generation features'
+    },
+    aiTeacher: {
+      title: 'AI Teacher',
+      description: 'AI teaching assistant platform built with Vue and Vite, providing intelligent learning support features'
+    },
+    sumVid: {
+      title: 'SumVid',
+      description: 'Let AI quickly extract video highlights for you'
+    },
+    discordAIBot: {
+      title: 'Discord AI Bot',
+      description: 'Discord AI chatbot built with Python, providing intelligent conversation services'
+    },
+    acadAI: {
+      title: 'AcadAI',
+      description: 'AI automatically organizes product highlights for you'
+    },
+    taiwanWeatherAI: {
+      title: 'Taiwan Weather AI Assistant',
+      description: 'Weather queries and AI Q&A'
     },
     aiCollaboration: 'AI Collaboration',
     basicPractice: 'Basic Practice',
@@ -702,7 +761,8 @@ const enResources = {
     contactInfo: 'Contact Info',
     location: 'Changhua County, Taiwan',
     madeWith: 'Made with ❤️ by Kevin',
-    copyright: '© 2024 Kevin. All rights reserved.'
+    copyright: '© 2024 Kevin. All rights reserved.',
+    note: 'Note: If the page appears blank, please press Ctrl + F5 to refresh'
   },
   socialMedia: {
     linkedin: 'LinkedIn',

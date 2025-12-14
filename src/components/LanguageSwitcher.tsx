@@ -23,7 +23,7 @@ export default function LanguageSwitcher() {
   ]
 
   const buttonClasses =
-    'flex items-center justify-center gap-1 text-[#1f1d30] hover:text-[var(--color-primary)] transition-all duration-300 px-3 py-2 border border-[var(--color-divider)] bg-white min-h-[44px] uppercase tracking-wide text-xs'
+    'flex items-center justify-center gap-1 text-[#1f1d30] hover:text-[var(--color-primary)] transition-all duration-300 px-3 py-2 border border-[var(--color-divider)] bg-white min-h-[44px] uppercase tracking-wide text-xs rounded-lg'
 
   if (!mounted) {
     return (
@@ -52,7 +52,7 @@ export default function LanguageSwitcher() {
       </button>
 
       {isOpen && (
-        <div className="absolute bottom-full lg:bottom-auto lg:top-full right-0 mb-2 lg:mt-5 w-52 bg-white border border-[var(--color-divider)] shadow-[0_20px_45px_rgba(15,15,40,0.08)] z-[100]">
+        <div className="absolute bottom-full lg:bottom-auto lg:top-full right-0 mb-2 lg:mt-5 w-52 bg-white border border-[var(--color-divider)] shadow-[0_20px_45px_rgba(15,15,40,0.08)] z-[100] rounded-xl">
           {languages.map((language) => (
             <button
               key={language.code}

@@ -152,7 +152,7 @@ export default function ShareButton({
             onClick={() => setIsOpen(false)}
           />
 
-          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-white rounded-none shadow-[0_25px_45px_rgba(15,15,40,0.12)] border border-[var(--color-divider)] p-4 z-50 min-w-[280px]">
+          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-white rounded-xl shadow-[0_25px_45px_rgba(15,15,40,0.12)] border border-[var(--color-divider)] p-4 z-50 min-w-[280px]">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-semibold text-[#1f1d30]">
                   {t('share.shareTo', '分享到')}

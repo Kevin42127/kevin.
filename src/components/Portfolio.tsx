@@ -9,103 +9,82 @@ export default function Portfolio() {
   const projects = [
     {
       id: 1,
-      title: t('portfolio.simpleNotes.title', 'AuthPrototype'),
-      description: t('portfolio.simpleNotes.description', '我的第一個完整前端專案，學習 Angular/Tailwindcss 基礎，建立登入/註冊的原型設計'),
-      image: '/simple-notes.jpg',
-      technologies: ['Angular', 'Tailwind CSS', t('portfolio.aiCollaboration', 'AI協作')],
-      github: '#',
-      demo: 'https://authprototype.vercel.app/',
-      featured: true
-    },
-    {
-      id: 2,
-      title: t('portfolio.weatherApp.title', '天氣儀表板'),
-      description: t('portfolio.weatherApp.description', '學習 API 整合的專案，掌握外部數據獲取和現代化 UI 設計'),
-      image: '/weather-app.jpg',
-      technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Open-Meteo API', t('portfolio.aiCollaboration', 'AI協作'), t('portfolio.apiLearning', 'API 學習')],
-      github: '#',
-      demo: 'https://weather-eight-black.vercel.app/',
-      featured: true
-    },
-    {
-      id: 3,
-      title: t('portfolio.taskblue.title', 'TaskBlue'),
-      description: t('portfolio.taskblue.description', 'React 狀態管理練習專案，學習複雜組件間的數據流管理'),
-      image: '/taskblue.jpg',
-      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', t('portfolio.aiCollaboration', 'AI協作'), t('portfolio.stateManagementPractice', '狀態管理練習')],
-      github: '#',
-      demo: 'https://taskblue.vercel.app/',
-      featured: true
-    },
-    {
-      id: 4,
-      title: t('portfolio.resumecraft.title', 'ResumeCraft'),
-      description: t('portfolio.resumecraft.description', '履歷生成器'),
-      image: '/resumecraft.jpg',
-      technologies: ['Angular', 'TypeScript', 'Webpack', 'PWA', t('portfolio.aiCollaboration', 'AI協作')],
-      github: '#',
-      demo: 'https://dozle.vercel.app/',
-      featured: true
-    },
-    {
-      id: 5,
-      title: t('portfolio.tinylink.title', 'TinyLink'),
-      description: t('portfolio.tinylink.description', '後端概念學習專案，理解數據庫設計、API 開發和部署流程'),
-      image: '/tinylink.jpg',
-      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', t('portfolio.aiCollaboration', 'AI協作'), t('portfolio.backendConceptsLearning', '後端概念學習')],
-      github: '#',
-      demo: 'https://tinylink-seven.vercel.app/',
-      featured: true
-    },
-    {
-      id: 6,
-      title: t('portfolio.personalWebsite.title', 'Kevin. - 個人網站'),
-      description: t('portfolio.personalWebsite.description', '綜合技能展示專案，整合所學技術打造個人品牌網站'),
-      image: '/personal-website.jpg',
-      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', t('portfolio.aiCollaboration', 'AI協作'), t('portfolio.comprehensiveShowcase', '綜合展示')],
-      github: '#',
-      demo: 'https://kevinoffical.vercel.app/',
-      featured: true
-    }
-    ,
-    {
-      id: 7,
-      title: t('portfolio.devkit.title', 'DevKit - 開發者工具大全'),
-      description: t('portfolio.devkit.description', '精選 100+ 開發者工具的一站式網站，分類清晰、快速存取常用工具'),
-      image: '/DevKit.png?v=20251116',
-      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', t('portfolio.aiCollaboration', 'AI協作')],
-      github: '#',
-      demo: 'https://devkitofficial.vercel.app/',
-      featured: true
-    },
-    {
-      id: 8,
-      title: t('portfolio.virid.title', 'Virid - CSS 網格佈局'),
-      description: t('portfolio.virid.description', '以 CSS Grid 佈局實作的單頁網站，使用純 HTML/CSS/JavaScript，強調版面編排與層次表現'),
-      image: '/Virid.png?v=20251116',
-      technologies: ['HTML', 'CSS', 'JavaScript'],
-      github: '#',
-      demo: 'https://virid-seven.vercel.app/',
-      featured: true
-    },
-    {
-      id: 9,
-      title: t('portfolio.aiToolLaboratory.title', 'AI ToolLaboratory - AI 工具集合'),
-      description: t('portfolio.aiToolLaboratory.description', '蒐集實用 AI 工具與連結的索引站，支援分類瀏覽與快速導引'),
-      image: '/ToolLaboratory.png?v=20251116',
-      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', t('portfolio.aiCollaboration', 'AI協作')],
-      github: '#',
-      demo: 'https://toollaboratory.vercel.app/',
-      featured: true
-    },
-    {
-      id: 10,
       title: t('portfolio.kevinAI.title', 'Kevin AI'),
-      description: t('portfolio.kevinAI.description', 'AI 協作專案，運用 React 與 Vite 打造現代化應用'),
+      description: t('portfolio.kevinAI.description', '整合 Groq AI 打造智能對話介面'),
       image: '/Kevin AI.png',
       technologies: ['React', 'Vite', t('portfolio.aiCollaboration', 'AI協作')],
       github: '#',
       demo: 'https://kevinaiofficial.vercel.app/',
+      featured: true
+    },
+    {
+      id: 2,
+      title: t('portfolio.lineBot.title', 'LINE BOT'),
+      description: t('portfolio.lineBot.description', '運用 TypeScript 與 Express 打造的 LINE 聊天機器人，整合 AI 協作功能'),
+      image: '/LINE BOT.png',
+      technologies: ['TypeScript', 'Express', t('portfolio.aiCollaboration', 'AI協作')],
+      github: '#',
+      demo: 'https://lin.ee/ivLUnsp',
+      featured: true
+    },
+    {
+      id: 3,
+      title: t('portfolio.chefAI.title', 'ChefAI'),
+      description: t('portfolio.chefAI.description', '運用 Vue 與 Vite 打造 AI 食譜生成平台'),
+      image: '/ChefAI.png',
+      technologies: ['Vue', 'Vite', t('portfolio.aiCollaboration', 'AI協作')],
+      github: '#',
+      demo: 'https://chefaiofficial.vercel.app/',
+      featured: true
+    },
+    {
+      id: 4,
+      title: t('portfolio.aiTeacher.title', 'AI老師'),
+      description: t('portfolio.aiTeacher.description', '運用 Vue 與 Vite 打造的 AI 協作專案'),
+      image: '/AI老師.png',
+      technologies: ['Vue', 'Vite', t('portfolio.aiCollaboration', 'AI協作')],
+      github: '#',
+      demo: 'https://homeaiofficial.vercel.app/',
+      featured: true
+    },
+    {
+      id: 5,
+      title: t('portfolio.sumVid.title', 'SumVid'),
+      description: t('portfolio.sumVid.description', '讓 AI 為您快速提取影片重點'),
+      image: '/SumVid.png',
+      technologies: ['HTML', 'CSS', 'JavaScript', 'Chrome Extension API', t('portfolio.aiCollaboration', 'AI協作')],
+      github: '#',
+      demo: 'https://chromewebstore.google.com/detail/sumvid/dmcnnoefjaebkagfhpjnofbcmldnfedp',
+      featured: true
+    },
+    {
+      id: 6,
+      title: t('portfolio.discordAIBot.title', 'Discord AI Bot'),
+      description: t('portfolio.discordAIBot.description', '運用 Python 打造的 Discord AI 聊天機器人，提供智能對話服務'),
+      image: '/DISCORD.png',
+      technologies: ['Python', t('portfolio.aiCollaboration', 'AI協作')],
+      github: '#',
+      demo: 'https://discord.com/oauth2/authorize?client_id=1447853825057619981&permissions=2147601408&integration_type=0&scope=bot+applications.commands',
+      featured: true
+    },
+    {
+      id: 7,
+      title: t('portfolio.acadAI.title', 'AcadAI'),
+      description: t('portfolio.acadAI.description', 'AI 自動幫你整理商品重點'),
+      image: '/AcadAI.png',
+      technologies: ['HTML', 'CSS', 'JavaScript', 'Chrome Extension API', t('portfolio.aiCollaboration', 'AI協作')],
+      github: '#',
+      demo: 'https://chromewebstore.google.com/detail/acadai/accefaglmgngpkinapofhodbkpafmjok',
+      featured: true
+    },
+    {
+      id: 8,
+      title: t('portfolio.taiwanWeatherAI.title', '臺灣氣象AI助手'),
+      description: t('portfolio.taiwanWeatherAI.description', '查詢天氣與 AI 問答'),
+      image: '/臺灣氣象AI助手.png',
+      technologies: ['HTML', 'CSS', 'JavaScript', 'Chrome Extension API', t('portfolio.aiCollaboration', 'AI協作')],
+      github: '#',
+      demo: 'https://chromewebstore.google.com/detail/%E8%87%BA%E7%81%A3%E6%B0%A3%E8%B1%A1ai%E5%8A%A9%E6%89%8B/oiefmbmfndlpejflldfknalgpljnbced',
       featured: true
     }
   ]
@@ -127,9 +106,9 @@ export default function Portfolio() {
           {projects.map((project) => (
             <article
               key={project.id}
-              className="h-full flex flex-col gap-5 border border-[var(--color-divider)] bg-white p-6 shadow-[0_25px_45px_rgba(15,15,40,0.08)]"
+              className="h-full flex flex-col gap-5 border border-[var(--color-divider)] bg-white p-6 shadow-[0_25px_45px_rgba(15,15,40,0.08)] rounded-xl"
             >
-              <figure className="h-48 border border-[var(--color-divider)] overflow-hidden flex items-center justify-center bg-[var(--color-panel)]">
+              <figure className="h-48 border border-[var(--color-divider)] overflow-hidden flex items-center justify-center bg-[var(--color-panel)] rounded-xl">
                 {project.image ? (
                   <img
                     src={project.image}
@@ -154,7 +133,7 @@ export default function Portfolio() {
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 border border-[var(--color-divider)] text-[#1d47ff] text-xs tracking-wide bg-[var(--color-chip)]"
+                      className="px-3 py-1 border border-[var(--color-divider)] text-[#1d47ff] text-xs tracking-wide bg-[var(--color-chip)] rounded-lg"
                     >
                       {tech}
                     </span>
@@ -186,6 +165,11 @@ export default function Portfolio() {
                     <span className="material-symbols-outlined text-base">code</span>
                     <span>{t('portfolio.github', 'GitHub')}</span>
                   </a>
+                )}
+                {project.id !== 5 && project.id !== 6 && project.id !== 7 && project.id !== 8 && (
+                  <p className="text-xs text-[#6b6371] mt-2 text-center">
+                    {t('portfolio.note', '備註：如果網頁打開是空白畫面，請按 Ctrl + F5 重新整理')}
+                  </p>
                 )}
               </div>
             </article>

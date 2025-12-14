@@ -245,7 +245,7 @@ export default function DropdownSearch() {
             onChange={handleSearch}
             onFocus={() => setIsOpen(true)}
             placeholder={t('search.placeholder', '搜索...')}
-            className="w-full pl-10 pr-10 py-2 text-sm bg-white border border-[var(--color-divider)] focus:border-[var(--color-primary)] transition-all duration-300 placeholder-[#a59ca9] text-[#1f1d30]"
+            className="w-full pl-10 pr-10 py-2 text-sm bg-white border border-[var(--color-divider)] focus:border-[var(--color-primary)] transition-all duration-300 placeholder-[#a59ca9] text-[#1f1d30] rounded-lg"
           />
           {query && (
             <button
@@ -259,7 +259,7 @@ export default function DropdownSearch() {
       </div>
 
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-[var(--color-divider)] shadow-[0_25px_45px_rgba(15,15,40,0.08)] z-[100] max-h-96 overflow-y-auto">
+        <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-[var(--color-divider)] shadow-[0_25px_45px_rgba(15,15,40,0.08)] z-[100] max-h-96 overflow-y-auto rounded-xl">
           {isLoading ? (
             <div className="p-4 text-center">
               <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[var(--color-primary)] mx-auto"></div>
@@ -276,7 +276,7 @@ export default function DropdownSearch() {
                   className="w-full text-left p-3 hover:bg-[var(--color-surface-variant)] border-b border-[var(--color-divider)] last:border-b-0 transition-colors duration-300"
                 >
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 border border-[var(--color-divider)] flex items-center justify-center text-[var(--color-primary)]">
+                    <div className="w-8 h-8 border border-[var(--color-divider)] flex items-center justify-center text-[var(--color-primary)] rounded-lg">
                       <span className="material-symbols-outlined text-base">{result.icon}</span>
                     </div>
                     <div className="flex-1 min-w-0">
@@ -314,7 +314,7 @@ export default function DropdownSearch() {
                     onClick={() => handleQuickLinkClick(link.href)}
                     className="group w-full flex items-center gap-3 px-4 py-2.5 hover:bg-[var(--color-surface-variant)] border-b border-[var(--color-divider)] last:border-b-0 transition-colors duration-300"
                   >
-                    <div className={`w-8 h-8 flex items-center justify-center border border-[var(--color-divider)] ${link.bgColor} ${link.color}`}>
+                    <div className={`w-8 h-8 flex items-center justify-center border border-[var(--color-divider)] ${link.bgColor} ${link.color} rounded-lg`}>
                       <span className="material-symbols-outlined text-base">{link.icon}</span>
                     </div>
                     <div className="flex-1 text-left min-w-0">

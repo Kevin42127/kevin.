@@ -8,7 +8,7 @@ export default function Hero() {
   const { t, i18n } = useTranslationSafe()
   
   const currentLanguage = i18n?.language || 'zh'
-  const cvFileName = currentLanguage === 'en' ? 'Kevin_CV_EN.pdf' : 'Kevin_CV_TC.pdf'
+  const cvFileName = '陳梓敬_AI工程師_履歷.pdf'
   const cvPath = `/${cvFileName}`
 
   
@@ -53,7 +53,7 @@ export default function Hero() {
             
             <button
               onClick={() => smoothScrollToElement('#portfolio', 0)}
-              className="btn-secondary min-h-[54px] w-full sm:w-auto sm:min-w-[180px] px-6 sm:px-8 uppercase tracking-wider rounded-none"
+              className="btn-secondary min-h-[54px] w-full sm:w-auto sm:min-w-[180px] px-6 sm:px-8 uppercase tracking-wider"
             >
               {t('hero.viewWork', '查看作品')}
             </button>

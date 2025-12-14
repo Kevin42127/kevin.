@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 
 interface Message {
@@ -63,15 +64,14 @@ const SYSTEM_PROMPT = `您是 Kevin（陳梓敬）個人網站的專屬 AI 助�
 軟技能：團隊協作 (85%), 問題解決 (90%), 溝通表達 (80%), 持續學習 (95%), 創意思考 (85%), 時間管理 (80%)
 
 【作品集】
-1. AuthPrototype - 第一個完整前端專案，學習 Angular/Tailwindcss 基礎，建立登入/註冊的原型設計
-2. 天氣儀表板 - 學習 API 整合的專案，掌握外部數據獲取和現代化 UI 設計
-3. TaskBlue - React 狀態管理練習專案，學習複雜組件間的數據流管理
-4. ResumeCraft - 履歷生成器
-5. TinyLink - 後端概念學習專案，理解數據庫設計、API 開發和部署流程
-6. Kevin. - 個人網站 - 綜合技能展示專案，整合所學技術打造個人品牌網站
-7. DevKit - 開發者工具大全 - 精選 100+ 開發者工具的一站式網站
-8. Virid - CSS 網格佈局 - 以 CSS Grid 佈局實作的單頁網站
-9. AI ToolLaboratory - AI 工具集合 - 蒐集實用 AI 工具與連結的索引站
+1. Kevin AI - 整合 Groq AI 打造智能對話介面，提供即時 AI 對話體驗（技術：React, Vite, AI協作）
+2. LINE BOT - 運用 TypeScript 與 Express 打造的 LINE 聊天機器人，整合 AI 協作功能，提供智能對話服務（技術：TypeScript, Express, AI協作）
+3. ChefAI - 運用 Vue 與 Vite 打造 AI 食譜生成平台，提供智能食譜推薦與生成功能（技術：Vue, Vite, AI協作）
+4. AI老師 - 運用 Vue 與 Vite 打造 AI 教學助手平台，提供智能學習輔助功能（技術：Vue, Vite, AI協作）
+5. SumVid - 讓 AI 為您快速提取影片重點（技術：HTML, CSS, JavaScript, Chrome Extension API, AI協作）
+6. Discord AI Bot - 運用 Python 打造的 Discord AI 聊天機器人，提供智能對話服務（技術：Python, AI協作）
+7. AcadAI - AI 自動幫你整理商品重點（技術：HTML, CSS, JavaScript, Chrome Extension API, AI協作）
+8. 臺灣氣象AI助手 - 查詢天氣與 AI 問答（技術：HTML, CSS, JavaScript, Chrome Extension API, AI協作）
 
 【相關經驗】
 - 語言能力：中文（母語）、英文（中級）
@@ -402,20 +402,33 @@ export default function AIAssistant() {
 
   return (
     <>
-      {!isOpen && (
-        <button
-          onClick={() => setIsOpen(true)}
-          className="fixed bottom-[120px] right-6 z-50 w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center bg-[var(--color-primary)] text-white border-2 border-[var(--color-primary)] shadow-[var(--shadow-md)] transition-all duration-200 hover:bg-[var(--color-primary-dark)] hover:border-[var(--color-primary-dark)] hover:shadow-[var(--shadow-lg)] active:scale-95 rounded-full"
-          aria-label={currentLanguage === 'en' ? 'Open AI Assistant' : '開啟 AI 助理'}
-        >
-          <span className="material-symbols-outlined text-2xl">
-            smart_toy
-          </span>
-        </button>
-      )}
+      <AnimatePresence>
+        {!isOpen && (
+          <motion.button
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+            onClick={() => setIsOpen(true)}
+            className="fixed bottom-[120px] right-6 z-50 w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center bg-[var(--color-primary)] text-white border-2 border-[var(--color-primary)] shadow-[var(--shadow-md)] transition-all duration-200 hover:bg-[var(--color-primary-dark)] hover:border-[var(--color-primary-dark)] hover:shadow-[var(--shadow-lg)] active:scale-95 rounded-full"
+            aria-label={currentLanguage === 'en' ? 'Open AI Assistant' : '開啟 AI 助理'}
+          >
+            <span className="material-symbols-outlined text-2xl">
+              smart_toy
+            </span>
+          </motion.button>
+        )}
+      </AnimatePresence>
 
-      {isOpen && (
-        <div className="fixed bottom-[120px] right-6 z-40 w-[calc(100vw-3rem)] sm:w-[90vw] sm:max-w-md h-[calc(100vh-8rem)] sm:h-[600px] md:h-[700px] max-h-[85vh] flex flex-col bg-[var(--color-surface)] border-2 border-[var(--color-divider)] shadow-[var(--shadow-lg)]">
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+            className="fixed inset-0 sm:inset-auto sm:bottom-[120px] sm:right-6 z-[60] w-full h-full sm:w-[90vw] sm:max-w-sm md:max-w-md lg:max-w-lg sm:h-[500px] md:h-[550px] lg:h-[600px] sm:max-h-[85vh] flex flex-col bg-[var(--color-surface)] border-2 border-[var(--color-divider)] shadow-[var(--shadow-lg)] sm:rounded-xl"
+          >
           <div className="flex items-center justify-between p-4 border-b border-[var(--color-divider)] bg-[var(--color-surface-variant)]">
             <div className="flex items-center gap-2">
               <span className="material-symbols-outlined text-[var(--color-primary)]">
@@ -434,7 +447,7 @@ export default function AIAssistant() {
             <div className="flex items-center gap-2">
               <button
                 onClick={handleClear}
-                className="w-8 h-8 flex items-center justify-center hover:bg-[var(--color-surface)] transition-colors"
+                className="w-8 h-8 flex items-center justify-center hover:bg-[var(--color-surface)] transition-colors rounded-lg"
                 aria-label={currentLanguage === 'en' ? 'Clear conversation' : '清除對話'}
               >
                 <span className="material-symbols-outlined text-sm">
@@ -443,7 +456,7 @@ export default function AIAssistant() {
               </button>
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-8 h-8 flex items-center justify-center hover:bg-[var(--color-surface)] transition-colors"
+                className="w-8 h-8 flex items-center justify-center hover:bg-[var(--color-surface)] transition-colors rounded-lg"
                 aria-label={currentLanguage === 'en' ? 'Close' : '關閉'}
               >
                 <span className="material-symbols-outlined text-sm">
@@ -460,14 +473,14 @@ export default function AIAssistant() {
                 className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} items-start gap-2`}
               >
                 {message.role === 'assistant' && (
-                  <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-[var(--color-primary)] text-white">
+                  <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-[var(--color-primary)] text-white rounded-lg">
                     <span className="material-symbols-outlined text-base">
                       smart_toy
                     </span>
                   </div>
                 )}
                 <div
-                  className={`max-w-[85%] ${
+                  className={`max-w-[85%] rounded-lg ${
                     message.role === 'user'
                       ? 'bg-[var(--color-primary)] text-white'
                       : 'bg-[var(--color-surface-variant)] text-[rgb(var(--foreground-rgb))] border border-[var(--color-divider)]'
@@ -626,7 +639,7 @@ export default function AIAssistant() {
                   </div>
                 </div>
                 {message.role === 'user' && (
-                  <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-[var(--color-primary)] text-white">
+                  <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-[var(--color-primary)] text-white rounded-lg">
                     <span className="material-symbols-outlined text-base">
                       person
                     </span>
@@ -636,7 +649,7 @@ export default function AIAssistant() {
             ))}
             {(isLoading || isStreaming) && (
               <div className="flex justify-start">
-                <div className="bg-[var(--color-surface-variant)] border border-[var(--color-divider)] p-3">
+                <div className="bg-[var(--color-surface-variant)] border border-[var(--color-divider)] p-3 rounded-lg">
                   <div className="flex gap-1">
                     <div className="w-2 h-2 bg-[var(--color-primary)] opacity-60 animate-bounce"></div>
                     <div className="w-2 h-2 bg-[var(--color-primary)] opacity-60 animate-bounce" style={{ animationDelay: '0.1s' }}></div>
@@ -659,7 +672,7 @@ export default function AIAssistant() {
                     key={index}
                     onClick={() => handleQuickQuestion(question)}
                     disabled={isLoading || isStreaming}
-                    className="px-3 py-1.5 text-xs bg-white border border-[var(--color-divider)] text-[rgb(var(--foreground-rgb))] hover:bg-[var(--color-surface)] hover:border-[var(--color-primary)] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 whitespace-nowrap"
+                    className="px-3 py-1.5 text-xs bg-white border border-[var(--color-divider)] text-[rgb(var(--foreground-rgb))] hover:bg-[var(--color-surface)] hover:border-[var(--color-primary)] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 whitespace-nowrap rounded-lg"
                   >
                     {question}
                   </button>
@@ -678,12 +691,12 @@ export default function AIAssistant() {
                 onKeyPress={handleKeyPress}
                 placeholder={currentLanguage === 'en' ? 'Type a message...' : '輸入訊息...'}
                 disabled={isLoading || isStreaming}
-                className="flex-1 px-4 py-2 bg-white border border-[var(--color-divider)] text-[rgb(var(--foreground-rgb))] focus:outline-none focus:border-[var(--color-primary)] disabled:opacity-50"
+                className="flex-1 px-4 py-2 bg-white border border-[var(--color-divider)] text-[rgb(var(--foreground-rgb))] focus:outline-none focus:border-[var(--color-primary)] disabled:opacity-50 rounded-lg"
               />
               <button
                 onClick={() => handleSend()}
                 disabled={isLoading || isStreaming || !input.trim()}
-                className="px-4 py-2 bg-[var(--color-primary)] text-white border-2 border-[var(--color-primary)] transition-all duration-200 hover:bg-[var(--color-primary-dark)] hover:border-[var(--color-primary-dark)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                className="px-4 py-2 bg-[var(--color-primary)] text-white border-2 border-[var(--color-primary)] transition-all duration-200 hover:bg-[var(--color-primary-dark)] hover:border-[var(--color-primary-dark)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center rounded-lg"
                 aria-label={currentLanguage === 'en' ? 'Send' : '發送'}
               >
                 <span className="material-symbols-outlined">
@@ -692,8 +705,9 @@ export default function AIAssistant() {
               </button>
             </div>
           </div>
-        </div>
-      )}
+        </motion.div>
+        )}
+      </AnimatePresence>
     </>
   )
 }

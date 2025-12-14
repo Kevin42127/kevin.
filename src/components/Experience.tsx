@@ -100,7 +100,7 @@ export default function Experience() {
                 <motion.article
                   key={skill.language}
                   transition={{ duration: 0.6 }}
-                  className="border border-[var(--color-divider)] bg-white p-6 flex flex-col gap-2 shadow-[0_25px_45px_rgba(15,15,40,0.08)]"
+                  className="border border-[var(--color-divider)] bg-white p-6 flex flex-col gap-2 shadow-[0_25px_45px_rgba(15,15,40,0.08)] rounded-xl"
                 >
                   <span className="text-xs text-[#6b6371] tracking-[0.35em] uppercase">
                     {t('experience.languageLabel', '語言')}
@@ -126,7 +126,7 @@ export default function Experience() {
                 <motion.article
                   key={cert.name}
                   transition={{ duration: 0.6 }}
-                  className="border border-[var(--color-divider)] bg-white p-6 flex flex-col gap-4 shadow-[0_25px_45px_rgba(15,15,40,0.08)]"
+                  className="border border-[var(--color-divider)] bg-white p-6 flex flex-col gap-4 shadow-[0_25px_45px_rgba(15,15,40,0.08)] rounded-xl"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
@@ -168,7 +168,7 @@ export default function Experience() {
                 <motion.article
                   key={activity.title}
                   transition={{ duration: 0.6 }}
-                  className="border border-[var(--color-divider)] bg-white p-6 flex flex-col gap-5 h-full shadow-[0_25px_45px_rgba(15,15,40,0.08)]"
+                  className="border border-[var(--color-divider)] bg-white p-6 flex flex-col gap-5 h-full shadow-[0_25px_45px_rgba(15,15,40,0.08)] rounded-xl"
                 >
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center justify-between text-sm text-[#6b6371]">
@@ -207,7 +207,7 @@ export default function Experience() {
                       {activity.skills.map((skill, idx) => (
                         <span
                           key={idx}
-                          className="px-3 py-1 border border-[var(--color-divider)] text-[#1d47ff] text-sm tracking-wide bg-[var(--color-chip)]"
+                          className="px-3 py-1 border border-[var(--color-divider)] text-[#1d47ff] text-sm tracking-wide bg-[var(--color-chip)] rounded-lg"
                         >
                           {skill}
                         </span>
