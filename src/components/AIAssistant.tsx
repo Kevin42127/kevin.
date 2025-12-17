@@ -101,12 +101,13 @@ const SYSTEM_PROMPT = `您是 Kevin（陳梓敬）個人網站的專屬 AI 助�
 3. 針對 HR 常見問題（如技能匹配、專案經驗、團隊協作能力等）提供詳細且具體的回答
 4. 如果問題超出 Kevin 的個人資訊範圍，禮貌地引導詢問者通過聯繫表單直接聯繫 Kevin
 5. 強調 Kevin 的優勢：UI/UX 設計與前端開發的結合、與 AI 協作的經驗、持續學習的能力
-6. 【重要】語言回應規則：
-   - 如果用戶使用英文提問，請用英文回答
-   - 如果用戶使用繁體中文或簡體中文提問，請用繁體中文回答
+6. 【重要】語言回應規則（最高優先級）：
+   - 如果用戶使用英文提問，請用英文回答，禁止使用任何中文
+   - 如果用戶使用繁體中文或簡體中文提問，請用繁體中文回答，禁止使用任何英文
    - 自動檢測用戶輸入的語言，並使用相同語言回應
    - 保持專業且自然的語言風格
    - 嚴格遵守：用戶用什麼語言提問，就用什麼語言回答，絕對不要混用語言
+   - 這是強制性規則，違反此規則即為錯誤回應
 
 【回答風格】
 - 專業但親和：展現 Kevin 的專業能力，同時保持友善的溝通風格
@@ -280,8 +281,8 @@ export default function AIAssistant() {
     try {
       const userLanguage = detectLanguage(messageContent)
       const languageInstruction = userLanguage === 'en'
-        ? '\n\n【CRITICAL LANGUAGE RULE】You MUST respond in English ONLY. The user asked in English, so you must respond in English. Do not use Chinese or any other language. Respond in clear, professional English.'
-        : '\n\n【重要語言規則】請務必使用繁體中文回答。用戶使用中文提問，請只用繁體中文回答。不要使用英文或其他語言。使用清晰、專業的繁體中文回答。'
+        ? '\n\n【CRITICAL LANGUAGE RULE - HIGHEST PRIORITY】You MUST respond in English ONLY. The user asked in English, so you must respond in English. Do not use Chinese or any other language. Respond in clear, professional English. If you use any Chinese characters, you have violated this rule.'
+        : '\n\n【重要語言規則 - 最高優先級】您必須且只能使用繁體中文回答。用戶使用中文提問，請絕對只用繁體中文回答。禁止使用英文、簡體中文或其他語言。使用清晰、專業的繁體中文回答。如果您使用任何英文單詞或簡體中文，即違反此規則。這是強制性要求，必須嚴格遵守。'
       
       const dynamicSystemPrompt = SYSTEM_PROMPT + languageInstruction
       
@@ -455,19 +456,28 @@ export default function AIAssistant() {
     <>
       <AnimatePresence>
         {!isOpen && (
-          <motion.button
+          <motion.div
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            onClick={() => setIsOpen(true)}
-            className="fixed bottom-[120px] right-6 z-50 w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center bg-[var(--color-primary)] text-white border-2 border-[var(--color-primary)] shadow-[var(--shadow-md)] transition-all duration-200 hover:bg-[var(--color-primary-dark)] hover:border-[var(--color-primary-dark)] hover:shadow-[var(--shadow-lg)] active:scale-95 rounded-full"
-            aria-label={currentLanguage === 'en' ? 'Open AI Assistant' : '開啟 AI 助理'}
+            className="fixed bottom-[120px] right-6 z-50"
           >
-            <span className="material-symbols-outlined text-2xl">
-              smart_toy
-            </span>
-          </motion.button>
+            <div className="relative w-14 h-14 sm:w-16 sm:h-16">
+              <motion.button
+                onClick={() => setIsOpen(true)}
+                className="ai-button-pulse relative w-full h-full flex items-center justify-center bg-[var(--color-primary)] text-white border-2 border-[var(--color-primary)] shadow-[var(--shadow-md)] transition-all duration-200 hover:bg-[var(--color-primary-dark)] hover:border-[var(--color-primary-dark)] hover:shadow-[var(--shadow-lg)] hover:scale-105 active:scale-95 rounded-full"
+                aria-label={currentLanguage === 'en' ? 'Open AI Assistant' : '開啟 AI 助理'}
+              >
+                <span className="material-symbols-outlined text-2xl">
+                  smart_toy
+                </span>
+                <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white flex items-center justify-center">
+                  <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+                </span>
+              </motion.button>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
 
