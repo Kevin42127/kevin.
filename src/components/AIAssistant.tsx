@@ -138,14 +138,14 @@ export default function AIAssistant() {
     getScrollElement: () => parentRef.current,
     estimateSize: (index) => {
       const message = messages[index]
-      if (!message) return 100
+      if (!message) return 120
       const ref = messageRefs.current.get(index)
       if (ref) {
-        return Math.max(ref.offsetHeight, 80)
+        return Math.max(ref.offsetHeight + 24, 100)
       }
       const contentLength = message.content.length
       const estimatedLines = Math.ceil(contentLength / 50)
-      return Math.max(80, estimatedLines * 24 + 80)
+      return Math.max(100, estimatedLines * 24 + 104)
     },
     overscan: 3,
     measureElement: (element) => element?.getBoundingClientRect().height ?? 100,
@@ -522,10 +522,14 @@ export default function AIAssistant() {
 
           <div 
             ref={parentRef}
-            className="flex-1 overflow-y-auto p-4 sm:p-4 scroll-smooth"
+            className="flex-1 overflow-y-auto scroll-smooth"
             style={{ 
               contain: 'strict',
               overscrollBehavior: 'contain',
+              padding: '16px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '10px',
             }}
             onWheel={(e) => {
               const element = e.currentTarget
@@ -578,38 +582,43 @@ export default function AIAssistant() {
                       width: '100%',
                       transform: `translateY(${virtualItem.start}px)`,
                     }}
-                    className="mb-4"
                   >
                     <div
-                      className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} items-start gap-2`}
+                      className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} items-start`}
+                      style={{ marginBottom: '10px' }}
                     >
                       {message.role === 'assistant' && (
-                        <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-[var(--color-primary)] text-white rounded-lg">
+                        <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-[var(--color-primary)] text-white rounded-lg mr-2">
                           <span className="material-symbols-outlined text-base">
                             smart_toy
                           </span>
                         </div>
                       )}
-                    <div
-                      className={`max-w-[85%] rounded-lg ${
-                        message.role === 'user'
-                          ? 'bg-[var(--color-primary)] text-white'
-                          : 'bg-[var(--color-surface-variant)] text-[rgb(var(--foreground-rgb))] border border-[var(--color-divider)]'
-                      }`}
-                      style={{
-                        padding: message.role === 'user' ? '0.75rem 1rem' : '1rem 1.25rem',
-                        boxShadow: message.role === 'assistant' ? '0 2px 8px rgba(0, 0, 0, 0.08)' : 'none',
-                        maxHeight: '70vh',
-                        overflowY: 'auto',
-                        overflowX: 'hidden',
-                      }}
-                    >
+                      <div
+                        className={`inline-block rounded-2xl ${
+                          message.role === 'user'
+                            ? 'bg-[var(--color-primary)] text-white rounded-br-sm'
+                            : 'bg-[var(--color-surface-variant)] text-[rgb(var(--foreground-rgb))] border border-[var(--color-divider)] rounded-bl-sm'
+                        }`}
+                        style={{
+                          padding: message.role === 'user' ? '10px 12px' : '10px 12px',
+                          boxShadow: message.role === 'assistant' ? '0 1px 0 rgba(0, 0, 0, 0.04) inset' : 'none',
+                          maxWidth: '70%',
+                          maxHeight: '70vh',
+                          overflowY: 'auto',
+                          overflowX: 'hidden',
+                          lineHeight: '1.35',
+                          whiteSpace: 'pre-wrap',
+                          wordBreak: 'break-word',
+                        }}
+                      >
                       <div 
-                        className="text-sm leading-relaxed"
+                        className="text-sm"
                         style={{
                           wordBreak: 'break-word',
                           overflowWrap: 'break-word',
-                          lineHeight: '1.75',
+                          lineHeight: '1.35',
+                          fontSize: '15px',
                         }}
                       >
                     {message.role === 'assistant' ? (() => {
@@ -752,13 +761,13 @@ export default function AIAssistant() {
                       )}
                       </div>
                     </div>
-                    {message.role === 'user' && (
-                      <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-[var(--color-primary)] text-white rounded-lg">
-                        <span className="material-symbols-outlined text-base">
-                          person
-                        </span>
-                      </div>
-                    )}
+                      {message.role === 'user' && (
+                        <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-[var(--color-primary)] text-white rounded-lg ml-2">
+                          <span className="material-symbols-outlined text-base">
+                            person
+                          </span>
+                        </div>
+                      )}
                     </div>
                   </div>
                 )
