@@ -604,8 +604,6 @@ export default function AIAssistant() {
                           padding: message.role === 'user' ? '10px 12px' : '10px 12px',
                           boxShadow: message.role === 'assistant' ? '0 1px 0 rgba(0, 0, 0, 0.04) inset' : 'none',
                           maxWidth: '70%',
-                          maxHeight: '70vh',
-                          overflowY: 'auto',
                           overflowX: 'hidden',
                           lineHeight: '1.35',
                           whiteSpace: 'pre-wrap',
