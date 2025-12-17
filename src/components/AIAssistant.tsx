@@ -1,7 +1,8 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useVirtualizer } from '@tanstack/react-virtual'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 
 interface Message {
@@ -127,12 +128,36 @@ export default function AIAssistant() {
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [isStreaming, setIsStreaming] = useState(false)
-  const messagesEndRef = useRef<HTMLDivElement>(null)
+  const parentRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const abortControllerRef = useRef<AbortController | null>(null)
+  const messageRefs = useRef<Map<number, HTMLDivElement>>(new Map())
+
+  const virtualizer = useVirtualizer({
+    count: messages.length,
+    getScrollElement: () => parentRef.current,
+    estimateSize: (index) => {
+      const message = messages[index]
+      if (!message) return 100
+      const ref = messageRefs.current.get(index)
+      if (ref) {
+        return Math.max(ref.offsetHeight, 80)
+      }
+      const contentLength = message.content.length
+      const estimatedLines = Math.ceil(contentLength / 50)
+      return Math.max(80, estimatedLines * 24 + 60)
+    },
+    overscan: 3,
+    measureElement: (element) => element?.getBoundingClientRect().height ?? 100,
+  })
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    if (messages.length > 0) {
+      virtualizer.scrollToIndex(messages.length - 1, {
+        align: 'end',
+        behavior: 'smooth',
+      })
+    }
   }
 
   const detectLanguage = (text: string): 'zh' | 'en' => {
@@ -189,12 +214,38 @@ export default function AIAssistant() {
 
   useEffect(() => {
     if (isOpen) {
-      scrollToBottom()
-      setTimeout(() => {
-        inputRef.current?.focus()
-      }, 100)
+      document.body.style.overflow = 'hidden'
+      if (messages.length > 0) {
+        setTimeout(() => {
+          virtualizer.measure()
+          scrollToBottom()
+          inputRef.current?.focus()
+        }, 100)
+      }
+    } else {
+      document.body.style.overflow = ''
     }
-  }, [messages, isOpen, isStreaming])
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [messages.length, isOpen])
+
+  useEffect(() => {
+    if (isStreaming && messages.length > 0) {
+      virtualizer.measure()
+      const timer = setInterval(() => {
+        virtualizer.measure()
+        scrollToBottom()
+      }, 200)
+      return () => clearInterval(timer)
+    }
+  }, [isStreaming, messages.length])
+
+  useEffect(() => {
+    if (messages.length > 0) {
+      virtualizer.measure()
+    }
+  }, [messages])
 
   const handleSend = async (question?: string) => {
     const messageContent = question || input.trim()
@@ -428,6 +479,9 @@ export default function AIAssistant() {
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
             className="fixed inset-0 sm:inset-auto sm:bottom-[120px] sm:right-6 z-[60] w-full h-full sm:w-[90vw] sm:max-w-sm md:max-w-md lg:max-w-lg sm:h-[500px] md:h-[550px] lg:h-[600px] sm:max-h-[85vh] flex flex-col bg-[var(--color-surface)] border-2 border-[var(--color-divider)] shadow-[var(--shadow-lg)] sm:rounded-xl"
+            onClick={(e) => e.stopPropagation()}
+            onWheel={(e) => e.stopPropagation()}
+            onTouchMove={(e) => e.stopPropagation()}
           >
           <div className="flex items-center justify-between p-4 border-b border-[var(--color-divider)] bg-[var(--color-surface-variant)]">
             <div className="flex items-center gap-2">
@@ -466,38 +520,98 @@ export default function AIAssistant() {
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-4 sm:p-4 space-y-4 scroll-smooth">
-            {messages.map((message, index) => (
-              <div
-                key={index}
-                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} items-start gap-2`}
-              >
-                {message.role === 'assistant' && (
-                  <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-[var(--color-primary)] text-white rounded-lg">
-                    <span className="material-symbols-outlined text-base">
-                      smart_toy
-                    </span>
-                  </div>
-                )}
-                <div
-                  className={`max-w-[85%] rounded-lg ${
-                    message.role === 'user'
-                      ? 'bg-[var(--color-primary)] text-white'
-                      : 'bg-[var(--color-surface-variant)] text-[rgb(var(--foreground-rgb))] border border-[var(--color-divider)]'
-                  }`}
-                  style={{
-                    padding: message.role === 'user' ? '0.75rem 1rem' : '1rem 1.25rem',
-                    boxShadow: message.role === 'assistant' ? '0 2px 8px rgba(0, 0, 0, 0.08)' : 'none',
-                  }}
-                >
-                  <div 
-                    className="text-sm leading-relaxed"
-                    style={{
-                      wordBreak: 'break-word',
-                      overflowWrap: 'break-word',
-                      lineHeight: '1.75',
+          <div 
+            ref={parentRef}
+            className="flex-1 overflow-y-auto p-4 sm:p-4 scroll-smooth"
+            style={{ 
+              contain: 'strict',
+              overscrollBehavior: 'contain',
+            }}
+            onWheel={(e) => {
+              const element = e.currentTarget
+              const { scrollTop, scrollHeight, clientHeight } = element
+              const isAtTop = scrollTop === 0
+              const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1
+              
+              if ((isAtTop && e.deltaY < 0) || (isAtBottom && e.deltaY > 0)) {
+                e.stopPropagation()
+              }
+            }}
+            onTouchMove={(e) => {
+              const element = e.currentTarget
+              const { scrollTop, scrollHeight, clientHeight } = element
+              const isAtTop = scrollTop === 0
+              const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1
+              
+              if (isAtTop || isAtBottom) {
+                e.stopPropagation()
+              }
+            }}
+          >
+            <div
+              style={{
+                height: `${virtualizer.getTotalSize()}px`,
+                width: '100%',
+                position: 'relative',
+              }}
+            >
+              {virtualizer.getVirtualItems().map((virtualItem) => {
+                const message = messages[virtualItem.index]
+                if (!message) return null
+
+                return (
+                  <div
+                    key={virtualItem.key}
+                    ref={(el) => {
+                      if (el) {
+                        messageRefs.current.set(virtualItem.index, el)
+                        virtualizer.measureElement(el)
+                      } else {
+                        messageRefs.current.delete(virtualItem.index)
+                      }
                     }}
+                    data-index={virtualItem.index}
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      transform: `translateY(${virtualItem.start}px)`,
+                    }}
+                    className="mb-4"
                   >
+                    <div
+                      className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} items-start gap-2`}
+                    >
+                      {message.role === 'assistant' && (
+                        <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-[var(--color-primary)] text-white rounded-lg">
+                          <span className="material-symbols-outlined text-base">
+                            smart_toy
+                          </span>
+                        </div>
+                      )}
+                    <div
+                      className={`max-w-[85%] rounded-lg ${
+                        message.role === 'user'
+                          ? 'bg-[var(--color-primary)] text-white'
+                          : 'bg-[var(--color-surface-variant)] text-[rgb(var(--foreground-rgb))] border border-[var(--color-divider)]'
+                      }`}
+                      style={{
+                        padding: message.role === 'user' ? '0.75rem 1rem' : '1rem 1.25rem',
+                        boxShadow: message.role === 'assistant' ? '0 2px 8px rgba(0, 0, 0, 0.08)' : 'none',
+                        maxHeight: '70vh',
+                        overflowY: 'auto',
+                        overflowX: 'hidden',
+                      }}
+                    >
+                      <div 
+                        className="text-sm leading-relaxed"
+                        style={{
+                          wordBreak: 'break-word',
+                          overflowWrap: 'break-word',
+                          lineHeight: '1.75',
+                        }}
+                      >
                     {message.role === 'assistant' ? (() => {
                       const formatText = (text: string) => {
                         let formatted = text
@@ -632,23 +746,26 @@ export default function AIAssistant() {
                         )
                       }
                       
-                      return <div className="space-y-2">{processedLines}</div>
-                    })() : (
-                      <p className="whitespace-pre-wrap leading-relaxed">{message.content}</p>
+                        return <div className="space-y-2">{processedLines}</div>
+                      })() : (
+                        <p className="whitespace-pre-wrap leading-relaxed">{message.content}</p>
+                      )}
+                      </div>
+                    </div>
+                    {message.role === 'user' && (
+                      <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-[var(--color-primary)] text-white rounded-lg">
+                        <span className="material-symbols-outlined text-base">
+                          person
+                        </span>
+                      </div>
                     )}
+                    </div>
                   </div>
-                </div>
-                {message.role === 'user' && (
-                  <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-[var(--color-primary)] text-white rounded-lg">
-                    <span className="material-symbols-outlined text-base">
-                      person
-                    </span>
-                  </div>
-                )}
-              </div>
-            ))}
+                )
+              })}
+            </div>
             {(isLoading || isStreaming) && (
-              <div className="flex justify-start">
+              <div className="flex justify-start mb-4">
                 <div className="bg-[var(--color-surface-variant)] border border-[var(--color-divider)] p-3 rounded-lg">
                   <div className="flex gap-1">
                     <div className="w-2 h-2 bg-[var(--color-primary)] opacity-60 animate-bounce"></div>
@@ -658,7 +775,6 @@ export default function AIAssistant() {
                 </div>
               </div>
             )}
-            <div ref={messagesEndRef} />
           </div>
 
           {messages.length === 1 && (
