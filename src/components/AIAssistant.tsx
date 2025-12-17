@@ -145,7 +145,7 @@ export default function AIAssistant() {
       }
       const contentLength = message.content.length
       const estimatedLines = Math.ceil(contentLength / 50)
-      return Math.max(80, estimatedLines * 24 + 60)
+      return Math.max(80, estimatedLines * 24 + 80)
     },
     overscan: 3,
     measureElement: (element) => element?.getBoundingClientRect().height ?? 100,
