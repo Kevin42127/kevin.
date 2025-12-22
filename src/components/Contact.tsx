@@ -283,7 +283,10 @@ export default function Contact() {
                     }}
                     onError={() => {
                       setTurnstileToken(null)
-                      setErrors({ ...errors, turnstile: t('contact.validation.turnstileError', '驗證失敗，請重試') })
+                      setErrors((prev) => ({
+                        ...prev,
+                        turnstile: t('contact.validation.turnstileError', '驗證失敗，請重試')
+                      }))
                     }}
                     onExpire={() => {
                       setTurnstileToken(null)
