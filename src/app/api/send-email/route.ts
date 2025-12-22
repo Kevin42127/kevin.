@@ -1,55 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 
-async function verifyTurnstileToken(token: string, secretKey: string): Promise<boolean> {
-  try {
-    const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        secret: secretKey,
-        response: token
-      })
-    })
-
-    const result = await response.json()
-    return result.success === true
-  } catch (error) {
-    console.error('Turnstile verification error:', error)
-    return false
-  }
-}
-
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, subject, message, turnstileToken } = await request.json()
+    const { name, email, subject, message } = await request.json()
 
     if (!name || !email || !subject || !message) {
       return NextResponse.json(
         { error: '所有欄位都是必填的' },
         { status: 400 }
       )
-    }
-
-    const turnstileSecretKey = process.env.TURNSTILE_SECRET_KEY?.trim()
-    
-    if (turnstileSecretKey) {
-      if (!turnstileToken) {
-        return NextResponse.json(
-          { error: '請完成驗證' },
-          { status: 400 }
-        )
-      }
-
-      const isValid = await verifyTurnstileToken(turnstileToken, turnstileSecretKey)
-      if (!isValid) {
-        return NextResponse.json(
-          { error: '驗證失敗，請重試' },
-          { status: 400 }
-        )
-      }
     }
 
     const gmailUser = process.env.GMAIL_USER?.trim()

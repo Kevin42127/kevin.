@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
-import Turnstile from './Turnstile'
 
 export default function Contact() {
   const { t } = useTranslationSafe()
@@ -18,20 +17,13 @@ export default function Contact() {
     email?: string
     subject?: string
     message?: string
-    turnstile?: string
   }>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
-  const [turnstileKey, setTurnstileKey] = useState<string>('')
   const [toast, setToast] = useState<{
     show: boolean
     type: 'success' | 'error'
     message: string
   }>({ show: false, type: 'success', message: '' })
-
-  useEffect(() => {
-    setTurnstileKey(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '')
-  }, [])
 
   useEffect(() => {
     if (toast.show) {
@@ -77,10 +69,6 @@ export default function Contact() {
       newErrors.message = t('contact.validation.messageRequired', '請填寫訊息內容')
     }
     
-    if (!turnstileToken && turnstileKey) {
-      newErrors.turnstile = t('contact.validation.turnstileRequired', '請完成驗證')
-    }
-    
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
@@ -100,10 +88,7 @@ export default function Contact() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          ...formData,
-          turnstileToken
-        }),
+        body: JSON.stringify(formData),
       })
 
       const result = await response.json()
@@ -115,7 +100,6 @@ export default function Contact() {
           message: t('contact.success', '訊息已發送！')
         })
         setFormData({ name: '', email: '', subject: '', message: '' })
-        setTurnstileToken(null)
         setErrors({})
       } else {
         setToast({
@@ -271,43 +255,11 @@ export default function Contact() {
                 )}
               </div>
               
-              {turnstileKey && (
-                <div className="form-field">
-                  <Turnstile
-                    siteKey={turnstileKey}
-                    onVerify={(token) => {
-                      setTurnstileToken(token)
-                      if (errors.turnstile) {
-                        setErrors({ ...errors, turnstile: undefined })
-                      }
-                    }}
-                    onError={() => {
-                      setTurnstileToken(null)
-                      setErrors((prev) => ({
-                        ...prev,
-                        turnstile: t('contact.validation.turnstileError', '驗證失敗，請重試')
-                      }))
-                    }}
-                    onExpire={() => {
-                      setTurnstileToken(null)
-                    }}
-                    theme="auto"
-                    size="normal"
-                    className="flex justify-center"
-                  />
-                  {errors.turnstile && (
-                    <p className="text-sm text-[#ef4444] mt-1.5 text-center">
-                      {errors.turnstile}
-                    </p>
-                  )}
-                </div>
-              )}
-              
               <button
                 type="submit"
-                disabled={isSubmitting || (!!turnstileKey && !turnstileToken)}
+                disabled={isSubmitting}
                 className={`w-full btn-primary min-h-[48px] ${
-                  isSubmitting || (!!turnstileKey && !turnstileToken) ? 'opacity-50 cursor-not-allowed' : ''
+                  isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
               >
                 <span className="material-symbols-outlined text-base">send</span>
