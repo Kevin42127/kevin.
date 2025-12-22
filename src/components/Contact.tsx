@@ -302,9 +302,9 @@ export default function Contact() {
               
               <button
                 type="submit"
-                disabled={isSubmitting || (turnstileKey && !turnstileToken)}
+                disabled={isSubmitting || (!!turnstileKey && !turnstileToken)}
                 className={`w-full btn-primary min-h-[48px] ${
-                  isSubmitting || (turnstileKey && !turnstileToken) ? 'opacity-50 cursor-not-allowed' : ''
+                  isSubmitting || (!!turnstileKey && !turnstileToken) ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
               >
                 <span className="material-symbols-outlined text-base">send</span>
