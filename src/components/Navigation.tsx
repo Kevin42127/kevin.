@@ -51,66 +51,77 @@ export default function Navigation() {
   }
 
   return (
-    <nav className="w-full bg-white/95 backdrop-blur-xl fixed top-0 left-0 right-0 z-50 border-b border-[var(--color-divider)] shadow-[0_10px_25px_rgba(15,15,40,0.06)]">
-      <div className="w-full px-4 sm:px-6 lg:px-12 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <button
-              onClick={() => handleNavigation('#home')}
-              className="navigation-brand text-2xl font-extrabold tracking-tight text-[#1c1c28] hover:text-[var(--color-primary)] transition-colors"
-            >
-              {t('navigation.kevin', 'Kevin.')}
-            </button>
-            
-            <div className="hidden lg:flex items-center space-x-3 ml-10">
-              {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => handleNavigation(item.href)}
-                  className="btn-nav-pill"
-                >
-                  {item.name}
-                </button>
-              ))}
-              {externalLinks.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => handleNavigation(item.href, item.external)}
-                  className="btn-nav-pill"
-                >
-                  {item.name}
-                </button>
-              ))}
+    <>
+      <nav className="w-full bg-white/95 backdrop-blur-xl fixed top-0 left-0 right-0 z-50 border-b border-[var(--color-divider)] shadow-[0_10px_25px_rgba(15,15,40,0.06)]">
+        <div className="w-full px-4 sm:px-6 lg:px-12 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <button
+                onClick={() => handleNavigation('#home')}
+                className="navigation-brand text-2xl font-extrabold tracking-tight text-[#1c1c28] hover:text-[var(--color-primary)] transition-colors"
+              >
+                {t('navigation.kevin', 'Kevin.')}
+              </button>
+              
+              <div className="hidden lg:flex items-center space-x-3 ml-10">
+                {navItems.map((item) => (
+                  <button
+                    key={item.name}
+                    onClick={() => handleNavigation(item.href)}
+                    className="btn-nav-pill"
+                  >
+                    {item.name}
+                  </button>
+                ))}
+                {externalLinks.map((item) => (
+                  <button
+                    key={item.name}
+                    onClick={() => handleNavigation(item.href, item.external)}
+                    className="btn-nav-pill"
+                  >
+                    {item.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="lg:hidden flex-1 flex justify-center mx-4">
+              <DropdownSearch />
+            </div>
+
+            <div className="hidden lg:flex items-center space-x-4">
+              <DropdownSearch />
+              <LanguageSwitcher />
+            </div>
+
+            <div className="lg:hidden">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="w-10 h-10 text-[#1c1c28] hover:text-[var(--color-primary)] transition-colors flex items-center justify-center"
+                aria-label="打开菜单"
+              >
+                <span className="material-symbols-outlined text-2xl">
+                  {isMenuOpen ? 'close' : 'menu'}
+                </span>
+              </button>
             </div>
           </div>
-
-          <div className="lg:hidden flex-1 flex justify-center mx-4">
-            <DropdownSearch />
-          </div>
-
-          <div className="hidden lg:flex items-center space-x-4">
-            <DropdownSearch />
-            <LanguageSwitcher />
-          </div>
-
-          <div className="lg:hidden">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="w-10 h-10 text-[#1c1c28] hover:text-[var(--color-primary)] transition-colors flex items-center justify-center"
-              aria-label="打开菜单"
-            >
-              <span className="material-symbols-outlined text-2xl">
-                {isMenuOpen ? 'close' : 'menu'}
-              </span>
-            </button>
-          </div>
         </div>
-      </div>
+      </nav>
 
       {isClient && (
         <AnimatePresence>
           {isMenuOpen && (
           <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.15 }}
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm"
+              style={{ zIndex: 9998 }}
+              onClick={() => setIsMenuOpen(false)}
+            />
             <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
@@ -120,6 +131,7 @@ export default function Navigation() {
               style={{ zIndex: 9999 }}
               role="dialog"
               aria-modal="true"
+              onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between p-6 flex-shrink-0 border-b border-[var(--color-divider)]">
                 <h2 className="text-xl font-bold text-[#1c1c28]">{t('navigation.menu', '選單')}</h2>
@@ -172,6 +184,6 @@ export default function Navigation() {
           )}
         </AnimatePresence>
       )}
-    </nav>
+    </>
   )
 }

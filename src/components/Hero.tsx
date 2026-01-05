@@ -17,11 +17,11 @@ export default function Hero() {
   }
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-28 pb-20 bg-[var(--color-page)]">
-      <div className="absolute inset-0 pointer-events-none opacity-50">
+    <section id="home" className="min-h-screen flex items-center justify-center relative pt-28 pb-20 bg-[var(--color-page)]">
+      <div className="absolute inset-0 pointer-events-none opacity-50 overflow-hidden">
         <div className="w-full h-full mix-blend-multiply" style={{ backgroundImage: 'radial-gradient(circle at 20% 20%, rgba(255,77,45,0.08), transparent 45%), radial-gradient(circle at 80% 10%, rgba(29,71,255,0.08), transparent 40%), radial-gradient(circle at 50% 80%, rgba(0,161,154,0.08), transparent 45%)' }} />
       </div>
-      <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 text-center w-full relative">
+      <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 text-center w-full relative z-10">
         <motion.div>
           <SplitText
             text={t('hero.title', 'Kevin.')}
@@ -78,6 +78,29 @@ export default function Hero() {
           </div>
         </motion.div>
       </div>
+      
+      <motion.div
+        className="absolute bottom-8 left-0 right-0 flex justify-center z-20 pointer-events-auto"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.2, duration: 0.6 }}
+      >
+        <button
+          onClick={scrollToNext}
+          className="flex flex-col items-center justify-center gap-2 text-[#6b6371] hover:text-[var(--color-primary)] transition-colors duration-300 group cursor-pointer"
+          aria-label="向下滾動"
+        >
+          <span className="text-sm font-medium mb-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+            {t('hero.scrollDown', '向下滾動')}
+          </span>
+          <div className="relative w-10 h-10 flex items-center justify-center">
+            <span className="material-symbols-outlined text-3xl animate-bounce">
+              keyboard_arrow_down
+            </span>
+            <div className="absolute inset-0 border-2 border-[var(--color-primary)] rounded-full opacity-0 group-hover:opacity-30 animate-ping"></div>
+          </div>
+        </button>
+      </motion.div>
     </section>
   )
 }

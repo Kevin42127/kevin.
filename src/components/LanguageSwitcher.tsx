@@ -1,20 +1,40 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 
 export default function LanguageSwitcher() {
   const { i18n } = useTranslation()
   const [mounted, setMounted] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
     setMounted(true)
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+    }
   }, [])
 
   const changeLanguage = (lang: string) => {
     i18n.changeLanguage(lang)
     setIsOpen(false)
+  }
+
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+      timeoutRef.current = null
+    }
+    setIsOpen(true)
+  }
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setIsOpen(false)
+    }, 200)
   }
 
   const languages = [
@@ -37,11 +57,13 @@ export default function LanguageSwitcher() {
   }
 
   return (
-    <div className="relative">
+    <div 
+      className="relative"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <button
-        onClick={() => setIsOpen(!isOpen)}
         className={`${buttonClasses} active:scale-95`}
-        title="選擇語言 / Select Language"
         aria-label="選擇語言 / Select Language"
         aria-expanded={isOpen}
       >
@@ -52,7 +74,11 @@ export default function LanguageSwitcher() {
       </button>
 
       {isOpen && (
-        <div className="absolute bottom-full lg:bottom-auto lg:top-full right-0 mb-2 lg:mt-5 w-52 bg-white border border-[var(--color-divider)] shadow-[0_20px_45px_rgba(15,15,40,0.08)] z-[100] rounded-xl">
+        <div 
+          className="absolute bottom-full lg:bottom-auto lg:top-full right-0 mb-2 lg:mt-5 w-52 bg-white border border-[var(--color-divider)] shadow-[0_20px_45px_rgba(15,15,40,0.08)] z-[100] rounded-xl"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           {languages.map((language) => (
             <button
               key={language.code}
@@ -76,8 +102,6 @@ export default function LanguageSwitcher() {
           ))}
         </div>
       )}
-
-      {isOpen && <div className="fixed inset-0 z-[99]" onClick={() => setIsOpen(false)} />}
     </div>
   )
 }

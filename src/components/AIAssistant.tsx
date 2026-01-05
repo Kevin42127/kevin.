@@ -220,7 +220,6 @@ export default function AIAssistant() {
         setTimeout(() => {
           virtualizer.measure()
           scrollToBottom()
-          inputRef.current?.focus()
         }, 100)
       }
     } else {
