@@ -118,7 +118,7 @@ export default function Navigation() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.15 }}
-              className="fixed inset-0 bg-black/40 backdrop-blur-sm"
+              className="fixed inset-0 bg-black/40"
               style={{ zIndex: 9998 }}
               onClick={() => setIsMenuOpen(false)}
             />
