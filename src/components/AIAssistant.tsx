@@ -216,19 +216,18 @@ export default function AIAssistant() {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden'
-      if (messages.length > 0) {
-        setTimeout(() => {
-          virtualizer.measure()
-          scrollToBottom()
-        }, 100)
-      }
+      setTimeout(() => {
+        virtualizer.measure()
+        scrollToBottom()
+        inputRef.current?.focus()
+      }, 100)
     } else {
       document.body.style.overflow = ''
     }
     return () => {
       document.body.style.overflow = ''
     }
-  }, [messages.length, isOpen])
+  }, [isOpen])
 
   useEffect(() => {
     if (isStreaming && messages.length > 0) {
