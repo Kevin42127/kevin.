@@ -479,7 +479,7 @@ export default function AIAssistant() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="fixed bottom-[120px] right-6 z-50"
+            className="hidden md:fixed bottom-[120px] right-6 z-50"
           >
             <div className="relative w-14 h-14 sm:w-16 sm:h-16">
               <motion.button
@@ -506,7 +506,7 @@ export default function AIAssistant() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="fixed inset-0 sm:inset-auto sm:bottom-[120px] sm:right-6 z-[60] w-full h-full sm:w-[90vw] sm:max-w-sm md:max-w-md lg:max-w-lg sm:h-[500px] md:h-[550px] lg:h-[600px] sm:max-h-[85vh] flex flex-col bg-[var(--color-surface)] border-2 border-[var(--color-divider)] shadow-[var(--shadow-lg)] sm:rounded-xl"
+            className="hidden md:flex fixed inset-auto bottom-[120px] right-6 z-[60] w-[90vw] max-w-sm lg:max-w-lg h-[500px] md:h-[550px] lg:h-[600px] max-h-[85vh] flex-col bg-[var(--color-surface)] border-2 border-[var(--color-divider)] shadow-[var(--shadow-lg)] rounded-xl"
             onClick={(e) => e.stopPropagation()}
             onWheel={(e) => e.stopPropagation()}
             onTouchMove={(e) => e.stopPropagation()}
