@@ -153,11 +153,15 @@ export default function AIAssistant() {
   })
 
   const scrollToBottom = () => {
-    if (messages.length > 0) {
-      virtualizer.scrollToIndex(messages.length - 1, {
-        align: 'end',
-        behavior: 'smooth',
-      })
+    try {
+      if (messages.length > 0) {
+        virtualizer.scrollToIndex(messages.length - 1, {
+          align: 'end',
+          behavior: 'smooth',
+        })
+      }
+    } catch (error) {
+      console.error('Error scrolling to bottom:', error)
     }
   }
 
@@ -217,10 +221,14 @@ export default function AIAssistant() {
     if (isOpen) {
       document.body.style.overflow = 'hidden'
       setTimeout(() => {
-        virtualizer.measure()
-        scrollToBottom()
-        inputRef.current?.focus()
-      }, 100)
+        try {
+          virtualizer.measure()
+          scrollToBottom()
+          inputRef.current?.focus()
+        } catch (error) {
+          console.error('Error in AI Assistant initialization:', error)
+        }
+      }, 200)
     } else {
       document.body.style.overflow = ''
     }
@@ -231,18 +239,30 @@ export default function AIAssistant() {
 
   useEffect(() => {
     if (isStreaming && messages.length > 0) {
-      virtualizer.measure()
-      const timer = setInterval(() => {
+      try {
         virtualizer.measure()
-        scrollToBottom()
-      }, 200)
-      return () => clearInterval(timer)
+        const timer = setInterval(() => {
+          try {
+            virtualizer.measure()
+            scrollToBottom()
+          } catch (error) {
+            console.error('Error in streaming update:', error)
+          }
+        }, 200)
+        return () => clearInterval(timer)
+      } catch (error) {
+        console.error('Error setting up streaming:', error)
+      }
     }
   }, [isStreaming, messages.length])
 
   useEffect(() => {
     if (messages.length > 0) {
-      virtualizer.measure()
+      try {
+        virtualizer.measure()
+      } catch (error) {
+        console.error('Error measuring messages:', error)
+      }
     }
   }, [messages])
 
