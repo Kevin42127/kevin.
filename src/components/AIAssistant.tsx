@@ -855,7 +855,7 @@ export default function AIAssistant() {
                 onKeyPress={handleKeyPress}
                 placeholder={currentLanguage === 'en' ? 'Type your message...' : '輸入您的訊息...'}
                 disabled={isLoading || isStreaming}
-                className="flex-1 px-3 sm:px-4 py-2.5 sm:py-3 text-sm bg-[var(--color-surface-variant)] border border-[var(--color-divider)] text-[var(--color-text)] placeholder-gray-400 focus:outline-none focus:bg-white focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20 disabled:opacity-50 rounded-xl sm:rounded-2xl transition-all duration-200"
+                className="flex-1 px-3 sm:px-4 py-2.5 sm:py-3 text-sm bg-[var(--color-surface-variant)] border border-[var(--color-divider)] text-[var(--color-text)] placeholder-gray-400 focus:outline-none focus:bg-white focus:border-[var(--color-primary)] disabled:opacity-50 rounded-xl sm:rounded-2xl transition-all duration-200"
               />
               <button
                 onClick={() => handleSend()}
