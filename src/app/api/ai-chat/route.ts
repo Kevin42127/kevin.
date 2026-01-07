@@ -36,10 +36,14 @@ export async function POST(request: NextRequest) {
 
     const GROQ_API_KEY = process.env.GROQ_API_KEY?.trim()
     
-    console.log('=== API Key 檢查 ===')
+    console.log('=== API Key 詳細檢查 ===')
     console.log('GROQ_API_KEY 存在:', !!process.env.GROQ_API_KEY)
-    console.log('GROQ_API_KEY 長度:', GROQ_API_KEY?.length || 0)
-    console.log('GROQ_API_KEY 前綴:', GROQ_API_KEY?.substring(0, 4) || 'N/A')
+    console.log('GROQ_API_KEY 類型:', typeof process.env.GROQ_API_KEY)
+    console.log('GROQ_API_KEY 原始長度:', process.env.GROQ_API_KEY?.length || 0)
+    console.log('GROQ_API_KEY trim 後長度:', GROQ_API_KEY?.length || 0)
+    console.log('GROQ_API_KEY 前 10 字符:', GROQ_API_KEY?.substring(0, 10) || 'N/A')
+    console.log('GROQ_API_KEY 後 10 字符:', GROQ_API_KEY?.substring(GROQ_API_KEY.length - 10) || 'N/A')
+    console.log('所有 env keys:', Object.keys(process.env).filter(k => k.includes('GROQ') || k.includes('API')))
     
     if (!GROQ_API_KEY) {
       console.error('❌ GROQ_API_KEY 環境變數未設置或為空')
@@ -58,9 +62,15 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    console.log('=== 初始化 Groq SDK ===')
+    console.log('準備使用的 API Key 長度:', GROQ_API_KEY?.length)
+    console.log('API Key 是否有效:', GROQ_API_KEY && GROQ_API_KEY.length > 0)
+    
     const groq = new Groq({
       apiKey: GROQ_API_KEY,
     })
+    
+    console.log('Groq SDK 初始化成功')
 
     const { messages, stream } = await request.json()
 
@@ -164,10 +174,13 @@ export async function POST(request: NextRequest) {
     ]
 
     if (stream) {
-      console.log('使用 Groq SDK 發送流式請求...')
+      console.log('=== 使用 Groq SDK 發送流式請求 ===')
       console.log('Model:', MODEL)
+      console.log('Messages count:', messagesWithSystem.length)
+      console.log('Temperature:', 0.9)
       
       try {
+        console.log('開始調用 groq.chat.completions.create...')
         const chatCompletion = await groq.chat.completions.create({
           messages: messagesWithSystem,
           model: MODEL,
@@ -176,6 +189,7 @@ export async function POST(request: NextRequest) {
           top_p: 1,
           stream: true,
         })
+        console.log('Groq API 調用成功，開始處理流式回應')
 
         const encoder = new TextEncoder()
         const stream = new ReadableStream({
