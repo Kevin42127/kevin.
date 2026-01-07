@@ -483,19 +483,17 @@ export default function AIAssistant() {
           >
             <motion.button
               onClick={() => setIsOpen(true)}
-              whileHover={{ scale: 1.1, rotate: 5 }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="relative w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center bg-gradient-to-br from-purple-500 to-indigo-600 text-white shadow-[0_10px_40px_rgba(139,92,246,0.4)] hover:shadow-[0_15px_50px_rgba(139,92,246,0.5)] transition-shadow duration-300 rounded-2xl group"
+              className="relative w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center bg-[var(--color-primary)] text-white shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.16)] hover:bg-[var(--color-primary-dark)] transition-all duration-300 rounded-2xl"
               aria-label={currentLanguage === 'en' ? 'Open AI Assistant' : '開啟 AI 助理'}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-indigo-500 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <span className="material-symbols-outlined text-2xl sm:text-3xl relative z-10">
+              <span className="material-symbols-outlined text-2xl sm:text-3xl">
                 smart_toy
               </span>
-              <span className="absolute -top-1 -right-1 sm:-top-1.5 sm:-right-1.5 w-4 h-4 sm:w-5 sm:h-5 bg-green-400 rounded-full border-2 border-white shadow-lg flex items-center justify-center">
+              <span className="absolute -top-1 -right-1 sm:-top-1.5 sm:-right-1.5 w-4 h-4 sm:w-5 sm:h-5 bg-green-500 rounded-full border-2 border-white shadow-lg flex items-center justify-center">
                 <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-white rounded-full animate-pulse"></span>
               </span>
-              <div className="absolute inset-0 rounded-2xl bg-purple-400 opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300"></div>
             </motion.button>
           </motion.div>
         )}
@@ -508,26 +506,26 @@ export default function AIAssistant() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 sm:inset-auto sm:bottom-[120px] sm:right-6 z-[60] w-full h-full sm:w-[380px] md:w-[420px] sm:h-[550px] md:h-[650px] sm:max-h-[85vh] flex flex-col bg-gradient-to-br from-white via-white to-purple-50/30 backdrop-blur-xl border-0 sm:border border-purple-200/50 shadow-none sm:shadow-[0_20px_60px_rgba(139,92,246,0.15)] rounded-none sm:rounded-3xl overflow-hidden"
+            className="fixed inset-0 sm:inset-auto sm:bottom-[120px] sm:right-6 z-[60] w-full h-full sm:w-[380px] md:w-[420px] sm:h-[550px] md:h-[650px] sm:max-h-[85vh] flex flex-col bg-white border-0 sm:border border-[var(--color-divider)] shadow-none sm:shadow-[0_20px_60px_rgba(0,0,0,0.12)] rounded-none sm:rounded-3xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
             onWheel={(e) => e.stopPropagation()}
             onTouchMove={(e) => e.stopPropagation()}
           >
-          <div className="relative flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 border-b border-purple-100/50 bg-gradient-to-r from-purple-500 to-indigo-600">
+          <div className="relative flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 border-b border-[var(--color-divider)] bg-[var(--color-primary)]">
             <div className="flex items-center gap-2 sm:gap-3">
               <div className="relative">
-                <div className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center bg-white/20 backdrop-blur-sm rounded-xl shadow-lg">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center bg-white/20 rounded-xl">
                   <span className="material-symbols-outlined text-white text-xl sm:text-2xl">
                     smart_toy
                   </span>
                 </div>
-                <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 sm:w-3.5 sm:h-3.5 bg-green-400 border-2 border-white rounded-full animate-pulse"></span>
+                <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 sm:w-3.5 sm:h-3.5 bg-green-500 border-2 border-white rounded-full animate-pulse"></span>
               </div>
               <div>
                 <h3 className="font-bold text-white text-base sm:text-lg tracking-tight">
                   {currentLanguage === 'en' ? 'AI Assistant' : 'AI 助理'}
                 </h3>
-                <span className="text-[10px] sm:text-xs text-purple-100">
+                <span className="text-[10px] sm:text-xs text-white/80">
                   {currentLanguage === 'en' ? 'Always here to help' : '隨時為您服務'}
                 </span>
               </div>
@@ -535,7 +533,7 @@ export default function AIAssistant() {
             <div className="flex items-center gap-0.5 sm:gap-1">
               <button
                 onClick={handleClear}
-                className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center hover:bg-white/20 transition-all duration-200 rounded-xl backdrop-blur-sm"
+                className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center hover:bg-white/20 transition-all duration-200 rounded-xl"
                 aria-label={currentLanguage === 'en' ? 'Clear conversation' : '清除對話'}
               >
                 <span className="material-symbols-outlined text-white text-lg sm:text-xl">
@@ -544,7 +542,7 @@ export default function AIAssistant() {
               </button>
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center hover:bg-white/20 transition-all duration-200 rounded-xl backdrop-blur-sm"
+                className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center hover:bg-white/20 transition-all duration-200 rounded-xl"
                 aria-label={currentLanguage === 'en' ? 'Close' : '關閉'}
               >
                 <span className="material-symbols-outlined text-white text-lg sm:text-xl">
@@ -622,7 +620,7 @@ export default function AIAssistant() {
                       style={{ marginBottom: '12px' }}
                     >
                       {message.role === 'assistant' && (
-                        <div className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0 flex items-center justify-center bg-gradient-to-br from-purple-500 to-indigo-600 text-white rounded-full shadow-md">
+                        <div className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0 flex items-center justify-center bg-[var(--color-primary)] text-white rounded-full shadow-md">
                           <span className="material-symbols-outlined text-sm sm:text-base">
                             smart_toy
                           </span>
@@ -631,8 +629,8 @@ export default function AIAssistant() {
                       <div
                         className={`inline-block ${
                           message.role === 'user'
-                            ? 'bg-gradient-to-br from-purple-500 to-indigo-600 text-white rounded-[18px] sm:rounded-[20px] rounded-br-md shadow-md'
-                            : 'bg-white text-gray-800 border border-purple-100/50 rounded-[18px] sm:rounded-[20px] rounded-bl-md shadow-sm'
+                            ? 'bg-[var(--color-primary)] text-white rounded-[18px] sm:rounded-[20px] rounded-br-md shadow-md'
+                            : 'bg-[var(--color-surface-variant)] text-gray-800 border border-[var(--color-divider)] rounded-[18px] sm:rounded-[20px] rounded-bl-md shadow-sm'
                         }`}
                         style={{
                           padding: message.role === 'user' ? '10px 14px' : '10px 14px',
@@ -793,7 +791,7 @@ export default function AIAssistant() {
                       </div>
                     </div>
                       {message.role === 'user' && (
-                        <div className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0 flex items-center justify-center bg-gradient-to-br from-indigo-400 to-purple-500 text-white rounded-full shadow-md">
+                        <div className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0 flex items-center justify-center bg-[var(--color-primary-dark)] text-white rounded-full shadow-md">
                           <span className="material-symbols-outlined text-sm sm:text-base">
                             person
                           </span>
@@ -806,16 +804,16 @@ export default function AIAssistant() {
             </div>
             {(isLoading || isStreaming) && (
               <div className="flex justify-start items-end gap-1.5 sm:gap-2 mb-4">
-                <div className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0 flex items-center justify-center bg-gradient-to-br from-purple-500 to-indigo-600 text-white rounded-full shadow-md">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0 flex items-center justify-center bg-[var(--color-primary)] text-white rounded-full shadow-md">
                   <span className="material-symbols-outlined text-sm sm:text-base">
                     smart_toy
                   </span>
                 </div>
-                <div className="bg-white border border-purple-100/50 px-4 sm:px-5 py-2.5 sm:py-3 rounded-[18px] sm:rounded-[20px] rounded-bl-md shadow-sm">
+                <div className="bg-[var(--color-surface-variant)] border border-[var(--color-divider)] px-4 sm:px-5 py-2.5 sm:py-3 rounded-[18px] sm:rounded-[20px] rounded-bl-md shadow-sm">
                   <div className="flex gap-1.5">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full animate-bounce"></div>
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: '0.15s' }}></div>
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></div>
+                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[var(--color-primary)] rounded-full animate-bounce"></div>
+                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[var(--color-primary)] rounded-full animate-bounce" style={{ animationDelay: '0.15s' }}></div>
+                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[var(--color-primary)] rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></div>
                   </div>
                 </div>
               </div>
@@ -823,12 +821,12 @@ export default function AIAssistant() {
           </div>
 
           {messages.length === 1 && (
-            <div className="px-3 sm:px-5 py-3 sm:py-4 border-t border-purple-100/50 bg-gradient-to-br from-purple-50/50 to-transparent max-h-[120px] sm:max-h-[140px] overflow-y-auto">
+            <div className="px-3 sm:px-5 py-3 sm:py-4 border-t border-[var(--color-divider)] bg-[var(--color-surface-variant)] max-h-[120px] sm:max-h-[140px] overflow-y-auto">
               <div className="flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-3">
-                <span className="material-symbols-outlined text-purple-500 text-base sm:text-lg">
+                <span className="material-symbols-outlined text-[var(--color-primary)] text-base sm:text-lg">
                   bolt
                 </span>
-                <div className="text-[11px] sm:text-xs font-semibold text-purple-700">
+                <div className="text-[11px] sm:text-xs font-semibold text-[var(--color-text)]">
                   {currentLanguage === 'en' ? 'Quick Questions' : '快捷問題'}
                 </div>
               </div>
@@ -838,7 +836,7 @@ export default function AIAssistant() {
                     key={index}
                     onClick={() => handleQuickQuestion(question)}
                     disabled={isLoading || isStreaming}
-                    className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-[11px] sm:text-xs bg-white/80 backdrop-blur-sm border border-purple-200/50 text-gray-700 hover:bg-purple-50 hover:border-purple-300 hover:shadow-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 whitespace-nowrap rounded-lg sm:rounded-xl font-medium"
+                    className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-[11px] sm:text-xs bg-white border border-[var(--color-divider)] text-[var(--color-text)] hover:bg-[var(--color-surface)] hover:border-[var(--color-primary)] hover:shadow-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 whitespace-nowrap rounded-lg sm:rounded-xl font-medium"
                   >
                     {question}
                   </button>
@@ -847,7 +845,7 @@ export default function AIAssistant() {
             </div>
           )}
 
-          <div className="p-3 sm:p-5 border-t border-purple-100/50 bg-white">
+          <div className="p-3 sm:p-5 border-t border-[var(--color-divider)] bg-white">
             <div className="flex gap-2 sm:gap-3">
               <input
                 ref={inputRef}
@@ -857,12 +855,12 @@ export default function AIAssistant() {
                 onKeyPress={handleKeyPress}
                 placeholder={currentLanguage === 'en' ? 'Type your message...' : '輸入您的訊息...'}
                 disabled={isLoading || isStreaming}
-                className="flex-1 px-3 sm:px-4 py-2.5 sm:py-3 text-sm bg-gray-50 border border-gray-200 text-gray-800 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-purple-400 focus:ring-2 focus:ring-purple-100 disabled:opacity-50 rounded-xl sm:rounded-2xl transition-all duration-200"
+                className="flex-1 px-3 sm:px-4 py-2.5 sm:py-3 text-sm bg-[var(--color-surface-variant)] border border-[var(--color-divider)] text-[var(--color-text)] placeholder-gray-400 focus:outline-none focus:bg-white focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20 disabled:opacity-50 rounded-xl sm:rounded-2xl transition-all duration-200"
               />
               <button
                 onClick={() => handleSend()}
                 disabled={isLoading || isStreaming || !input.trim()}
-                className="px-4 sm:px-5 py-2.5 sm:py-3 bg-gradient-to-br from-purple-500 to-indigo-600 text-white hover:shadow-lg hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 active:scale-95 rounded-xl sm:rounded-2xl flex items-center justify-center gap-2 font-medium"
+                className="px-4 sm:px-5 py-2.5 sm:py-3 bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-dark)] hover:shadow-lg hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 active:scale-95 rounded-xl sm:rounded-2xl flex items-center justify-center gap-2 font-medium"
                 aria-label={currentLanguage === 'en' ? 'Send' : '發送'}
               >
                 <span className="material-symbols-outlined text-lg sm:text-xl">
