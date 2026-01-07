@@ -410,7 +410,28 @@ export default function AIAssistant() {
 
               try {
                 const parsed = JSON.parse(data)
-                if (parsed.choices?.[0]?.delta?.content) {
+                
+                if (parsed.done) {
+                  setIsStreaming(false)
+                  setIsLoading(false)
+                  return
+                }
+                
+                if (parsed.error) {
+                  throw new Error(parsed.error)
+                }
+                
+                if (parsed.content) {
+                  accumulatedContent += parsed.content
+                  setMessages(prev => {
+                    const newMessages = [...prev]
+                    newMessages[newMessages.length - 1] = {
+                      role: 'assistant',
+                      content: accumulatedContent
+                    }
+                    return newMessages
+                  })
+                } else if (parsed.choices?.[0]?.delta?.content) {
                   accumulatedContent += parsed.choices[0].delta.content
                   setMessages(prev => {
                     const newMessages = [...prev]
