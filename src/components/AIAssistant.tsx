@@ -26,16 +26,14 @@ const DEFAULT_MESSAGES = {
 const QUICK_QUESTIONS = {
   zh: [
     'Kevin 的核心技能是什麼？',
-    'Kevin 有哪些前端開發經驗？',
-    '可以介紹一下 Kevin 的作品集嗎？',
-    'Kevin 的專業背景和學歷？',
+    '可以介紹一下作品集嗎？',
+    '如何下載履歷？',
     'Kevin 有哪些專案經驗？'
   ],
   en: [
     'What are Kevin\'s core skills?',
-    'What frontend development experience does Kevin have?',
-    'Can you introduce Kevin\'s portfolio?',
-    'What is Kevin\'s professional background and education?',
+    'Can you introduce the portfolio?',
+    'How to download the resume?',
     'What project experience does Kevin have?'
   ]
 }
@@ -83,8 +81,18 @@ const SYSTEM_PROMPT = `您是 Kevin（陳梓敬）個人網站的專屬 AI 助�
 
 【網站功能】
 - 網站包含：首頁、關於我、作品集、技能、經驗、聯繫我等區塊
-- 訪客可以下載履歷（支援繁體中文和英文版本）
+- 訪客可以下載履歷（目前提供繁體中文版本）
 - 可以通過聯繫表單發送訊息給 Kevin
+
+【特殊互動功能】
+當用戶詢問以下內容時，請在回應中包含對應的特殊標記（標記會被自動轉換為互動按鈕）：
+- 詢問下載履歷、查看履歷、履歷檔案時：在回應中加入 [DOWNLOAD_RESUME_ZH] 標記
+- 詢問查看作品集、專案作品時：在回應中加入 [VIEW_PORTFOLIO] 標記  
+- 詢問如何聯繫、聯絡方式時：在回應中加入 [CONTACT_FORM] 標記
+
+範例回應：
+- 中文："您可以直接下載 Kevin 的履歷查看完整資訊：[DOWNLOAD_RESUME_ZH]"
+- 英文："You can download Kevin's resume here: [DOWNLOAD_RESUME_ZH]"
 
 【常見 HR 問題回答指南】
 - 專業背景：強調 UI/UX 設計和前端開發的雙重技能，以及以使用者為中心的設計思維
@@ -667,6 +675,15 @@ export default function AIAssistant() {
                         formatted = formatted.replace(/(?<!\*)\*([^*\n]+?)\*(?!\*)/g, '<em>$1</em>')
                         formatted = formatted.replace(/`([^`\n]+?)`/g, '<code class="inline-code">$1</code>')
                         formatted = formatted.replace(/(https?:\/\/[^\s<>"']+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-link">$1</a>')
+                        
+                        formatted = formatted.replace(/\[DOWNLOAD_RESUME_ZH\]/g, 
+                          '<a href="/陳梓敬_AI工程師_履歷.pdf" download="陳梓敬_AI工程師_履歷.pdf" class="inline-flex items-center gap-2 px-4 py-2 my-2 bg-[var(--color-primary)] text-white rounded-lg hover:bg-[var(--color-primary-dark)] transition-colors font-medium no-underline shadow-sm hover:shadow-md" style="text-decoration: none;"><span class="material-symbols-outlined text-lg">download</span><span>' + (currentLanguage === 'en' ? 'Download Resume (Chinese)' : '下載履歷') + '</span></a>')
+                        
+                        formatted = formatted.replace(/\[VIEW_PORTFOLIO\]/g, 
+                          '<button onclick="document.getElementById(\'portfolio\')?.scrollIntoView({behavior: \'smooth\'})" class="inline-flex items-center gap-2 px-4 py-2 my-2 bg-[var(--color-primary)] text-white rounded-lg hover:bg-[var(--color-primary-dark)] transition-colors font-medium shadow-sm hover:shadow-md"><span class="material-symbols-outlined text-lg">work</span><span>' + (currentLanguage === 'en' ? 'View Portfolio' : '查看作品集') + '</span></button>')
+                        
+                        formatted = formatted.replace(/\[CONTACT_FORM\]/g, 
+                          '<button onclick="document.getElementById(\'contact\')?.scrollIntoView({behavior: \'smooth\'})" class="inline-flex items-center gap-2 px-4 py-2 my-2 bg-[var(--color-primary)] text-white rounded-lg hover:bg-[var(--color-primary-dark)] transition-colors font-medium shadow-sm hover:shadow-md"><span class="material-symbols-outlined text-lg">mail</span><span>' + (currentLanguage === 'en' ? 'Contact Form' : '聯繫表單') + '</span></button>')
                         
                         return formatted
                       }
