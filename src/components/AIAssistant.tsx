@@ -478,23 +478,25 @@ export default function AIAssistant() {
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="hidden md:block fixed bottom-[120px] right-6 z-50"
           >
-            <div className="relative w-14 h-14 sm:w-16 sm:h-16">
-              <motion.button
-                onClick={() => setIsOpen(true)}
-                className="ai-button-pulse relative w-full h-full flex items-center justify-center bg-[var(--color-primary)] text-white border-2 border-[var(--color-primary)] shadow-[var(--shadow-md)] transition-all duration-200 hover:bg-[var(--color-primary-dark)] hover:border-[var(--color-primary-dark)] hover:shadow-[var(--shadow-lg)] hover:scale-105 active:scale-95 rounded-full"
-                aria-label={currentLanguage === 'en' ? 'Open AI Assistant' : '開啟 AI 助理'}
-              >
-                <span className="material-symbols-outlined text-2xl">
-                  smart_toy
-                </span>
-                <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white flex items-center justify-center">
-                  <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
-                </span>
-              </motion.button>
-            </div>
+            <motion.button
+              onClick={() => setIsOpen(true)}
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              whileTap={{ scale: 0.95 }}
+              className="relative w-16 h-16 flex items-center justify-center bg-gradient-to-br from-purple-500 to-indigo-600 text-white shadow-[0_10px_40px_rgba(139,92,246,0.4)] hover:shadow-[0_15px_50px_rgba(139,92,246,0.5)] transition-shadow duration-300 rounded-2xl group"
+              aria-label={currentLanguage === 'en' ? 'Open AI Assistant' : '開啟 AI 助理'}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-indigo-500 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <span className="material-symbols-outlined text-3xl relative z-10">
+                smart_toy
+              </span>
+              <span className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-green-400 rounded-full border-3 border-white shadow-lg flex items-center justify-center">
+                <span className="w-2.5 h-2.5 bg-white rounded-full animate-pulse"></span>
+              </span>
+              <div className="absolute inset-0 rounded-2xl bg-purple-400 opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300"></div>
+            </motion.button>
           </motion.div>
         )}
       </AnimatePresence>
@@ -502,46 +504,50 @@ export default function AIAssistant() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="hidden md:flex fixed bottom-[120px] right-6 z-[60] w-[90vw] max-w-sm lg:max-w-lg h-[500px] md:h-[550px] lg:h-[600px] max-h-[85vh] flex-col bg-[var(--color-surface)] border-2 border-[var(--color-divider)] shadow-[var(--shadow-lg)] rounded-xl"
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="hidden md:flex fixed bottom-[120px] right-6 z-[60] w-[420px] h-[650px] max-h-[85vh] flex-col bg-gradient-to-br from-white via-white to-purple-50/30 backdrop-blur-xl border border-purple-200/50 shadow-[0_20px_60px_rgba(139,92,246,0.15)] rounded-3xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
             onWheel={(e) => e.stopPropagation()}
             onTouchMove={(e) => e.stopPropagation()}
           >
-          <div className="flex items-center justify-between p-4 border-b border-[var(--color-divider)] bg-[var(--color-surface-variant)]">
-            <div className="flex items-center gap-2">
-              <span className="material-symbols-outlined text-[var(--color-primary)]">
-                smart_toy
-              </span>
-              <h3 className="font-semibold text-lg">
-                {currentLanguage === 'en' ? 'AI Assistant' : 'AI 助理'}
-              </h3>
-              <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                <span className="text-xs text-[var(--color-text-muted)]">
-                  {currentLanguage === 'en' ? 'Online' : '在線中'}
+          <div className="relative flex items-center justify-between px-6 py-5 border-b border-purple-100/50 bg-gradient-to-r from-purple-500 to-indigo-600">
+            <div className="flex items-center gap-3">
+              <div className="relative">
+                <div className="w-10 h-10 flex items-center justify-center bg-white/20 backdrop-blur-sm rounded-xl shadow-lg">
+                  <span className="material-symbols-outlined text-white text-2xl">
+                    smart_toy
+                  </span>
+                </div>
+                <span className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-green-400 border-2 border-white rounded-full animate-pulse"></span>
+              </div>
+              <div>
+                <h3 className="font-bold text-white text-lg tracking-tight">
+                  {currentLanguage === 'en' ? 'AI Assistant' : 'AI 助理'}
+                </h3>
+                <span className="text-xs text-purple-100">
+                  {currentLanguage === 'en' ? 'Always here to help' : '隨時為您服務'}
                 </span>
               </div>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1">
               <button
                 onClick={handleClear}
-                className="w-8 h-8 flex items-center justify-center hover:bg-[var(--color-surface)] transition-colors rounded-lg"
+                className="w-9 h-9 flex items-center justify-center hover:bg-white/20 transition-all duration-200 rounded-xl backdrop-blur-sm"
                 aria-label={currentLanguage === 'en' ? 'Clear conversation' : '清除對話'}
               >
-                <span className="material-symbols-outlined text-sm">
+                <span className="material-symbols-outlined text-white text-xl">
                   delete_outline
                 </span>
               </button>
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-8 h-8 flex items-center justify-center hover:bg-[var(--color-surface)] transition-colors rounded-lg"
+                className="w-9 h-9 flex items-center justify-center hover:bg-white/20 transition-all duration-200 rounded-xl backdrop-blur-sm"
                 aria-label={currentLanguage === 'en' ? 'Close' : '關閉'}
               >
-                <span className="material-symbols-outlined text-sm">
+                <span className="material-symbols-outlined text-white text-xl">
                   close
                 </span>
               </button>
@@ -612,28 +618,27 @@ export default function AIAssistant() {
                     }}
                   >
                     <div
-                      className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} items-start`}
-                      style={{ marginBottom: '10px' }}
+                      className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} items-end gap-2`}
+                      style={{ marginBottom: '12px' }}
                     >
                       {message.role === 'assistant' && (
-                        <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-[var(--color-primary)] text-white rounded-lg mr-2">
+                        <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-gradient-to-br from-purple-500 to-indigo-600 text-white rounded-full shadow-md">
                           <span className="material-symbols-outlined text-base">
                             smart_toy
                           </span>
                         </div>
                       )}
                       <div
-                        className={`inline-block rounded-2xl ${
+                        className={`inline-block ${
                           message.role === 'user'
-                            ? 'bg-[var(--color-primary)] text-white rounded-br-sm'
-                            : 'bg-[var(--color-surface-variant)] text-[rgb(var(--foreground-rgb))] border border-[var(--color-divider)] rounded-bl-sm'
+                            ? 'bg-gradient-to-br from-purple-500 to-indigo-600 text-white rounded-[20px] rounded-br-md shadow-md'
+                            : 'bg-white text-gray-800 border border-purple-100/50 rounded-[20px] rounded-bl-md shadow-sm'
                         }`}
                         style={{
-                          padding: message.role === 'user' ? '10px 12px' : '10px 12px',
-                          boxShadow: message.role === 'assistant' ? '0 1px 0 rgba(0, 0, 0, 0.04) inset' : 'none',
-                          maxWidth: '70%',
+                          padding: message.role === 'user' ? '12px 16px' : '12px 16px',
+                          maxWidth: '75%',
                           overflow: 'visible',
-                          lineHeight: '1.35',
+                          lineHeight: '1.5',
                           whiteSpace: 'pre-wrap',
                           wordBreak: 'break-word',
                         }}
@@ -789,7 +794,7 @@ export default function AIAssistant() {
                       </div>
                     </div>
                       {message.role === 'user' && (
-                        <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-[var(--color-primary)] text-white rounded-lg ml-2">
+                        <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-gradient-to-br from-indigo-400 to-purple-500 text-white rounded-full shadow-md">
                           <span className="material-symbols-outlined text-base">
                             person
                           </span>
@@ -801,12 +806,17 @@ export default function AIAssistant() {
               })}
             </div>
             {(isLoading || isStreaming) && (
-              <div className="flex justify-start mb-4">
-                <div className="bg-[var(--color-surface-variant)] border border-[var(--color-divider)] p-3 rounded-lg">
-                  <div className="flex gap-1">
-                    <div className="w-2 h-2 bg-[var(--color-primary)] opacity-60 animate-bounce"></div>
-                    <div className="w-2 h-2 bg-[var(--color-primary)] opacity-60 animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                    <div className="w-2 h-2 bg-[var(--color-primary)] opacity-60 animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+              <div className="flex justify-start items-end gap-2 mb-4">
+                <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-gradient-to-br from-purple-500 to-indigo-600 text-white rounded-full shadow-md">
+                  <span className="material-symbols-outlined text-base">
+                    smart_toy
+                  </span>
+                </div>
+                <div className="bg-white border border-purple-100/50 px-5 py-3 rounded-[20px] rounded-bl-md shadow-sm">
+                  <div className="flex gap-1.5">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: '0.15s' }}></div>
+                    <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></div>
                   </div>
                 </div>
               </div>
@@ -814,9 +824,14 @@ export default function AIAssistant() {
           </div>
 
           {messages.length === 1 && (
-            <div className="px-4 py-3 border-t border-[var(--color-divider)] bg-[var(--color-surface-variant)] max-h-[120px] sm:max-h-none overflow-y-auto">
-              <div className="text-xs text-[var(--color-text-muted)] mb-2 font-medium">
-                {currentLanguage === 'en' ? 'Quick Questions:' : '快捷問題：'}
+            <div className="px-5 py-4 border-t border-purple-100/50 bg-gradient-to-br from-purple-50/50 to-transparent max-h-[140px] overflow-y-auto">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="material-symbols-outlined text-purple-500 text-lg">
+                  bolt
+                </span>
+                <div className="text-xs font-semibold text-purple-700">
+                  {currentLanguage === 'en' ? 'Quick Questions' : '快捷問題'}
+                </div>
               </div>
               <div className="flex flex-wrap gap-2">
                 {getQuickQuestions().map((question, index) => (
@@ -824,7 +839,7 @@ export default function AIAssistant() {
                     key={index}
                     onClick={() => handleQuickQuestion(question)}
                     disabled={isLoading || isStreaming}
-                    className="px-3 py-1.5 text-xs bg-white border border-[var(--color-divider)] text-[rgb(var(--foreground-rgb))] hover:bg-[var(--color-surface)] hover:border-[var(--color-primary)] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 whitespace-nowrap rounded-lg"
+                    className="px-3.5 py-2 text-xs bg-white/80 backdrop-blur-sm border border-purple-200/50 text-gray-700 hover:bg-purple-50 hover:border-purple-300 hover:shadow-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 whitespace-nowrap rounded-xl font-medium"
                   >
                     {question}
                   </button>
@@ -833,25 +848,25 @@ export default function AIAssistant() {
             </div>
           )}
 
-          <div className="p-4 border-t border-[var(--color-divider)] bg-[var(--color-surface-variant)]">
-            <div className="flex gap-2">
+          <div className="p-5 border-t border-purple-100/50 bg-white">
+            <div className="flex gap-3">
               <input
                 ref={inputRef}
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder={currentLanguage === 'en' ? 'Type a message...' : '輸入訊息...'}
+                placeholder={currentLanguage === 'en' ? 'Type your message...' : '輸入您的訊息...'}
                 disabled={isLoading || isStreaming}
-                className="flex-1 px-4 py-2 bg-white border border-[var(--color-divider)] text-[rgb(var(--foreground-rgb))] focus:outline-none focus:border-[var(--color-primary)] disabled:opacity-50 rounded-lg"
+                className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 text-gray-800 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-purple-400 focus:ring-2 focus:ring-purple-100 disabled:opacity-50 rounded-2xl transition-all duration-200"
               />
               <button
                 onClick={() => handleSend()}
                 disabled={isLoading || isStreaming || !input.trim()}
-                className="px-4 py-2 bg-[var(--color-primary)] text-white border-2 border-[var(--color-primary)] transition-all duration-200 hover:bg-[var(--color-primary-dark)] hover:border-[var(--color-primary-dark)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center rounded-lg"
+                className="px-5 py-3 bg-gradient-to-br from-purple-500 to-indigo-600 text-white hover:shadow-lg hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 active:scale-95 rounded-2xl flex items-center justify-center gap-2 font-medium"
                 aria-label={currentLanguage === 'en' ? 'Send' : '發送'}
               >
-                <span className="material-symbols-outlined">
+                <span className="material-symbols-outlined text-xl">
                   send
                 </span>
               </button>
