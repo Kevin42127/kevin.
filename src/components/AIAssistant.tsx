@@ -121,8 +121,8 @@ export default function AIAssistant() {
   const { i18n } = useTranslationSafe()
   const currentLanguage = (i18n?.language || 'zh') as 'zh' | 'en'
   
-  const getDefaultMessage = (): Message => DEFAULT_MESSAGES[currentLanguage]
-  const getQuickQuestions = (): string[] => QUICK_QUESTIONS[currentLanguage]
+  const getDefaultMessage = (): Message => DEFAULT_MESSAGES[currentLanguage] || DEFAULT_MESSAGES.zh
+  const getQuickQuestions = (): string[] => QUICK_QUESTIONS[currentLanguage] || QUICK_QUESTIONS.zh
   
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([getDefaultMessage()])
@@ -593,7 +593,7 @@ export default function AIAssistant() {
                 position: 'relative',
               }}
             >
-              {virtualizer.getVirtualItems().map((virtualItem) => {
+              {(virtualizer.getVirtualItems() || []).map((virtualItem) => {
                 const message = messages[virtualItem.index]
                 if (!message) return null
 
@@ -833,7 +833,7 @@ export default function AIAssistant() {
                 </div>
               </div>
               <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                {getQuickQuestions().map((question, index) => (
+                {(getQuickQuestions() || []).map((question, index) => (
                   <button
                     key={index}
                     onClick={() => handleQuickQuestion(question)}
