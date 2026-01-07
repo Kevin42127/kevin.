@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Groq from 'groq-sdk'
 
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
+
 const MODEL = 'llama-3.1-8b-instant'
 
 const ALLOWED_ORIGINS = [
@@ -184,10 +187,11 @@ export async function POST(request: NextRequest) {
         const chatCompletion = await groq.chat.completions.create({
           messages: messagesWithSystem,
           model: MODEL,
-          temperature: 0.9,
-          max_tokens: 4096,
-          top_p: 1,
+          temperature: 0.2,
+          max_completion_tokens: 1024,
+          top_p: 0.8,
           stream: true,
+          stop: null,
         })
         console.log('Groq API 調用成功，開始處理流式回應')
 
@@ -253,10 +257,11 @@ export async function POST(request: NextRequest) {
       const chatCompletion = await groq.chat.completions.create({
         messages: messagesWithSystem,
         model: MODEL,
-        temperature: 0.9,
-        max_tokens: 4096,
-        top_p: 1,
+        temperature: 0.2,
+        max_completion_tokens: 1024,
+        top_p: 0.8,
         stream: false,
+        stop: null,
       })
 
       const message = chatCompletion.choices[0]?.message?.content
