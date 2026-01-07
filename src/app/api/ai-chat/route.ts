@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
+import Groq from 'groq-sdk'
 
-const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions'
 const MODEL = 'llama-3.1-8b-instant'
 
 const ALLOWED_ORIGINS = [
@@ -57,6 +57,10 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       )
     }
+
+    const groq = new Groq({
+      apiKey: GROQ_API_KEY,
+    })
 
     const { messages, stream } = await request.json()
 
@@ -153,188 +157,128 @@ export async function POST(request: NextRequest) {
 
     const messagesWithSystem = [
       {
-        role: 'system',
+        role: 'system' as const,
         content: systemPrompt
       },
       ...messages
     ]
 
     if (stream) {
-      console.log('準備發送流式請求到 Groq API...')
-      console.log('API URL:', GROQ_API_URL)
+      console.log('使用 Groq SDK 發送流式請求...')
       console.log('Model:', MODEL)
       
-      const response = await fetch(GROQ_API_URL, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${GROQ_API_KEY}`,
-          'Content-Type': 'application/json',
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        },
-        body: JSON.stringify({
-          model: MODEL,
+      try {
+        const chatCompletion = await groq.chat.completions.create({
           messages: messagesWithSystem,
+          model: MODEL,
           temperature: 0.9,
           max_tokens: 4096,
           top_p: 1,
           stream: true,
-        }),
-      })
+        })
 
-      console.log('Groq API 回應狀態:', response.status)
-      console.log('Groq API 回應是否成功:', response.ok)
-      console.log('Groq API 回應狀態文字:', response.statusText)
+        const encoder = new TextEncoder()
+        const stream = new ReadableStream({
+          async start(controller) {
+            try {
+              for await (const chunk of chatCompletion) {
+                const content = chunk.choices[0]?.delta?.content
+                if (content) {
+                  const data = {
+                    choices: [{
+                      delta: {
+                        content: content
+                      }
+                    }]
+                  }
+                  controller.enqueue(encoder.encode(`data: ${JSON.stringify(data)}\n\n`))
+                }
+              }
+              controller.enqueue(encoder.encode('data: [DONE]\n\n'))
+              controller.close()
+            } catch (error) {
+              console.error('Stream 錯誤:', error)
+              controller.error(error)
+            }
+          }
+        })
 
-      if (!response.ok) {
-        const errorData = await response.text()
-        console.error('❌ Groq API 錯誤詳情:')
-        console.error('Status:', response.status)
-        console.error('Status Text:', response.statusText)
-        console.error('Error Response:', errorData)
+        return new Response(stream, {
+          headers: {
+            'Content-Type': 'text/event-stream',
+            'Cache-Control': 'no-cache',
+            'Connection': 'keep-alive',
+          },
+        })
+      } catch (error: any) {
+        console.error('❌ Groq SDK 錯誤:', error)
         
         let errorMessage = 'AI 服務暫時無法使用，請稍後再試'
+        let statusCode = 500
         
-        try {
-          const parsedError = JSON.parse(errorData)
-          console.error('解析後的錯誤:', parsedError)
-          
-          if (parsedError.error?.message) {
-            console.error('錯誤訊息:', parsedError.error.message)
-            errorMessage = parsedError.error.message
-          }
-          
-          if (response.status === 401) {
-            errorMessage = 'API Key 無效或已過期，請檢查 GROQ_API_KEY 環境變數'
-          } else if (response.status === 429) {
-            errorMessage = 'API 請求次數已達上限，請稍後再試'
-          }
-        } catch (e) {
-          console.error('無法解析錯誤響應為 JSON')
+        if (error.status === 401) {
+          errorMessage = 'API Key 無效或已過期'
+          statusCode = 401
+        } else if (error.status === 429) {
+          errorMessage = 'API 請求次數已達上限，請稍後再試'
+          statusCode = 429
+        } else if (error.message) {
+          errorMessage = error.message
         }
         
         return NextResponse.json(
-          { 
-            error: errorMessage,
-            status: response.status,
-            details: errorData
-          },
-          { status: response.status }
+          { error: errorMessage },
+          { status: statusCode }
         )
       }
-
-      const stream = new ReadableStream({
-        async start(controller) {
-          const reader = response.body?.getReader()
-          const decoder = new TextDecoder()
-
-          if (!reader) {
-            controller.close()
-            return
-          }
-
-          try {
-            while (true) {
-              const { done, value } = await reader.read()
-              
-              if (done) {
-                controller.enqueue(new TextEncoder().encode('data: [DONE]\n\n'))
-                controller.close()
-                break
-              }
-
-              const chunk = decoder.decode(value, { stream: true })
-              const lines = chunk.split('\n')
-
-              for (const line of lines) {
-                if (line.startsWith('data: ')) {
-                  const data = line.slice(6)
-                  if (data === '[DONE]') {
-                    controller.enqueue(new TextEncoder().encode('data: [DONE]\n\n'))
-                    controller.close()
-                    return
-                  }
-
-                  try {
-                    const parsed = JSON.parse(data)
-                    if (parsed.choices?.[0]?.delta?.content) {
-                      controller.enqueue(new TextEncoder().encode(`data: ${JSON.stringify(parsed)}\n\n`))
-                    }
-                  } catch (e) {
-                    // 忽略解析錯誤
-                  }
-                }
-              }
-            }
-          } catch (error) {
-            console.error('Stream 錯誤:', error)
-            controller.error(error)
-          }
-        }
-      })
-
-      return new Response(stream, {
-        headers: {
-          'Content-Type': 'text/event-stream',
-          'Cache-Control': 'no-cache',
-          'Connection': 'keep-alive',
-        },
-      })
     }
 
-    console.log('準備發送非流式請求到 Groq API...')
+    console.log('使用 Groq SDK 發送非流式請求...')
     
-    const response = await fetch(GROQ_API_URL, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${GROQ_API_KEY}`,
-        'Content-Type': 'application/json',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-      },
-      body: JSON.stringify({
-        model: MODEL,
+    try {
+      const chatCompletion = await groq.chat.completions.create({
         messages: messagesWithSystem,
+        model: MODEL,
         temperature: 0.9,
         max_tokens: 4096,
         top_p: 1,
         stream: false,
-      }),
-    })
+      })
 
-    console.log('Groq API 回應狀態:', response.status)
-    console.log('Groq API 回應是否成功:', response.ok)
+      const message = chatCompletion.choices[0]?.message?.content
 
-    if (!response.ok) {
-      const errorData = await response.text()
-      console.error('❌ Groq API 錯誤詳情:')
-      console.error('Status:', response.status)
-      console.error('Error Response:', errorData)
+      if (!message) {
+        return NextResponse.json(
+          { error: 'AI 回應格式錯誤' },
+          { status: 500 }
+        )
+      }
+
+      return NextResponse.json({
+        message: message,
+        usage: chatCompletion.usage,
+      })
+    } catch (error: any) {
+      console.error('❌ Groq SDK 錯誤:', error)
       
-      try {
-        const parsedError = JSON.parse(errorData)
-        console.error('解析後的錯誤:', parsedError)
-      } catch (e) {
-        console.error('無法解析錯誤響應為 JSON')
+      let errorMessage = 'AI 服務暫時無法使用，請稍後再試'
+      let statusCode = 500
+      
+      if (error.status === 401) {
+        errorMessage = 'API Key 無效或已過期'
+        statusCode = 401
+      } else if (error.status === 429) {
+        errorMessage = 'API 請求次數已達上限，請稍後再試'
+        statusCode = 429
+      } else if (error.message) {
+        errorMessage = error.message
       }
       
       return NextResponse.json(
-        { error: 'AI 服務暫時無法使用，請稍後再試' },
-        { status: response.status }
+        { error: errorMessage },
+        { status: statusCode }
       )
     }
-
-    const data = await response.json()
-
-    if (!data.choices || !data.choices[0] || !data.choices[0].message) {
-      return NextResponse.json(
-        { error: 'AI 回應格式錯誤' },
-        { status: 500 }
-      )
-    }
-
-    return NextResponse.json({
-      message: data.choices[0].message.content,
-      usage: data.usage,
-    })
 
   } catch (error) {
     console.error('AI 聊天錯誤:', error)
@@ -344,4 +288,3 @@ export async function POST(request: NextRequest) {
     )
   }
 }
-
