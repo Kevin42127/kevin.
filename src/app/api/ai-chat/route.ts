@@ -13,13 +13,25 @@ const ALLOWED_ORIGINS = [
 export async function POST(request: NextRequest) {
   try {
     const origin = request.headers.get('origin') || ''
+    const referer = request.headers.get('referer') || ''
     
-    if (process.env.NODE_ENV === 'production' && !ALLOWED_ORIGINS.includes(origin)) {
-      console.error('❌ 未授權的域名:', origin)
-      return NextResponse.json(
-        { error: 'AI 服務僅在授權域名下可用' },
-        { status: 403 }
+    console.log('=== 請求來源檢查 ===')
+    console.log('Origin:', origin)
+    console.log('Referer:', referer)
+    console.log('NODE_ENV:', process.env.NODE_ENV)
+    
+    if (process.env.NODE_ENV === 'production') {
+      const isAllowedOrigin = ALLOWED_ORIGINS.some(allowed => 
+        origin.includes(allowed) || referer.includes(allowed)
       )
+      
+      if (!isAllowedOrigin && origin && referer) {
+        console.error('❌ 未授權的域名 - Origin:', origin, 'Referer:', referer)
+        return NextResponse.json(
+          { error: 'AI 服務僅在授權域名下可用' },
+          { status: 403 }
+        )
+      }
     }
 
     const GROQ_API_KEY = process.env.GROQ_API_KEY?.trim()
