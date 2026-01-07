@@ -492,7 +492,7 @@ export default function AIAssistant() {
               <span className="material-symbols-outlined text-2xl sm:text-3xl relative z-10">
                 smart_toy
               </span>
-              <span className="absolute -top-1 -right-1 sm:-top-1.5 sm:-right-1.5 w-4 h-4 sm:w-5 sm:h-5 bg-green-400 rounded-full border-2 sm:border-3 border-white shadow-lg flex items-center justify-center">
+              <span className="absolute -top-1 -right-1 sm:-top-1.5 sm:-right-1.5 w-4 h-4 sm:w-5 sm:h-5 bg-green-400 rounded-full border-2 border-white shadow-lg flex items-center justify-center">
                 <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-white rounded-full animate-pulse"></span>
               </span>
               <div className="absolute inset-0 rounded-2xl bg-purple-400 opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300"></div>
