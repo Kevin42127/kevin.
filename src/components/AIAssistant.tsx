@@ -130,7 +130,7 @@ export default function AIAssistant() {
   const [isLoading, setIsLoading] = useState(false)
   const [isStreaming, setIsStreaming] = useState(false)
   const parentRef = useRef<HTMLDivElement>(null)
-  const inputRef = useRef<HTMLInputElement>(null)
+  const inputRef = useRef<HTMLTextAreaElement>(null)
   const abortControllerRef = useRef<AbortController | null>(null)
   const messageRefs = useRef<Map<number, HTMLDivElement>>(new Map())
 
@@ -458,12 +458,22 @@ export default function AIAssistant() {
     handleSend(question)
   }
 
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
       handleSend()
     }
   }
+
+  const autoResizeTextarea = (el: HTMLTextAreaElement | null) => {
+    if (!el) return
+    el.style.height = 'auto'
+    el.style.height = el.scrollHeight + 'px'
+  }
+
+  useEffect(() => {
+    autoResizeTextarea(inputRef.current)
+  }, [input])
 
   const handleClear = () => {
     setMessages([getDefaultMessage()])
@@ -629,24 +639,23 @@ export default function AIAssistant() {
                       <div
                         className={`inline-block ${
                           message.role === 'user'
-                            ? 'bg-[var(--color-primary)] text-white rounded-[18px] sm:rounded-[20px] rounded-br-md shadow-md'
-                            : 'bg-[var(--color-surface-variant)] text-gray-800 border border-[var(--color-divider)] rounded-[18px] sm:rounded-[20px] rounded-bl-md shadow-sm'
+                            ? 'bg-[var(--color-primary)] text-white rounded-2xl rounded-br-md'
+                            : 'bg-[var(--color-surface-variant)] text-[var(--color-text)] border border-[var(--color-divider)] rounded-2xl rounded-bl-md'
                         }`}
                         style={{
-                          padding: message.role === 'user' ? '10px 14px' : '10px 14px',
-                          maxWidth: '80%',
-                          overflow: 'visible',
-                          lineHeight: '1.5',
+                          padding: '10px 12px',
+                          maxWidth: '70%',
+                          lineHeight: '1.35',
+                          fontSize: '15px',
                           whiteSpace: 'pre-wrap',
                           wordBreak: 'break-word',
+                          boxShadow: message.role === 'assistant' ? '0 1px 0 rgba(0,0,0,0.04) inset' : 'none',
                         }}
                       >
                       <div 
-                        className="text-[13px] sm:text-sm"
                         style={{
                           wordBreak: 'break-word',
                           overflowWrap: 'break-word',
-                          lineHeight: '1.5',
                           overflow: 'visible',
                         }}
                       >
@@ -845,25 +854,30 @@ export default function AIAssistant() {
             </div>
           )}
 
-          <div className="p-3 sm:p-5 border-t border-[var(--color-divider)] bg-white">
-            <div className="flex gap-2 sm:gap-3">
-              <input
+          <div className="p-3 sm:p-4 border-t border-[var(--color-divider)] bg-white">
+            <div className="flex gap-2 items-end">
+              <textarea
                 ref={inputRef}
-                type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                onKeyPress={handleKeyPress}
-                placeholder={currentLanguage === 'en' ? 'Type your message...' : '輸入您的訊息...'}
+                onKeyDown={handleKeyPress}
+                placeholder={currentLanguage === 'en' ? 'Type your message... (Shift+Enter for new line)' : '輸入訊息...（Shift+Enter 換行）'}
                 disabled={isLoading || isStreaming}
-                className="flex-1 px-3 sm:px-4 py-2.5 sm:py-3 text-sm bg-[var(--color-surface-variant)] border border-[var(--color-divider)] text-[var(--color-text)] placeholder-gray-400 focus:outline-none focus:bg-white focus:border-[var(--color-primary)] disabled:opacity-50 rounded-xl sm:rounded-2xl transition-all duration-200"
+                rows={1}
+                className="flex-1 px-3 sm:px-4 py-2 sm:py-2.5 text-[15px] bg-[var(--color-surface-variant)] border border-[var(--color-divider)] text-[var(--color-text)] placeholder-gray-400 focus:outline-none focus:bg-white focus:border-[var(--color-primary)] disabled:opacity-50 rounded-xl resize-none overflow-auto transition-all duration-200"
+                style={{
+                  minHeight: '38px',
+                  maxHeight: '180px',
+                  lineHeight: '1.35',
+                }}
               />
               <button
                 onClick={() => handleSend()}
                 disabled={isLoading || isStreaming || !input.trim()}
-                className="px-4 sm:px-5 py-2.5 sm:py-3 bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-dark)] hover:shadow-lg hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 active:scale-95 rounded-xl sm:rounded-2xl flex items-center justify-center gap-2 font-medium"
+                className="px-3 sm:px-4 py-2 sm:py-2.5 bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-dark)] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl flex items-center justify-center font-semibold"
                 aria-label={currentLanguage === 'en' ? 'Send' : '發送'}
               >
-                <span className="material-symbols-outlined text-lg sm:text-xl">
+                <span className="material-symbols-outlined text-xl">
                   send
                 </span>
               </button>
