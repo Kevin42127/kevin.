@@ -38,9 +38,6 @@ const QUICK_QUESTIONS = {
   ]
 }
 
-const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions'
-const MODEL = 'llama-3.1-8b-instant'
-
 const SYSTEM_PROMPT = `您是 Kevin（陳梓敬）個人網站的專屬 AI 助理。您的職責是協助 HR 和招聘方快速了解 Kevin 的專業背景、技能、作品集和職涯相關資訊。
 
 以下是 Kevin 的個人資訊：
@@ -278,19 +275,6 @@ export default function AIAssistant() {
     const messageContent = question || input.trim()
     if (!messageContent || isLoading || isStreaming) return
 
-    const apiKey = process.env.NEXT_PUBLIC_GROQ_API_KEY
-    if (!apiKey) {
-      console.error('NEXT_PUBLIC_GROQ_API_KEY 環境變數未設置')
-      const errorMessage: Message = {
-        role: 'assistant',
-        content: currentLanguage === 'en' 
-          ? 'AI service is not configured. Please contact the administrator.'
-          : 'AI 服務未配置，請聯繫管理員'
-      }
-      setMessages(prev => [...prev, errorMessage])
-      return
-    }
-
     const userMessage: Message = {
       role: 'user',
       content: messageContent
@@ -312,7 +296,6 @@ export default function AIAssistant() {
       
       const dynamicSystemPrompt = SYSTEM_PROMPT + languageInstruction
       
-      // 組合消息，包含 system prompt
       const messagesWithSystem = [
         {
           role: 'system' as const,
@@ -324,18 +307,13 @@ export default function AIAssistant() {
         }))
       ]
 
-      const response = await fetch(GROQ_API_URL, {
+      const response = await fetch('/api/ai-chat', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${apiKey}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          model: MODEL,
           messages: messagesWithSystem,
-          temperature: 0.9,
-          max_tokens: 4096,
-          top_p: 1,
           stream: true,
         }),
         signal: abortControllerRef.current.signal
