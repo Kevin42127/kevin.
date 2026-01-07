@@ -305,6 +305,19 @@ export default function AIAssistant() {
     const messageContent = question || input.trim()
     if (!messageContent || isLoading || isStreaming) return
 
+    const apiKey = process.env.NEXT_PUBLIC_GROQ_API_KEY
+    if (!apiKey) {
+      console.error('NEXT_PUBLIC_GROQ_API_KEY 環境變數未設置')
+      const errorMessage: Message = {
+        role: 'assistant',
+        content: currentLanguage === 'en' 
+          ? 'AI service is not configured. Please contact the administrator.'
+          : 'AI 服務未配置，請聯繫管理員'
+      }
+      setMessages(prev => [...prev, errorMessage])
+      return
+    }
+
     const userMessage: Message = {
       role: 'user',
       content: messageContent
@@ -337,13 +350,18 @@ export default function AIAssistant() {
         }))
       ]
 
-      const response = await fetch('/api/ai-chat', {
+      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
         headers: {
+          'Authorization': `Bearer ${apiKey}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          model: 'llama-3.1-8b-instant',
           messages: messagesWithSystem,
+          temperature: 0.2,
+          max_tokens: 1024,
+          top_p: 0.8,
           stream: true,
         }),
         signal: abortControllerRef.current.signal
@@ -410,28 +428,7 @@ export default function AIAssistant() {
 
               try {
                 const parsed = JSON.parse(data)
-                
-                if (parsed.done) {
-                  setIsStreaming(false)
-                  setIsLoading(false)
-                  return
-                }
-                
-                if (parsed.error) {
-                  throw new Error(parsed.error)
-                }
-                
-                if (parsed.content) {
-                  accumulatedContent += parsed.content
-                  setMessages(prev => {
-                    const newMessages = [...prev]
-                    newMessages[newMessages.length - 1] = {
-                      role: 'assistant',
-                      content: accumulatedContent
-                    }
-                    return newMessages
-                  })
-                } else if (parsed.choices?.[0]?.delta?.content) {
+                if (parsed.choices?.[0]?.delta?.content) {
                   accumulatedContent += parsed.choices[0].delta.content
                   setMessages(prev => {
                     const newMessages = [...prev]
@@ -443,7 +440,7 @@ export default function AIAssistant() {
                   })
                 }
               } catch (e) {
-                // 忽略解析錯誤，可能是空行或其他格式
+                // 忽略解析錯誤
               }
             }
           }
