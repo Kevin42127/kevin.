@@ -139,6 +139,18 @@ export default function AIAssistant() {
   const abortControllerRef = useRef<AbortController | null>(null)
   const messageRefs = useRef<Map<number, HTMLDivElement>>(new Map())
 
+  const handleOpen = () => {
+    setIsOpen(true)
+    window.history.pushState(null, '', '#ai-chat')
+  }
+
+  const handleClose = () => {
+    setIsOpen(false)
+    if (window.location.hash === '#ai-chat') {
+      window.history.pushState(null, '', window.location.pathname)
+    }
+  }
+
   const virtualizer = useVirtualizer({
     count: messages.length,
     getScrollElement: () => parentRef.current,
@@ -184,6 +196,24 @@ export default function AIAssistant() {
     }
     return englishMatches > 0 ? 'en' : 'zh'
   }
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === '#ai-chat') {
+        setIsOpen(true)
+      } else if (isOpen) {
+        setIsOpen(false)
+      }
+    }
+    
+    window.addEventListener('hashchange', handleHashChange)
+    
+    if (window.location.hash === '#ai-chat') {
+      setIsOpen(true)
+    }
+    
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [isOpen])
 
   useEffect(() => {
     const savedMessages = localStorage.getItem(STORAGE_KEY)
@@ -478,7 +508,7 @@ export default function AIAssistant() {
             className="fixed bottom-[100px] sm:bottom-[120px] right-4 sm:right-6 z-50"
           >
             <motion.button
-              onClick={() => setIsOpen(true)}
+              onClick={handleOpen}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="relative w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center bg-[var(--color-primary)] text-white shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.16)] hover:bg-[var(--color-primary-dark)] transition-all duration-300 rounded-2xl"
@@ -537,7 +567,7 @@ export default function AIAssistant() {
                 </span>
               </button>
               <button
-                onClick={() => setIsOpen(false)}
+                onClick={handleClose}
                 className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center hover:bg-white/20 transition-all duration-200 rounded-xl"
                 aria-label={currentLanguage === 'en' ? 'Close' : '關閉'}
               >
