@@ -36,10 +36,24 @@ export async function POST(request: NextRequest) {
 
     const GROQ_API_KEY = process.env.GROQ_API_KEY?.trim()
     
+    console.log('=== API Key 檢查 ===')
+    console.log('GROQ_API_KEY 存在:', !!process.env.GROQ_API_KEY)
+    console.log('GROQ_API_KEY 長度:', GROQ_API_KEY?.length || 0)
+    console.log('GROQ_API_KEY 前綴:', GROQ_API_KEY?.substring(0, 4) || 'N/A')
+    
     if (!GROQ_API_KEY) {
       console.error('❌ GROQ_API_KEY 環境變數未設置或為空')
+      console.error('可用的環境變數:', Object.keys(process.env).filter(k => k.includes('GROQ')))
       return NextResponse.json(
-        { error: 'AI 服務未配置，請聯繫管理員' },
+        { error: 'AI 服務未配置，請在 Vercel 設置 GROQ_API_KEY 環境變數' },
+        { status: 500 }
+      )
+    }
+    
+    if (!GROQ_API_KEY.startsWith('gsk_')) {
+      console.error('❌ GROQ_API_KEY 格式不正確，應該以 gsk_ 開頭')
+      return NextResponse.json(
+        { error: 'AI 服務配置錯誤，API Key 格式不正確' },
         { status: 500 }
       )
     }
@@ -177,13 +191,21 @@ export async function POST(request: NextRequest) {
         console.error('Status Text:', response.statusText)
         console.error('Error Response:', errorData)
         
-        // 嘗試解析錯誤訊息
-        let parsedError = null
+        let errorMessage = 'AI 服務暫時無法使用，請稍後再試'
+        
         try {
-          parsedError = JSON.parse(errorData)
+          const parsedError = JSON.parse(errorData)
           console.error('解析後的錯誤:', parsedError)
+          
           if (parsedError.error?.message) {
             console.error('錯誤訊息:', parsedError.error.message)
+            errorMessage = parsedError.error.message
+          }
+          
+          if (response.status === 401) {
+            errorMessage = 'API Key 無效或已過期，請檢查 GROQ_API_KEY 環境變數'
+          } else if (response.status === 429) {
+            errorMessage = 'API 請求次數已達上限，請稍後再試'
           }
         } catch (e) {
           console.error('無法解析錯誤響應為 JSON')
@@ -191,8 +213,9 @@ export async function POST(request: NextRequest) {
         
         return NextResponse.json(
           { 
-            error: 'AI 服務暫時無法使用，請稍後再試',
-            status: response.status
+            error: errorMessage,
+            status: response.status,
+            details: errorData
           },
           { status: response.status }
         )
