@@ -68,9 +68,26 @@ export async function POST(request: NextRequest) {
     
     const groq = new Groq({
       apiKey: GROQ_API_KEY,
+      fetch: async (url: RequestInfo | URL, init?: RequestInit) => {
+        const headers = new Headers(init?.headers)
+        headers.set('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36')
+        headers.set('Accept', 'application/json')
+        headers.set('Accept-Language', 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7')
+        headers.set('Accept-Encoding', 'gzip, deflate, br')
+        headers.set('Referer', 'https://kevinoffical.vercel.app/')
+        headers.set('Origin', 'https://kevinoffical.vercel.app')
+        headers.set('Sec-Fetch-Dest', 'empty')
+        headers.set('Sec-Fetch-Mode', 'cors')
+        headers.set('Sec-Fetch-Site', 'cross-site')
+        
+        return fetch(url, {
+          ...init,
+          headers: headers,
+        })
+      },
     })
     
-    console.log('Groq SDK 初始化成功')
+    console.log('Groq SDK 初始化成功（使用自定義 fetch）')
 
     const { messages, stream } = await request.json()
 
