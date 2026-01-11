@@ -156,7 +156,7 @@ const zhResources = {
     email: '電子郵件',
     subject: '主題',
     message: '訊息',
-    lowFrictionNote: '懶得打字？選一個標籤直接聯繫我。',
+    lowFrictionNote: '懶得打字？選完標籤後，再填寫右邊表單。',
     tags: {
       interview: '面試邀約'
     },
@@ -736,7 +736,7 @@ const enResources = {
     email: 'Email',
     subject: 'Subject',
     message: 'Message',
-    lowFrictionNote: 'Too lazy to type? Select a tag to contact me directly.',
+    lowFrictionNote: 'Too lazy to type? Select a tag, then fill out the form on the right.',
     tags: {
       interview: 'Interview Invite'
     },
