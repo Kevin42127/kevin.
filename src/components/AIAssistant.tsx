@@ -735,7 +735,7 @@ export default function AIAssistant() {
                         
                         formatted = formatted.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
                         formatted = formatted.replace(/(?<!\*)\*([^*\n]+?)\*(?!\*)/g, '<em>$1</em>')
-                        formatted = formatted.replace(/`([^`\n]+?)`/g, '<code class="inline-code">$1</code>')
+                        formatted = formatted.replace(/`([^`\n]+?)`/g, '<strong>$1</strong>')
                         formatted = formatted.replace(/(https?:\/\/[^\s<>"']+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-link">$1</a>')
                         
                         formatted = formatted.replace(/\[DOWNLOAD_RESUME_ZH\]/g, 
