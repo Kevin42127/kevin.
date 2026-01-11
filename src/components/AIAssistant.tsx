@@ -830,23 +830,6 @@ export default function AIAssistant() {
                           continue
                         }
                         
-                        if (trimmedLine.startsWith('【') && trimmedLine.endsWith('】')) {
-                          processedLines.push(
-                            <div key={i} className="font-semibold text-base mt-4 mb-2.5 text-[var(--color-primary)]">
-                              {trimmedLine}
-                            </div>
-                          )
-                          continue
-                        }
-                        
-                        if (trimmedLine.startsWith('**') && trimmedLine.endsWith('**') && trimmedLine.split('**').length === 3) {
-                          processedLines.push(
-                            <div key={i} className="font-semibold text-base mt-3 mb-2">
-                              {trimmedLine.replace(/\*\*/g, '')}
-                            </div>
-                          )
-                          continue
-                        }
                         
                         processedLines.push(
                           <p key={i} className="mb-2 last:mb-0">
