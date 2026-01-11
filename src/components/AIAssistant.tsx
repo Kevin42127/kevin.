@@ -485,9 +485,6 @@ export default function AIAssistant() {
     }
   }
 
-  const handleQuickQuestion = (question: string) => {
-    handleSend(question)
-  }
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -505,6 +502,10 @@ export default function AIAssistant() {
   useEffect(() => {
     autoResizeTextarea(inputRef.current)
   }, [input])
+
+  const handleQuickQuestion = (question: string) => {
+    handleSend(question)
+  }
 
   const handleClear = () => {
     setMessages([getDefaultMessage()])
@@ -692,9 +693,6 @@ export default function AIAssistant() {
                       >
                     {message.role === 'assistant' && message.content === '[SUGGESTION_BUTTONS]' ? (
                       <div className="space-y-2">
-                        <div className="text-sm font-medium mb-3 text-[var(--color-text)]">
-                          {currentLanguage === 'en' ? 'Suggested questions:' : '以下為建議問題：'}
-                        </div>
                         {(getQuickQuestions() || []).map((question, index) => (
                           <button
                             key={index}

@@ -18,7 +18,7 @@ const zhResources = {
   },
   hero: {
     title: 'Kevin.',
-    description: '畢業於數位科技與媒體設計系，專注於創造以使用者為中心的數位體驗。<br />運用AI協作開發與現代化工具，將設計概念轉化為高品質的數位產品。',
+    description: '運用 AI 協作開發與現代化全端技術，快速打造智能應用，專注於使用者體驗，<br />將 AI 技術轉化為實用的數位產品。',
     viewWork: '查看作品',
     getInTouch: '聯繫我',
     downloadCV: '下載履歷',
@@ -598,7 +598,7 @@ const enResources = {
   },
   hero: {
     title: 'Kevin.',
-    description: 'Graduated from Digital Technology and Media Design Department, focused on creating user-centered digital experiences.<br />Leveraging AI-assisted development and modern tools to transform design concepts into high-quality digital products.',
+    description: 'Leveraging AI collaboration and modern full-stack technologies to rapidly build intelligent applications, focusing on user experience and transforming AI technology into practical digital products.',
     viewWork: 'View Work',
     getInTouch: 'Get In Touch',
     downloadCV: 'Download CV',
