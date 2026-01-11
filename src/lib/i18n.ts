@@ -18,7 +18,7 @@ const zhResources = {
   },
   hero: {
     title: 'Kevin.',
-    description: '運用 AI 協作開發與現代化全端技術，快速打造智能應用，專注於使用者體驗，<br />將 AI 技術轉化為實用的數位產品。',
+    description: '運用 AI 協作快速打造智能應用，專注使用者體驗，<br />將技術轉化為實用的數位產品。',
     viewWork: '查看作品',
     getInTouch: '聯繫我',
     downloadCV: '下載履歷',
@@ -598,7 +598,7 @@ const enResources = {
   },
   hero: {
     title: 'Kevin.',
-    description: 'Leveraging AI collaboration and modern full-stack technologies to rapidly build intelligent applications, focusing on user experience and transforming AI technology into practical digital products.',
+    description: 'Leveraging AI collaboration to rapidly build intelligent applications, focusing on user experience,<br />and transforming technology into practical digital products.',
     viewWork: 'View Work',
     getInTouch: 'Get In Touch',
     downloadCV: 'Download CV',
