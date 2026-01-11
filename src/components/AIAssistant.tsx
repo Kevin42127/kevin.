@@ -304,19 +304,6 @@ export default function AIAssistant() {
     const messageContent = question || input.trim()
     if (!messageContent || isLoading || isStreaming) return
 
-    const apiKey = process.env.NEXT_PUBLIC_GROQ_API_KEY
-    if (!apiKey) {
-      console.error('NEXT_PUBLIC_GROQ_API_KEY 環境變數未設置')
-      const errorMessage: Message = {
-        role: 'assistant',
-        content: currentLanguage === 'en' 
-          ? 'AI service is not configured. Please contact the administrator.'
-          : 'AI 服務未配置，請聯繫管理員'
-      }
-      setMessages(prev => [...prev, errorMessage])
-      return
-    }
-
     const userMessage: Message = {
       role: 'user',
       content: messageContent
@@ -349,10 +336,9 @@ export default function AIAssistant() {
         }))
       ]
 
-      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      const response = await fetch('/api/ai-chat', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${apiKey}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
@@ -376,11 +362,15 @@ export default function AIAssistant() {
             errorMessage = errorData.error
           }
         } catch (e) {
-          const errorText = await response.text()
-          errorMessage = errorText || errorMessage
+          try {
+            const errorText = await response.text()
+            errorMessage = errorText || errorMessage
+          } catch (textError) {
+            // 忽略讀取文本錯誤
+          }
         }
         
-        console.error('Groq API 錯誤:', {
+        console.error('AI API 錯誤:', {
           status: response.status,
           statusText: response.statusText,
           error: errorMessage

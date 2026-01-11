@@ -23,6 +23,7 @@ export function validateServerConfig() {
   
   if (!serverConfig.gmail.user) missing.push('GMAIL_USER')
   if (!serverConfig.gmail.password) missing.push('GMAIL_APP_PASSWORD')
+  if (!serverConfig.groq.apiKey) missing.push('GROQ_API_KEY')
   
   if (missing.length > 0) {
     throw new Error(`Missing required environment variables: ${missing.join(', ')}`)
