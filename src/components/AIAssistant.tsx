@@ -15,11 +15,11 @@ const STORAGE_KEY = 'ai-assistant-messages'
 const DEFAULT_MESSAGES = {
   zh: {
     role: 'assistant' as const,
-    content: '您好！我是 Kevin 的 AI 助理，可以協助您快速了解 Kevin 的專業背景、技能、作品集和職涯資訊。請問有什麼想了解的嗎？'
+    content: '[SUGGESTION_BUTTONS]'
   },
   en: {
     role: 'assistant' as const,
-    content: 'Hello! I am Kevin\'s AI assistant. I can help you quickly understand Kevin\'s professional background, skills, portfolio, and career information. What would you like to know?'
+    content: '[SUGGESTION_BUTTONS]'
   }
 }
 
@@ -27,14 +27,14 @@ const QUICK_QUESTIONS = {
   zh: [
     'Kevin 的核心技能是什麼？',
     '可以介紹一下作品集嗎？',
-    '如何下載履歷？',
-    'Kevin 有哪些專案經驗？'
+    'Kevin 有哪些專案經驗？',
+    '如何與 Kevin 安排面試？'
   ],
   en: [
     'What are Kevin\'s core skills?',
     'Can you introduce the portfolio?',
-    'How to download the resume?',
-    'What project experience does Kevin have?'
+    'What project experience does Kevin have?',
+    'How to schedule an interview with Kevin?'
   ]
 }
 
@@ -690,7 +690,23 @@ export default function AIAssistant() {
                           overflow: 'visible',
                         }}
                       >
-                    {message.role === 'assistant' ? (() => {
+                    {message.role === 'assistant' && message.content === '[SUGGESTION_BUTTONS]' ? (
+                      <div className="space-y-2">
+                        <div className="text-sm font-medium mb-3 text-[var(--color-text)]">
+                          {currentLanguage === 'en' ? 'Suggested questions:' : '以下為建議問題：'}
+                        </div>
+                        {(getQuickQuestions() || []).map((question, index) => (
+                          <button
+                            key={index}
+                            onClick={() => handleQuickQuestion(question)}
+                            disabled={isLoading || isStreaming}
+                            className="w-full px-4 py-3 text-sm text-left bg-white border border-[var(--color-divider)] text-[var(--color-text)] hover:bg-[var(--color-surface)] hover:border-[var(--color-primary)] hover:shadow-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98] rounded-xl font-medium"
+                          >
+                            {question}
+                          </button>
+                        ))}
+                      </div>
+                    ) : message.role === 'assistant' ? (() => {
                       const formatText = (text: string) => {
                         let formatted = text
                         
@@ -868,31 +884,6 @@ export default function AIAssistant() {
               </div>
             )}
           </div>
-
-          {messages.length === 1 && (
-            <div className="px-3 sm:px-5 py-3 sm:py-4 border-t border-[var(--color-divider)] bg-[var(--color-surface-variant)] max-h-[120px] sm:max-h-[140px] overflow-y-auto">
-              <div className="flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-3">
-                <span className="material-symbols-outlined text-[var(--color-primary)] text-base sm:text-lg">
-                  bolt
-                </span>
-                <div className="text-[11px] sm:text-xs font-semibold text-[var(--color-text)]">
-                  {currentLanguage === 'en' ? 'Quick Questions' : '快捷問題'}
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                {(getQuickQuestions() || []).map((question, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleQuickQuestion(question)}
-                    disabled={isLoading || isStreaming}
-                    className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-[11px] sm:text-xs bg-white border border-[var(--color-divider)] text-[var(--color-text)] hover:bg-[var(--color-surface)] hover:border-[var(--color-primary)] hover:shadow-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 whitespace-nowrap rounded-lg sm:rounded-xl font-medium"
-                  >
-                    {question}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
 
           <div className="p-3 sm:p-4 border-t border-[var(--color-divider)] bg-white">
             <div className="flex gap-2 items-end">
