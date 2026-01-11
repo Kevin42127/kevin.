@@ -8,7 +8,7 @@ export default function Hero() {
   const { t, i18n } = useTranslationSafe()
   
   const currentLanguage = i18n?.language || 'zh'
-  const cvFileName = '陳梓敬_AI工程師_履歷.pdf'
+  const cvFileName = '陳梓敬_AI全端工程師_履歷.pdf'
   const cvPath = `/${cvFileName}`
 
   
