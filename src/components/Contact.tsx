@@ -24,8 +24,7 @@ export default function Contact() {
   }>({ show: false, type: 'success', message: '' })
 
   const tags = [
-    { id: 'interview', label: t('contact.tags.interview', '面試邀約') },
-    { id: 'other', label: t('contact.tags.other', '其他諮詢') }
+    { id: 'interview', label: t('contact.tags.interview', '面試邀約') }
   ]
 
   useEffect(() => {
@@ -48,6 +47,13 @@ export default function Contact() {
         ...errors,
         [name]: undefined
       })
+    }
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && !isSubmitting) {
+      e.preventDefault()
+      handleSubmit(e as any)
     }
   }
 
@@ -216,6 +222,7 @@ export default function Contact() {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
+                    onKeyDown={handleKeyDown}
                     className={`floating-input peer ${errors.name ? 'border-[#ef4444] focus:border-[#ef4444]' : ''}`}
                     placeholder=" "
                   />
@@ -239,6 +246,7 @@ export default function Contact() {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
+                    onKeyDown={handleKeyDown}
                     className={`floating-input peer ${errors.email ? 'border-[#ef4444] focus:border-[#ef4444]' : ''}`}
                     placeholder=" "
                   />

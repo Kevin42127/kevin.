@@ -158,8 +158,7 @@ const zhResources = {
     message: '訊息',
     lowFrictionNote: '懶得打字？選一個標籤直接聯繫我。',
     tags: {
-      interview: '面試邀約',
-      other: '其他諮詢'
+      interview: '面試邀約'
     },
     namePlaceholder: '您的姓名',
     emailPlaceholder: 'your@email.com',
@@ -739,8 +738,7 @@ const enResources = {
     message: 'Message',
     lowFrictionNote: 'Too lazy to type? Select a tag to contact me directly.',
     tags: {
-      interview: 'Interview Invite',
-      other: 'Others'
+      interview: 'Interview Invite'
     },
     namePlaceholder: 'Your name',
     emailPlaceholder: 'your@email.com',
