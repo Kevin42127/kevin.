@@ -9,16 +9,6 @@ export default function Portfolio() {
   const projects = [
     {
       id: 1,
-      title: t('portfolio.kevinAI.title', 'Kevin AI'),
-      description: t('portfolio.kevinAI.description', '整合 Groq AI 打造智能對話介面'),
-      image: '/Kevin AI.png',
-      technologies: ['React', 'Vite', t('portfolio.aiCollaboration', 'AI協作')],
-      github: '#',
-      demo: 'https://kevinaiofficial.vercel.app/',
-      featured: true
-    },
-    {
-      id: 2,
       title: t('portfolio.lineBot.title', 'LINE BOT'),
       description: t('portfolio.lineBot.description', '運用 TypeScript 與 Express 打造的 LINE 聊天機器人，整合 AI 協作功能'),
       image: '/LINE BOT.png',
@@ -28,7 +18,7 @@ export default function Portfolio() {
       featured: true
     },
     {
-      id: 3,
+      id: 2,
       title: t('portfolio.chefAI.title', 'ChefAI'),
       description: t('portfolio.chefAI.description', '運用 Vue 與 Vite 打造 AI 食譜生成平台'),
       image: '/ChefAI.png',
@@ -38,7 +28,7 @@ export default function Portfolio() {
       featured: true
     },
     {
-      id: 4,
+      id: 3,
       title: t('portfolio.aiTeacher.title', 'AI老師'),
       description: t('portfolio.aiTeacher.description', '運用 Vue 與 Vite 打造的 AI 協作專案'),
       image: '/AI老師.png',
@@ -48,7 +38,7 @@ export default function Portfolio() {
       featured: true
     },
     {
-      id: 5,
+      id: 4,
       title: t('portfolio.sumVid.title', 'SumVid'),
       description: t('portfolio.sumVid.description', '讓 AI 為您快速提取影片重點'),
       image: '/SumVid.png',
@@ -58,7 +48,7 @@ export default function Portfolio() {
       featured: true
     },
     {
-      id: 6,
+      id: 5,
       title: t('portfolio.discordAIBot.title', 'Discord AI Bot'),
       description: t('portfolio.discordAIBot.description', '運用 Python 打造的 Discord AI 聊天機器人，提供智能對話服務'),
       image: '/DISCORD.png',
@@ -68,7 +58,7 @@ export default function Portfolio() {
       featured: true
     },
     {
-      id: 7,
+      id: 6,
       title: t('portfolio.acadAI.title', 'AcadAI'),
       description: t('portfolio.acadAI.description', 'AI 自動幫你整理商品重點'),
       image: '/AcadAI.png',
@@ -78,7 +68,7 @@ export default function Portfolio() {
       featured: true
     },
     {
-      id: 8,
+      id: 7,
       title: t('portfolio.taiwanWeatherAI.title', '臺灣氣象AI助手'),
       description: t('portfolio.taiwanWeatherAI.description', '查詢天氣與 AI 問答'),
       image: '/臺灣氣象AI助手.png',
@@ -166,7 +156,7 @@ export default function Portfolio() {
                     <span>{t('portfolio.github', 'GitHub')}</span>
                   </a>
                 )}
-                {project.id !== 5 && project.id !== 6 && project.id !== 7 && project.id !== 8 && (
+                {project.id !== 4 && project.id !== 5 && project.id !== 6 && project.id !== 7 && (
                   <p className="text-xs text-[#6b6371] mt-2 text-center">
                     {t('portfolio.note', '備註：如果網頁打開是空白畫面，請按 Ctrl + F5 重新整理')}
                   </p>

@@ -90,10 +90,6 @@ const zhResources = {
       title: 'AI ToolLaboratory - AI 工具集合',
       description: '蒐集實用 AI 工具與連結的索引站，支援分類瀏覽與快速導引'
     },
-    kevinAI: {
-      title: 'Kevin AI',
-      description: '整合 Groq AI 打造智能對話介面，提供即時 AI 對話體驗'
-    },
     lineBot: {
       title: 'LINE BOT',
       description: '運用 TypeScript 與 Express 打造的 LINE 聊天機器人，整合 AI 協作功能，提供智能對話服務'
@@ -669,10 +665,6 @@ const enResources = {
     aiToolLaboratory: {
       title: 'AI ToolLaboratory - AI Tools Collection',
       description: 'An index site collecting practical AI tools and links, supporting categorized browsing and fast navigation'
-    },
-    kevinAI: {
-      title: 'Kevin AI',
-      description: 'Integrating Groq AI to build an intelligent conversation interface, providing real-time AI chat experience'
     },
     lineBot: {
       title: 'LINE BOT',
