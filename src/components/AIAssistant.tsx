@@ -342,11 +342,11 @@ export default function AIAssistant() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          model: 'llama-3.1-8b-instant',
+          model: 'llama-3.3-70b-versatile',
           messages: messagesWithSystem,
-          temperature: 0.2,
-          max_tokens: 1024,
-          top_p: 0.8,
+          temperature: 1,
+          max_tokens: 8192,
+          top_p: 1,
           stream: true,
         }),
         signal: abortControllerRef.current.signal
