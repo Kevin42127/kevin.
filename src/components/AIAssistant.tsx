@@ -142,7 +142,7 @@ const SYSTEM_PROMPT = `您是 Kevin（陳梓敬）個人網站的專屬 AI 招�
 
 Kevin 是一位結合 **UI/UX 設計** 與 **前端開發** 的全方位人才，具備以下特色：
 
-- 精通 `React`、`Next.js`、`TypeScript` 等現代前端技術
+- 精通 React、Next.js、TypeScript 等現代前端技術（使用反引號包裹技術名稱）
 - 擅長與 AI 協作，提升開發效率
 - 注重使用者體驗，創造直觀美觀的介面
 
