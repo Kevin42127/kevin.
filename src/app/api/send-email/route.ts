@@ -13,8 +13,8 @@ const getEmailTemplate = (name: string, email: string, subject: string, message:
     ? `您有一封來自 ${name} 的聯絡訊息。` 
     : `您好 ${name}，感謝您在我的個人網站上留言！這是一封自動確認信，告訴您我已成功收到您的訊息。`
 
-  const contentHeader = isAdmin ? '聯絡人資訊' : '您的留言內容副本'
-  const messageLabel = isAdmin ? '訊息內容' : '訊息副本'
+  const contentHeader = isAdmin ? '聯絡人資訊' : '您的聯繫資訊'
+  const messageLabel = isAdmin ? '聯繫類型' : '聯繫主題'
 
   return `
     <!DOCTYPE html>
@@ -67,7 +67,7 @@ const getEmailTemplate = (name: string, email: string, subject: string, message:
           background-color: #f8fafc;
           border-radius: 12px;
           padding: 24px;
-          margin-bottom: 32px;
+          margin-bottom: 0;
         }
         .info-title {
           font-size: 14px;
@@ -79,33 +79,18 @@ const getEmailTemplate = (name: string, email: string, subject: string, message:
           display: block;
         }
         .info-item {
-          margin-bottom: 8px;
+          margin-bottom: 12px;
           font-size: 15px;
+          display: flex;
+          align-items: center;
         }
         .info-item strong {
           color: #111827;
-          width: 80px;
-          display: inline-block;
+          width: 90px;
+          flex-shrink: 0;
         }
-        .message-section {
-          border-top: 1px solid #e5e7eb;
-          padding-top: 32px;
-        }
-        .message-title {
-          font-size: 14px;
-          font-weight: 700;
-          color: ${brandColor};
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-          margin-bottom: 16px;
-          display: block;
-        }
-        .message-content {
-          font-size: 15px;
-          line-height: 1.8;
-          white-space: pre-wrap;
-          color: #1f2937;
-          background-color: #ffffff;
+        .info-item span {
+          color: #4b5563;
         }
         .footer {
           padding: 32px 40px;
@@ -141,20 +126,18 @@ const getEmailTemplate = (name: string, email: string, subject: string, message:
             
             <div class="info-section">
               <span class="info-title">${contentHeader}</span>
-              <div class="info-item"><strong>姓名：</strong> ${name}</div>
-              <div class="info-item"><strong>Email：</strong> ${email}</div>
-              <div class="info-item"><strong>主題：</strong> ${subject}</div>
-            </div>
-
-            <div class="message-section">
-              <span class="message-title">${messageLabel}</span>
-              <div class="message-content">${message}</div>
+              <div class="info-item"><strong>姓名：</strong> <span>${name}</span></div>
+              <div class="info-item"><strong>Email：</strong> <span>${email}</span></div>
+              <div class="info-item"><strong>${messageLabel}：</strong> <span>${subject}</span></div>
             </div>
             
             ${!isAdmin ? `
             <div style="margin-top: 32px; padding-top: 32px; border-top: 1px solid #e5e7eb;">
               <p style="font-size: 15px; line-height: 1.6; color: #4b5563;">
-                我非常重視您的來信，目前已收到您的留言。我通常會在 24-48 小時內親自回覆您。<br><br>
+                ${subject === '面試邀約' 
+                  ? '我已收到您的面試邀請，這對我來說非常重要。我會盡快查閱您的職缺資訊，並在 24 小時內與您聯繫討論後續安排。' 
+                  : '我非常重視您的來信，目前已收到您的留言。我通常會在 24-48 小時內親自回覆您。'}
+                <br><br>
                 祝您有美好的一天！
               </p>
             </div>

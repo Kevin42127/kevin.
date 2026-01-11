@@ -9,14 +9,12 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
-    message: ''
+    subject: ''
   })
   const [errors, setErrors] = useState<{
     name?: string
     email?: string
     subject?: string
-    message?: string
   }>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [toast, setToast] = useState<{
@@ -24,6 +22,11 @@ export default function Contact() {
     type: 'success' | 'error'
     message: string
   }>({ show: false, type: 'success', message: '' })
+
+  const tags = [
+    { id: 'interview', label: t('contact.tags.interview', '面試邀約') },
+    { id: 'other', label: t('contact.tags.other', '其他諮詢') }
+  ]
 
   useEffect(() => {
     if (toast.show) {
@@ -34,7 +37,7 @@ export default function Contact() {
     }
   }, [toast])
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setFormData({
       ...formData,
@@ -44,6 +47,19 @@ export default function Contact() {
       setErrors({
         ...errors,
         [name]: undefined
+      })
+    }
+  }
+
+  const handleTagClick = (tagLabel: string) => {
+    setFormData({
+      ...formData,
+      subject: tagLabel
+    })
+    if (errors.subject) {
+      setErrors({
+        ...errors,
+        subject: undefined
       })
     }
   }
@@ -62,11 +78,7 @@ export default function Contact() {
     }
     
     if (!formData.subject.trim()) {
-      newErrors.subject = t('contact.validation.subjectRequired', '請填寫主題')
-    }
-    
-    if (!formData.message.trim()) {
-      newErrors.message = t('contact.validation.messageRequired', '請填寫訊息內容')
+      newErrors.subject = t('contact.validation.subjectRequired', '請選擇一個主題')
     }
     
     setErrors(newErrors)
@@ -88,7 +100,11 @@ export default function Contact() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        // 發送給 API 時，將 subject 同時作為 message 發送（因為 API 驗證需要 message）
+        body: JSON.stringify({
+          ...formData,
+          message: `${t('contact.sendMessage', '來自聯繫表單的訊息')}：${formData.subject}`
+        }),
       })
 
       const result = await response.json()
@@ -99,7 +115,7 @@ export default function Contact() {
           type: 'success',
           message: t('contact.success', '訊息已發送！')
         })
-        setFormData({ name: '', email: '', subject: '', message: '' })
+        setFormData({ name: '', email: '', subject: '' })
         setErrors({})
       } else {
         setToast({
@@ -121,7 +137,7 @@ export default function Contact() {
   }
 
   return (
-  <section id="contact" className="py-16 sm:py-20 bg-[var(--color-section-alt)]">
+    <section id="contact" className="min-h-screen flex items-center bg-[var(--color-section-alt)] py-12 sm:py-16 md:py-20">
       {toast.show && (
         <div className="fixed top-20 right-4 sm:top-24 sm:right-6 z-[10001]">
           <div
@@ -143,114 +159,97 @@ export default function Contact() {
         </div>
       )}
       
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="section-surface">
-        <motion.div
-          transition={{ duration: 0.8 }}
-          className="text-center mb-12 sm:mb-14 md:mb-16"
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1b1d2c] mb-3 sm:mb-4 px-4">
-{t('contact.title', '聯繫我')}
-          </h2>
-          <p className="text-lg sm:text-xl text-[#4a4455] max-w-3xl mx-auto px-4">
-{t('contact.description', '歡迎與我聯繫')}
-          </p>
-        </motion.div>
-
-        <div className="max-w-2xl mx-auto">
+      <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="section-surface p-6 sm:p-10 md:p-16 lg:p-20">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="bg-white border border-[var(--color-divider)] p-6 sm:p-8 shadow-[0_20px_35px_rgba(15,15,40,0.08)] rounded-xl"
           >
-            <h3 className="text-xl sm:text-2xl font-bold text-[#1b1d2c] mb-4 sm:mb-6">
-              {t('contact.sendMessage', '留下訊息')}
-            </h3>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1b1d2c] mb-4 sm:mb-6">
+              {t('contact.title', '聯繫我')}
+            </h2>
+            <p className="text-base sm:text-lg text-[#4a4455] mb-6 sm:mb-8 leading-relaxed">
+              {t('contact.lowFrictionNote', '懶得打字？選一個標籤直接聯繫我。')}
+            </p>
+            
+            <div className="flex flex-wrap gap-2 sm:gap-3 mb-8">
+              {tags.map((tag) => (
+                <button
+                  key={tag.id}
+                  type="button"
+                  onClick={() => handleTagClick(tag.label)}
+                  className={`px-4 py-2 rounded-full border transition-all duration-300 flex items-center justify-center ${
+                    formData.subject === tag.label
+                      ? 'bg-[var(--color-primary)] text-white border-[var(--color-primary)] shadow-md scale-105'
+                      : 'bg-white text-[#4a4455] border-[var(--color-divider)] hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]'
+                  }`}
+                >
+                  <span className="text-xs sm:text-sm font-medium">{tag.label}</span>
+                </button>
+              ))}
+            </div>
+
+            {errors.subject && (
+              <p className="text-sm text-[#ef4444] mb-6 flex items-center gap-1">
+                <span className="material-symbols-outlined text-sm">error</span>
+                {errors.subject}
+              </p>
+            )}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="bg-[var(--color-section-alt)] p-6 sm:p-8 rounded-2xl border border-[var(--color-divider)]"
+          >
             <form onSubmit={handleSubmit} noValidate className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="form-field">
-                  <div className="floating-field">
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      className={`floating-input peer ${errors.name ? 'border-[#ef4444] focus:border-[#ef4444]' : ''}`}
-                      placeholder=" "
-                    />
-                    <label htmlFor="name" className="floating-label">
-                      {t('contact.name', '姓名')} *
-                    </label>
-                  </div>
-                  {errors.name && (
-                    <p className="text-sm text-[#ef4444] mt-1.5">
-                      {errors.name}
-                    </p>
-                  )}
-                </div>
-                <div className="form-field">
-                  <div className="floating-field">
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      className={`floating-input peer ${errors.email ? 'border-[#ef4444] focus:border-[#ef4444]' : ''}`}
-                      placeholder=" "
-                    />
-                    <label htmlFor="email" className="floating-label">
-                      {t('contact.email', '電子郵件')} *
-                    </label>
-                  </div>
-                  {errors.email && (
-                    <p className="text-sm text-[#ef4444] mt-1.5">
-                      {errors.email}
-                    </p>
-                  )}
-                </div>
-              </div>
-              
               <div className="form-field">
                 <div className="floating-field">
                   <input
                     type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
+                    id="name"
+                    name="name"
+                    value={formData.name}
                     onChange={handleChange}
-                    className={`floating-input peer ${errors.subject ? 'border-[#ef4444] focus:border-[#ef4444]' : ''}`}
+                    className={`floating-input peer ${errors.name ? 'border-[#ef4444] focus:border-[#ef4444]' : ''}`}
                     placeholder=" "
                   />
-                  <label htmlFor="subject" className="floating-label">
-                    {t('contact.subject', '主題')} *
+                  <label htmlFor="name" className="floating-label">
+                    {t('contact.name', '姓名')} *
                   </label>
                 </div>
-                {errors.subject && (
-                  <p className="text-sm text-[#ef4444] mt-1.5">
-                    {errors.subject}
+                {errors.name && (
+                  <p className="text-sm text-[#ef4444] mt-1.5 flex items-center gap-1">
+                    <span className="material-symbols-outlined text-sm">error</span>
+                    {errors.name}
                   </p>
                 )}
               </div>
-              
+
               <div className="form-field">
                 <div className="floating-field">
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
                     onChange={handleChange}
-                    rows={6}
-                    className={`floating-textarea peer resize-none ${errors.message ? 'border-[#ef4444] focus:border-[#ef4444]' : ''}`}
+                    className={`floating-input peer ${errors.email ? 'border-[#ef4444] focus:border-[#ef4444]' : ''}`}
                     placeholder=" "
                   />
-                  <label htmlFor="message" className="floating-label">
-                    {t('contact.message', '訊息')} *
+                  <label htmlFor="email" className="floating-label">
+                    {t('contact.email', '電子郵件')} *
                   </label>
                 </div>
-                {errors.message && (
-                  <p className="text-sm text-[#ef4444] mt-1.5">
-                    {errors.message}
+                {errors.email && (
+                  <p className="text-sm text-[#ef4444] mt-1.5 flex items-center gap-1">
+                    <span className="material-symbols-outlined text-sm">error</span>
+                    {errors.email}
                   </p>
                 )}
               </div>
@@ -258,12 +257,21 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full btn-primary min-h-[48px] ${
+                className={`w-full btn-primary min-h-[56px] text-lg rounded-xl shadow-lg hover:shadow-xl active:scale-[0.98] transition-all ${
                   isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
               >
-                <span className="material-symbols-outlined text-base">send</span>
-                <span>{isSubmitting ? t('contact.sending', '傳送中...') : t('contact.sendMessage', '留下訊息')}</span>
+                {isSubmitting ? (
+                  <div className="flex items-center gap-2">
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <span>{t('contact.sending', '傳送中...')}</span>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    <span className="material-symbols-outlined">send</span>
+                    <span>{t('contact.sendMessage', '傳送訊息')}</span>
+                  </div>
+                )}
               </button>
             </form>
           </motion.div>
