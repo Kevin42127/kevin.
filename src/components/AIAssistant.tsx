@@ -162,6 +162,7 @@ export default function AIAssistant() {
   const getQuickQuestions = (): string[] => QUICK_QUESTIONS[currentLanguage] || QUICK_QUESTIONS.zh
   
   const [isOpen, setIsOpen] = useState(false)
+  const [showBubble, setShowBubble] = useState(false)
   const [messages, setMessages] = useState<Message[]>([getDefaultMessage()])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -173,6 +174,7 @@ export default function AIAssistant() {
 
   const handleOpen = () => {
     setIsOpen(true)
+    setShowBubble(false)
     window.history.pushState(null, '', '#ai-chat')
   }
 
@@ -228,6 +230,15 @@ export default function AIAssistant() {
     }
     return englishMatches > 0 ? 'en' : 'zh'
   }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!isOpen) {
+        setShowBubble(true)
+      }
+    }, 3000)
+    return () => clearTimeout(timer)
+  }, [isOpen])
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -548,13 +559,59 @@ export default function AIAssistant() {
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="fixed bottom-[100px] sm:bottom-[120px] right-4 sm:right-6 z-50"
           >
+            <AnimatePresence>
+              {showBubble && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.5, y: 20, x: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
+                  exit={{ opacity: 0, scale: 0.5, y: 20, x: 20 }}
+                  className="absolute bottom-full right-0 mb-4 cursor-pointer"
+                  onClick={handleOpen}
+                >
+                  <div className="relative bg-white text-[var(--color-text)] px-4 py-3 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.15)] border border-[var(--color-divider)] whitespace-nowrap group">
+                    <div className="flex items-center gap-2">
+                      <span className="text-base">👋</span>
+                      <p className="text-sm font-bold tracking-tight">
+                        {currentLanguage === 'en' 
+                          ? "Hi! I'm Kevin's AI" 
+                          : "嗨！我是 Kevin 的 AI"}
+                      </p>
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          setShowBubble(false)
+                        }}
+                        className="ml-1 p-0.5 hover:bg-gray-100 rounded-full transition-colors opacity-0 group-hover:opacity-100"
+                        aria-label="Close tooltip"
+                      >
+                        <span className="material-symbols-outlined text-sm">close</span>
+                      </button>
+                    </div>
+                    <div className="absolute top-full right-6 w-3 h-3 bg-white border-r border-b border-[var(--color-divider)] transform rotate-45 -translate-y-1.5" />
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             <motion.button
               onClick={handleOpen}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="relative w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center bg-[var(--color-primary)] text-white shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.16)] hover:bg-[var(--color-primary-dark)] transition-all duration-300 rounded-2xl"
+              className="relative w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center bg-[var(--color-primary)] text-white shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.16)] hover:bg-[var(--color-primary-dark)] transition-all duration-300 rounded-full"
               aria-label={currentLanguage === 'en' ? 'Open AI Assistant' : '開啟 AI 助理'}
             >
+              <motion.span
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0, 0.5, 0],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute inset-0 bg-[var(--color-primary)] rounded-full -z-10"
+              />
               <span className="material-symbols-outlined text-2xl sm:text-3xl">
                 smart_toy
               </span>
