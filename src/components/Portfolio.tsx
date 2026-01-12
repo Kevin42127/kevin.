@@ -166,7 +166,7 @@ export default function Portfolio() {
                     <span>{t('portfolio.github', 'GitHub')}</span>
                   </a>
                 )}
-                {project.id !== 4 && project.id !== 5 && project.id !== 6 && project.id !== 7 && (
+                {project.id !== 4 && project.id !== 5 && project.id !== 6 && project.id !== 7 && project.id !== 8 && (
                   <p className="text-xs text-[#6b6371] mt-2 text-center">
                     {t('portfolio.note', '備註：如果網頁打開是空白畫面，請按 Ctrl + F5 重新整理')}
                   </p>
