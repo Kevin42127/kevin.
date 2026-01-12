@@ -80,7 +80,7 @@ export default function Portfolio() {
     {
       id: 8,
       title: t('portfolio.djkridp.title', 'DJKridP'),
-      description: t('portfolio.djkridp.description', '已獲得本人同意及認證'),
+      description: t('portfolio.djkridp.description', '運用 HTML、CSS 與 Express 為德國知名 DJ 打造的個人品牌官網，整合其國際演出經歷與社群連結，展現現代化的視覺風格（已獲本人認證）。'),
       image: '/DJKridP.png',
       technologies: ['HTML', 'CSS', 'JavaScript', 'Express', t('portfolio.aiCollaboration', 'AI協作')],
       github: '#',

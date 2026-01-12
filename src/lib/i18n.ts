@@ -120,7 +120,7 @@ const zhResources = {
     },
     djkridp: {
       title: 'DJKridP',
-      description: '已獲得本人同意及認證'
+      description: '運用 HTML、CSS 與 Express 為德國知名 DJ 打造的個人品牌官網，整合其國際演出經歷與社群連結，展現現代化的視覺風格（已獲本人認證）。'
     },
     aiCollaboration: 'AI協作',
     basicPractice: '基礎練習',
@@ -705,7 +705,7 @@ const enResources = {
     },
     djkridp: {
       title: 'DJKridP',
-      description: 'Authorized and certified by the individual'
+      description: 'Official brand website for renowned German DJ DJKridP, built with HTML, CSS, and Express. Integrates international tour history and social media links with a modern visual style (Certified by DJKridP).'
     },
     aiCollaboration: 'AI Collaboration',
     basicPractice: 'Basic Practice',
