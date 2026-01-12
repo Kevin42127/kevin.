@@ -118,6 +118,10 @@ const zhResources = {
       title: '臺灣氣象AI助手',
       description: '查詢天氣與 AI 問答'
     },
+    djkridp: {
+      title: 'DJKridP',
+      description: '已獲得本人同意及認證'
+    },
     aiCollaboration: 'AI協作',
     basicPractice: '基礎練習',
     apiLearning: 'API 學習',
@@ -698,6 +702,10 @@ const enResources = {
     taiwanWeatherAI: {
       title: 'Taiwan Weather AI Assistant',
       description: 'Weather queries and AI Q&A'
+    },
+    djkridp: {
+      title: 'DJKridP',
+      description: 'Authorized and certified by the individual'
     },
     aiCollaboration: 'AI Collaboration',
     basicPractice: 'Basic Practice',

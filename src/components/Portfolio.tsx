@@ -76,6 +76,16 @@ export default function Portfolio() {
       github: '#',
       demo: 'https://chromewebstore.google.com/detail/%E8%87%BA%E7%81%A3%E6%B0%A3%E8%B1%A1ai%E5%8A%A9%E6%89%8B/oiefmbmfndlpejflldfknalgpljnbced',
       featured: true
+    },
+    {
+      id: 8,
+      title: t('portfolio.djkridp.title', 'DJKridP'),
+      description: t('portfolio.djkridp.description', '已獲得本人同意及認證'),
+      image: '/DJKridP.png',
+      technologies: ['HTML', 'CSS', 'JavaScript', 'Express', t('portfolio.aiCollaboration', 'AI協作')],
+      github: '#',
+      demo: 'https://djkridp.vercel.app/',
+      featured: true
     }
   ]
 
