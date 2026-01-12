@@ -1,8 +1,10 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useTranslationSafe } from '../hooks/useTranslationSafe'
 
 export default function ScrollToTopButton() {
+  const { t } = useTranslationSafe()
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
@@ -22,10 +24,10 @@ export default function ScrollToTopButton() {
   return (
     <button
       onClick={scrollToTop}
-      className="scroll-to-top-btn"
-      aria-label="返回頂部"
+      className="fixed bottom-6 right-6 z-50 text-sm font-bold uppercase tracking-widest text-[#6b6371] hover:text-[var(--color-primary)] transition-colors duration-300"
+      aria-label={t('footer.scrollToTop', '返回頂部')}
     >
-      <span className="material-symbols-outlined text-base">arrow_upward</span>
+      {t('footer.scrollToTop', '返回頂部')}
     </button>
   )
 }

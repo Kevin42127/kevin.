@@ -43,7 +43,7 @@ export default function LanguageSwitcher() {
   ]
 
   const buttonClasses =
-    'flex items-center justify-center gap-1 text-[#1f1d30] hover:text-[var(--color-primary)] transition-all duration-300 px-3 py-2 border border-[var(--color-divider)] bg-white min-h-[44px] uppercase tracking-wide text-xs rounded-lg'
+    'flex items-center justify-center gap-1 text-[#1f1d30] hover:text-[var(--color-primary)] transition-all duration-300 px-3 py-2 border border-[var(--color-divider)] bg-white min-h-[44px] uppercase tracking-wide text-xs rounded-[50px]'
 
   if (!mounted) {
     return (
@@ -75,7 +75,7 @@ export default function LanguageSwitcher() {
 
       {isOpen && (
         <div 
-          className="absolute bottom-full lg:bottom-auto lg:top-full right-0 mb-2 lg:mt-5 w-52 bg-white border border-[var(--color-divider)] shadow-[0_20px_45px_rgba(15,15,40,0.08)] z-[100] rounded-xl"
+          className="absolute bottom-full lg:bottom-auto lg:top-full right-0 mb-2 lg:mt-5 w-52 bg-white border border-[var(--color-divider)] shadow-[0_20px_45px_rgba(15,15,40,0.08)] z-[100] rounded-2xl p-1.5 overflow-hidden"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
@@ -83,19 +83,21 @@ export default function LanguageSwitcher() {
             <button
               key={language.code}
               onClick={() => changeLanguage(language.code)}
-              className={`w-full text-left px-4 py-3 text-sm transition-all duration-300 active:scale-[0.98] border-b border-[var(--color-divider)] last:border-b-0 ${
+              className={`w-full text-left px-4 py-3 text-sm transition-all duration-300 active:scale-[0.98] rounded-xl mb-1 last:mb-0 ${
                 language.code === i18n.language
-                  ? 'bg-[var(--color-surface-variant)] text-[#1f1d30] border-l-2 border-[var(--color-primary)]'
+                  ? 'bg-[var(--color-primary)] text-white'
                   : 'text-[#6b6371] hover:bg-[var(--color-surface-variant)] hover:text-[#1f1d30]'
               }`}
             >
               <div className="flex items-center justify-between">
                 <div>
                   <div className="font-medium">{language.nativeName}</div>
-                  <div className="text-xs text-[#9b92a4] mt-0.5">{language.name}</div>
+                  <div className={`text-xs mt-0.5 ${language.code === i18n.language ? 'text-white/80' : 'text-[#9b92a4]'}`}>{language.name}</div>
                 </div>
                 {language.code === i18n.language && (
-                  <span className="material-symbols-outlined text-[var(--color-primary)] text-base">check_circle</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor" className="text-white">
+                    <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>
+                  </svg>
                 )}
               </div>
             </button>

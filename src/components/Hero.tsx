@@ -87,17 +87,13 @@ export default function Hero() {
       >
         <button
           onClick={scrollToNext}
-          className="flex flex-col items-center justify-center gap-2 text-[#6b6371] hover:text-[var(--color-primary)] transition-colors duration-300 group cursor-pointer"
+          className="flex flex-col items-center justify-center gap-2 text-[#6b6371] transition-colors duration-300 cursor-pointer"
           aria-label="向下滾動"
         >
-          <span className="text-sm font-medium mb-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-            {t('hero.scrollDown', '向下滾動')}
-          </span>
           <div className="relative w-10 h-10 flex items-center justify-center">
             <span className="material-symbols-outlined text-3xl animate-bounce">
               keyboard_arrow_down
             </span>
-            <div className="absolute inset-0 border-2 border-[var(--color-primary)] rounded-full opacity-0 group-hover:opacity-30 animate-ping"></div>
           </div>
         </button>
       </motion.div>

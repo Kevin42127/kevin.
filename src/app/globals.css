@@ -194,14 +194,8 @@ a:focus {
   }
 
   .about-skill-card:hover {
-    transform: translateY(-4px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     border-color: var(--color-primary);
-  }
-
-  .about-skill-card:active {
-    transform: translateY(-2px) scale(0.98);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
   }
 
   .about-skill-card::before,
@@ -226,12 +220,11 @@ a:focus {
     background-color: var(--color-primary-dark);
     border-color: var(--color-primary-dark);
     color: #ffffff;
-    transform: translateY(-3px);
     box-shadow: var(--shadow-lg);
   }
   
   .btn-primary:active {
-    transform: translateY(0);
+    @apply opacity-90;
   }
   
   .btn-secondary {
@@ -249,7 +242,6 @@ a:focus {
     background-color: var(--color-primary);
     border-color: var(--color-primary);
     color: #ffffff;
-    transform: translateY(-2px);
     box-shadow: var(--shadow-md);
   }
   
@@ -480,7 +472,7 @@ a:focus {
     background-color: transparent;
     color: var(--color-text-muted);
     border: 1px solid var(--color-divider);
-    border-radius: 12px;
+    border-radius: 50px;
   }
   
   .btn-nav-pill:hover {
@@ -538,7 +530,7 @@ a:focus {
     height: 54px;
     min-width: 54px;
     min-height: 54px;
-    border-radius: 12px;
+    border-radius: 9999px;
     background-color: var(--color-surface-variant);
     color: var(--color-primary);
     border: 2px solid var(--color-primary);

@@ -51,7 +51,7 @@ export default function About() {
           <div className="grid lg:grid-cols-3 gap-6 sm:gap-8 items-center">
             <div className="flex justify-center lg:justify-start mb-6 lg:mb-0">
               <div 
-                className="w-40 h-40 sm:w-48 sm:h-48 overflow-hidden shadow-[0_25px_45px_rgba(0,0,0,0.12)] border-4 border-white select-none relative"
+                className="w-40 h-40 sm:w-48 sm:h-48 rounded-full overflow-hidden shadow-[0_25px_45px_rgba(0,0,0,0.12)] border-4 border-white select-none relative"
                 onContextMenu={(e) => e.preventDefault()}
                 onDragStart={(e) => e.preventDefault()}
                 style={{ 
@@ -109,7 +109,7 @@ export default function About() {
                 className="card about-skill-card p-5 sm:p-6"
                 style={{ backgroundColor: skill.color }}
               >
-                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#1b1d2c] flex items-center justify-center mb-3 sm:mb-4">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#1b1d2c] flex items-center justify-center mb-3 sm:mb-4 rounded-full">
                   <span className="material-symbols-outlined text-white text-2xl">{skill.icon}</span>
                 </div>
                 <h4 className="text-lg sm:text-xl font-semibold text-[#1b1d2c] mb-2">

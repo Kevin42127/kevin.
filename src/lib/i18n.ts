@@ -182,7 +182,8 @@ const zhResources = {
     location: '彰化縣, 台灣',
     madeWith: 'Made with ❤️ by Kevin',
     copyright: '© 2024 Kevin. All rights reserved.',
-    note: '備註：如果網頁打開是空白畫面，請按 Ctrl + F5 重新整理'
+    note: '備註：如果網頁打開是空白畫面，請按 Ctrl + F5 重新整理',
+    scrollToTop: '返回頂部'
   },
   socialMedia: {
     linkedin: 'LinkedIn',
@@ -762,7 +763,8 @@ const enResources = {
     location: 'Changhua County, Taiwan',
     madeWith: 'Made with ❤️ by Kevin',
     copyright: '© 2024 Kevin. All rights reserved.',
-    note: 'Note: If the page appears blank, please press Ctrl + F5 to refresh'
+    note: 'Note: If the page appears blank, please press Ctrl + F5 to refresh',
+    scrollToTop: 'TOP'
   },
   socialMedia: {
     linkedin: 'LinkedIn',
