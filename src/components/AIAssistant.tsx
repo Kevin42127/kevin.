@@ -236,7 +236,7 @@ export default function AIAssistant() {
       if (!isOpen) {
         setShowBubble(true)
       }
-    }, 3000)
+    }, 0)
     return () => clearTimeout(timer)
   }, [isOpen])
 
