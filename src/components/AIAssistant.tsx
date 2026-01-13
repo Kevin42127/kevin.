@@ -797,7 +797,7 @@ export default function AIAssistant() {
                         formatted = formatted.replace(/(https?:\/\/[^\s<>"']+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-link">$1</a>')
                         
                         formatted = formatted.replace(/\[DOWNLOAD_RESUME_ZH\]/g, 
-                          '<a href="/陳梓敬_AI全端工程師_履歷.pdf" download="陳梓敬_AI全端工程師_履歷.pdf" style="color: var(--color-primary); text-decoration: underline; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.opacity=\'0.7\';" onmouseout="this.style.opacity=\'1\';">' + (currentLanguage === 'en' ? 'Download Resume' : '下載履歷') + '</a>')
+                          '<a href="/陳梓敬_履歷.pdf" download="陳梓敬_履歷.pdf" style="color: var(--color-primary); text-decoration: underline; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.opacity=\'0.7\';" onmouseout="this.style.opacity=\'1\';">' + (currentLanguage === 'en' ? 'Download Resume' : '下載履歷') + '</a>')
                         
                         formatted = formatted.replace(/\[VIEW_PORTFOLIO\]/g, 
                           '<a onclick="document.getElementById(\'portfolio\')?.scrollIntoView({behavior: \'smooth\'})" style="color: var(--color-primary); text-decoration: underline; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.opacity=\'0.7\';" onmouseout="this.style.opacity=\'1\';">' + (currentLanguage === 'en' ? 'View Portfolio' : '查看作品集') + '</a>')
