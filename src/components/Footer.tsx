@@ -33,14 +33,14 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col items-center gap-4 pt-2">
           <a 
-            href="https://www.dmca.com/Protection/Status.aspx?ID=c23022d2-174a-45f3-a198-188a70313323" 
+            href="https://www.dmca.com/r/l1wqqed" 
             title="DMCA.com Protection Status" 
             className="dmca-badge opacity-70 hover:opacity-100 transition-opacity duration-300"
             target="_blank"
             rel="noopener noreferrer"
           >
             <img 
-              src="https://images.dmca.com/Badges/dmca_protected_sml_120n.png?ID=c23022d2-174a-45f3-a198-188a70313323"
+              src="https://images.dmca.com/Badges/dmca_protected_sml_120m.png?ID=c23022d2-174a-45f3-a198-188a70313323"
               alt="DMCA.com Protection Status"
               className="h-10 w-auto"
             />
