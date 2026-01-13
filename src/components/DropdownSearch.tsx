@@ -74,15 +74,47 @@ export default function DropdownSearch() {
     {
       id: 'about',
       title: t('navigation.about', '關於'),
-      description: t('search.aboutDescription', '了解我的背景、技能和專業經驗'),
+      description: '陳梓敬 Kevin 吳鳳科技大學 數位科技與媒體設計系 使用者為中心 數位體驗 需求分析 產品設計 使用者體驗優化 品質控制測試 AI協作開發 現代化工具 設計概念 系統性設計思維 AI輔助開發 高品質數位產品',
       type: 'about',
       href: '#about',
       icon: typeIconMap.about
     },
     {
+      id: 'about-uiux',
+      title: 'UI/UX 設計',
+      description: '使用者體驗設計 創造直觀且美觀的介面 UI UX Design',
+      type: 'about',
+      href: '#about',
+      icon: 'palette'
+    },
+    {
+      id: 'about-product',
+      title: '產品設計',
+      description: '需求分析 產品規劃 將想法轉化為可行的數位解決方案 Product Design',
+      type: 'about',
+      href: '#about',
+      icon: 'track_changes'
+    },
+    {
+      id: 'about-quality',
+      title: '品質控制',
+      description: '系統性測試 產品穩定性 優化使用者體驗 Quality Control Testing',
+      type: 'about',
+      href: '#about',
+      icon: 'verified'
+    },
+    {
+      id: 'about-ai',
+      title: '與AI協作',
+      description: '運用AI工具 提升工作效率 AI協作經驗 AI Collaboration',
+      type: 'about',
+      href: '#about',
+      icon: 'diversity_3'
+    },
+    {
       id: 'portfolio',
       title: t('navigation.portfolio', '作品'),
-      description: t('search.portfolioDescription', '查看我的精選專案和作品集'),
+      description: '精選專案展示 技術實力 創意思維 作品集 Projects Portfolio',
       type: 'portfolio',
       href: '#portfolio',
       icon: typeIconMap.portfolio
@@ -90,23 +122,103 @@ export default function DropdownSearch() {
     {
       id: 'skills',
       title: t('navigation.skills', '技能'),
-      description: t('search.skillsDescription', '了解我的技術能力和專業技能'),
+      description: '技術技能 持續學習新技術 保持技能與時俱進 Technical Skills',
       type: 'skills',
       href: '#skills',
       icon: typeIconMap.skills
     },
     {
+      id: 'skills-frontend',
+      title: '前端開發',
+      description: 'React 90% Next.js 85% TypeScript 80% JavaScript 95% HTML CSS 95% Tailwind CSS 90% Frontend Development',
+      type: 'skills',
+      href: '#skills',
+      icon: 'terminal'
+    },
+    {
+      id: 'skills-design',
+      title: '設計技能',
+      description: 'UI/UX Design 80% Responsive Design 90% Prototyping 75% Figma 75% Design Systems 70% User Research 60%',
+      type: 'skills',
+      href: '#skills',
+      icon: 'palette'
+    },
+    {
+      id: 'skills-tools',
+      title: '工具與平台',
+      description: 'GitHub 85% Vercel 80% VS Code 90% Node.js 75% Express 70% REST API 80% Tools Platforms',
+      type: 'skills',
+      href: '#skills',
+      icon: 'build'
+    },
+    {
+      id: 'skills-soft',
+      title: '軟技能',
+      description: '團隊協作 85% 問題解決 90% 溝通表達 80% 持續學習 95% 創意思考 85% 時間管理 80% Soft Skills',
+      type: 'skills',
+      href: '#skills',
+      icon: 'groups'
+    },
+    {
       id: 'experience',
       title: t('navigation.experience', '經驗'),
-      description: t('search.experienceDescription', '查看我的語言能力、證照認證與實務經驗'),
+      description: '語言能力 證照認證 實務經驗 課外活動 Experience',
       type: 'experience',
       href: '#experience',
       icon: typeIconMap.experience
     },
     {
+      id: 'experience-language-zh',
+      title: '中文（母語）',
+      description: '語言能力 中文 母語 Chinese Native',
+      type: 'experience',
+      href: '#experience',
+      icon: 'language'
+    },
+    {
+      id: 'experience-language-en',
+      title: '英文（中級）',
+      description: '語言能力 英文 中級 English Intermediate',
+      type: 'experience',
+      href: '#experience',
+      icon: 'language'
+    },
+    {
+      id: 'experience-cert-ps',
+      title: 'Adobe Photoshop 國際認證',
+      description: 'Adobe Photoshop 國際認證 證照 International Certification',
+      type: 'experience',
+      href: '#experience',
+      icon: 'workspace_premium'
+    },
+    {
+      id: 'experience-cert-dw',
+      title: 'Adobe Dreamweaver 國際認證',
+      description: 'Adobe Dreamweaver 國際認證 證照 International Certification',
+      type: 'experience',
+      href: '#experience',
+      icon: 'workspace_premium'
+    },
+    {
+      id: 'experience-competition',
+      title: '校園專題競賽第三名',
+      description: '2023年 校園專題競賽 設計思維 技術能力 第三名 專案執行 創意思考 問題解決 技術應用 Competition Award',
+      type: 'experience',
+      href: '#experience',
+      icon: 'flag'
+    },
+    {
+      id: 'experience-student-union',
+      title: '學生會資訊職務',
+      description: '2022年-2025年 學生會 文書處理 活動規劃 組織協調 專案管理 會議紀錄 園遊會 校園演唱會 團隊協作 現場執行 Student Union',
+      type: 'experience',
+      href: '#experience',
+      icon: 'flag'
+    },
+    {
       id: 'contact',
       title: t('navigation.contact', '聯繫'),
-      description: t('search.contactDescription', '透過各種方式與我聯繫'),
+      description: '聯繫我 面試邀約 合作洽談 技術交流 Contact Interview',
       type: 'contact',
       href: '#contact',
       icon: typeIconMap.contact
