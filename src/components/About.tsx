@@ -97,28 +97,6 @@ export default function About() {
             </div>
           </div>
         </div>
-
-        <div>
-          <h3 className="text-2xl sm:text-3xl font-bold text-[#1b1d2c] text-center mb-8 sm:mb-10 md:mb-12 px-4">
-            {t('about.coreSkills', '核心技能')}
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 px-2 sm:px-0">
-            {skills.map((skill, index) => (
-              <div
-                key={skill.title}
-                className="card about-skill-card p-6 sm:p-8 flex flex-col items-center justify-center text-center"
-                style={{ backgroundColor: skill.color }}
-              >
-                <h4 className="text-xl sm:text-2xl font-bold text-[#1b1d2c] mb-3 sm:mb-4">
-                  {skill.title}
-                </h4>
-                <p className="text-[#3e3545] text-sm sm:text-base leading-relaxed">
-                  {skill.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
         </div>
       </div>
     </section>

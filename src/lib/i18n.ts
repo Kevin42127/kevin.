@@ -189,6 +189,12 @@ const zhResources = {
     note: '備註：如果網頁打開是空白畫面，請按 Ctrl + F5 重新整理',
     scrollToTop: '返回頂部'
   },
+  welcome: {
+    title: '歡迎來到我的網站！',
+    description: '嗨！我是 Kevin 的 AI 助理，隨時準備為您解答關於 Kevin 的專業經歷、技能和作品的任何問題。試試看吧！',
+    tryAI: '體驗 AI 助理',
+    close: '稍後再說'
+  },
   socialMedia: {
     linkedin: 'LinkedIn',
     email: '電子郵件',
@@ -773,6 +779,12 @@ const enResources = {
     copyright: '© 2024 Kevin. All rights reserved.',
     note: 'Note: If the page appears blank, please press Ctrl + F5 to refresh',
     scrollToTop: 'TOP'
+  },
+  welcome: {
+    title: 'Welcome to My Website!',
+    description: 'Hi! I\'m Kevin\'s AI Assistant, ready to answer any questions about Kevin\'s professional experience, skills, and projects. Give it a try!',
+    tryAI: 'Try AI Assistant',
+    close: 'Maybe Later'
   },
   socialMedia: {
     linkedin: 'LinkedIn',
