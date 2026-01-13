@@ -27,7 +27,7 @@ const zhResources = {
   about: {
     title: '關於Kevin',
     subtitle: '個人簡介',
-    content: '您好，我是陳梓敬 (Kevin)，畢業於吳鳳科技大學。我專注於創造以使用者為中心的數位體驗，運用AI協作開發與現代化工具來實現設計概念。我的核心能力包括需求分析、產品設計、使用者體驗優化以及品質控制測試。透過系統性的設計思維和AI輔助開發，我將複雜的需求轉化為高品質的數位產品。',
+    content: '您好，我是陳梓敬 (Kevin)，畢業於吳鳳科技大學，專注於 AI 應用開發的全端工程師。已獨立開發並上線 SumVid、AcadAI 等多個 AI 應用至 Chrome 應用商店，擅長整合 OpenAI、Groq 等 AI API，具備完整的全端開發與 AI 系統整合能力。',
     coreSkills: '核心技能',
     uiDesign: {
       title: 'UI/UX 設計',
@@ -619,7 +619,7 @@ const enResources = {
   about: {
     title: 'About Kevin',
     subtitle: 'Personal Introduction',
-    content: 'Hello, I am Chen Zi-Jing (Kevin), graduated from WuFeng University of Technology. I focus on creating user-centered digital experiences, leveraging AI-assisted development and modern tools to bring design concepts to life. My core competencies include requirements analysis, product design, user experience optimization, and quality control testing. Through systematic design thinking and AI-assisted development, I transform complex requirements into high-quality digital products.',
+    content: 'Hello, I am Chen Zi-Jing (Kevin), graduated from WuFeng University, a Full Stack Engineer specializing in AI application development. I have independently developed and launched multiple AI applications to the Chrome Web Store, including SumVid and AcadAI. Skilled in integrating OpenAI and Groq AI APIs, with comprehensive full-stack development and AI system integration capabilities.',
     coreSkills: 'Core Skills',
     uiDesign: {
       title: 'UI/UX Design',
