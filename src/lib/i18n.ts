@@ -187,7 +187,8 @@ const zhResources = {
     madeWith: 'Made with ❤️ by Kevin',
     copyright: '© 2024 Kevin. All rights reserved.',
     note: '備註：如果網頁打開是空白畫面，請按 Ctrl + F5 重新整理',
-    scrollToTop: '返回頂部'
+    scrollToTop: '返回頂部',
+    rightsReserved: 'All Rights Reserved'
   },
   welcome: {
     title: '歡迎來到我的網站！',
@@ -778,7 +779,8 @@ const enResources = {
     madeWith: 'Made with ❤️ by Kevin',
     copyright: '© 2024 Kevin. All rights reserved.',
     note: 'Note: If the page appears blank, please press Ctrl + F5 to refresh',
-    scrollToTop: 'TOP'
+    scrollToTop: 'TOP',
+    rightsReserved: 'All Rights Reserved'
   },
   welcome: {
     title: 'Welcome to My Website!',

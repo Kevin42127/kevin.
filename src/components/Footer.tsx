@@ -31,14 +31,7 @@ export default function Footer() {
       </button>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
-          <p className="font-semibold tracking-wide text-[#1f1d30]">
-            ©{' '}
-            <span className="text-[#ff4d2d] font-extrabold">
-              {t('navigation.kevin', 'Kevin.')}
-            </span>
-          </p>
-
+        <div className="flex flex-col items-center gap-4 pt-2">
           <a 
             href="https://www.dmca.com/Protection/Status.aspx?ID=c23022d2-174a-45f3-a198-188a70313323" 
             title="DMCA.com Protection Status" 
@@ -52,6 +45,18 @@ export default function Footer() {
               className="h-10 w-auto"
             />
           </a>
+
+          <div className="text-center">
+            <p className="font-semibold tracking-wide text-[#1f1d30]">
+              ©{' '}
+              <span className="text-[#ff4d2d] font-extrabold">
+                {t('navigation.kevin', 'Kevin.')}
+              </span>
+            </p>
+            <p className="text-xs text-[#6b6371] mt-1">
+              {t('footer.rightsReserved', 'All Rights Reserved')}
+            </p>
+          </div>
         </div>
       </div>
     </footer>
