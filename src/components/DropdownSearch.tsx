@@ -112,49 +112,65 @@ export default function DropdownSearch() {
       icon: typeIconMap.contact
     },
     {
-      id: 'simple-notes',
-      title: t('portfolio.simpleNotes.title', 'AuthPrototype'),
-      description: t('portfolio.simpleNotes.description', '我的第一個完整前端專案，學習 Angular/Tailwindcss 基礎，建立登入/註冊的原型設計'),
+      id: 'djkridp',
+      title: t('portfolio.djkridp.title', 'DJKridP'),
+      description: t('portfolio.djkridp.description', '受國際知名 DJ 委託開發的官方品牌網站，整合多國巡演資訊與社群媒體，展現跨文化協作與前端開發能力'),
       type: 'project',
       href: '#portfolio',
       icon: typeIconMap.project
     },
     {
-      id: 'resumecraft',
-      title: t('portfolio.resumecraft.title', 'ResumeCraft'),
-      description: t('portfolio.resumecraft.description', '專業履歷生成器，幫助求職者快速建立精美履歷'),
+      id: 'linebot',
+      title: t('portfolio.lineBot.title', 'LINE BOT'),
+      description: t('portfolio.lineBot.description', '運用 TypeScript 與 Express 打造的 LINE 聊天機器人，整合 AI 協作功能'),
       type: 'project',
       href: '#portfolio',
       icon: typeIconMap.project
     },
     {
-      id: 'personal-website',
-      title: t('portfolio.personalWebsite.title', 'Kevin. - 個人網站'),
-      description: t('portfolio.personalWebsite.description', '綜合技能展示專案，整合所學技術打造個人品牌網站'),
+      id: 'chefai',
+      title: t('portfolio.chefAI.title', 'ChefAI'),
+      description: t('portfolio.chefAI.description', '運用 Vue 與 Vite 打造 AI 食譜生成平台'),
       type: 'project',
       href: '#portfolio',
       icon: typeIconMap.project
     },
     {
-      id: 'weather-app',
-      title: t('portfolio.weatherApp.title', '天氣儀表板'),
-      description: t('portfolio.weatherApp.description', '學習 API 整合的專案，掌握外部數據獲取和現代化 UI 設計'),
+      id: 'aiteacher',
+      title: t('portfolio.aiTeacher.title', 'AI老師'),
+      description: t('portfolio.aiTeacher.description', '運用 Vue 與 Vite 打造的 AI 協作專案'),
       type: 'project',
       href: '#portfolio',
       icon: typeIconMap.project
     },
     {
-      id: 'taskblue',
-      title: t('portfolio.taskblue.title', 'TaskBlue'),
-      description: t('portfolio.taskblue.description', 'React 狀態管理練習專案，學習複雜組件間的數據流管理'),
+      id: 'sumvid',
+      title: t('portfolio.sumVid.title', 'SumVid'),
+      description: t('portfolio.sumVid.description', '讓 AI 為您快速提取影片重點'),
       type: 'project',
       href: '#portfolio',
       icon: typeIconMap.project
     },
     {
-      id: 'tinylink',
-      title: t('portfolio.tinylink.title', 'TinyLink'),
-      description: t('portfolio.tinylink.description', '後端概念學習專案，理解數據庫設計、API 開發和部署流程'),
+      id: 'discord-ai-bot',
+      title: t('portfolio.discordAIBot.title', 'Discord AI Bot'),
+      description: t('portfolio.discordAIBot.description', '運用 Python 打造的 Discord AI 聊天機器人，提供智能對話服務'),
+      type: 'project',
+      href: '#portfolio',
+      icon: typeIconMap.project
+    },
+    {
+      id: 'acadai',
+      title: t('portfolio.acadAI.title', 'AcadAI'),
+      description: t('portfolio.acadAI.description', 'AI 自動幫你整理商品重點'),
+      type: 'project',
+      href: '#portfolio',
+      icon: typeIconMap.project
+    },
+    {
+      id: 'taiwan-weather-ai',
+      title: t('portfolio.taiwanWeatherAI.title', '臺灣氣象AI助手'),
+      description: t('portfolio.taiwanWeatherAI.description', '查詢天氣與 AI 問答'),
       type: 'project',
       href: '#portfolio',
       icon: typeIconMap.project
