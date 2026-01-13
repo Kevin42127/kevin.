@@ -106,7 +106,7 @@ export default function About() {
             {skills.map((skill, index) => (
               <div
                 key={skill.title}
-                className="card about-skill-card p-5 sm:p-6"
+                className="card about-skill-card p-5 sm:p-6 flex flex-col items-center justify-center text-center aspect-square"
                 style={{ backgroundColor: skill.color }}
               >
                 <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#1b1d2c] flex items-center justify-center mb-3 sm:mb-4 rounded-full">
