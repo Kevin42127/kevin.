@@ -9,6 +9,16 @@ export default function Portfolio() {
   const projects = [
     {
       id: 1,
+      title: t('portfolio.djkridp.title', 'DJKridP'),
+      description: t('portfolio.djkridp.description', '受國際知名 DJ 委託開發的官方品牌網站，整合多國巡演資訊與社群媒體，展現跨文化協作與前端開發能力'),
+      image: '/DJKridP.png',
+      technologies: ['HTML', 'CSS', 'JavaScript', 'Express', t('portfolio.aiCollaboration', 'AI協作')],
+      github: '#',
+      demo: 'https://djkridp.vercel.app/',
+      featured: true
+    },
+    {
+      id: 2,
       title: t('portfolio.lineBot.title', 'LINE BOT'),
       description: t('portfolio.lineBot.description', '運用 TypeScript 與 Express 打造的 LINE 聊天機器人，整合 AI 協作功能'),
       image: '/LINE BOT.png',
@@ -18,7 +28,7 @@ export default function Portfolio() {
       featured: true
     },
     {
-      id: 2,
+      id: 3,
       title: t('portfolio.chefAI.title', 'ChefAI'),
       description: t('portfolio.chefAI.description', '運用 Vue 與 Vite 打造 AI 食譜生成平台'),
       image: '/ChefAI.png',
@@ -28,7 +38,7 @@ export default function Portfolio() {
       featured: true
     },
     {
-      id: 3,
+      id: 4,
       title: t('portfolio.aiTeacher.title', 'AI老師'),
       description: t('portfolio.aiTeacher.description', '運用 Vue 與 Vite 打造的 AI 協作專案'),
       image: '/AI老師.png',
@@ -38,7 +48,7 @@ export default function Portfolio() {
       featured: true
     },
     {
-      id: 4,
+      id: 5,
       title: t('portfolio.sumVid.title', 'SumVid'),
       description: t('portfolio.sumVid.description', '讓 AI 為您快速提取影片重點'),
       image: '/SumVid.png',
@@ -48,7 +58,7 @@ export default function Portfolio() {
       featured: true
     },
     {
-      id: 5,
+      id: 6,
       title: t('portfolio.discordAIBot.title', 'Discord AI Bot'),
       description: t('portfolio.discordAIBot.description', '運用 Python 打造的 Discord AI 聊天機器人，提供智能對話服務'),
       image: '/DISCORD.png',
@@ -58,7 +68,7 @@ export default function Portfolio() {
       featured: true
     },
     {
-      id: 6,
+      id: 7,
       title: t('portfolio.acadAI.title', 'AcadAI'),
       description: t('portfolio.acadAI.description', 'AI 自動幫你整理商品重點'),
       image: '/AcadAI.png',
@@ -68,23 +78,13 @@ export default function Portfolio() {
       featured: true
     },
     {
-      id: 7,
+      id: 8,
       title: t('portfolio.taiwanWeatherAI.title', '臺灣氣象AI助手'),
       description: t('portfolio.taiwanWeatherAI.description', '查詢天氣與 AI 問答'),
       image: '/臺灣氣象AI助手.png',
       technologies: ['HTML', 'CSS', 'JavaScript', 'Chrome Extension API', t('portfolio.aiCollaboration', 'AI協作')],
       github: '#',
       demo: 'https://chromewebstore.google.com/detail/%E8%87%BA%E7%81%A3%E6%B0%A3%E8%B1%A1ai%E5%8A%A9%E6%89%8B/oiefmbmfndlpejflldfknalgpljnbced',
-      featured: true
-    },
-    {
-      id: 8,
-      title: t('portfolio.djkridp.title', 'DJKridP'),
-      description: t('portfolio.djkridp.description', '運用 HTML、CSS 與 Express 為德國知名 DJ 打造的個人品牌官網，整合其國際演出經歷與社群連結，展現現代化的視覺風格（已獲本人認證）。'),
-      image: '/DJKridP.png',
-      technologies: ['HTML', 'CSS', 'JavaScript', 'Express', t('portfolio.aiCollaboration', 'AI協作')],
-      github: '#',
-      demo: 'https://djkridp.vercel.app/',
       featured: true
     }
   ]
@@ -166,7 +166,7 @@ export default function Portfolio() {
                     <span>{t('portfolio.github', 'GitHub')}</span>
                   </a>
                 )}
-                {project.id !== 4 && project.id !== 5 && project.id !== 6 && project.id !== 7 && project.id !== 8 && (
+                {project.id !== 1 && project.id !== 5 && project.id !== 6 && project.id !== 7 && project.id !== 8 && (
                   <p className="text-xs text-[#6b6371] mt-2 text-center">
                     {t('portfolio.note', '備註：如果網頁打開是空白畫面，請按 Ctrl + F5 重新整理')}
                   </p>
