@@ -106,13 +106,10 @@ export default function About() {
             {skills.map((skill, index) => (
               <div
                 key={skill.title}
-                className="card about-skill-card p-5 sm:p-6 flex flex-col items-center justify-center text-center aspect-square"
+                className="card about-skill-card p-6 sm:p-8 flex flex-col items-center justify-center text-center"
                 style={{ backgroundColor: skill.color }}
               >
-                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#1b1d2c] flex items-center justify-center mb-3 sm:mb-4 rounded-full">
-                  <span className="material-symbols-outlined text-white text-2xl">{skill.icon}</span>
-                </div>
-                <h4 className="text-lg sm:text-xl font-semibold text-[#1b1d2c] mb-2">
+                <h4 className="text-xl sm:text-2xl font-bold text-[#1b1d2c] mb-3 sm:mb-4">
                   {skill.title}
                 </h4>
                 <p className="text-[#3e3545] text-sm sm:text-base leading-relaxed">
