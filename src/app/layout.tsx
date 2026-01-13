@@ -35,6 +35,7 @@ export default function RootLayout({
   return (
     <html lang="zh-TW" suppressHydrationWarning>
       <head>
+        <meta name='dmca-site-verification' content='cUJNbDlnbmtMTWdCYTdUL0hUQUhnYVQ4ditXeC9QQnk1Ym5lY2VjcllnQT01' />
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,700,0,0"
           rel="stylesheet"
