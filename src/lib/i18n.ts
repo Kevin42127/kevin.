@@ -22,7 +22,9 @@ const zhResources = {
     viewWork: '查看作品',
     getInTouch: '聯繫我',
     downloadCV: '下載履歷',
-    cvInfo: '下載：繁體中文版履歷｜English 版本請切換語言'
+    downloading: '下載中...',
+    cvInfo: '下載：繁體中文版履歷｜English 版本請切換語言',
+    dmcaProtected: '本網站內容受 DMCA 保護 · 歡迎使用及下載履歷'
   },
   about: {
     title: '關於Kevin',
@@ -188,7 +190,8 @@ const zhResources = {
     copyright: '© 2024 Kevin. All rights reserved.',
     note: '備註：如果網頁打開是空白畫面，請按 Ctrl + F5 重新整理',
     scrollToTop: '返回頂部',
-    rightsReserved: 'All Rights Reserved'
+    rightsReserved: 'All Rights Reserved',
+    dmcaProtected: '本網站受 DMCA 保護'
   },
   welcome: {
     title: '歡迎來到我的網站！',
@@ -614,7 +617,9 @@ const enResources = {
     viewWork: 'View Work',
     getInTouch: 'Get In Touch',
     downloadCV: 'Download CV',
-    cvInfo: 'Downloading: English CV | Switch language for the Traditional Chinese version'
+    downloading: 'Downloading...',
+    cvInfo: 'Downloading: English CV | Switch language for the Traditional Chinese version',
+    dmcaProtected: 'This website content is protected by DMCA · Welcome to use and download CV'
   },
   about: {
     title: 'About Kevin',
@@ -780,7 +785,8 @@ const enResources = {
     copyright: '© 2024 Kevin. All rights reserved.',
     note: 'Note: If the page appears blank, please press Ctrl + F5 to refresh',
     scrollToTop: 'TOP',
-    rightsReserved: 'All Rights Reserved'
+    rightsReserved: 'All Rights Reserved',
+    dmcaProtected: 'This website is protected by DMCA'
   },
   welcome: {
     title: 'Welcome to My Website!',

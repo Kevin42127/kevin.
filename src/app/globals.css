@@ -300,55 +300,84 @@ a:focus {
   
   .floating-field {
     position: relative;
+    margin: 0;
+    width: 100%;
   }
 
   .floating-input,
   .floating-textarea {
     width: 100%;
-    border: 1px solid var(--color-divider);
-    background-color: white;
-    color: #1b1d2c;
-    padding: 1.25rem 1rem 0.75rem;
     font-size: 1rem;
-    line-height: 1.5rem;
-    border-radius: 12px;
-    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    border: none;
+    border-bottom: 2px solid var(--color-divider);
+    padding: 5px 0;
+    background-color: transparent;
+    outline: none;
+    color: #1b1d2c;
+    transition: border-color var(--transition-fast);
   }
 
   .floating-textarea {
-    min-height: 150px;
+    min-height: 100px;
     resize: none;
-    padding-top: 1.75rem;
-  }
-
-  .floating-input:focus,
-  .floating-textarea:focus {
-    outline: none;
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 1px rgba(255, 77, 45, 0.2);
   }
 
   .floating-label {
     position: absolute;
-    left: 1rem;
-    top: 1.25rem;
-    font-size: 0.9rem;
-    color: #6b6371;
+    top: 0;
+    left: 0;
+    color: var(--color-text-muted);
+    transition: all 0.3s ease;
     pointer-events: none;
-    background-color: white;
-    padding: 0 0.25rem;
-    transition: top var(--transition-fast), font-size var(--transition-fast), color var(--transition-fast);
+    font-size: 1rem;
   }
 
-  .floating-field .peer:focus + .floating-label,
-  .floating-field .peer:not(:placeholder-shown) + .floating-label {
-    top: -0.5rem;
-    font-size: 0.75rem;
+  .floating-input:focus ~ .floating-label,
+  .floating-input:valid ~ .floating-label,
+  .floating-textarea:focus ~ .floating-label,
+  .floating-textarea:valid ~ .floating-label {
+    top: -20px;
+    font-size: 0.875rem;
     color: var(--color-primary);
   }
 
-  .floating-field .peer:not(:focus):not(:placeholder-shown) + .floating-label {
-    color: #6b6371;
+  .floating-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: var(--color-primary);
+    transform: scaleX(0);
+    transition: all 0.3s ease;
+  }
+
+  .floating-input:focus ~ .floating-underline,
+  .floating-input:valid ~ .floating-underline,
+  .floating-textarea:focus ~ .floating-underline,
+  .floating-textarea:valid ~ .floating-underline {
+    transform: scaleX(1);
+  }
+
+  .floating-input:focus,
+  .floating-textarea:focus {
+    border-bottom-color: transparent;
+  }
+
+  .floating-input.error,
+  .floating-textarea.error {
+    border-bottom-color: #ef4444;
+  }
+
+  .floating-input.error:focus {
+    border-bottom-color: transparent;
+  }
+
+  .floating-input.error ~ .floating-underline,
+  .floating-input.error:focus ~ .floating-underline,
+  .floating-input.error:valid ~ .floating-underline {
+    background-color: #ef4444;
+    transform: scaleX(1);
   }
 
   .dot-spinner {

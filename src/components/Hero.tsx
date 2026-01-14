@@ -1,11 +1,13 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 import { smoothScrollToElement } from '../lib/smoothScrollUtils'
 import SplitText from './SplitText'
 export default function Hero() {
   const { t, i18n } = useTranslationSafe()
+  const [isDownloading, setIsDownloading] = useState(false)
   
   const currentLanguage = i18n?.language || 'zh'
   const cvFileName = '陳梓敬_履歷.pdf'
@@ -14,6 +16,25 @@ export default function Hero() {
   
   const scrollToNext = () => {
     smoothScrollToElement('#about', 0)
+  }
+
+  const handleDownload = async () => {
+    setIsDownloading(true)
+    try {
+      const link = document.createElement('a')
+      link.href = cvPath
+      link.download = cvFileName
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      
+      setTimeout(() => {
+        setIsDownloading(false)
+      }, 1000)
+    } catch (error) {
+      console.error('下載失敗:', error)
+      setIsDownloading(false)
+    }
   }
 
   return (
@@ -58,22 +79,37 @@ export default function Hero() {
               {t('hero.viewWork', '查看作品')}
             </button>
             
-            <a
-              href={cvPath}
-              download={cvFileName}
-              className="btn-primary min-h-[54px] w-full sm:w-auto sm:min-w-[180px] px-6 sm:px-8 uppercase tracking-wider"
+            <button
+              onClick={handleDownload}
+              disabled={isDownloading}
+              className={`btn-primary min-h-[54px] w-full sm:w-auto sm:min-w-[180px] px-6 sm:px-8 uppercase tracking-wider ${
+                isDownloading ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
             >
-              <span className="material-symbols-outlined text-base">download</span>
-              {t('hero.downloadCV', '下載履歷')}
-            </a>
+              {isDownloading ? (
+                <div className="flex items-center gap-2">
+                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <span>{t('hero.downloading', '下載中...')}</span>
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-base">download</span>
+                  <span>{t('hero.downloadCV', '下載履歷')}</span>
+                </div>
+              )}
+            </button>
           </motion.div>
 
           
 
           <div className="text-center mb-12 sm:mb-16 px-4">
-            <p className="text-xs sm:text-sm text-[#6b6371] flex items-center justify-center gap-1">
+            <p className="text-xs sm:text-sm text-[#6b6371] flex items-center justify-center gap-1 mb-2">
               <span className="material-symbols-outlined text-base">info</span>
               {t('hero.cvInfo', '下載：繁體中文版履歷｜English 版本請切換語言')}
+            </p>
+            <p className="text-xs text-[#6b6371] flex items-center justify-center gap-1">
+              <span className="material-symbols-outlined text-xs">verified</span>
+              {t('hero.dmcaProtected', '本網站內容受 DMCA 保護 · 歡迎下載履歷')}
             </p>
           </div>
         </motion.div>

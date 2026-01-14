@@ -213,7 +213,7 @@ export default function Contact() {
             transition={{ duration: 0.8 }}
             className="bg-[var(--color-section-alt)] p-6 sm:p-8 rounded-2xl border border-[var(--color-divider)]"
           >
-            <form onSubmit={handleSubmit} noValidate className="space-y-6">
+            <form onSubmit={handleSubmit} noValidate className="space-y-10">
               <div className="form-field">
                 <div className="floating-field">
                   <input
@@ -223,12 +223,13 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     onKeyDown={handleKeyDown}
-                    className={`floating-input peer ${errors.name ? 'border-[#ef4444] focus:border-[#ef4444]' : ''}`}
-                    placeholder=" "
+                    className={`floating-input ${errors.name ? 'error' : ''}`}
+                    required
                   />
                   <label htmlFor="name" className="floating-label">
                     {t('contact.name', '姓名')} *
                   </label>
+                  <span className="floating-underline"></span>
                 </div>
                 {errors.name && (
                   <p className="text-sm text-[#ef4444] mt-1.5 flex items-center gap-1">
@@ -247,12 +248,13 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     onKeyDown={handleKeyDown}
-                    className={`floating-input peer ${errors.email ? 'border-[#ef4444] focus:border-[#ef4444]' : ''}`}
-                    placeholder=" "
+                    className={`floating-input ${errors.email ? 'error' : ''}`}
+                    required
                   />
                   <label htmlFor="email" className="floating-label">
                     {t('contact.email', '電子郵件')} *
                   </label>
+                  <span className="floating-underline"></span>
                 </div>
                 {errors.email && (
                   <p className="text-sm text-[#ef4444] mt-1.5 flex items-center gap-1">
