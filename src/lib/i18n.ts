@@ -188,6 +188,17 @@ const zhResources = {
   theme: {
     toggle: '切換深淺模式'
   },
+  aiAssistant: {
+    greeting: '嗨！我是 Kevin 的 AI',
+    title: 'AI 助理',
+    subtitle: '隨時為您服務',
+    placeholder: '輸入訊息...（Shift+Enter 換行）',
+    send: '發送',
+    clearConversation: '清除對話',
+    close: '關閉',
+    open: '開啟 AI 助理',
+    closeTooltip: '關閉提示'
+  },
   footer: {
     description: '設計師 & 開發者，專注於創造以使用者為中心的數位體驗。運用AI協作開發與現代化工具，將設計概念轉化為高品質的數位產品。',
     quickLinks: '快速連結',
@@ -789,6 +800,17 @@ const enResources = {
   },
   theme: {
     toggle: 'Toggle dark/light mode'
+  },
+  aiAssistant: {
+    greeting: 'Hi! I\'m Kevin\'s AI',
+    title: 'AI Assistant',
+    subtitle: 'Always here to help',
+    placeholder: 'Type your message... (Shift+Enter for new line)',
+    send: 'Send',
+    clearConversation: 'Clear conversation',
+    close: 'Close',
+    open: 'Open AI Assistant',
+    closeTooltip: 'Close tooltip'
   },
   footer: {
     description: 'Designer & Developer, focused on creating user-centered digital experiences. Leveraging AI-assisted development and modern tools to transform design concepts into high-quality digital products.',

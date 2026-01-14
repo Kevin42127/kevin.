@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect, useMemo } from 'react'
+import { useState, useRef, useEffect, useMemo, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
@@ -174,15 +174,18 @@ Kevin 是一位結合 **UI/UX 設計** 與 **前端開發** 的全方位人才�
 請根據以上資訊，以專業且友善的態度協助 HR 和招聘方了解 Kevin，並積極引導他們透過聯繫表單發送面試邀約。`
 
 export default function AIAssistant() {
-  const { i18n } = useTranslationSafe()
+  const { i18n, t, ready } = useTranslationSafe()
   const currentLanguage = (i18n?.language || 'zh') as 'zh' | 'en'
   
   const getDefaultMessage = (): Message => DEFAULT_MESSAGES[currentLanguage] || DEFAULT_MESSAGES.zh
-  const getQuickQuestions = (): string[] => QUICK_QUESTIONS[currentLanguage] || QUICK_QUESTIONS.zh
+  const quickQuestions = useMemo(() => {
+    const lang = (i18n?.language || 'zh') as 'zh' | 'en'
+    return QUICK_QUESTIONS[lang] || QUICK_QUESTIONS.zh
+  }, [i18n.language])
   
   const [isOpen, setIsOpen] = useState(false)
   const [showBubble, setShowBubble] = useState(false)
-  const [messages, setMessages] = useState<Message[]>([getDefaultMessage()])
+  const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [isStreaming, setIsStreaming] = useState(false)
@@ -250,6 +253,44 @@ export default function AIAssistant() {
     return englishMatches > 0 ? 'en' : 'zh'
   }
 
+  const loadMessages = useCallback(() => {
+    if (!ready) return
+    
+    const lang = (i18n?.language || 'zh') as 'zh' | 'en'
+    const savedMessages = localStorage.getItem(STORAGE_KEY)
+    
+    if (savedMessages) {
+      try {
+        const parsed = JSON.parse(savedMessages)
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          const firstMessage = parsed[0]
+          if (firstMessage && firstMessage.role === 'assistant') {
+            const isDefaultMessage = 
+              firstMessage.content === DEFAULT_MESSAGES.zh.content || 
+              firstMessage.content === DEFAULT_MESSAGES.en.content
+            
+            if (isDefaultMessage) {
+              parsed[0] = DEFAULT_MESSAGES[lang] || DEFAULT_MESSAGES.zh
+              setMessages(parsed)
+              localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed))
+            } else {
+              setMessages(parsed)
+            }
+          } else {
+            setMessages([DEFAULT_MESSAGES[lang] || DEFAULT_MESSAGES.zh])
+          }
+        } else {
+          setMessages([DEFAULT_MESSAGES[lang] || DEFAULT_MESSAGES.zh])
+        }
+      } catch (error) {
+        console.error('載入對話歷史失敗:', error)
+        setMessages([DEFAULT_MESSAGES[lang] || DEFAULT_MESSAGES.zh])
+      }
+    } else {
+      setMessages([DEFAULT_MESSAGES[lang] || DEFAULT_MESSAGES.zh])
+    }
+  }, [ready, i18n.language])
+
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!isOpen) {
@@ -278,35 +319,156 @@ export default function AIAssistant() {
   }, [isOpen])
 
   useEffect(() => {
-    const savedMessages = localStorage.getItem(STORAGE_KEY)
-    if (savedMessages) {
-      try {
-        const parsed = JSON.parse(savedMessages)
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          const firstMessage = parsed[0]
-          const isDefaultMessage = 
-            firstMessage.role === 'assistant' && 
-            (firstMessage.content === DEFAULT_MESSAGES.zh.content || 
-             firstMessage.content === DEFAULT_MESSAGES.en.content)
-          
-          if (isDefaultMessage) {
-            parsed[0] = DEFAULT_MESSAGES[currentLanguage]
-            setMessages(parsed)
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed))
-          } else {
-            setMessages(parsed)
-          }
-        } else {
-          setMessages([DEFAULT_MESSAGES[currentLanguage]])
-        }
-      } catch (error) {
-        console.error('載入對話歷史失敗:', error)
-        setMessages([DEFAULT_MESSAGES[currentLanguage]])
-      }
-    } else {
-      setMessages([DEFAULT_MESSAGES[currentLanguage]])
+    if (ready) {
+      loadMessages()
     }
-  }, [currentLanguage])
+  }, [ready, loadMessages])
+
+  const updateMessagesForLanguage = useCallback((lang: 'zh' | 'en') => {
+    setMessages(prevMessages => {
+      if (prevMessages.length === 0) {
+        return [DEFAULT_MESSAGES[lang] || DEFAULT_MESSAGES.zh]
+      }
+      
+      if (prevMessages[0]) {
+        const firstMessage = prevMessages[0]
+        const isDefaultMessage = 
+          firstMessage.role === 'assistant' && 
+          (firstMessage.content === DEFAULT_MESSAGES.zh.content || 
+           firstMessage.content === DEFAULT_MESSAGES.en.content)
+        
+        if (isDefaultMessage) {
+          const updatedMessages = [...prevMessages]
+          updatedMessages[0] = DEFAULT_MESSAGES[lang] || DEFAULT_MESSAGES.zh
+          const savedMessages = localStorage.getItem(STORAGE_KEY)
+          if (savedMessages) {
+            try {
+              const parsed = JSON.parse(savedMessages)
+              if (Array.isArray(parsed) && parsed.length > 0 && parsed[0] &&
+                  parsed[0].role === 'assistant' && 
+                  (parsed[0].content === DEFAULT_MESSAGES.zh.content || 
+                   parsed[0].content === DEFAULT_MESSAGES.en.content)) {
+                parsed[0] = DEFAULT_MESSAGES[lang] || DEFAULT_MESSAGES.zh
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed))
+              }
+            } catch (error) {
+              console.error('更新對話歷史失敗:', error)
+            }
+          }
+          return updatedMessages
+        }
+      }
+      return prevMessages
+    })
+  }, [])
+  
+  useEffect(() => {
+    if (!ready) return
+    
+    const currentLang = (i18n?.language || 'zh') as 'zh' | 'en'
+    
+    setMessages(prevMessages => {
+      if (prevMessages.length === 0) {
+        return [DEFAULT_MESSAGES[currentLang] || DEFAULT_MESSAGES.zh]
+      }
+      
+      if (prevMessages[0]) {
+        const firstMessage = prevMessages[0]
+        const isDefaultMessage = 
+          firstMessage.role === 'assistant' && 
+          (firstMessage.content === DEFAULT_MESSAGES.zh.content || 
+           firstMessage.content === DEFAULT_MESSAGES.en.content)
+        
+        if (isDefaultMessage) {
+          const updatedMessages = [...prevMessages]
+          updatedMessages[0] = DEFAULT_MESSAGES[currentLang] || DEFAULT_MESSAGES.zh
+          const savedMessages = localStorage.getItem(STORAGE_KEY)
+          if (savedMessages) {
+            try {
+              const parsed = JSON.parse(savedMessages)
+              if (Array.isArray(parsed) && parsed.length > 0 && parsed[0] &&
+                  parsed[0].role === 'assistant' && 
+                  (parsed[0].content === DEFAULT_MESSAGES.zh.content || 
+                   parsed[0].content === DEFAULT_MESSAGES.en.content)) {
+                parsed[0] = DEFAULT_MESSAGES[currentLang] || DEFAULT_MESSAGES.zh
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed))
+              }
+            } catch (error) {
+              console.error('更新對話歷史失敗:', error)
+            }
+          }
+          return updatedMessages
+        }
+      }
+      return prevMessages
+    })
+  }, [ready, i18n.language])
+
+  useEffect(() => {
+    if (!ready) return
+
+    const handleLanguageChange = (lng: string) => {
+      const lang = (lng || 'zh') as 'zh' | 'en'
+      updateMessagesForLanguage(lang)
+    }
+
+    i18n.on('languageChanged', handleLanguageChange)
+    
+    return () => {
+      i18n.off('languageChanged', handleLanguageChange)
+    }
+  }, [ready, i18n, updateMessagesForLanguage])
+
+  useEffect(() => {
+    if (!ready || typeof window === 'undefined') return
+
+    const detectBrowserLanguage = (): 'zh' | 'en' => {
+      const browserLang = navigator.language || (navigator as any).userLanguage || 'zh'
+      if (browserLang.startsWith('en')) {
+        return 'en'
+      }
+      return 'zh'
+    }
+
+    const checkBrowserLanguage = () => {
+      const browserLang = detectBrowserLanguage()
+      const currentLang = (i18n.language || 'zh') as 'zh' | 'en'
+      
+      if (browserLang !== currentLang) {
+        i18n.changeLanguage(browserLang)
+      }
+    }
+
+    checkBrowserLanguage()
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        setTimeout(checkBrowserLanguage, 100)
+      }
+    }
+
+    const handleFocus = () => {
+      setTimeout(checkBrowserLanguage, 100)
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    window.addEventListener('focus', handleFocus)
+
+    const intervalId = setInterval(checkBrowserLanguage, 5000)
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+      window.removeEventListener('focus', handleFocus)
+      clearInterval(intervalId)
+    }
+  }, [ready, i18n])
+
+  useEffect(() => {
+    if (!ready) return
+    
+    const lang = (i18n?.language || 'zh') as 'zh' | 'en'
+    updateMessagesForLanguage(lang)
+  }, [ready, i18n.language, updateMessagesForLanguage])
 
   useEffect(() => {
     if (messages.length > 0) {
@@ -591,9 +753,7 @@ export default function AIAssistant() {
                     <div className="flex items-center gap-2">
                       <span className="text-base">👋</span>
                       <p className="text-sm font-bold tracking-tight">
-                        {currentLanguage === 'en' 
-                          ? "Hi! I'm Kevin's AI" 
-                          : "嗨！我是 Kevin 的 AI"}
+                        {t('aiAssistant.greeting', '嗨！我是 Kevin 的 AI')}
                       </p>
                       <button 
                         onClick={(e) => {
@@ -601,7 +761,7 @@ export default function AIAssistant() {
                           setShowBubble(false)
                         }}
                         className="ml-1 p-0.5 hover:bg-gray-100 rounded-full transition-colors opacity-0 group-hover:opacity-100"
-                        aria-label="Close tooltip"
+                        aria-label={t('aiAssistant.closeTooltip', '關閉提示')}
                       >
                         <span className="material-symbols-outlined text-sm">close</span>
                       </button>
@@ -617,7 +777,7 @@ export default function AIAssistant() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="relative w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center bg-[var(--color-primary)] text-white shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.16)] hover:bg-[var(--color-primary-dark)] transition-all duration-300 rounded-full"
-              aria-label={currentLanguage === 'en' ? 'Open AI Assistant' : '開啟 AI 助理'}
+              aria-label={t('aiAssistant.open', '開啟 AI 助理')}
             >
               <motion.span
                 animate={{
@@ -666,10 +826,10 @@ export default function AIAssistant() {
               </div>
               <div>
                 <h3 className="font-bold text-white text-base sm:text-lg tracking-tight">
-                  {currentLanguage === 'en' ? 'AI Assistant' : 'AI 助理'}
+                  {t('aiAssistant.title', 'AI 助理')}
                 </h3>
                 <span className="text-[10px] sm:text-xs text-white/80">
-                  {currentLanguage === 'en' ? 'Always here to help' : '隨時為您服務'}
+                  {t('aiAssistant.subtitle', '隨時為您服務')}
                 </span>
               </div>
             </div>
@@ -677,7 +837,7 @@ export default function AIAssistant() {
               <button
                 onClick={handleClear}
                 className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center hover:bg-white/20 transition-all duration-200 rounded-xl"
-                aria-label={currentLanguage === 'en' ? 'Clear conversation' : '清除對話'}
+                aria-label={t('aiAssistant.clearConversation', '清除對話')}
               >
                 <span className="material-symbols-outlined text-white text-lg sm:text-xl">
                   delete_outline
@@ -686,7 +846,7 @@ export default function AIAssistant() {
               <button
                 onClick={handleClose}
                 className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center hover:bg-white/20 transition-all duration-200 rounded-xl"
-                aria-label={currentLanguage === 'en' ? 'Close' : '關閉'}
+                aria-label={t('aiAssistant.close', '關閉')}
               >
                 <span className="material-symbols-outlined text-white text-lg sm:text-xl">
                   close
@@ -794,7 +954,7 @@ export default function AIAssistant() {
                       >
                     {message.role === 'assistant' && message.content === '[SUGGESTION_BUTTONS]' ? (
                       <div className="space-y-2">
-                        {(getQuickQuestions() || []).map((question, index) => (
+                        {(quickQuestions || []).map((question, index) => (
                           <button
                             key={index}
                             onClick={() => handleQuickQuestion(question)}
@@ -820,13 +980,13 @@ export default function AIAssistant() {
                         }
                         const resumeFile = resumeFiles[currentLanguage as keyof typeof resumeFiles] || resumeFiles.zh
                         formatted = formatted.replace(/\[DOWNLOAD_RESUME_ZH\]/g, 
-                          '<a href="' + resumeFile.path + '" download="' + resumeFile.fileName + '" style="color: var(--color-primary); text-decoration: underline; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.opacity=\'0.7\';" onmouseout="this.style.opacity=\'1\';">' + (currentLanguage === 'en' ? 'Download Resume' : '下載履歷') + '</a>')
+                          '<a href="' + resumeFile.path + '" download="' + resumeFile.fileName + '" style="color: var(--color-primary); text-decoration: underline; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.opacity=\'0.7\';" onmouseout="this.style.opacity=\'1\';">' + t('hero.downloadCV', '下載履歷') + '</a>')
                         
                         formatted = formatted.replace(/\[VIEW_PORTFOLIO\]/g, 
-                          '<a onclick="document.getElementById(\'portfolio\')?.scrollIntoView({behavior: \'smooth\'})" style="color: var(--color-primary); text-decoration: underline; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.opacity=\'0.7\';" onmouseout="this.style.opacity=\'1\';">' + (currentLanguage === 'en' ? 'View Portfolio' : '查看作品集') + '</a>')
+                          '<a onclick="document.getElementById(\'portfolio\')?.scrollIntoView({behavior: \'smooth\'})" style="color: var(--color-primary); text-decoration: underline; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.opacity=\'0.7\';" onmouseout="this.style.opacity=\'1\';">' + t('portfolio.viewProject', '查看專案') + '</a>')
                         
                         formatted = formatted.replace(/\[CONTACT_FORM\]/g, 
-                          '<a onclick="document.getElementById(\'contact\')?.scrollIntoView({behavior: \'smooth\'})" style="color: var(--color-primary); text-decoration: underline; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.opacity=\'0.7\';" onmouseout="this.style.opacity=\'1\';">' + (currentLanguage === 'en' ? 'Contact Form' : '聯繫表單') + '</a>')
+                          '<a onclick="document.getElementById(\'contact\')?.scrollIntoView({behavior: \'smooth\'})" style="color: var(--color-primary); text-decoration: underline; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.opacity=\'0.7\';" onmouseout="this.style.opacity=\'1\';">' + t('contact.sendMessage', '發送訊息') + '</a>')
                         
                         return formatted
                       }
@@ -979,7 +1139,7 @@ export default function AIAssistant() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyPress}
-                placeholder={currentLanguage === 'en' ? 'Type your message... (Shift+Enter for new line)' : '輸入訊息...（Shift+Enter 換行）'}
+                placeholder={t('aiAssistant.placeholder', '輸入訊息...（Shift+Enter 換行）')}
                 disabled={isLoading || isStreaming}
                 rows={1}
                 className="flex-1 px-3 sm:px-4 py-2 sm:py-2.5 text-[15px] bg-[var(--color-surface-variant)] border border-[var(--color-divider)] text-[var(--color-text)] placeholder-gray-400 focus:outline-none focus:bg-white focus:border-[var(--color-primary)] disabled:opacity-50 rounded-xl resize-none overflow-auto transition-all duration-200"
@@ -993,7 +1153,7 @@ export default function AIAssistant() {
                 onClick={() => handleSend()}
                 disabled={isLoading || isStreaming || !input.trim()}
                 className="px-3 sm:px-4 py-2 sm:py-2.5 bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-dark)] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl flex items-center justify-center font-semibold"
-                aria-label={currentLanguage === 'en' ? 'Send' : '發送'}
+                aria-label={t('aiAssistant.send', '發送')}
               >
                 <span className="material-symbols-outlined text-xl">
                   send
