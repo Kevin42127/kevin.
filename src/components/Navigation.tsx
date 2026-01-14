@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { smoothScrollToElement } from '../lib/smoothScrollUtils'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
@@ -8,7 +8,7 @@ import LanguageSwitcher from './LanguageSwitcher'
 import DropdownSearch from './DropdownSearch'
 
 export default function Navigation() {
-  const { t } = useTranslationSafe()
+  const { t, i18n } = useTranslationSafe()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isClient, setIsClient] = useState(false)
 
@@ -16,14 +16,14 @@ export default function Navigation() {
     setIsClient(true)
   }, [])
 
-  const navItems: Array<{ name: string; href: string }> = [
+  const navItems: Array<{ name: string; href: string }> = useMemo(() => [
     { name: t('navigation.home', '首頁'), href: '#home' },
     { name: t('navigation.about', '關於'), href: '#about' },
     { name: t('navigation.portfolio', '作品'), href: '#portfolio' },
     { name: t('navigation.skills', '技能'), href: '#skills' },
     { name: t('navigation.experience', '經驗'), href: '#experience' },
     { name: t('navigation.contact', '聯繫'), href: '#contact' },
-  ]
+  ], [t, i18n.language])
 
   const externalLinks: Array<{ name: string; href: string; external: boolean }> = []
 
@@ -98,7 +98,7 @@ export default function Navigation() {
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="w-10 h-10 text-[#1c1c28] hover:text-[var(--color-primary)] transition-colors flex items-center justify-center"
-                aria-label="打开菜单"
+                aria-label={t('navigation.openMenu', '打開選單')}
               >
                 <span className="material-symbols-outlined text-2xl">
                   {isMenuOpen ? 'close' : 'menu'}
@@ -138,7 +138,7 @@ export default function Navigation() {
                 <button
                   onClick={() => setIsMenuOpen(false)}
                   className="w-10 h-10 text-[#1c1c28] hover:text-[var(--color-primary)] transition-colors flex items-center justify-center"
-                  aria-label="关闭菜单"
+                  aria-label={t('navigation.closeMenu', '關閉選單')}
                 >
                   <span className="material-symbols-outlined text-2xl">close</span>
                 </button>

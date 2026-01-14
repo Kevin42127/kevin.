@@ -2,9 +2,11 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useTranslationSafe } from '../hooks/useTranslationSafe'
 
 export default function LanguageSwitcher() {
   const { i18n } = useTranslation()
+  const { t } = useTranslationSafe()
   const [mounted, setMounted] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
@@ -48,7 +50,7 @@ export default function LanguageSwitcher() {
   if (!mounted) {
     return (
       <div className="relative">
-        <button className={`${buttonClasses} opacity-60`} disabled aria-label="選擇語言 / Select Language">
+        <button className={`${buttonClasses} opacity-60`} disabled aria-label={t('navigation.selectLanguage', '選擇語言')}>
           <span className="material-symbols-outlined text-base">language</span>
           <span className="material-symbols-outlined text-sm">expand_more</span>
         </button>
@@ -64,7 +66,7 @@ export default function LanguageSwitcher() {
     >
       <button
         className={`${buttonClasses} active:scale-95`}
-        aria-label="選擇語言 / Select Language"
+        aria-label={t('navigation.selectLanguage', '選擇語言')}
         aria-expanded={isOpen}
       >
         <span className="material-symbols-outlined text-base">language</span>

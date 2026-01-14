@@ -135,7 +135,7 @@ export default function Hero() {
         <button
           onClick={scrollToNext}
           className="flex flex-col items-center justify-center gap-2 text-[#6b6371] transition-colors duration-300 cursor-pointer"
-          aria-label="向下滾動"
+          aria-label={t('hero.scrollDown', '向下滾動')}
         >
           <div className="relative w-10 h-10 flex items-center justify-center">
             <span className="material-symbols-outlined text-3xl animate-bounce">

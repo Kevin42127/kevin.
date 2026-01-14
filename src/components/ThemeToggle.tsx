@@ -2,10 +2,12 @@
 
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
+import { useTranslationSafe } from '../hooks/useTranslationSafe'
 
 export function ThemeToggle() {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
+  const { t } = useTranslationSafe()
 
   const triggerThemeTransition = () => {
     const root = document.documentElement
@@ -32,7 +34,7 @@ export function ThemeToggle() {
         })
       }}
       className="btn-icon"
-      aria-label="切換深淺模式"
+      aria-label={t('theme.toggle', '切換深淺模式')}
     >
       <span className="material-symbols-outlined text-base">
         {theme === 'dark' ? 'sunny' : 'dark_mode'}

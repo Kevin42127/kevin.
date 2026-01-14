@@ -14,7 +14,10 @@ const zhResources = {
     menu: '選單',
     settings: '設定',
     language: '語言',
-    theme: '主題'
+    theme: '主題',
+    openMenu: '打開選單',
+    closeMenu: '關閉選單',
+    selectLanguage: '選擇語言'
   },
   hero: {
     title: 'Kevin.',
@@ -24,7 +27,8 @@ const zhResources = {
     downloadCV: '下載履歷',
     downloading: '下載中...',
     cvInfo: '下載履歷（自動根據語言選擇版本）',
-    dmcaProtected: '本網站內容受 DMCA 保護 · 歡迎使用及下載履歷'
+    dmcaProtected: '本網站內容受 DMCA 保護 · 歡迎使用及下載履歷',
+    scrollDown: '向下滾動'
   },
   about: {
     title: '關於Kevin',
@@ -180,6 +184,9 @@ const zhResources = {
       subjectRequired: '請填寫主題',
       messageRequired: '請填寫訊息內容'
     }
+  },
+  theme: {
+    toggle: '切換深淺模式'
   },
   footer: {
     description: '設計師 & 開發者，專注於創造以使用者為中心的數位體驗。運用AI協作開發與現代化工具，將設計概念轉化為高品質的數位產品。',
@@ -609,7 +616,10 @@ const enResources = {
     menu: 'Menu',
     settings: 'Settings',
     language: 'Language',
-    theme: 'Theme'
+    theme: 'Theme',
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu',
+    selectLanguage: 'Select language'
   },
   hero: {
     title: 'Kevin.',
@@ -619,7 +629,8 @@ const enResources = {
     downloadCV: 'Download CV',
     downloading: 'Downloading...',
     cvInfo: 'Download Resume (automatically selects version based on language)',
-    dmcaProtected: 'This website content is protected by DMCA · Welcome to use and download CV'
+    dmcaProtected: 'This website content is protected by DMCA · Welcome to use and download CV',
+    scrollDown: 'Scroll down'
   },
   about: {
     title: 'About Kevin',
@@ -775,6 +786,9 @@ const enResources = {
       subjectRequired: 'Please enter a subject',
       messageRequired: 'Please enter your message'
     }
+  },
+  theme: {
+    toggle: 'Toggle dark/light mode'
   },
   footer: {
     description: 'Designer & Developer, focused on creating user-centered digital experiences. Leveraging AI-assisted development and modern tools to transform design concepts into high-quality digital products.',
