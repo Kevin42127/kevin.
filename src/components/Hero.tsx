@@ -10,8 +10,19 @@ export default function Hero() {
   const [isDownloading, setIsDownloading] = useState(false)
   
   const currentLanguage = i18n?.language || 'zh'
-  const cvFileName = '陳梓敬_履歷.pdf'
-  const cvPath = `/${cvFileName}`
+  
+  const cvFiles = {
+    zh: {
+      fileName: '陳梓敬_履歷.pdf',
+      path: '/陳梓敬_履歷.pdf'
+    },
+    en: {
+      fileName: 'CHENTZUCHING_Resume.pdf',
+      path: '/CHENTZUCHING_Resume.pdf'
+    }
+  }
+  
+  const cvFile = cvFiles[currentLanguage as keyof typeof cvFiles] || cvFiles.zh
 
   
   const scrollToNext = () => {
@@ -22,8 +33,8 @@ export default function Hero() {
     setIsDownloading(true)
     try {
       const link = document.createElement('a')
-      link.href = cvPath
-      link.download = cvFileName
+      link.href = cvFile.path
+      link.download = cvFile.fileName
       document.body.appendChild(link)
       link.click()
       document.body.removeChild(link)

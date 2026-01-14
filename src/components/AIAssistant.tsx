@@ -79,7 +79,7 @@ const SYSTEM_PROMPT = `您是 Kevin（陳梓敬）個人網站的專屬 AI 招�
 
 【網站功能】
 - 網站包含：首頁、關於我、作品集、技能、經驗、聯繫我等區塊
-- 訪客可以下載履歷（目前提供繁體中文版本）
+- 訪客可以下載履歷（支援繁體中文和英文版本，自動根據語言選擇）
 - 可以通過「低摩擦力聯繫表單」快速發送面試邀約或其他諮詢
 
 【版權保護與專業細節】
@@ -102,13 +102,13 @@ Kevin 的作品集網站採用 **DMCA.com 國際版權保護服務**，展現對
 
 【特殊互動功能】
 當用戶詢問以下內容時，請在回應中包含對應的特殊標記（標記會被自動轉換為互動按鈕）：
-- 詢問下載履歷、查看履歷、履歷檔案時：在回應中加入 [DOWNLOAD_RESUME_ZH] 標記
+- 詢問下載履歷、查看履歷、履歷檔案時：在回應中加入 [DOWNLOAD_RESUME_ZH] 標記（會自動根據當前語言下載對應版本：中文版或英文版）
 - 詢問查看作品集、專案作品時：在回應中加入 [VIEW_PORTFOLIO] 標記  
 - 詢問如何聯繫、聯絡方式、發送面試邀約時：在回應中加入 [CONTACT_FORM] 標記
 
 範例回應：
-- 中文："您可以直接下載 Kevin 的履歷查看完整資訊：[DOWNLOAD_RESUME_ZH]"
-- 英文："You can download Kevin's resume here: [DOWNLOAD_RESUME_ZH]"
+- 中文："您可以直接下載 Kevin 的履歷查看完整資訊（會自動下載繁體中文版）：[DOWNLOAD_RESUME_ZH]"
+- 英文："You can download Kevin's resume here (automatically downloads English version): [DOWNLOAD_RESUME_ZH]"
 
 【常見 HR 問題回答指南】
 - 專業背景：強調 UI/UX 設計和前端開發的雙重技能，以及以使用者為中心的設計思維
@@ -814,8 +814,13 @@ export default function AIAssistant() {
                         formatted = formatted.replace(/`([^`\n]+?)`/g, '<strong>$1</strong>')
                         formatted = formatted.replace(/(https?:\/\/[^\s<>"']+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-link">$1</a>')
                         
+                        const resumeFiles = {
+                          zh: { fileName: '陳梓敬_履歷.pdf', path: '/陳梓敬_履歷.pdf' },
+                          en: { fileName: 'CHENTZUCHING_Resume.pdf', path: '/CHENTZUCHING_Resume.pdf' }
+                        }
+                        const resumeFile = resumeFiles[currentLanguage as keyof typeof resumeFiles] || resumeFiles.zh
                         formatted = formatted.replace(/\[DOWNLOAD_RESUME_ZH\]/g, 
-                          '<a href="/陳梓敬_履歷.pdf" download="陳梓敬_履歷.pdf" style="color: var(--color-primary); text-decoration: underline; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.opacity=\'0.7\';" onmouseout="this.style.opacity=\'1\';">' + (currentLanguage === 'en' ? 'Download Resume' : '下載履歷') + '</a>')
+                          '<a href="' + resumeFile.path + '" download="' + resumeFile.fileName + '" style="color: var(--color-primary); text-decoration: underline; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.opacity=\'0.7\';" onmouseout="this.style.opacity=\'1\';">' + (currentLanguage === 'en' ? 'Download Resume' : '下載履歷') + '</a>')
                         
                         formatted = formatted.replace(/\[VIEW_PORTFOLIO\]/g, 
                           '<a onclick="document.getElementById(\'portfolio\')?.scrollIntoView({behavior: \'smooth\'})" style="color: var(--color-primary); text-decoration: underline; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.opacity=\'0.7\';" onmouseout="this.style.opacity=\'1\';">' + (currentLanguage === 'en' ? 'View Portfolio' : '查看作品集') + '</a>')

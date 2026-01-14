@@ -23,7 +23,7 @@ const zhResources = {
     getInTouch: '聯繫我',
     downloadCV: '下載履歷',
     downloading: '下載中...',
-    cvInfo: '下載：繁體中文版履歷｜English 版本請切換語言',
+    cvInfo: '下載履歷（自動根據語言選擇版本）',
     dmcaProtected: '本網站內容受 DMCA 保護 · 歡迎使用及下載履歷'
   },
   about: {
@@ -618,7 +618,7 @@ const enResources = {
     getInTouch: 'Get In Touch',
     downloadCV: 'Download CV',
     downloading: 'Downloading...',
-    cvInfo: 'Downloading: English CV | Switch language for the Traditional Chinese version',
+    cvInfo: 'Download Resume (automatically selects version based on language)',
     dmcaProtected: 'This website content is protected by DMCA · Welcome to use and download CV'
   },
   about: {
