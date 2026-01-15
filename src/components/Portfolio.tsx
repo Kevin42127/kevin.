@@ -113,7 +113,17 @@ export default function Portfolio() {
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover pointer-events-none"
+                    onContextMenu={(e) => e.preventDefault()}
+                    onDragStart={(e) => e.preventDefault()}
+                    style={{ 
+                      userSelect: 'none',
+                      WebkitUserSelect: 'none',
+                      MozUserSelect: 'none',
+                      msUserSelect: 'none',
+                      WebkitUserDrag: 'none',
+                      WebkitTouchCallout: 'none'
+                    } as React.CSSProperties}
                   />
                 ) : (
                   <span className="text-[#1d47ff] text-center text-sm tracking-wide px-4">
