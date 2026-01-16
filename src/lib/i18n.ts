@@ -54,7 +54,7 @@ const zhResources = {
   },
   portfolio: {
     title: '我的作品',
-    subtitle: '精選專案',
+    subtitle: '精選專案展示，展現技術實力和創意思維',
     note: '備註：如果網頁打開是空白畫面，請按 Ctrl + F5 重新整理',
     viewProject: '查看專案',
     viewCode: '查看程式碼',
@@ -128,7 +128,17 @@ const zhResources = {
       title: 'DJKridP',
       description: '受國際知名 DJ 委託開發的官方品牌網站，整合多國巡演資訊與社群媒體，展現跨文化協作與前端開發能力'
     },
+    todoApp: {
+      title: 'TodoApp - 桌面應用程式',
+      description: '簡潔高效的待辦事項管理應用程式，讓您輕鬆管理日常任務，提升工作效率'
+    },
     aiCollaboration: 'AI協作',
+    categoryAll: '全部',
+    categoryChromeExtension: 'Chrome擴展',
+    categoryBot: '聊天機器人',
+    categoryWebApp: 'Web應用',
+    categoryDesktopApp: '桌面應用',
+    windowsOnly: '限 Windows 系統',
     basicPractice: '基礎練習',
     apiLearning: 'API 學習',
     stateManagementPractice: '狀態管理練習',
@@ -667,7 +677,7 @@ const enResources = {
   },
   portfolio: {
     title: 'My Portfolio',
-    subtitle: 'Featured Projects',
+    subtitle: 'Featured projects showcasing technical expertise and creative thinking',
     note: 'Note: If the page appears blank, please press Ctrl + F5 to refresh',
     viewProject: 'View Project',
     viewCode: 'View Code',
@@ -741,7 +751,17 @@ const enResources = {
       title: 'DJKridP',
       description: 'Official website commissioned by renowned international DJ, integrating global tour history and social media platforms, demonstrating cross-cultural collaboration and frontend development expertise'
     },
+    todoApp: {
+      title: 'TodoApp - Desktop Application',
+      description: 'A clean and efficient todo management application that helps you easily manage daily tasks and improve work productivity'
+    },
     aiCollaboration: 'AI Collaboration',
+    categoryAll: 'All',
+    categoryChromeExtension: 'Chrome Extension',
+    categoryBot: 'Chatbot',
+    categoryWebApp: 'Web Application',
+    categoryDesktopApp: 'Desktop Application',
+    windowsOnly: 'Windows Only',
     basicPractice: 'Basic Practice',
     apiLearning: 'API Learning',
     stateManagementPractice: 'State Management Practice',

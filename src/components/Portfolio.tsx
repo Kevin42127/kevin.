@@ -1,10 +1,21 @@
 'use client'
 
-// animations removed
+import { useState, useEffect } from 'react'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
+
+type CategoryKey = 'all' | 'chrome' | 'bot' | 'web' | 'desktop'
+
+const categoryKeyMap: Record<CategoryKey, string> = {
+  all: 'portfolio.categoryAll',
+  chrome: 'portfolio.categoryChromeExtension',
+  bot: 'portfolio.categoryBot',
+  web: 'portfolio.categoryWebApp',
+  desktop: 'portfolio.categoryDesktopApp'
+}
 
 export default function Portfolio() {
   const { t } = useTranslationSafe()
+  const [selectedCategory, setSelectedCategory] = useState<CategoryKey>('all')
 
   const projects = [
     {
@@ -85,9 +96,39 @@ export default function Portfolio() {
       technologies: ['HTML', 'CSS', 'JavaScript', 'Chrome Extension API', t('portfolio.aiCollaboration', 'AI協作')],
       github: '#',
       demo: 'https://chromewebstore.google.com/detail/%E8%87%BA%E7%81%A3%E6%B0%A3%E8%B1%A1ai%E5%8A%A9%E6%89%8B/oiefmbmfndlpejflldfknalgpljnbced',
-      featured: true
+      featured: true,
+      categoryKey: 'chrome' as CategoryKey
+    },
+    {
+      id: 9,
+      title: t('portfolio.todoApp.title', 'TodoApp - 桌面應用程式'),
+      description: t('portfolio.todoApp.description', '簡潔高效的待辦事項管理應用程式，讓您輕鬆管理日常任務，提升工作效率'),
+      image: '/todo.png',
+      technologies: ['C#', 'Avalonia', t('portfolio.aiCollaboration', 'AI協作')],
+      github: '#',
+      demo: 'https://kevintest.vercel.app/',
+      featured: true,
+      categoryKey: 'desktop' as CategoryKey
     }
   ]
+
+  projects.forEach((project: any) => {
+    if (!project.categoryKey) {
+      if (project.technologies.some((tech: string) => tech.includes('Chrome Extension'))) {
+        project.categoryKey = 'chrome'
+      } else if ((project.technologies.some((tech: string) => ['Python', 'TypeScript'].includes(tech)) && project.title.includes('BOT')) || project.title.includes('LINE BOT') || project.title.includes('Discord')) {
+        project.categoryKey = 'bot'
+      } else {
+        project.categoryKey = 'web'
+      }
+    }
+  })
+
+  const categories: CategoryKey[] = ['all', ...Array.from(new Set(projects.map((p: any) => p.categoryKey)))]
+
+  const filteredProjects = selectedCategory === 'all' 
+    ? projects 
+    : projects.filter((project: any) => project.categoryKey === selectedCategory)
 
   return (
     <section id="portfolio" className="py-16 sm:py-20 bg-[var(--color-page)]">
@@ -102,8 +143,28 @@ export default function Portfolio() {
           </p>
         </div>
 
+        <div className="mb-8 sm:mb-10 px-2 sm:px-4">
+          <div className="relative max-w-6xl mx-auto">
+            <div className="flex flex-nowrap justify-start md:justify-center items-center gap-2 sm:gap-2.5 md:gap-3 lg:gap-4 overflow-x-auto scrollbar-hide scroll-smooth px-2 sm:px-4 md:px-0">
+              {categories.map((categoryKey) => (
+                <button
+                  key={categoryKey}
+                  onClick={() => setSelectedCategory(categoryKey)}
+                  className={`flex-shrink-0 px-3 sm:px-4 md:px-4 lg:px-5 py-1.5 sm:py-2 md:py-2 lg:py-2.5 rounded-full text-xs sm:text-sm md:text-sm lg:text-base font-medium transition-all duration-200 whitespace-nowrap ${
+                    selectedCategory === categoryKey
+                      ? 'bg-[#1d47ff] text-white shadow-lg shadow-[#1d47ff]/20 scale-105'
+                      : 'bg-white text-[#1c1f2c] border border-[var(--color-divider)] hover:bg-[var(--color-panel)] hover:border-[#1d47ff]/30 hover:scale-105 active:scale-95'
+                  }`}
+                >
+                  {t(categoryKeyMap[categoryKey], categoryKey === 'all' ? '全部' : categoryKey === 'chrome' ? 'Chrome擴展' : categoryKey === 'bot' ? '聊天機器人' : categoryKey === 'web' ? 'Web應用' : '桌面應用')}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-          {projects.map((project) => (
+          {filteredProjects.map((project) => (
             <article
               key={project.id}
               className="h-full flex flex-col gap-5 border border-[var(--color-divider)] bg-white p-6 shadow-[0_25px_45px_rgba(15,15,40,0.08)] rounded-xl"
@@ -176,7 +237,12 @@ export default function Portfolio() {
                     <span>{t('portfolio.github', 'GitHub')}</span>
                   </a>
                 )}
-                {project.id !== 1 && project.id !== 2 && project.id !== 3 && project.id !== 4 && project.id !== 5 && project.id !== 6 && project.id !== 7 && project.id !== 8 && (
+                {project.id === 9 && (
+                  <p className="text-xs text-[#6b6371] mt-2 text-center">
+                    {t('portfolio.windowsOnly', '限 Windows 系統')}
+                  </p>
+                )}
+                {project.id !== 1 && project.id !== 2 && project.id !== 3 && project.id !== 4 && project.id !== 5 && project.id !== 6 && project.id !== 7 && project.id !== 8 && project.id !== 9 && (
                   <p className="text-xs text-[#6b6371] mt-2 text-center">
                     {t('portfolio.note', '備註：如果網頁打開是空白畫面，請按 Ctrl + F5 重新整理')}
                   </p>

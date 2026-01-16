@@ -622,5 +622,14 @@ a:focus {
   .text-link:hover {
     color: var(--color-primary-dark);
   }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
 
