@@ -98,17 +98,6 @@ export default function Portfolio() {
       demo: 'https://chromewebstore.google.com/detail/%E8%87%BA%E7%81%A3%E6%B0%A3%E8%B1%A1ai%E5%8A%A9%E6%89%8B/oiefmbmfndlpejflldfknalgpljnbced',
       featured: true,
       categoryKey: 'chrome' as CategoryKey
-    },
-    {
-      id: 9,
-      title: t('portfolio.todoApp.title', 'TodoApp - 桌面應用程式'),
-      description: t('portfolio.todoApp.description', '簡潔高效的待辦事項管理應用程式，讓您輕鬆管理日常任務，提升工作效率'),
-      image: '/todo.png',
-      technologies: ['C#', 'Avalonia', t('portfolio.aiCollaboration', 'AI協作')],
-      github: '#',
-      demo: 'https://kevintest.vercel.app/',
-      featured: true,
-      categoryKey: 'desktop' as CategoryKey
     }
   ]
 
@@ -237,12 +226,7 @@ export default function Portfolio() {
                     <span>{t('portfolio.github', 'GitHub')}</span>
                   </a>
                 )}
-                {project.id === 9 && (
-                  <p className="text-xs text-[#6b6371] mt-2 text-center">
-                    {t('portfolio.windowsOnly', '限 Windows 系統')}
-                  </p>
-                )}
-                {project.id !== 1 && project.id !== 2 && project.id !== 3 && project.id !== 4 && project.id !== 5 && project.id !== 6 && project.id !== 7 && project.id !== 8 && project.id !== 9 && (
+                {project.id !== 1 && project.id !== 2 && project.id !== 3 && project.id !== 4 && project.id !== 5 && project.id !== 6 && project.id !== 7 && project.id !== 8 && (
                   <p className="text-xs text-[#6b6371] mt-2 text-center">
                     {t('portfolio.note', '備註：如果網頁打開是空白畫面，請按 Ctrl + F5 重新整理')}
                   </p>

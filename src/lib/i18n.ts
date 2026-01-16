@@ -128,10 +128,6 @@ const zhResources = {
       title: 'DJKridP',
       description: '受國際知名 DJ 委託開發的官方品牌網站，整合多國巡演資訊與社群媒體，展現跨文化協作與前端開發能力'
     },
-    todoApp: {
-      title: 'TodoApp - 桌面應用程式',
-      description: '簡潔高效的待辦事項管理應用程式，讓您輕鬆管理日常任務，提升工作效率'
-    },
     aiCollaboration: 'AI協作',
     categoryAll: '全部',
     categoryChromeExtension: 'Chrome擴展',
@@ -750,10 +746,6 @@ const enResources = {
     djkridp: {
       title: 'DJKridP',
       description: 'Official website commissioned by renowned international DJ, integrating global tour history and social media platforms, demonstrating cross-cultural collaboration and frontend development expertise'
-    },
-    todoApp: {
-      title: 'TodoApp - Desktop Application',
-      description: 'A clean and efficient todo management application that helps you easily manage daily tasks and improve work productivity'
     },
     aiCollaboration: 'AI Collaboration',
     categoryAll: 'All',

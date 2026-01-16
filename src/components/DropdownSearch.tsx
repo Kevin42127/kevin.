@@ -286,14 +286,6 @@ export default function DropdownSearch() {
       type: 'project',
       href: '#portfolio',
       icon: typeIconMap.project
-    },
-    {
-      id: 'todoapp',
-      title: t('portfolio.todoApp.title', 'TodoApp - 桌面應用程式'),
-      description: t('portfolio.todoApp.description', '簡潔高效的待辦事項管理應用程式，讓您輕鬆管理日常任務，提升工作效率'),
-      type: 'project',
-      href: '#portfolio',
-      icon: typeIconMap.project
     }
   ]
 
