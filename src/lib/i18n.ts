@@ -128,11 +128,15 @@ const zhResources = {
       title: 'DJKridP',
       description: '受國際知名 DJ 委託開發的官方品牌網站，整合多國巡演資訊與社群媒體，展現跨文化協作與前端開發能力'
     },
+    taskMate: {
+      title: 'TaskMate',
+      description: '以 .NET 8 / C# 開發，使用 Avalonia 跨平台桌面框架，採 MVVM 架構，本地以 JSON 存檔的待辦應用'
+    },
     aiCollaboration: 'AI協作',
     categoryAll: '全部',
     categoryChromeExtension: 'Chrome擴展',
     categoryBot: '聊天機器人',
-    categoryWebApp: 'Web應用',
+    categoryWebApp: '網站',
     categoryDesktopApp: '桌面應用',
     windowsOnly: '限 Windows 系統',
     basicPractice: '基礎練習',
@@ -747,11 +751,15 @@ const enResources = {
       title: 'DJKridP',
       description: 'Official website commissioned by renowned international DJ, integrating global tour history and social media platforms, demonstrating cross-cultural collaboration and frontend development expertise'
     },
+    taskMate: {
+      title: 'TaskMate',
+      description: 'Built with .NET 8 / C#, using Avalonia cross-platform desktop framework, adopting MVVM architecture, a todo application with local JSON storage'
+    },
     aiCollaboration: 'AI Collaboration',
     categoryAll: 'All',
     categoryChromeExtension: 'Chrome Extension',
     categoryBot: 'Chatbot',
-    categoryWebApp: 'Web Application',
+    categoryWebApp: 'Website',
     categoryDesktopApp: 'Desktop Application',
     windowsOnly: 'Windows Only',
     basicPractice: 'Basic Practice',

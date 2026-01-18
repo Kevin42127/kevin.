@@ -98,6 +98,17 @@ export default function Portfolio() {
       demo: 'https://chromewebstore.google.com/detail/%E8%87%BA%E7%81%A3%E6%B0%A3%E8%B1%A1ai%E5%8A%A9%E6%89%8B/oiefmbmfndlpejflldfknalgpljnbced',
       featured: true,
       categoryKey: 'chrome' as CategoryKey
+    },
+    {
+      id: 9,
+      title: t('portfolio.taskMate.title', 'TaskMate'),
+      description: t('portfolio.taskMate.description', '以 .NET 8 / C# 開發，使用 Avalonia 跨平台桌面框架，採 MVVM 架構，本地以 JSON 存檔的待辦應用'),
+      image: '/TaskMate.png',
+      technologies: ['C#', '.NET 8', 'Avalonia', 'MVVM', t('portfolio.aiCollaboration', 'AI協作')],
+      github: '#',
+      demo: 'https://taskfriend.vercel.app/',
+      featured: true,
+      categoryKey: 'desktop' as CategoryKey
     }
   ]
 
@@ -225,11 +236,6 @@ export default function Portfolio() {
                     <span className="material-symbols-outlined text-base">code</span>
                     <span>{t('portfolio.github', 'GitHub')}</span>
                   </a>
-                )}
-                {project.id !== 1 && project.id !== 2 && project.id !== 3 && project.id !== 4 && project.id !== 5 && project.id !== 6 && project.id !== 7 && project.id !== 8 && (
-                  <p className="text-xs text-[#6b6371] mt-2 text-center">
-                    {t('portfolio.note', '備註：如果網頁打開是空白畫面，請按 Ctrl + F5 重新整理')}
-                  </p>
                 )}
               </div>
             </article>

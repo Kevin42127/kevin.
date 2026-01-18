@@ -69,6 +69,7 @@ const SYSTEM_PROMPT = `您是 Kevin（陳梓敬）個人網站的專屬 AI 招�
 6. AcadAI - AI 自動幫你整理商品重點（技術：HTML, CSS, JavaScript, Chrome Extension API, AI協作）
 7. 臺灣氣象AI助手 - 查詢天氣與 AI 問答（技術：HTML, CSS, JavaScript, Chrome Extension API, AI協作）
 8. DJKridP - 受國際知名 DJ 委託開發的官方品牌網站，整合多國巡演資訊與社群媒體，展現跨文化協作與前端開發能力（技術：HTML, CSS, JavaScript, Express, AI協作）
+9. TaskMate - 以 .NET 8 / C# 開發，使用 Avalonia 跨平台桌面框架，採 MVVM 架構，本地以 JSON 存檔的待辦應用（技術：C#, .NET 8, Avalonia, MVVM, AI協作）
 
 【相關經驗】
 - 語言能力：中文（母語）、英文（中級）
