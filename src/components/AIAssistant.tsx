@@ -810,7 +810,7 @@ export default function AIAssistant() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 sm:inset-auto sm:bottom-[180px] sm:right-6 z-[60] w-full h-full sm:w-[380px] md:w-[420px] sm:h-[550px] md:h-[650px] sm:max-h-[85vh] flex flex-col bg-white border-0 sm:border border-[var(--color-divider)] shadow-none sm:shadow-[0_20px_60px_rgba(0,0,0,0.12)] rounded-none sm:rounded-3xl overflow-hidden"
+            className="fixed inset-0 sm:inset-auto sm:top-20 sm:bottom-6 sm:right-6 z-[115] w-full h-full sm:w-[380px] md:w-[420px] sm:h-auto sm:max-h-[calc(100vh-7rem)] flex flex-col bg-white border-0 sm:border border-[var(--color-divider)] shadow-none sm:shadow-[0_20px_60px_rgba(0,0,0,0.12)] rounded-none sm:rounded-3xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
             onWheel={(e) => e.stopPropagation()}
             onTouchMove={(e) => e.stopPropagation()}
