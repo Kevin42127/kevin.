@@ -105,31 +105,31 @@ export default function DomainRedirect() {
 
   return (
     <div className="fixed top-[64px] left-0 right-0 z-[100] bg-[var(--color-primary)] text-white shadow-lg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3 flex-1">
-            <span className="material-symbols-outlined text-xl">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 md:max-w-none md:px-0">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 md:px-8">
+          <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
+            <span className="material-symbols-outlined text-lg sm:text-xl flex-shrink-0">
               {bannerType === 'backup' ? 'info' : 'warning'}
             </span>
-            <p className="text-sm sm:text-base">
+            <p className="text-xs sm:text-sm md:text-base leading-relaxed break-words">
               {bannerType === 'backup'
                 ? '檢測到您正在使用備用網域，建議使用正式網域以獲得最佳體驗'
                 : '檢測到正式網域可能出現問題，建議使用備用網域'}
             </p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 w-full sm:w-auto justify-end sm:justify-start">
             <button
               onClick={handleRedirect}
-              className="px-4 py-2 bg-white text-[var(--color-primary)] rounded-md font-semibold hover:bg-opacity-90 transition-colors duration-200 text-sm sm:text-base whitespace-nowrap"
+              className="px-3 sm:px-4 py-1.5 sm:py-2 bg-white text-[var(--color-primary)] rounded-md font-semibold hover:bg-opacity-90 transition-colors duration-200 text-xs sm:text-sm md:text-base whitespace-nowrap"
             >
               {bannerType === 'backup' ? '前往正式網域' : '前往備用網域'}
             </button>
             <button
               onClick={handleDismiss}
-              className="p-2 hover:bg-white/20 rounded-md transition-colors duration-200"
+              className="p-1.5 sm:p-2 hover:bg-white/20 rounded-md transition-colors duration-200 flex-shrink-0"
               aria-label="關閉"
             >
-              <span className="material-symbols-outlined text-xl">close</span>
+              <span className="material-symbols-outlined text-lg sm:text-xl">close</span>
             </button>
           </div>
         </div>
