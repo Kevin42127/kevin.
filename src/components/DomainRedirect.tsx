@@ -54,7 +54,7 @@ export default function DomainRedirect() {
 
         const response = await fetch('/favicon.ico', {
           method: 'HEAD',
-          signal: controller,
+          signal: controller.signal,
           cache: 'no-store'
         })
 
