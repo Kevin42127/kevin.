@@ -113,12 +113,9 @@ export default function DomainRedirect() {
   return (
     <div className="fixed top-[64px] left-0 right-0 z-[100] bg-[var(--color-primary)] text-white shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 md:max-w-none md:px-0">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 md:px-8">
-          <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
-            <span className="material-symbols-outlined text-lg sm:text-xl flex-shrink-0">
-              {bannerType === 'backup' ? 'info' : 'warning'}
-            </span>
-            <p className="text-xs sm:text-sm md:text-base leading-relaxed break-words">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 md:px-8">
+          <div className="flex items-center justify-center gap-2 sm:gap-3 flex-1 min-w-0">
+            <p className="text-xs sm:text-sm md:text-base leading-relaxed break-words text-center sm:text-left">
               {bannerType === 'backup' ? (
                 <>
                   {t('domainRedirect.backupMessage', '檢測到您正在使用備用網域，建議')}{' '}
@@ -150,7 +147,7 @@ export default function DomainRedirect() {
               )}
             </p>
           </div>
-          <div className="flex items-center gap-2 w-full sm:w-auto justify-end sm:justify-start">
+          <div className="flex items-center gap-2 w-full sm:w-auto justify-center sm:justify-end">
             <button
               onClick={handleDismiss}
               className="p-1.5 sm:p-2 hover:bg-white/20 rounded-md transition-colors duration-200 flex-shrink-0"
