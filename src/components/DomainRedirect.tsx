@@ -122,7 +122,7 @@ export default function DomainRedirect() {
           <div className="flex items-center gap-2 w-full sm:w-auto justify-end sm:justify-start">
             <button
               onClick={handleRedirect}
-              className="px-3 sm:px-4 py-1.5 sm:py-2 bg-white text-[var(--color-primary)] rounded-md font-semibold hover:bg-opacity-90 transition-colors duration-200 text-xs sm:text-sm md:text-base whitespace-nowrap"
+              className="text-white font-semibold hover:opacity-80 underline transition-opacity duration-200 text-xs sm:text-sm md:text-base whitespace-nowrap"
             >
               {bannerType === 'backup' 
                 ? t('domainRedirect.goToPrimary', '前往正式網域')
