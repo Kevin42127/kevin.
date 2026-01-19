@@ -1,11 +1,13 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslationSafe } from '../hooks/useTranslationSafe'
 
 const PRIMARY_DOMAIN = 'https://www.kevinoffical.com'
 const BACKUP_DOMAIN = 'https://kevinoffical.vercel.app'
 
 export default function DomainRedirect() {
+  const { t } = useTranslationSafe()
   const [showBanner, setShowBanner] = useState(false)
   const [bannerType, setBannerType] = useState<'backup' | 'primary'>('backup')
   const [mounted, setMounted] = useState(false)
@@ -113,8 +115,8 @@ export default function DomainRedirect() {
             </span>
             <p className="text-xs sm:text-sm md:text-base leading-relaxed break-words">
               {bannerType === 'backup'
-                ? '檢測到您正在使用備用網域，建議使用正式網域以獲得最佳體驗'
-                : '檢測到正式網域可能出現問題，建議使用備用網域'}
+                ? t('domainRedirect.backupMessage', '檢測到您正在使用備用網域，建議使用正式網域以獲得最佳體驗')
+                : t('domainRedirect.primaryMessage', '檢測到正式網域可能出現問題，建議使用備用網域')}
             </p>
           </div>
           <div className="flex items-center gap-2 w-full sm:w-auto justify-end sm:justify-start">
@@ -122,12 +124,14 @@ export default function DomainRedirect() {
               onClick={handleRedirect}
               className="px-3 sm:px-4 py-1.5 sm:py-2 bg-white text-[var(--color-primary)] rounded-md font-semibold hover:bg-opacity-90 transition-colors duration-200 text-xs sm:text-sm md:text-base whitespace-nowrap"
             >
-              {bannerType === 'backup' ? '前往正式網域' : '前往備用網域'}
+              {bannerType === 'backup' 
+                ? t('domainRedirect.goToPrimary', '前往正式網域')
+                : t('domainRedirect.goToBackup', '前往備用網域')}
             </button>
             <button
               onClick={handleDismiss}
               className="p-1.5 sm:p-2 hover:bg-white/20 rounded-md transition-colors duration-200 flex-shrink-0"
-              aria-label="關閉"
+              aria-label={t('domainRedirect.close', '關閉')}
             >
               <span className="material-symbols-outlined text-lg sm:text-xl">close</span>
             </button>

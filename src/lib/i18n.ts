@@ -221,6 +221,13 @@ const zhResources = {
     rightsReserved: 'All Rights Reserved',
     dmcaProtected: '本網站受 DMCA 保護'
   },
+  domainRedirect: {
+    backupMessage: '檢測到您正在使用備用網域，建議使用正式網域以獲得最佳體驗',
+    primaryMessage: '檢測到正式網域可能出現問題，建議使用備用網域',
+    goToPrimary: '前往正式網域',
+    goToBackup: '前往備用網域',
+    close: '關閉'
+  },
   welcome: {
     title: '歡迎來到我的網站！',
     description: '嗨！我是 Kevin 的 AI 助理，隨時準備為您解答關於 Kevin 的專業經歷、技能和作品的任何問題。試試看吧！',
@@ -843,6 +850,13 @@ const enResources = {
     scrollToTop: 'TOP',
     rightsReserved: 'All Rights Reserved',
     dmcaProtected: 'This website is protected by DMCA'
+  },
+  domainRedirect: {
+    backupMessage: 'You are currently using a backup domain. We recommend using the primary domain for the best experience.',
+    primaryMessage: 'The primary domain may be experiencing issues. We recommend using the backup domain.',
+    goToPrimary: 'Go to Primary Domain',
+    goToBackup: 'Go to Backup Domain',
+    close: 'Close'
   },
   welcome: {
     title: 'Welcome to My Website!',
