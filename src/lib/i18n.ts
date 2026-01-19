@@ -222,10 +222,10 @@ const zhResources = {
     dmcaProtected: '本網站受 DMCA 保護'
   },
   domainRedirect: {
-    backupMessage: '檢測到您正在使用備用網域，建議使用正式網域以獲得最佳體驗',
-    primaryMessage: '檢測到正式網域可能出現問題，建議使用備用網域',
-    goToPrimary: '前往正式網域',
-    goToBackup: '前往備用網域',
+    backupMessage: '檢測到您正在使用備用網域，建議',
+    backupLink: '前往正式網域',
+    primaryMessage: '檢測到正式網域可能出現問題，建議',
+    primaryLink: '前往備用網域',
     close: '關閉'
   },
   welcome: {
@@ -852,10 +852,10 @@ const enResources = {
     dmcaProtected: 'This website is protected by DMCA'
   },
   domainRedirect: {
-    backupMessage: 'You are currently using a backup domain. We recommend using the primary domain for the best experience.',
-    primaryMessage: 'The primary domain may be experiencing issues. We recommend using the backup domain.',
-    goToPrimary: 'Go to Primary Domain',
-    goToBackup: 'Go to Backup Domain',
+    backupMessage: 'You are currently using a backup domain. We recommend',
+    backupLink: 'going to the primary domain',
+    primaryMessage: 'The primary domain may be experiencing issues. We recommend',
+    primaryLink: 'going to the backup domain',
     close: 'Close'
   },
   welcome: {

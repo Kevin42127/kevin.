@@ -89,8 +89,13 @@ export default function DomainRedirect() {
 
   if (!mounted) return null
 
+  const getCurrentPath = () => {
+    if (typeof window === 'undefined') return ''
+    return window.location.pathname + window.location.search
+  }
+
   const handleRedirect = () => {
-    const currentPath = window.location.pathname + window.location.search
+    const currentPath = getCurrentPath()
     if (bannerType === 'backup') {
       window.location.href = `${PRIMARY_DOMAIN}${currentPath}`
     } else {
@@ -114,20 +119,38 @@ export default function DomainRedirect() {
               {bannerType === 'backup' ? 'info' : 'warning'}
             </span>
             <p className="text-xs sm:text-sm md:text-base leading-relaxed break-words">
-              {bannerType === 'backup'
-                ? t('domainRedirect.backupMessage', '檢測到您正在使用備用網域，建議使用正式網域以獲得最佳體驗')
-                : t('domainRedirect.primaryMessage', '檢測到正式網域可能出現問題，建議使用備用網域')}
+              {bannerType === 'backup' ? (
+                <>
+                  {t('domainRedirect.backupMessage', '檢測到您正在使用備用網域，建議')}{' '}
+                  <a
+                    href={`${PRIMARY_DOMAIN}${getCurrentPath()}`}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      handleRedirect()
+                    }}
+                    className="text-white font-semibold hover:opacity-80 underline transition-opacity duration-200"
+                  >
+                    {t('domainRedirect.backupLink', '前往正式網域')}
+                  </a>
+                </>
+              ) : (
+                <>
+                  {t('domainRedirect.primaryMessage', '檢測到正式網域可能出現問題，建議')}{' '}
+                  <a
+                    href={`${BACKUP_DOMAIN}${getCurrentPath()}`}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      handleRedirect()
+                    }}
+                    className="text-white font-semibold hover:opacity-80 underline transition-opacity duration-200"
+                  >
+                    {t('domainRedirect.primaryLink', '前往備用網域')}
+                  </a>
+                </>
+              )}
             </p>
           </div>
           <div className="flex items-center gap-2 w-full sm:w-auto justify-end sm:justify-start">
-            <button
-              onClick={handleRedirect}
-              className="text-white font-semibold hover:opacity-80 underline transition-opacity duration-200 text-xs sm:text-sm md:text-base whitespace-nowrap"
-            >
-              {bannerType === 'backup' 
-                ? t('domainRedirect.goToPrimary', '前往正式網域')
-                : t('domainRedirect.goToBackup', '前往備用網域')}
-            </button>
             <button
               onClick={handleDismiss}
               className="p-1.5 sm:p-2 hover:bg-white/20 rounded-md transition-colors duration-200 flex-shrink-0"
