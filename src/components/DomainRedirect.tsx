@@ -4,19 +4,17 @@ import { useEffect, useState } from 'react'
 import { clientConfig } from '../lib/config'
 
 const PRIMARY_DOMAIN = clientConfig.site.primaryDomain
+const BACKUP_DOMAIN = clientConfig.site.backupDomain
 
 export default function DomainRedirect() {
   const [showBanner, setShowBanner] = useState(false)
+  const [bannerType, setBannerType] = useState<'backup' | 'primary'>('backup')
 
   useEffect(() => {
     if (typeof window === 'undefined') return
 
     const currentHost = window.location.hostname
     const isBackupDomain = currentHost.includes('vercel.app')
-
-    if (!isBackupDomain) {
-      return
-    }
 
     const dismissed = localStorage.getItem('domain-redirect-dismissed')
     if (dismissed) {
@@ -27,12 +25,69 @@ export default function DomainRedirect() {
       }
     }
 
-    setShowBanner(true)
+    if (isBackupDomain) {
+      setBannerType('backup')
+      setShowBanner(true)
+      return
+    }
+
+    const checkPrimaryDomainHealth = async () => {
+      let errorCount = 0
+      const maxErrors = 3
+
+      const handleError = () => {
+        errorCount++
+        if (errorCount >= maxErrors) {
+          setBannerType('primary')
+          setShowBanner(true)
+          window.removeEventListener('error', handleError)
+          window.removeEventListener('unhandledrejection', handleError)
+        }
+      }
+
+      window.addEventListener('error', handleError)
+      window.addEventListener('unhandledrejection', handleError)
+
+      try {
+        const controller = new AbortController()
+        const timeoutId = setTimeout(() => controller.abort(), 3000)
+
+        const response = await fetch('/favicon.ico', {
+          method: 'HEAD',
+          signal: controller,
+          cache: 'no-store'
+        })
+
+        clearTimeout(timeoutId)
+
+        if (!response.ok && response.status >= 500) {
+          setBannerType('primary')
+          setShowBanner(true)
+        }
+      } catch (error) {
+        handleError()
+      }
+
+      setTimeout(() => {
+        window.removeEventListener('error', handleError)
+        window.removeEventListener('unhandledrejection', handleError)
+      }, 10000)
+    }
+
+    const timer = setTimeout(() => {
+      checkPrimaryDomainHealth()
+    }, 2000)
+
+    return () => clearTimeout(timer)
   }, [])
 
   const handleRedirect = () => {
     const currentPath = window.location.pathname + window.location.search
-    window.location.href = `${PRIMARY_DOMAIN}${currentPath}`
+    if (bannerType === 'backup') {
+      window.location.href = `${PRIMARY_DOMAIN}${currentPath}`
+    } else {
+      window.location.href = `${BACKUP_DOMAIN}${currentPath}`
+    }
   }
 
   const handleDismiss = () => {
@@ -47,9 +102,13 @@ export default function DomainRedirect() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-3 flex-1">
-            <span className="material-symbols-outlined text-xl">info</span>
+            <span className="material-symbols-outlined text-xl">
+              {bannerType === 'backup' ? 'info' : 'warning'}
+            </span>
             <p className="text-sm sm:text-base">
-              檢測到您正在使用備用網域，建議使用正式網域以獲得最佳體驗
+              {bannerType === 'backup'
+                ? '檢測到您正在使用備用網域，建議使用正式網域以獲得最佳體驗'
+                : '檢測到正式網域可能出現問題，建議使用備用網域'}
             </p>
           </div>
           <div className="flex items-center gap-2">
@@ -57,7 +116,7 @@ export default function DomainRedirect() {
               onClick={handleRedirect}
               className="px-4 py-2 bg-white text-[var(--color-primary)] rounded-md font-semibold hover:bg-opacity-90 transition-colors duration-200 text-sm sm:text-base whitespace-nowrap"
             >
-              前往正式網域
+              {bannerType === 'backup' ? '前往正式網域' : '前往備用網域'}
             </button>
             <button
               onClick={handleDismiss}
