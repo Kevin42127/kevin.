@@ -111,7 +111,7 @@ export default function DomainRedirect() {
   if (!showBanner) return null
 
   return (
-    <div className="fixed top-[64px] left-0 right-0 z-[100] bg-[#FF4533] text-white">
+    <div className="fixed top-0 left-0 right-0 z-[110] bg-[#FF4533] text-white">
       <div className="w-full px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center justify-center">
           <p className="text-sm sm:text-base text-center whitespace-nowrap">
