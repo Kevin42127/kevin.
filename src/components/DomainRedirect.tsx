@@ -1,10 +1,9 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { clientConfig } from '../lib/config'
 
-const PRIMARY_DOMAIN = process.env.NEXT_PUBLIC_PRIMARY_DOMAIN || clientConfig.site.primaryDomain
-const BACKUP_DOMAIN = process.env.NEXT_PUBLIC_BACKUP_DOMAIN || clientConfig.site.backupDomain
+const PRIMARY_DOMAIN = 'https://www.kevinoffical.com'
+const BACKUP_DOMAIN = 'https://kevinoffical.vercel.app'
 
 export default function DomainRedirect() {
   const [showBanner, setShowBanner] = useState(false)
@@ -105,7 +104,7 @@ export default function DomainRedirect() {
   if (!showBanner) return null
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-[var(--color-primary)] text-white shadow-lg">
+    <div className="fixed top-[64px] left-0 right-0 z-[100] bg-[var(--color-primary)] text-white shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-3 flex-1">
