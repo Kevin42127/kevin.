@@ -112,10 +112,10 @@ export default function DomainRedirect() {
 
   return (
     <div className="fixed top-[64px] left-0 right-0 z-[100] bg-[var(--color-primary)] text-white shadow-lg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 md:max-w-none md:px-0">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 md:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:max-w-none md:px-0">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 md:px-8 md:py-1">
           <div className="flex items-center justify-center gap-2 sm:gap-3 flex-1 min-w-0">
-            <p className="text-xs sm:text-sm md:text-base leading-relaxed break-words text-center sm:text-left">
+            <p className="text-xs sm:text-sm md:text-base leading-relaxed break-words text-center">
               {bannerType === 'backup' ? (
                 <>
                   {t('domainRedirect.backupMessage', '檢測到您正在使用備用網域，建議')}{' '}
