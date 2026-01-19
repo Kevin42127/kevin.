@@ -3,15 +3,20 @@
 import { useEffect, useState } from 'react'
 import { clientConfig } from '../lib/config'
 
-const PRIMARY_DOMAIN = clientConfig.site.primaryDomain
-const BACKUP_DOMAIN = clientConfig.site.backupDomain
+const PRIMARY_DOMAIN = process.env.NEXT_PUBLIC_PRIMARY_DOMAIN || clientConfig.site.primaryDomain
+const BACKUP_DOMAIN = process.env.NEXT_PUBLIC_BACKUP_DOMAIN || clientConfig.site.backupDomain
 
 export default function DomainRedirect() {
   const [showBanner, setShowBanner] = useState(false)
   const [bannerType, setBannerType] = useState<'backup' | 'primary'>('backup')
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    if (typeof window === 'undefined') return
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!mounted || typeof window === 'undefined') return
 
     const currentHost = window.location.hostname
     const isBackupDomain = currentHost.includes('vercel.app')
@@ -79,7 +84,9 @@ export default function DomainRedirect() {
     }, 2000)
 
     return () => clearTimeout(timer)
-  }, [])
+  }, [mounted])
+
+  if (!mounted) return null
 
   const handleRedirect = () => {
     const currentPath = window.location.pathname + window.location.search
