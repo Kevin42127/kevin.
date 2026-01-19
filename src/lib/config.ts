@@ -12,6 +12,8 @@ export const clientConfig = {
   site: {
     url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
     name: process.env.NEXT_PUBLIC_SITE_NAME || 'Kevin.',
+    primaryDomain: process.env.NEXT_PUBLIC_PRIMARY_DOMAIN || 'https://www.kevinoffical.com',
+    backupDomain: process.env.NEXT_PUBLIC_BACKUP_DOMAIN || 'https://kevinoffical.vercel.app',
   },
   contact: {
     email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'tyouxipindao@gmail.com',

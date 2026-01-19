@@ -4,6 +4,7 @@ import './globals.css'
 import I18nProvider from '../components/I18nProvider'
 import GsapProvider from '../components/GsapProvider'
 import SmoothScrollProvider from '../components/SmoothScrollProvider'
+import DomainRedirect from '../components/DomainRedirect'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -42,6 +43,7 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
+        <DomainRedirect />
         <SmoothScrollProvider>
           <GsapProvider>
             <I18nProvider>
