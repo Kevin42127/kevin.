@@ -4,14 +4,15 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 
-type CategoryKey = 'all' | 'chrome' | 'bot' | 'web' | 'desktop'
+type CategoryKey = 'all' | 'chrome' | 'bot' | 'web' | 'desktop' | 'mobile'
 
 const categoryKeyMap: Record<CategoryKey, string> = {
   all: 'portfolio.categoryAll',
   chrome: 'portfolio.categoryChromeExtension',
   bot: 'portfolio.categoryBot',
   web: 'portfolio.categoryWebApp',
-  desktop: 'portfolio.categoryDesktopApp'
+  desktop: 'portfolio.categoryDesktopApp',
+  mobile: 'portfolio.categoryMobileApp'
 }
 
 export default function Portfolio() {
@@ -110,6 +111,17 @@ export default function Portfolio() {
       demo: 'https://taskfriend.vercel.app/',
       featured: true,
       categoryKey: 'desktop' as CategoryKey
+    },
+    {
+      id: 10,
+      title: t('portfolio.chatFlow.title', 'ChatFlow'),
+      description: t('portfolio.chatFlow.description', '跨平台行動應用，整合 Groq AI，提供即時對話。支援 iOS 與 Android，具備多語言與主題切換'),
+      image: '/ChatFlow.png',
+      technologies: ['Expo', 'React', 'Express', t('portfolio.aiCollaboration', 'AI協作')],
+      github: '#',
+      demo: 'https://chatflowk-kevin.vercel.app/download.html',
+      featured: true,
+      categoryKey: 'mobile' as CategoryKey
     }
   ]
 
@@ -157,7 +169,7 @@ export default function Portfolio() {
                       : 'bg-white text-[#1c1f2c] border border-[var(--color-divider)] hover:bg-[var(--color-panel)] hover:border-[#1d47ff]/30 hover:scale-105 active:scale-95'
                   }`}
                 >
-                  {t(categoryKeyMap[categoryKey], categoryKey === 'all' ? '全部' : categoryKey === 'chrome' ? 'Chrome擴展' : categoryKey === 'bot' ? '聊天機器人' : categoryKey === 'web' ? 'Web應用' : '桌面應用')}
+                  {t(categoryKeyMap[categoryKey], categoryKey === 'all' ? '全部' : categoryKey === 'chrome' ? 'Chrome擴展' : categoryKey === 'bot' ? '聊天機器人' : categoryKey === 'web' ? 'Web應用' : categoryKey === 'desktop' ? '桌面應用' : categoryKey === 'mobile' ? '行動應用' : '')}
                 </button>
               ))}
             </div>

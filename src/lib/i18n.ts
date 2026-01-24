@@ -132,12 +132,17 @@ const zhResources = {
       title: 'TaskMate',
       description: '以 .NET 8 / C# 開發，使用 Avalonia 跨平台桌面框架，採 MVVM 架構，本地以 JSON 存檔的待辦應用'
     },
+    chatFlow: {
+      title: 'ChatFlow',
+      description: '跨平台行動應用，整合 Groq AI，提供即時對話。支援 iOS 與 Android，具備多語言與主題切換'
+    },
     aiCollaboration: 'AI協作',
     categoryAll: '全部',
     categoryChromeExtension: 'Chrome擴展',
     categoryBot: '聊天機器人',
     categoryWebApp: '網站',
     categoryDesktopApp: '桌面應用',
+    categoryMobileApp: '行動應用',
     windowsOnly: '限 Windows 系統',
     basicPractice: '基礎練習',
     apiLearning: 'API 學習',
@@ -762,12 +767,17 @@ const enResources = {
       title: 'TaskMate',
       description: 'Built with .NET 8 / C#, using Avalonia cross-platform desktop framework, adopting MVVM architecture, a todo application with local JSON storage'
     },
+    chatFlow: {
+      title: 'ChatFlow',
+      description: 'Cross-platform mobile application integrating Groq AI for real-time conversations. Supports iOS and Android with multi-language and theme switching capabilities'
+    },
     aiCollaboration: 'AI Collaboration',
     categoryAll: 'All',
     categoryChromeExtension: 'Chrome Extension',
     categoryBot: 'Chatbot',
     categoryWebApp: 'Website',
     categoryDesktopApp: 'Desktop Application',
+    categoryMobileApp: 'Mobile Application',
     windowsOnly: 'Windows Only',
     basicPractice: 'Basic Practice',
     apiLearning: 'API Learning',
