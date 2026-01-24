@@ -52,14 +52,10 @@ export default function Navigation() {
 
   return (
     <>
-      <nav className="w-full bg-white/95 backdrop-blur-xl fixed top-0 left-0 right-0 z-[105] border-b border-[var(--color-divider)] shadow-[0_10px_25px_rgba(15,15,40,0.06)] relative" style={{ 
+      <nav className="fixed w-full bg-white/95 backdrop-blur-xl top-0 left-0 right-0 z-[105] border-b border-[var(--color-divider)] shadow-[0_10px_25px_rgba(15,15,40,0.06)]" style={{ 
         paddingTop: 'env(safe-area-inset-top, 0px)',
         minHeight: 'calc(64px + env(safe-area-inset-top, 0px))'
       }}>
-        <div className="absolute inset-0 bg-white/95 backdrop-blur-xl -z-10" style={{ 
-          top: 'calc(-1 * env(safe-area-inset-top, 0px))',
-          height: 'calc(100% + env(safe-area-inset-top, 0px))'
-        }}></div>
         <div className="w-full px-4 sm:px-6 lg:px-12 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center">

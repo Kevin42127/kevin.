@@ -157,6 +157,24 @@ a:focus {
     box-shadow: none;
     border-radius: 24px;
   }
+
+  nav[class*="fixed"] {
+    position: relative;
+  }
+
+  nav[class*="fixed"]::before {
+    content: '';
+    position: absolute;
+    top: calc(-1 * env(safe-area-inset-top, 0px));
+    left: 0;
+    right: 0;
+    height: env(safe-area-inset-top, 0px);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: -1;
+    pointer-events: none;
+  }
   
   .card {
     position: relative;
