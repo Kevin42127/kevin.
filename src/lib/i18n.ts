@@ -234,8 +234,12 @@ const zhResources = {
     close: '關閉'
   },
   welcome: {
+    chatTitle: '歡迎',
     title: '歡迎來到我的網站！',
-    description: '嗨！我是 Kevin 的 AI 助理，隨時準備為您解答關於 Kevin 的專業經歷、技能和作品的任何問題。試試看吧！',
+    guestGreeting: '嗨！',
+    description: '嗨！我是 Kevin 的 AI 助理，隨時準備為您解答關於 Kevin 的專業經歷、技能和作品的任何問題。',
+    howToUse: '如何使用',
+    cta: '點擊下方「體驗 AI 助理」按鈕即可開始與我對話。',
     tryAI: '體驗 AI 助理',
     close: '稍後再說'
   },
@@ -869,8 +873,12 @@ const enResources = {
     close: 'Close'
   },
   welcome: {
+    chatTitle: 'Welcome',
     title: 'Welcome to My Website!',
-    description: 'Hi! I\'m Kevin\'s AI Assistant, ready to answer any questions about Kevin\'s professional experience, skills, and projects. Give it a try!',
+    guestGreeting: 'Hi!',
+    description: 'Hi! I\'m Kevin\'s AI Assistant, ready to answer any questions about Kevin\'s professional experience, skills, and projects.',
+    howToUse: 'How do I use it?',
+    cta: 'Click the "Try AI Assistant" button below to start chatting with me.',
     tryAI: 'Try AI Assistant',
     close: 'Maybe Later'
   },
