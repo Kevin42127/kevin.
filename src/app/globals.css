@@ -24,6 +24,12 @@
   --color-secondary: #1d47ff;
   --color-accent: #00a19a;
   --color-text-muted: #6b6371;
+  --ai-accent: #1d47ff;
+  --ai-accent-dark: #1e40af;
+  --ai-accent-complement: #ea580c;
+  --ai-accent-complement-dark: #c2410c;
+  --ai-surface-variant: #e0e7ff;
+  --ai-divider: #c7d2fe;
   --shadow-sm: 0 8px 20px rgba(29, 71, 255, 0.08);
   --shadow-md: 0 18px 35px rgba(255, 77, 45, 0.18);
   --shadow-lg: 0 30px 55px rgba(0, 0, 0, 0.18);
@@ -242,14 +248,12 @@ a:focus {
     color: #05070f;
     border: 2px solid var(--color-primary);
     border-radius: 12px;
-    box-shadow: var(--shadow-md);
   }
   
   .btn-primary:hover {
     background-color: var(--color-primary-dark);
     border-color: var(--color-primary-dark);
     color: #ffffff;
-    box-shadow: var(--shadow-lg);
   }
   
   .btn-primary:active {
@@ -271,7 +275,6 @@ a:focus {
     background-color: var(--color-primary);
     border-color: var(--color-primary);
     color: #ffffff;
-    box-shadow: var(--shadow-md);
   }
   
   .btn-tertiary {
@@ -537,7 +540,6 @@ a:focus {
     background-color: var(--color-primary);
     border-color: var(--color-primary);
     color: #ffffff;
-    box-shadow: var(--shadow-sm);
   }
   
   .btn-icon {

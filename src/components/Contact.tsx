@@ -189,7 +189,7 @@ export default function Contact() {
                   onClick={() => handleTagClick(tag.label)}
                   className={`px-4 py-2 rounded-full border transition-all duration-300 flex items-center justify-center ${
                     formData.subject === tag.label
-                      ? 'bg-[var(--color-primary)] text-white border-[var(--color-primary)] shadow-md scale-105'
+                      ? 'bg-[var(--color-primary)] text-white border-[var(--color-primary)] scale-105'
                       : 'bg-white text-[#4a4455] border-[var(--color-divider)] hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]'
                   }`}
                 >
@@ -267,7 +267,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full btn-primary min-h-[56px] text-lg rounded-xl shadow-lg hover:shadow-xl active:scale-[0.98] transition-all ${
+                className={`w-full btn-primary min-h-[56px] text-lg rounded-xl active:scale-[0.98] transition-all ${
                   isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
                 }`}
               >

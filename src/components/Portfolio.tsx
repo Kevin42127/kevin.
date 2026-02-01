@@ -165,8 +165,8 @@ export default function Portfolio() {
                   onClick={() => setSelectedCategory(categoryKey)}
                   className={`flex-shrink-0 px-3 sm:px-4 md:px-4 lg:px-5 py-1.5 sm:py-2 md:py-2 lg:py-2.5 rounded-full text-xs sm:text-sm md:text-sm lg:text-base font-medium transition-all duration-200 whitespace-nowrap ${
                     selectedCategory === categoryKey
-                      ? 'bg-[#1d47ff] text-white shadow-lg shadow-[#1d47ff]/20 scale-105'
-                      : 'bg-white text-[#1c1f2c] border border-[var(--color-divider)] hover:bg-[var(--color-panel)] hover:border-[#1d47ff]/30 hover:scale-105 active:scale-95'
+                      ? 'bg-[#1d47ff] text-white'
+                      : 'bg-white text-[#1c1f2c] border border-[var(--color-divider)] hover:bg-[#1d47ff] hover:text-white hover:border-[#1d47ff]'
                   }`}
                 >
                   {t(categoryKeyMap[categoryKey], categoryKey === 'all' ? '全部' : categoryKey === 'chrome' ? 'Chrome擴展' : categoryKey === 'bot' ? '聊天機器人' : categoryKey === 'web' ? 'Web應用' : categoryKey === 'desktop' ? '桌面應用' : categoryKey === 'mobile' ? '行動應用' : '')}
