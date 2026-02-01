@@ -118,30 +118,24 @@ export default function DomainRedirect() {
             {bannerType === 'backup' ? (
               <>
                 {t('domainRedirect.backupMessage', '檢測到您正在使用備用網域，建議')}{' '}
-                <a
-                  href={`${PRIMARY_DOMAIN}${getCurrentPath()}`}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    handleRedirect()
-                  }}
-                  className="text-white underline hover:opacity-80 transition-opacity duration-200"
+                <button
+                  type="button"
+                  onClick={handleRedirect}
+                  className="text-white underline hover:opacity-80 transition-opacity duration-200 bg-transparent border-0 cursor-pointer p-0 font-inherit"
                 >
                   {t('domainRedirect.backupLink', '前往正式網域')}
-                </a>
+                </button>
               </>
             ) : (
               <>
                 {t('domainRedirect.primaryMessage', '檢測到正式網域可能出現問題，建議')}{' '}
-                <a
-                  href={`${BACKUP_DOMAIN}${getCurrentPath()}`}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    handleRedirect()
-                  }}
-                  className="text-white underline hover:opacity-80 transition-opacity duration-200"
+                <button
+                  type="button"
+                  onClick={handleRedirect}
+                  className="text-white underline hover:opacity-80 transition-opacity duration-200 bg-transparent border-0 cursor-pointer p-0 font-inherit"
                 >
                   {t('domainRedirect.primaryLink', '前往備用網域')}
-                </a>
+                </button>
               </>
             )}
           </p>

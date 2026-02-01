@@ -239,28 +239,26 @@ export default function Portfolio() {
 
               <div className="flex flex-col gap-3 mt-auto">
                 {project.demo !== '#' && (
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    type="button"
+                    onClick={() => window.open(project.demo, '_blank', 'noopener,noreferrer')}
                     className="btn-secondary w-full justify-center text-sm tracking-wide uppercase"
                     aria-label={t('portfolio.viewProject', '查看專案')}
                   >
                     <span className="material-symbols-outlined text-base">open_in_new</span>
                     <span>{t('portfolio.view', '查看')}</span>
-                  </a>
+                  </button>
                 )}
                 {project.github !== '#' && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    type="button"
+                    onClick={() => window.open(project.github, '_blank', 'noopener,noreferrer')}
                     className="btn-tertiary w-full justify-center text-sm tracking-wide uppercase"
                     aria-label={t('portfolio.viewCode', '查看程式碼')}
                   >
                     <span className="material-symbols-outlined text-base">code</span>
                     <span>{t('portfolio.github', 'GitHub')}</span>
-                  </a>
+                  </button>
                 )}
               </div>
             </motion.article>

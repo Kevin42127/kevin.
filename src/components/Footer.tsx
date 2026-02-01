@@ -31,40 +31,37 @@ export default function Footer() {
               </span>
             </p>
             <div className="flex items-center justify-center gap-2 mt-2">
-              <a
-                href={clientConfig.site.primaryDomain}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs text-[#6b6371] hover:text-[var(--color-primary)] transition-colors duration-300"
+              <button
+                type="button"
+                onClick={() => window.open(clientConfig.site.primaryDomain, '_blank', 'noopener,noreferrer')}
+                className="text-xs text-[#6b6371] hover:text-[var(--color-primary)] transition-colors duration-300 bg-transparent border-0 cursor-pointer p-0 font-inherit"
               >
                 正式網域
-              </a>
+              </button>
               <span className="text-xs text-[#6b6371]">|</span>
-              <a
-                href={clientConfig.site.backupDomain}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs text-[#6b6371] hover:text-[var(--color-primary)] transition-colors duration-300"
+              <button
+                type="button"
+                onClick={() => window.open(clientConfig.site.backupDomain, '_blank', 'noopener,noreferrer')}
+                className="text-xs text-[#6b6371] hover:text-[var(--color-primary)] transition-colors duration-300 bg-transparent border-0 cursor-pointer p-0 font-inherit"
               >
                 備用網域
-              </a>
+              </button>
             </div>
           </div>
 
           <div className="flex flex-col items-center gap-2">
-            <a 
-              href="https://www.dmca.com/r/l1wqqed" 
-              title="DMCA.com Protection Status" 
-              className="dmca-badge opacity-90 hover:opacity-100 transition-opacity duration-300"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              title="DMCA.com Protection Status"
+              className="dmca-badge opacity-90 hover:opacity-100 transition-opacity duration-300 bg-transparent border-0 cursor-pointer p-0"
+              onClick={() => window.open('https://www.dmca.com/r/l1wqqed', '_blank', 'noopener,noreferrer')}
             >
               <img 
                 src="https://images.dmca.com/Badges/dmca_protected_sml_120m.png?ID=c23022d2-174a-45f3-a198-188a70313323"
                 alt="DMCA.com Protection Status"
                 className="h-12 w-auto"
               />
-            </a>
+            </button>
             <p className="text-xs text-[#6b6371] text-center">
               {t('footer.dmcaProtected', '本網站受 DMCA 保護')}
             </p>

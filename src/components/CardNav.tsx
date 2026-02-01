@@ -165,9 +165,9 @@ const CardNav: React.FC<CardNavProps> = ({
     cardsRef.current[i] = el
   }
 
-  const handleLinkClick = (href: string, e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleLinkClick = (href: string, e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
+    e.preventDefault()
     if (onLinkClick) {
-      e.preventDefault()
       onLinkClick(href)
       toggleMenu()
     }
@@ -254,10 +254,10 @@ const CardNav: React.FC<CardNavProps> = ({
               </div>
               <div className="nav-card-links mt-auto flex flex-col gap-[2px]">
                 {item.links?.map((lnk, i) => (
-                  <a
+                  <button
                     key={`${lnk.label}-${i}`}
-                    className="nav-card-link inline-flex items-center gap-[6px] no-underline cursor-pointer transition-opacity duration-300 hover:opacity-75 text-[15px] md:text-[16px]"
-                    href={lnk.href}
+                    type="button"
+                    className="nav-card-link inline-flex items-center gap-[6px] no-underline cursor-pointer transition-opacity duration-300 hover:opacity-75 text-[15px] md:text-[16px] bg-transparent border-0 p-0 font-inherit text-left"
                     aria-label={lnk.ariaLabel}
                     onClick={(e) => handleLinkClick(lnk.href, e)}
                   >
@@ -265,7 +265,7 @@ const CardNav: React.FC<CardNavProps> = ({
                       arrow_forward
                     </span>
                     {lnk.label}
-                  </a>
+                  </button>
                 ))}
               </div>
             </div>
