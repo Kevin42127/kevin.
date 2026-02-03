@@ -180,6 +180,23 @@ export default function Contact() {
             <p className="text-base sm:text-lg text-[#4a4455] mb-6 sm:mb-8 leading-relaxed">
               {t('contact.lowFrictionNote', '懶得打字？選一個標籤直接聯繫我。')}
             </p>
+
+            {/* AI 助理引導 */}
+            <div className="bg-[var(--ai-accent)]/10 border border-[var(--ai-accent)]/20 rounded-xl p-4 mb-6">
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 rounded-lg bg-[var(--ai-accent)] flex items-center justify-center text-white flex-shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20" fill="currentColor"><path d="M440-120v-80h320v-284q0-117-81.5-198.5T480-764q-117 0-198.5 81.5T200-484v244h-40q-33 0-56.5-23.5T80-320v-80q0-21 10.5-39.5T120-469l3-53q8-68 39.5-126t79-101q47.5-43 109-67T480-840q68 0 129 24t109 66.5Q766-707 797-649t40 126l3 52q19 9 29.5 27t10.5 38v92q0 20-10.5 38T840-249v49q0 33-23.5 56.5T760-120H440Zm-80-280q-17 0-28.5-11.5T320-440q0-17 11.5-28.5T360-480q17 0 28.5 11.5T400-440q0 17-11.5 28.5T360-400Zm240 0q-17 0-28.5-11.5T560-440q0-17 11.5-28.5T600-480q17 0 28.5 11.5T640-440q0 17-11.5 28.5T600-400Zm-359-62q-7-106 64-182t177-76q89 0 156.5 56.5T720-519q-91-1-167.5-49T435-698q-16 80-67.5 142.5T241-462Z"/></svg>
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm text-[var(--color-text)] font-medium mb-2">
+                    {t('contact.aiAssistantGuide', '更快速的方式：使用 AI 助理')}
+                  </p>
+                  <p className="text-xs text-[#4a4455]">
+                    {t('contact.aiAssistantDesc', '點擊右下角的 AI 助理圖示，直接在對話中填寫表單')}
+                  </p>
+                </div>
+              </div>
+            </div>
             
             <div className="flex flex-wrap gap-2 sm:gap-3 mb-8">
               {tags.map((tag) => (

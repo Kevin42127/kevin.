@@ -821,6 +821,8 @@ const enResources = {
     subject: 'Subject',
     message: 'Message',
     lowFrictionNote: 'Too lazy to type? Select a tag, then fill out the form on the right.',
+    aiAssistantGuide: 'Faster way: Use AI Assistant',
+    aiAssistantDesc: 'Click the AI Assistant icon in the bottom right corner and fill out the form directly in the conversation',
     tags: {
       interview: 'Interview Invite'
     },

@@ -10,6 +10,20 @@ interface Message {
   content: string
 }
 
+interface FormData {
+  name: string
+  email: string
+  subject: string
+  message: string
+}
+
+interface FormErrors {
+  name?: string
+  email?: string
+  subject?: string
+  message?: string
+}
+
 const STORAGE_KEY = 'ai-assistant-messages'
 
 const DEFAULT_MESSAGES = {
@@ -28,13 +42,15 @@ const QUICK_QUESTIONS = {
     'Kevin 的核心技能是什麼？',
     '可以介紹一下作品集與專案經驗嗎？',
     '如何下載履歷？',
-    '如何與 Kevin 安排面試？'
+    '如何與 Kevin 安排面試？',
+    'Kevin 的聯絡方式是什麼？'
   ],
   en: [
     'What are Kevin\'s core skills?',
     'Can you introduce the portfolio and project experience?',
     'How to download Kevin\'s resume?',
-    'How to schedule an interview with Kevin?'
+    'How to schedule an interview with Kevin?',
+    'What are Kevin\'s contact details?'
   ]
 }
 
@@ -191,6 +207,20 @@ export default function AIAssistant() {
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [isStreaming, setIsStreaming] = useState(false)
+  const [showContactForm, setShowContactForm] = useState(false)
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  })
+  const [formErrors, setFormErrors] = useState<FormErrors>({})
+  const [isSubmittingForm, setIsSubmittingForm] = useState(false)
+  const [formToast, setFormToast] = useState<{
+    show: boolean
+    type: 'success' | 'error'
+    message: string
+  }>({ show: false, type: 'success', message: '' })
   const parentRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const abortControllerRef = useRef<AbortController | null>(null)
@@ -729,7 +759,154 @@ export default function AIAssistant() {
   const handleClear = () => {
     setMessages([getDefaultMessage()])
     localStorage.removeItem(STORAGE_KEY)
+    setShowContactForm(false)
+    setFormData({ name: '', email: '', subject: '', message: '' })
+    setFormErrors({})
   }
+
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+    if (formErrors[name as keyof FormErrors]) {
+      setFormErrors(prev => ({
+        ...prev,
+        [name]: undefined
+      }))
+    }
+  }
+
+  const handleFormKeyDown = (e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    if (e.key === 'Enter') {
+      // 如果是 textarea 且按著 Shift，允許換行
+      if (e.currentTarget.tagName === 'TEXTAREA' && e.shiftKey) {
+        return // 允許預設的換行行為
+      }
+      // 其他情況下，按 Enter 送出表單
+      if (!isSubmittingForm) {
+        e.preventDefault()
+        handleFormSubmit(e as any)
+      }
+    }
+  }
+
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {}
+    
+    if (!formData.name.trim()) {
+      newErrors.name = t('contact.validation.nameRequired', '請填寫姓名')
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = t('contact.validation.emailRequired', '請填寫電子郵件')
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = t('contact.validation.emailInvalid', '請輸入有效的電子郵件地址')
+    }
+    
+    if (!formData.subject.trim()) {
+      newErrors.subject = t('contact.validation.subjectRequired', '請選擇一個主題')
+    }
+    
+    if (!formData.message.trim()) {
+      newErrors.message = t('contact.validation.messageRequired', '請填寫訊息內容')
+    }
+    
+    setFormErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    if (!validateForm()) {
+      return
+    }
+    
+    setIsSubmittingForm(true)
+    
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          message: formData.message,
+          language: currentLanguage
+        }),
+      })
+
+      const result = await response.json()
+
+      if (response.ok) {
+        setFormToast({
+          show: true,
+          type: 'success',
+          message: t('contact.success', '訊息已發送！')
+        })
+        setFormData({ name: '', email: '', subject: '', message: '' })
+        setFormErrors({})
+        setShowContactForm(false)
+        
+        // 添加成功訊息到聊天
+        const successMessage: Message = {
+          role: 'assistant',
+          content: `✅ ${t('contact.success', '訊息已發送！')} ${currentLanguage === 'en' ? 'Kevin will contact you within 24 hours. Please check your Gmail.' : 'Kevin 會在 24 小時內主動與您聯繫。請隨時查看你的 Gmail。'}`
+        }
+        setMessages(prev => [...prev, successMessage])
+      } else {
+        setFormToast({
+          show: true,
+          type: 'error',
+          message: result.error || t('contact.error', '發送失敗，請稍後再試')
+        })
+      }
+    } catch (error) {
+      console.error('發送錯誤:', error)
+      setFormToast({
+        show: true,
+        type: 'error',
+        message: t('contact.error', '發送失敗，請檢查網路連線後再試')
+      })
+    } finally {
+      setIsSubmittingForm(false)
+    }
+  }
+
+  const handleQuickFormFill = (type: 'interview') => {
+    setFormData(prev => ({
+      ...prev,
+      subject: t('contact.tags.interview', '面試邀約')
+    }))
+    if (formErrors.subject) {
+      setFormErrors(prev => ({
+        ...prev,
+        subject: undefined
+      }))
+    }
+  }  
+
+  useEffect(() => {
+    if (formToast.show) {
+      const timer = setTimeout(() => {
+        setFormToast(prev => ({ ...prev, show: false }))
+      }, 5000)
+      return () => clearTimeout(timer)
+    }
+  }, [formToast])
+
+  // 設置全局函數供 HTML onclick 使用
+  useEffect(() => {
+    (window as any).showContactForm = () => {
+      setShowContactForm(true)
+    }
+    return () => {
+      delete (window as any).showContactForm
+    }
+  }, [])
 
   return (
     <>
@@ -969,7 +1146,7 @@ export default function AIAssistant() {
                           '<a onclick="document.getElementById(\'portfolio\')?.scrollIntoView({behavior: \'smooth\'})" style="color: var(--ai-accent); text-decoration: underline; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.opacity=\'0.7\';" onmouseout="this.style.opacity=\'1\';">' + t('portfolio.viewProject', '查看專案') + '</a>')
                         
                         formatted = formatted.replace(/\[CONTACT_FORM\]/g, 
-                          '<a onclick="document.getElementById(\'contact\')?.scrollIntoView({behavior: \'smooth\'})" style="color: var(--ai-accent); text-decoration: underline; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.opacity=\'0.7\';" onmouseout="this.style.opacity=\'1\';">' + t('contact.sendMessage', '發送訊息') + '</a>')
+                          '<a onclick="window.showContactForm && window.showContactForm()" style="color: var(--ai-accent); text-decoration: underline; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.opacity=\'0.7\';" onmouseout="this.style.opacity=\'1\';">' + t('contact.sendMessage', '發送訊息') + '</a>')
                         
                         return formatted
                       }
@@ -1114,34 +1291,179 @@ export default function AIAssistant() {
           </div>
 
           <div className="p-3 sm:p-4 border-t border-[var(--ai-divider)] bg-white">
-            <div className="flex items-center gap-1 border border-[var(--ai-divider)] rounded-2xl focus-within:border-[var(--ai-accent)] transition-colors duration-200 py-1 pr-1 sm:py-1.5 sm:pr-1.5">
-              <textarea
-                ref={inputRef}
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={handleKeyPress}
-                placeholder={t('aiAssistant.placeholder', '輸入訊息...（Shift+Enter 換行）')}
-                disabled={isLoading || isStreaming}
-                rows={1}
-                className="flex-1 min-w-0 px-3 sm:px-4 py-2 text-[15px] bg-transparent border-0 text-[var(--color-text)] placeholder-gray-400 focus:outline-none focus:ring-0 disabled:opacity-50 rounded-2xl resize-none overflow-auto scrollbar-hide"
-                style={{
-                  minHeight: '32px',
-                  maxHeight: '180px',
-                  lineHeight: '1.35',
-                }}
-              />
-              <button
-                type="button"
-                onClick={() => handleSend()}
-                disabled={isLoading || isStreaming || !input.trim()}
-                className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-full text-[var(--ai-accent)] hover:text-[var(--ai-accent-dark)] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-                aria-label={t('aiAssistant.send', '發送')}
-              >
-                <span className="material-symbols-outlined text-lg">
-                  send
-                </span>
-              </button>
-            </div>
+            {showContactForm ? (
+              <div className="space-y-3">
+                <div className="flex items-center justify-between mb-2">
+                  <h4 className="font-semibold text-[var(--color-text)] text-sm">
+                    {t('contact.title', '聯繫我')}
+                  </h4>
+                  <button
+                    onClick={() => setShowContactForm(false)}
+                    className="text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors"
+                  >
+                    <span className="material-symbols-outlined text-sm">close</span>
+                  </button>
+                </div>
+                
+                {formToast.show && (
+                  <div className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-xs ${
+                    formToast.type === 'success' ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-red-50 text-red-700 border border-red-200'
+                  }`}>
+                    <span className="material-symbols-outlined text-sm">
+                      {formToast.type === 'success' ? 'check_circle' : 'error'}
+                    </span>
+                    <span className="font-medium">{formToast.message}</span>
+                  </div>
+                )}
+
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <button
+                    type="button"
+                    onClick={() => handleQuickFormFill('interview')}
+                    className={`px-3 py-1.5 rounded-full border transition-all duration-300 text-xs ${
+                      formData.subject === t('contact.tags.interview', '面試邀約')
+                        ? 'bg-[var(--ai-accent)] text-white border-[var(--ai-accent)]'
+                        : 'bg-white text-[#4a4455] border-[var(--ai-divider)] hover:border-[var(--ai-accent)] hover:text-[var(--ai-accent)]'
+                    }`}
+                  >
+                    {t('contact.tags.interview', '面試邀約')}
+                  </button>
+                </div>
+
+                <form onSubmit={handleFormSubmit} className="space-y-3">
+                  <div>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleFormChange}
+                      onKeyDown={handleFormKeyDown}
+                      placeholder={t('contact.name', '姓名') + ' *'}
+                      className={`w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--ai-accent)] focus:border-transparent ${
+                        formErrors.name ? 'border-red-300' : 'border-[var(--ai-divider)]'
+                      }`}
+                    />
+                    {formErrors.name && (
+                      <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
+                        <span className="material-symbols-outlined text-xs">error</span>
+                        {formErrors.name}
+                      </p>
+                    )}
+                  </div>
+
+                  <div>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleFormChange}
+                      onKeyDown={handleFormKeyDown}
+                      placeholder={t('contact.email', '電子郵件') + ' *'}
+                      className={`w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--ai-accent)] focus:border-transparent ${
+                        formErrors.email ? 'border-red-300' : 'border-[var(--ai-divider)]'
+                      }`}
+                    />
+                    {formErrors.email && (
+                      <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
+                        <span className="material-symbols-outlined text-xs">error</span>
+                        {formErrors.email}
+                      </p>
+                    )}
+                  </div>
+
+                  <div>
+                    <input
+                      type="text"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleFormChange}
+                      onKeyDown={handleFormKeyDown}
+                      placeholder={t('contact.subject', '主題') + ' *'}
+                      className={`w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--ai-accent)] focus:border-transparent ${
+                        formErrors.subject ? 'border-red-300' : 'border-[var(--ai-divider)]'
+                      }`}
+                    />
+                    {formErrors.subject && (
+                      <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
+                        <span className="material-symbols-outlined text-xs">error</span>
+                        {formErrors.subject}
+                      </p>
+                    )}
+                  </div>
+
+                  <div>
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={(e) => handleFormChange(e as any)}
+                      onKeyDown={handleFormKeyDown}
+                      placeholder={t('contact.message', '輸入訊息...')}
+                      rows={3}
+                      className={`w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--ai-accent)] focus:border-transparent resize-none ${
+                        formErrors.message ? 'border-red-300' : 'border-[var(--ai-divider)]'
+                      }`}
+                    />
+                    {formErrors.message && (
+                      <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
+                        <span className="material-symbols-outlined text-xs">error</span>
+                        {formErrors.message}
+                      </p>
+                    )}
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmittingForm}
+                    className={`w-full py-2.5 text-sm font-medium rounded-lg transition-all ${
+                      isSubmittingForm 
+                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
+                        : 'bg-[var(--ai-accent)] text-white hover:bg-[var(--ai-accent-dark)] active:scale-[0.98]'
+                    }`}
+                  >
+                    {isSubmittingForm ? (
+                      <div className="flex items-center justify-center gap-2">
+                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        <span>{t('contact.sending', '傳送中...')}</span>
+                      </div>
+                    ) : (
+                      <div className="flex items-center justify-center gap-2">
+                        <span className="material-symbols-outlined text-sm">send</span>
+                        <span>{t('contact.sendMessage', '傳送訊息')}</span>
+                      </div>
+                    )}
+                  </button>
+                </form>
+              </div>
+            ) : (
+              <div className="flex items-center gap-1 border border-[var(--ai-divider)] rounded-2xl focus-within:border-[var(--ai-accent)] transition-colors duration-200 py-1 pr-1 sm:py-1.5 sm:pr-1.5">
+                <textarea
+                  ref={inputRef}
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={handleKeyPress}
+                  placeholder={t('aiAssistant.placeholder', '輸入訊息...（Shift+Enter 換行）')}
+                  disabled={isLoading || isStreaming}
+                  rows={1}
+                  className="flex-1 min-w-0 px-3 sm:px-4 py-2 text-[15px] bg-transparent border-0 text-[var(--color-text)] placeholder-gray-400 focus:outline-none focus:ring-0 disabled:opacity-50 rounded-2xl resize-none overflow-auto scrollbar-hide"
+                  style={{
+                    minHeight: '32px',
+                    maxHeight: '180px',
+                    lineHeight: '1.35',
+                  }}
+                />
+                <button
+                  type="button"
+                  onClick={() => handleSend()}
+                  disabled={isLoading || isStreaming || !input.trim()}
+                  className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-full text-[var(--ai-accent)] hover:text-[var(--ai-accent-dark)] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                  aria-label={t('aiAssistant.send', '發送')}
+                >
+                  <span className="material-symbols-outlined text-lg">
+                    send
+                  </span>
+                </button>
+              </div>
+            )}
           </div>
         </motion.div>
         )}
