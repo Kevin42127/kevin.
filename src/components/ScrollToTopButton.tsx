@@ -24,7 +24,7 @@ export default function ScrollToTopButton() {
   return (
     <button
       onClick={scrollToTop}
-      className="fixed bottom-6 right-6 z-50 text-sm font-bold uppercase tracking-widest text-[#6b6371] hover:text-[var(--color-primary)] transition-colors duration-300"
+      className="fixed bottom-6 right-6 z-50 text-sm font-bold uppercase tracking-widest text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors duration-300"
       aria-label={t('footer.scrollToTop', '返回頂部')}
     >
       {t('footer.scrollToTop', '返回頂部')}

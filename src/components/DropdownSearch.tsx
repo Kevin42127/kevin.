@@ -363,7 +363,7 @@ export default function DropdownSearch() {
     <div ref={containerRef} className="relative w-48 lg:w-56">
       <div className="relative">
         <div className="flex items-center">
-          <span className="material-symbols-outlined absolute left-3 text-[#6b6371]" aria-hidden="true">
+          <span className="material-symbols-outlined absolute left-3 text-[var(--color-text-muted)]" aria-hidden="true">
             search
           </span>
           <input
@@ -373,12 +373,12 @@ export default function DropdownSearch() {
             onChange={handleSearch}
             onFocus={() => setIsOpen(true)}
             placeholder={t('search.placeholder', '搜索...')}
-            className="w-full pl-10 pr-10 py-2 text-sm bg-white border border-[var(--color-divider)] focus:border-[var(--color-primary)] transition-all duration-300 placeholder-[#a59ca9] text-[#1f1d30] rounded-[50px]"
+            className="w-full pl-10 pr-10 py-2 text-sm bg-[var(--color-surface)] border border-[var(--color-divider)] focus:border-[var(--color-primary)] transition-all duration-300 placeholder-[var(--color-text-muted)] text-[rgb(var(--foreground-rgb))] rounded-[50px]"
           />
           {query && (
             <button
               onClick={clearSearch}
-              className="absolute right-3 text-[#6b6371] hover:text-[var(--color-primary)] transition-colors duration-300"
+              className="absolute right-3 text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors duration-300"
             >
               <span className="material-symbols-outlined text-base">close</span>
             </button>
@@ -387,11 +387,11 @@ export default function DropdownSearch() {
       </div>
 
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-[var(--color-divider)] shadow-[0_25px_45px_rgba(15,15,40,0.08)] z-[120] max-h-96 overflow-y-auto rounded-2xl p-1.5">
+        <div className="absolute top-full left-0 right-0 mt-2 bg-[var(--color-surface)] border border-[var(--color-divider)] shadow-[0_25px_45px_rgba(15,15,40,0.08)] z-[120] max-h-96 overflow-y-auto rounded-2xl p-1.5">
           {isLoading ? (
             <div className="p-4 text-center">
               <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[var(--color-primary)] mx-auto"></div>
-              <p className="text-sm text-[#6b6371] mt-2">
+              <p className="text-sm text-[var(--color-text-muted)] mt-2">
                 {t('search.searching', '搜索中...')}
               </p>
             </div>
@@ -408,8 +408,8 @@ export default function DropdownSearch() {
                       <span className="material-symbols-outlined text-base">{result.icon}</span>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-[#1f1d30] truncate">{result.title}</h3>
-                      <p className="text-sm text-[#6b6371] mt-1 line-clamp-2">{result.description}</p>
+                      <h3 className="font-medium text-[rgb(var(--foreground-rgb))] truncate">{result.title}</h3>
+                      <p className="text-sm text-[var(--color-text-muted)] mt-1 line-clamp-2">{result.description}</p>
                     </div>
                   </div>
                 </button>
@@ -417,21 +417,21 @@ export default function DropdownSearch() {
             </div>
           ) : query ? (
             <div className="p-4 text-center">
-              <span className="material-symbols-outlined text-[#6b6371] text-2xl mx-auto mb-2 block">
+              <span className="material-symbols-outlined text-[var(--color-text-muted)] text-2xl mx-auto mb-2 block">
                 search
               </span>
-              <p className="text-sm text-[#6b6371]">
+              <p className="text-sm text-[var(--color-text-muted)]">
                 {t('search.noResults', '沒有找到相關結果')}
               </p>
-              <p className="text-xs text-[#9b92a4] mt-1">
+              <p className="text-xs text-[var(--color-text-muted)] mt-1">
                 {t('search.tryDifferent', '試試其他關鍵字')}
               </p>
             </div>
           ) : (
             <div className="flex flex-col gap-1">
               <div className="px-4 py-2 flex items-center gap-2">
-                <span className="material-symbols-outlined text-[#6b6371] text-base">bolt</span>
-                <h3 className="text-xs font-semibold text-[#6b6371] uppercase tracking-wide">
+                <span className="material-symbols-outlined text-[var(--color-text-muted)] text-base">bolt</span>
+                <h3 className="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wide">
                   {t('search.quickNavigation', '快速導航')}
                 </h3>
               </div>
@@ -446,10 +446,10 @@ export default function DropdownSearch() {
                       <span className="material-symbols-outlined text-base">{link.icon}</span>
                     </div>
                     <div className="flex-1 text-left min-w-0">
-                      <div className="font-medium text-[#1f1d30] text-sm">{link.name}</div>
-                      <div className="text-xs text-[#6b6371] truncate">{link.description}</div>
+                      <div className="font-medium text-[rgb(var(--foreground-rgb))] text-sm">{link.name}</div>
+                      <div className="text-xs text-[var(--color-text-muted)] truncate">{link.description}</div>
                     </div>
-                    <span className="material-symbols-outlined text-[#9b92a4] opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 text-sm">
+                    <span className="material-symbols-outlined text-[var(--color-text-muted)] opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 text-sm">
                       chevron_right
                     </span>
                   </button>

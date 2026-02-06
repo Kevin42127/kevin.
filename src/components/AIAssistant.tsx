@@ -928,7 +928,7 @@ export default function AIAssistant() {
                   className="absolute bottom-full right-0 mb-4 cursor-pointer"
                   onClick={handleOpen}
                 >
-                  <div className="relative bg-white text-[var(--color-text)] px-4 py-3 rounded-2xl border border-[var(--ai-divider)] whitespace-nowrap group">
+                  <div className="relative bg-[var(--color-surface)] text-[rgb(var(--foreground-rgb))] px-4 py-3 rounded-2xl border border-[var(--ai-divider)] whitespace-nowrap group">
                     <div className="flex items-center gap-2">
                       <span className="text-base">👋</span>
                       <p className="text-sm font-bold tracking-tight">
@@ -945,7 +945,7 @@ export default function AIAssistant() {
                         <span className="material-symbols-outlined text-sm">close</span>
                       </button>
                     </div>
-                    <div className="absolute top-full right-6 w-3 h-3 bg-white border-r border-b border-[var(--ai-divider)] transform rotate-45 -translate-y-1.5" />
+                    <div className="absolute top-full right-6 w-3 h-3 bg-[var(--color-surface)] border-r border-b border-[var(--ai-divider)] transform rotate-45 -translate-y-1.5" />
                   </div>
                 </motion.div>
               )}
@@ -959,7 +959,7 @@ export default function AIAssistant() {
               aria-label={t('aiAssistant.open', '開啟 AI 助理')}
             >
               <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" className="w-7 h-7 sm:w-8 sm:h-8 text-white" fill="currentColor"><path d="M440-120v-80h320v-284q0-117-81.5-198.5T480-764q-117 0-198.5 81.5T200-484v244h-40q-33 0-56.5-23.5T80-320v-80q0-21 10.5-39.5T120-469l3-53q8-68 39.5-126t79-101q47.5-43 109-67T480-840q68 0 129 24t109 66.5Q766-707 797-649t40 126l3 52q19 9 29.5 27t10.5 38v92q0 20-10.5 38T840-249v49q0 33-23.5 56.5T760-120H440Zm-80-280q-17 0-28.5-11.5T320-440q0-17 11.5-28.5T360-480q17 0 28.5 11.5T400-440q0 17-11.5 28.5T360-400Zm240 0q-17 0-28.5-11.5T560-440q0-17 11.5-28.5T600-480q17 0 28.5 11.5T640-440q0 17-11.5 28.5T600-400Zm-359-62q-7-106 64-182t177-76q89 0 156.5 56.5T720-519q-91-1-167.5-49T435-698q-16 80-67.5 142.5T241-462Z"/></svg>
-              <span className="absolute -top-1 -right-1 sm:-top-1.5 sm:-right-1.5 w-4 h-4 sm:w-5 sm:h-5 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
+              <span className="absolute -top-1 -right-1 sm:-top-1.5 sm:-right-1.5 w-4 h-4 sm:w-5 sm:h-5 bg-green-500 rounded-full border-2 border-[var(--color-surface)] flex items-center justify-center">
                 <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-white rounded-full"></span>
               </span>
             </motion.button>
@@ -974,7 +974,7 @@ export default function AIAssistant() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 sm:inset-auto sm:top-20 sm:bottom-6 sm:right-6 z-[115] w-full h-full sm:w-[380px] md:w-[420px] sm:h-auto sm:max-h-[calc(100vh-7rem)] flex flex-col bg-white border-0 sm:border border-[var(--ai-divider)] rounded-none sm:rounded-3xl overflow-hidden"
+            className="fixed inset-0 sm:inset-auto sm:top-20 sm:bottom-6 sm:right-6 z-[115] w-full h-full sm:w-[380px] md:w-[420px] sm:h-auto sm:max-h-[calc(100vh-7rem)] flex flex-col bg-[var(--color-surface)] border-0 sm:border border-[var(--ai-divider)] rounded-none sm:rounded-3xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
             onWheel={(e) => e.stopPropagation()}
             onTouchMove={(e) => e.stopPropagation()}
@@ -1094,7 +1094,7 @@ export default function AIAssistant() {
                         className={`inline-block ${
                           message.role === 'user'
                             ? 'bg-[var(--ai-accent)] text-white rounded-2xl'
-                            : 'bg-gray-100 text-[var(--color-text)] border border-gray-200 rounded-2xl'
+                            : 'bg-[var(--color-surface-variant)] text-[rgb(var(--foreground-rgb))] border border-[var(--color-divider)] rounded-2xl'
                         }`}
                         style={{
                           padding: '10px 12px',
@@ -1119,7 +1119,7 @@ export default function AIAssistant() {
                             key={index}
                             onClick={() => handleQuickQuestion(question)}
                             disabled={isLoading || isStreaming}
-                            className="w-full px-4 py-3 text-sm text-left bg-white border border-[var(--ai-divider)] text-[var(--color-text)] hover:bg-white hover:border-[var(--ai-accent)] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed rounded-2xl font-medium"
+                            className="w-full px-4 py-3 text-sm text-left bg-[var(--color-surface)] border border-[var(--ai-divider)] text-[rgb(var(--foreground-rgb))] hover:bg-[var(--color-surface-variant)] hover:border-[var(--ai-accent)] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed rounded-2xl font-medium"
                           >
                             {question}
                           </button>
@@ -1170,7 +1170,7 @@ export default function AIAssistant() {
                             inCodeBlock = false
                             processedLines.push(
                               <div key={`code-${i}`} className="my-3">
-                                <div className="bg-[#1b1d2c] text-[#e5e7eb] p-3 overflow-x-auto">
+                                <div className="bg-[#0f0f14] text-[#e5e7eb] p-3 overflow-x-auto">
                                   {codeBlockLanguage && (
                                     <div className="text-xs text-[#9ca3af] mb-2 uppercase tracking-wide">
                                       {codeBlockLanguage}
@@ -1200,7 +1200,7 @@ export default function AIAssistant() {
                         
                         if (trimmedLine.startsWith('> ')) {
                           processedLines.push(
-                            <div key={i} className="border-l-4 border-[var(--ai-accent)] pl-3 py-1.5 my-2 bg-[var(--color-surface)] italic text-[#4a4455]">
+                            <div className="border-l-4 border-[var(--ai-accent)] pl-3 py-1.5 my-2 bg-[var(--color-surface-variant)] italic text-[rgb(var(--foreground-rgb))]">
                               <span dangerouslySetInnerHTML={{ __html: formatText(trimmedLine.replace(/^>\s*/, '')) }} />
                             </div>
                           )
@@ -1242,7 +1242,7 @@ export default function AIAssistant() {
                       if (inCodeBlock && codeBlockContent.length > 0) {
                         processedLines.push(
                           <div key="code-end" className="my-3">
-                            <div className="bg-[#1b1d2c] text-[#e5e7eb] p-3 overflow-x-auto">
+                            <div className="bg-[#0f0f14] text-[#e5e7eb] p-3 overflow-x-auto">
                               {codeBlockLanguage && (
                                 <div className="text-xs text-[#9ca3af] mb-2 uppercase tracking-wide">
                                   {codeBlockLanguage}
@@ -1279,7 +1279,7 @@ export default function AIAssistant() {
                 <div className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0 rounded-full bg-[var(--ai-accent)] flex items-center justify-center text-white">
                   <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor"><path d="M440-120v-80h320v-284q0-117-81.5-198.5T480-764q-117 0-198.5 81.5T200-484v244h-40q-33 0-56.5-23.5T80-320v-80q0-21 10.5-39.5T120-469l3-53q8-68 39.5-126t79-101q47.5-43 109-67T480-840q68 0 129 24t109 66.5Q766-707 797-649t40 126l3 52q19 9 29.5 27t10.5 38v92q0 20-10.5 38T840-249v49q0 33-23.5 56.5T760-120H440Zm-80-280q-17 0-28.5-11.5T320-440q0-17 11.5-28.5T360-480q17 0 28.5 11.5T400-440q0 17-11.5 28.5T360-400Zm240 0q-17 0-28.5-11.5T560-440q0-17 11.5-28.5T600-480q17 0 28.5 11.5T640-440q0 17-11.5 28.5T600-400Zm-359-62q-7-106 64-182t177-76q89 0 156.5 56.5T720-519q-91-1-167.5-49T435-698q-16 80-67.5 142.5T241-462Z"/></svg>
                 </div>
-                <div className="bg-gray-100 border border-gray-200 px-4 sm:px-5 py-2.5 sm:py-3 rounded-2xl">
+                <div className="bg-[var(--color-surface-variant)] border border-[var(--color-divider)] px-4 sm:px-5 py-2.5 sm:py-3 rounded-2xl">
                   <div className="flex gap-1.5">
                     <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[var(--ai-accent)] rounded-full animate-bounce"></div>
                     <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[var(--ai-accent)] rounded-full animate-bounce" style={{ animationDelay: '0.15s' }}></div>
@@ -1290,7 +1290,7 @@ export default function AIAssistant() {
             )}
           </div>
 
-          <div className="p-3 sm:p-4 border-t border-[var(--ai-divider)] bg-white">
+          <div className="p-3 sm:p-4 border-t border-[var(--ai-divider)] bg-[var(--color-surface)]">
             {showContactForm ? (
               <div className="space-y-3">
                 <div className="flex items-center justify-between mb-2">
@@ -1323,7 +1323,7 @@ export default function AIAssistant() {
                     className={`px-3 py-1.5 rounded-full border transition-all duration-300 text-xs ${
                       formData.subject === t('contact.tags.interview', '面試邀約')
                         ? 'bg-[var(--ai-accent)] text-white border-[var(--ai-accent)]'
-                        : 'bg-white text-[#4a4455] border-[var(--ai-divider)] hover:border-[var(--ai-accent)] hover:text-[var(--ai-accent)]'
+                        : 'bg-[var(--color-surface)] text-[rgb(var(--foreground-rgb))] border-[var(--ai-divider)] hover:border-[var(--ai-accent)] hover:text-[var(--ai-accent)]'
                     }`}
                   >
                     {t('contact.tags.interview', '面試邀約')}
@@ -1444,7 +1444,7 @@ export default function AIAssistant() {
                   placeholder={t('aiAssistant.placeholder', '輸入訊息...（Shift+Enter 換行）')}
                   disabled={isLoading || isStreaming}
                   rows={1}
-                  className="flex-1 min-w-0 px-3 sm:px-4 py-2 text-[15px] bg-transparent border-0 text-[var(--color-text)] placeholder-gray-400 focus:outline-none focus:ring-0 disabled:opacity-50 rounded-2xl resize-none overflow-auto scrollbar-hide"
+                  className="flex-1 min-w-0 px-3 sm:px-4 py-2 text-[15px] bg-transparent border-0 text-[rgb(var(--foreground-rgb))] placeholder-[var(--color-text-muted)] focus:outline-none focus:ring-0 disabled:opacity-50 rounded-2xl resize-none overflow-auto scrollbar-hide"
                   style={{
                     minHeight: '32px',
                     maxHeight: '180px',

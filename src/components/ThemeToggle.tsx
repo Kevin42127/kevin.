@@ -36,7 +36,7 @@ export function ThemeToggle() {
       className="btn-icon"
       aria-label={t('theme.toggle', '切換深淺模式')}
     >
-      <span className="material-symbols-outlined text-base">
+      <span className="material-symbols-outlined text-base text-inherit">
         {theme === 'dark' ? 'sunny' : 'dark_mode'}
       </span>
     </button>

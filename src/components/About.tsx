@@ -36,22 +36,22 @@ export default function About() {
 
   return (
   <section id="about" className="py-16 sm:py-20 bg-[var(--color-section-soft)]">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="section-surface">
+      <div className="w-full max-w-full px-6 sm:px-8 lg:px-12">
+        <div className="section-surface w-full">
         <div className="text-center mb-12 sm:mb-14 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1b1d2c] mb-3 sm:mb-4 px-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[rgb(var(--foreground-rgb))] mb-3 sm:mb-4 px-4">
 {t('about.title', '關於Kevin')}
           </h2>
-          <p className="text-lg sm:text-xl text-[#4a4455] max-w-3xl mx-auto px-4">
+          <p className="text-lg sm:text-xl text-[rgb(var(--foreground-rgb))] max-w-3xl mx-auto px-4">
 {t('about.subtitle', '個人簡介')}
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto mb-16 sm:mb-18 md:mb-20">
+        <div className="max-w-5xl mx-auto mb-16 sm:mb-18 md:mb-20 w-full">
           <div className="grid lg:grid-cols-3 gap-6 sm:gap-8 items-center">
             <div className="flex justify-center lg:justify-start mb-6 lg:mb-0">
               <div 
-                className="w-40 h-40 sm:w-48 sm:h-48 rounded-full overflow-hidden shadow-[0_25px_45px_rgba(0,0,0,0.12)] border-4 border-white select-none relative"
+                className="w-40 h-40 sm:w-48 sm:h-48 rounded-full overflow-hidden shadow-[0_25px_45px_rgba(0,0,0,0.12)] border-4 border-[var(--color-surface)] select-none relative"
                 onContextMenu={(e) => e.preventDefault()}
                 onDragStart={(e) => e.preventDefault()}
                 style={{ 
@@ -63,7 +63,7 @@ export default function About() {
               >
                 {isLoading ? (
                   <div className="w-full h-full bg-[var(--color-placeholder)] animate-pulse flex items-center justify-center">
-                    <div className="w-16 h-16 bg-white"></div>
+                    <div className="w-16 h-16 bg-[var(--color-surface)]"></div>
                   </div>
                 ) : (
                   <img
@@ -91,7 +91,7 @@ export default function About() {
             <div
               className="lg:col-span-2"
             >
-              <div className="space-y-3 sm:space-y-4 text-[#473f4d] leading-relaxed px-4 lg:px-0">
+              <div className="space-y-3 sm:space-y-4 text-[rgb(var(--foreground-rgb))] leading-relaxed px-4 lg:px-0">
                 <p className="text-sm sm:text-base" dangerouslySetInnerHTML={{ __html: t('about.content', '您好，我是陳梓敬 (Kevin)，畢業於吳鳳科技大學。我專注於創造以使用者為中心的數位體驗，運用AI協作開發與現代化工具來實現設計概念。我的核心能力包括需求分析、產品設計、使用者體驗優化以及品質控制測試。透過系統性的設計思維和AI輔助開發，我將複雜的需求轉化為高品質的數位產品。') }} />
               </div>
             </div>

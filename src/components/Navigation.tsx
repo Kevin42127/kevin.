@@ -6,6 +6,7 @@ import { smoothScrollToElement } from '../lib/smoothScrollUtils'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 import LanguageSwitcher from './LanguageSwitcher'
 import DropdownSearch from './DropdownSearch'
+import { ThemeToggle } from './ThemeToggle'
 
 export default function Navigation() {
   const { t, i18n } = useTranslationSafe()
@@ -61,7 +62,7 @@ export default function Navigation() {
             <div className="flex items-center">
               <button
                 onClick={() => handleNavigation('#home')}
-                className="navigation-brand text-2xl font-extrabold tracking-tight text-[#1c1c28] hover:text-[var(--color-primary)] transition-colors"
+                className="navigation-brand text-2xl font-extrabold tracking-tight text-[rgb(var(--foreground-rgb))] hover:text-[var(--color-primary)] transition-colors"
               >
                 {t('navigation.kevin', 'Kevin.')}
               </button>
@@ -94,12 +95,13 @@ export default function Navigation() {
 
             <div className="hidden lg:flex items-center space-x-4">
               <DropdownSearch />
+              <ThemeToggle />
               <LanguageSwitcher />
               <a
                 href="https://github.com/Kevin42127/kevin."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 text-[#1c1c28] hover:text-[var(--color-primary)] transition-colors flex items-center justify-center"
+                className="w-10 h-10 text-[rgb(var(--foreground-rgb))] hover:text-[var(--color-primary)] transition-colors flex items-center justify-center"
                 aria-label="GitHub"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="currentColor">
@@ -111,7 +113,7 @@ export default function Navigation() {
             <div className="lg:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="w-10 h-10 text-[#1c1c28] hover:text-[var(--color-primary)] transition-colors flex items-center justify-center"
+                className="w-10 h-10 text-[rgb(var(--foreground-rgb))] hover:text-[var(--color-primary)] transition-colors flex items-center justify-center"
                 aria-label={t('navigation.openMenu', '打開選單')}
               >
                 <span className="material-symbols-outlined text-2xl">
@@ -141,17 +143,17 @@ export default function Navigation() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ duration: 0.15 }}
-              className="fixed top-0 right-0 h-screen w-80 bg-white flex flex-col shadow-2xl border-l border-[var(--color-divider)]"
+              className="fixed top-0 right-0 h-screen w-80 bg-[var(--color-page)] flex flex-col shadow-2xl border-l border-[var(--color-divider)]"
               style={{ zIndex: 9999 }}
               role="dialog"
               aria-modal="true"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between p-6 flex-shrink-0 border-b border-[var(--color-divider)]">
-                <h2 className="text-xl font-bold text-[#1c1c28]">{t('navigation.menu', '選單')}</h2>
+                <h2 className="text-xl font-bold text-[rgb(var(--foreground-rgb))]">{t('navigation.menu', '選單')}</h2>
                 <button
                   onClick={() => setIsMenuOpen(false)}
-                  className="w-10 h-10 text-[#1c1c28] hover:text-[var(--color-primary)] transition-colors flex items-center justify-center"
+                  className="w-10 h-10 text-[rgb(var(--foreground-rgb))] hover:text-[var(--color-primary)] transition-colors flex items-center justify-center"
                   aria-label={t('navigation.closeMenu', '關閉選單')}
                 >
                   <span className="material-symbols-outlined text-2xl">close</span>
@@ -164,7 +166,7 @@ export default function Navigation() {
                     <button
                       key={item.name}
                       onClick={() => handleNavigation(item.href)}
-                      className="block w-full text-left px-4 py-3 text-base font-medium text-[#1f1d30] hover:text-[var(--color-primary)] hover:bg-[var(--color-surface-variant)] transition-colors border border-transparent"
+                      className="block w-full text-left px-4 py-3 text-base font-medium text-[rgb(var(--foreground-rgb))] hover:text-[var(--color-primary)] hover:bg-[var(--color-surface-variant)] transition-colors border border-transparent"
                     >
                       {item.name}
                     </button>
@@ -173,7 +175,7 @@ export default function Navigation() {
                     <button
                       key={item.name}
                       onClick={() => handleNavigation(item.href, item.external)}
-                      className="block w-full text-left px-4 py-3 text-base font-medium text-[#1f1d30] hover:text-[var(--color-primary)] hover:bg-[var(--color-surface-variant)] transition-colors border border-transparent"
+                      className="block w-full text-left px-4 py-3 text-base font-medium text-[rgb(var(--foreground-rgb))] hover:text-[var(--color-primary)] hover:bg-[var(--color-surface-variant)] transition-colors border border-transparent"
                     >
                       {item.name}
                     </button>
@@ -181,26 +183,33 @@ export default function Navigation() {
                 </nav>
 
                 <div className="px-6 pb-6 border-t border-[var(--color-divider)] pt-4 space-y-3">
-                    <h3 className="text-sm font-semibold text-[#6b6371] px-4 mb-3">
+                    <h3 className="text-sm font-semibold text-[var(--color-text-muted)] px-4 mb-3">
                       {t('navigation.settings', '設定')}
                     </h3>
                     
                     <div className="flex items-center justify-between px-4 py-2">
-                      <span className="text-[#1f1d30] font-medium">
+                      <span className="text-[rgb(var(--foreground-rgb))] font-medium">
                         {t('navigation.language', '語言')}
                       </span>
                       <LanguageSwitcher />
                     </div>
 
                     <div className="flex items-center justify-between px-4 py-2">
-                      <span className="text-[#1f1d30] font-medium">
+                      <span className="text-[rgb(var(--foreground-rgb))] font-medium">
+                        {t('navigation.theme', '主題')}
+                      </span>
+                      <ThemeToggle />
+                    </div>
+
+                    <div className="flex items-center justify-between px-4 py-2">
+                      <span className="text-[rgb(var(--foreground-rgb))] font-medium">
                         GitHub
                       </span>
                       <a
                         href="https://github.com/Kevin42127/kevin."
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-10 h-10 text-[#1c1c28] hover:text-[var(--color-primary)] transition-colors flex items-center justify-center"
+                        className="w-10 h-10 text-[rgb(var(--foreground-rgb))] hover:text-[var(--color-primary)] transition-colors flex items-center justify-center"
                         aria-label="GitHub"
                       >
                         <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="currentColor">

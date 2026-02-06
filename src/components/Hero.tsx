@@ -58,7 +58,7 @@ export default function Hero() {
           <SplitText
             text={t('hero.title', 'Kevin.')}
             tag="h1"
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 text-[#1b1d2c] leading-tight tracking-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 text-[rgb(var(--foreground-rgb))] leading-tight tracking-tight"
             textAlign="center"
             splitType="chars"
             from={{ opacity: 0, y: 40 }}
@@ -68,7 +68,7 @@ export default function Hero() {
           />
 
           <motion.p
-            className="text-base sm:text-lg md:text-xl text-[#3e3a4b] mb-10 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0"
+            className="text-base sm:text-lg md:text-xl text-[rgb(var(--foreground-rgb))] mb-10 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0"
             dangerouslySetInnerHTML={{ __html: t('hero.description', '畢業於數位科技與媒體設計系，專注於創造以使用者為中心的數位體驗。<br />結合設計美感與技術實作能力，將設計概念轉化為互動式的網頁應用。') }}
           >
           </motion.p>
@@ -104,7 +104,7 @@ export default function Hero() {
                 </div>
               ) : (
                 <div className="flex items-center gap-2">
-                  <span className="material-symbols-outlined text-base">download</span>
+                  <span className="material-symbols-outlined text-base text-inherit">download</span>
                   <span>{t('hero.downloadCV', '下載履歷')}</span>
                 </div>
               )}
@@ -114,11 +114,11 @@ export default function Hero() {
           
 
           <div className="text-center mb-12 sm:mb-16 px-4">
-            <p className="text-xs sm:text-sm text-[#6b6371] flex items-center justify-center gap-1 mb-2">
+            <p className="text-xs sm:text-sm text-[var(--color-text-muted)] flex items-center justify-center gap-1 mb-2">
               <span className="material-symbols-outlined text-base">info</span>
               {t('hero.cvInfo', '下載：繁體中文版履歷｜English 版本請切換語言')}
             </p>
-            <p className="text-xs text-[#6b6371] flex items-center justify-center gap-1">
+            <p className="text-xs text-[var(--color-text-muted)] flex items-center justify-center gap-1">
               <span className="material-symbols-outlined text-xs">verified</span>
               {t('hero.dmcaProtected', '本網站內容受 DMCA 保護 · 歡迎下載履歷')}
             </p>
@@ -134,11 +134,11 @@ export default function Hero() {
       >
         <button
           onClick={scrollToNext}
-          className="flex flex-col items-center justify-center gap-2 text-[#6b6371] transition-colors duration-300 cursor-pointer"
+          className="flex flex-col items-center justify-center gap-2 text-[var(--color-text-muted)] transition-colors duration-300 cursor-pointer"
           aria-label={t('hero.scrollDown', '向下滾動')}
         >
           <div className="relative w-10 h-10 flex items-center justify-center">
-            <span className="material-symbols-outlined text-3xl animate-bounce">
+            <span className="material-symbols-outlined text-3xl text-inherit animate-bounce">
               keyboard_arrow_down
             </span>
           </div>

@@ -147,7 +147,7 @@ export default function Contact() {
       {toast.show && (
         <div className="fixed top-20 right-4 sm:top-24 sm:right-6 z-[10001]">
           <div
-            className={`flex items-center space-x-3 px-6 py-4 border border-[var(--color-divider)] shadow-[0_20px_45px_rgba(15,15,40,0.12)] bg-white rounded-xl ${
+            className={`flex items-center space-x-3 px-6 py-4 border border-[var(--color-divider)] shadow-[0_20px_45px_rgba(15,15,40,0.12)] bg-[var(--color-surface)] rounded-xl ${
               toast.type === 'success' ? 'text-[#0c5b3a]' : 'text-[#ef4444]'
             }`}
           >
@@ -157,7 +157,7 @@ export default function Contact() {
             <span className="font-medium">{toast.message}</span>
             <button
               onClick={() => setToast({ ...toast, show: false })}
-              className="ml-2 text-[#6b6371] hover:text-[#1f1d30] transition-colors"
+              className="ml-2 text-[var(--color-text-muted)] hover:text-[rgb(var(--foreground-rgb))] transition-colors"
             >
               <span className="material-symbols-outlined text-sm">close</span>
             </button>
@@ -174,10 +174,10 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1b1d2c] mb-4 sm:mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[rgb(var(--foreground-rgb))] mb-4 sm:mb-6">
               {t('contact.title', '聯繫我')}
             </h2>
-            <p className="text-base sm:text-lg text-[#4a4455] mb-6 sm:mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg text-[rgb(var(--foreground-rgb))] mb-6 sm:mb-8 leading-relaxed">
               {t('contact.lowFrictionNote', '懶得打字？選一個標籤直接聯繫我。')}
             </p>
 
@@ -191,7 +191,7 @@ export default function Contact() {
                   <p className="text-sm text-[var(--color-text)] font-medium mb-2">
                     {t('contact.aiAssistantGuide', '更快速的方式：使用 AI 助理')}
                   </p>
-                  <p className="text-xs text-[#4a4455]">
+                  <p className="text-xs text-[rgb(var(--foreground-rgb))]">
                     {t('contact.aiAssistantDesc', '點擊右下角的 AI 助理圖示，直接在對話中填寫表單')}
                   </p>
                 </div>
@@ -207,7 +207,7 @@ export default function Contact() {
                   className={`px-4 py-2 rounded-full border transition-all duration-300 flex items-center justify-center ${
                     formData.subject === tag.label
                       ? 'bg-[var(--color-primary)] text-white border-[var(--color-primary)] scale-105'
-                      : 'bg-white text-[#4a4455] border-[var(--color-divider)] hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]'
+                      : 'bg-[var(--color-surface)] text-[rgb(var(--foreground-rgb))] border-[var(--color-divider)] hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]'
                   }`}
                 >
                   <span className="text-xs sm:text-sm font-medium">{tag.label}</span>

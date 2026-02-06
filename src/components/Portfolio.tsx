@@ -148,10 +148,10 @@ export default function Portfolio() {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="section-surface">
         <div className="text-center mb-12 sm:mb-14 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1c1f2c] mb-3 sm:mb-4 px-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[rgb(var(--foreground-rgb))] mb-3 sm:mb-4 px-4">
 {t('portfolio.title', '我的作品')}
           </h2>
-          <p className="text-lg sm:text-xl text-[#4a4455] max-w-3xl mx-auto px-4">
+          <p className="text-lg sm:text-xl text-[rgb(var(--foreground-rgb))] max-w-3xl mx-auto px-4">
 {t('portfolio.subtitle', '精選專案展示，展現技術實力和創意思維')}
           </p>
         </div>
@@ -165,8 +165,8 @@ export default function Portfolio() {
                   onClick={() => setSelectedCategory(categoryKey)}
                   className={`flex-shrink-0 px-3 sm:px-4 md:px-4 lg:px-5 py-1.5 sm:py-2 md:py-2 lg:py-2.5 rounded-full text-xs sm:text-sm md:text-sm lg:text-base font-medium transition-all duration-200 whitespace-nowrap ${
                     selectedCategory === categoryKey
-                      ? 'bg-[#1d47ff] text-white'
-                      : 'bg-white text-[#1c1f2c] border border-[var(--color-divider)] hover:bg-[#1d47ff] hover:text-white hover:border-[#1d47ff]'
+                      ? 'bg-[var(--color-secondary)] text-white'
+                      : 'bg-[var(--color-surface)] text-[rgb(var(--foreground-rgb))] border border-[var(--color-divider)] hover:bg-[var(--color-secondary)] hover:text-white hover:border-[var(--color-secondary)]'
                   }`}
                 >
                   {t(categoryKeyMap[categoryKey], categoryKey === 'all' ? '全部' : categoryKey === 'chrome' ? 'Chrome擴展' : categoryKey === 'bot' ? '聊天機器人' : categoryKey === 'web' ? 'Web應用' : categoryKey === 'desktop' ? '桌面應用' : categoryKey === 'mobile' ? '行動應用' : '')}
@@ -192,7 +192,7 @@ export default function Portfolio() {
                   scale: { duration: 0.3, delay: index * 0.02 },
                   ease: [0.16, 1, 0.3, 1]
                 }}
-                className="h-full flex flex-col gap-5 border border-[var(--color-divider)] bg-white p-6 shadow-[0_25px_45px_rgba(15,15,40,0.08)] rounded-xl"
+                className="h-full flex flex-col gap-5 border border-[var(--color-divider)] bg-[var(--color-surface)] p-6 shadow-[0_25px_45px_rgba(15,15,40,0.08)] rounded-xl"
               >
               <figure className="h-48 border border-[var(--color-divider)] overflow-hidden flex items-center justify-center bg-[var(--color-panel)] rounded-xl">
                 {project.image ? (
@@ -212,24 +212,24 @@ export default function Portfolio() {
                     } as React.CSSProperties}
                   />
                 ) : (
-                  <span className="text-[#1d47ff] text-center text-sm tracking-wide px-4">
+                  <span className="text-[var(--color-secondary)] text-center text-sm tracking-wide px-4">
                     {project.title}
                   </span>
                 )}
               </figure>
 
               <div className="flex-1 flex flex-col gap-4">
-                <h3 className="text-2xl font-semibold text-[#1c1f2c] tracking-tight">
+                <h3 className="text-2xl font-semibold text-[rgb(var(--foreground-rgb))] tracking-tight">
                   {project.title}
                 </h3>
-                <p className="text-base text-[#4a4455] leading-relaxed">
+                <p className="text-base text-[rgb(var(--foreground-rgb))] leading-relaxed">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 border border-[var(--color-divider)] text-[#1d47ff] text-xs tracking-wide bg-[var(--color-chip)] rounded-lg"
+                      className="px-3 py-1 border border-[var(--color-divider)] text-white text-xs tracking-wide bg-[var(--color-chip)] rounded-lg"
                     >
                       {tech}
                     </span>
@@ -245,7 +245,7 @@ export default function Portfolio() {
                     className="btn-secondary w-full justify-center text-sm tracking-wide uppercase"
                     aria-label={t('portfolio.viewProject', '查看專案')}
                   >
-                    <span className="material-symbols-outlined text-base">open_in_new</span>
+                    <span className="material-symbols-outlined text-base text-inherit">open_in_new</span>
                     <span>{t('portfolio.view', '查看')}</span>
                   </button>
                 )}
@@ -256,7 +256,7 @@ export default function Portfolio() {
                     className="btn-tertiary w-full justify-center text-sm tracking-wide uppercase"
                     aria-label={t('portfolio.viewCode', '查看程式碼')}
                   >
-                    <span className="material-symbols-outlined text-base">code</span>
+                    <span className="material-symbols-outlined text-base text-inherit">code</span>
                     <span>{t('portfolio.github', 'GitHub')}</span>
                   </button>
                 )}

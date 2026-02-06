@@ -139,10 +139,10 @@ export default function ShareButton({
     <div className={`relative ${className}`}>
       <button
         onClick={handleNativeShare}
-        className={`${sizeClasses[size]} border border-[var(--color-divider)] bg-white text-[#1f1d30] hover:bg-[var(--color-primary)] hover:text-white flex items-center justify-center transition-all duration-300`}
+        className={`${sizeClasses[size]} border border-[var(--color-divider)] bg-[var(--color-surface)] text-[rgb(var(--foreground-rgb))] hover:bg-[var(--color-primary)] hover:text-white flex items-center justify-center transition-all duration-300`}
         aria-label={t('share.share', '分享')}
       >
-        <span className="material-symbols-outlined text-base">share</span>
+        <span className="material-symbols-outlined text-base text-inherit">share</span>
       </button>
 
       {isOpen && (
@@ -152,16 +152,16 @@ export default function ShareButton({
             onClick={() => setIsOpen(false)}
           />
 
-          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-white rounded-xl shadow-[0_25px_45px_rgba(15,15,40,0.12)] border border-[var(--color-divider)] p-4 z-50 min-w-[280px]">
+          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-[var(--color-surface)] rounded-xl shadow-[0_25px_45px_rgba(15,15,40,0.12)] border border-[var(--color-divider)] p-4 z-50 min-w-[280px]">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-semibold text-[#1f1d30]">
+                <h3 className="font-semibold text-[rgb(var(--foreground-rgb))]">
                   {t('share.shareTo', '分享到')}
                 </h3>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="text-[#9b92a4] hover:text-[#1f1d30] transition-colors"
+                  className="text-[var(--color-text-muted)] hover:text-[rgb(var(--foreground-rgb))] transition-colors"
                 >
-                  <span className="material-symbols-outlined text-base">close</span>
+                  <span className="material-symbols-outlined text-base text-inherit">close</span>
                 </button>
               </div>
 
@@ -170,9 +170,9 @@ export default function ShareButton({
                   <button
                     key={option.id}
                     onClick={option.onClick}
-                    className={`flex flex-col items-center p-3 border border-[var(--color-divider)] bg-[var(--color-surface-variant)] text-[#1f1d30] transition-all duration-300 group active:scale-95 ${option.color}`}
+                    className={`flex flex-col items-center p-3 border border-[var(--color-divider)] bg-[var(--color-surface-variant)] text-[rgb(var(--foreground-rgb))] transition-all duration-300 group active:scale-95 ${option.color}`}
                   >
-                    <span className="material-symbols-outlined text-base mb-1">
+                    <span className="material-symbols-outlined text-base mb-1 text-inherit">
                       {option.icon}
                     </span>
                     <span className="text-xs font-medium">
@@ -184,18 +184,18 @@ export default function ShareButton({
 
               <button
                 onClick={handleCopyLink}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 border border-[var(--color-divider)] bg-white hover:bg-[var(--color-surface-variant)] text-[#1f1d30] transition-all duration-300 active:scale-95"
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 border border-[var(--color-divider)] bg-[var(--color-surface)] hover:bg-[var(--color-surface-variant)] text-[rgb(var(--foreground-rgb))] transition-all duration-300 active:scale-95"
               >
                 {copied ? (
                   <>
-                    <span className="material-symbols-outlined text-base text-[#0c5b3a]">task_alt</span>
-                    <span className="text-[#0c5b3a] font-medium">
+                    <span className="material-symbols-outlined text-base text-[var(--color-accent)]">task_alt</span>
+                    <span className="text-[var(--color-accent)] font-medium">
                       {t('share.copied', '已複製')}
                     </span>
                   </>
                 ) : (
                   <>
-                    <span className="material-symbols-outlined text-base">content_copy</span>
+                    <span className="material-symbols-outlined text-base text-inherit">content_copy</span>
                     <span className="font-medium">
                       {t('share.copyLink', '複製連結')}
                     </span>
