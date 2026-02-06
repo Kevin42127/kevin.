@@ -206,7 +206,7 @@ export default function Experience() {
                       {activity.skills.map((skill, idx) => (
                         <span
                           key={idx}
-                          className="px-3 py-1 border border-[var(--color-divider)] text-white text-sm tracking-wide bg-[var(--color-chip)] rounded-lg"
+                          className="px-3 py-1 border border-[var(--color-divider)] text-[rgb(var(--foreground-rgb))] text-sm tracking-wide bg-[var(--color-chip)] rounded-lg"
                         >
                           {skill}
                         </span>

@@ -229,7 +229,7 @@ export default function Portfolio() {
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 border border-[var(--color-divider)] text-white text-xs tracking-wide bg-[var(--color-chip)] rounded-lg"
+                      className="px-3 py-1 border border-[var(--color-divider)] text-[rgb(var(--foreground-rgb))] text-xs tracking-wide bg-[var(--color-chip)] rounded-lg"
                     >
                       {tech}
                     </span>
