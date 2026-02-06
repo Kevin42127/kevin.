@@ -1119,7 +1119,7 @@ export default function AIAssistant() {
                             key={index}
                             onClick={() => handleQuickQuestion(question)}
                             disabled={isLoading || isStreaming}
-                            className="w-full px-4 py-3 text-sm text-left bg-[var(--color-surface)] border border-[var(--ai-divider)] text-[rgb(var(--foreground-rgb))] hover:bg-[var(--color-surface-variant)] hover:border-[var(--ai-accent)] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed rounded-2xl font-medium"
+                            className="w-full px-4 py-3 text-sm text-left bg-[var(--color-surface)] border border-[var(--ai-divider)] text-[rgb(var(--foreground-rgb))] hover:border-[var(--ai-accent)] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed rounded-2xl font-medium"
                           >
                             {question}
                           </button>
