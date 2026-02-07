@@ -638,6 +638,18 @@ const zhResources = {
       projectManagement: '專案管理',
       onSiteExecution: '現場執行'
     }
+  },
+  pwa: {
+    installTitle: '安裝應用程式',
+    installDescription: '將 Kevin 的個人網站安裝到您的裝置，享受更快速的體驗！',
+    install: '安裝',
+    notNow: '暫不安裝',
+    installed: '已安裝',
+    installSuccess: '安裝成功！',
+    installFailed: '安裝失敗',
+    offlineAvailable: '離線可用',
+    addToHomeScreen: '加入主畫面',
+    installPrompt: '安裝 PWA 應用'
   }
 }
 
@@ -1279,6 +1291,18 @@ const enResources = {
       projectManagement: 'Project Management',
       onSiteExecution: 'On-site Execution'
     }
+  },
+  pwa: {
+    installTitle: 'Install App',
+    installDescription: 'Install Kevin\'s personal website on your device for a faster experience!',
+    install: 'Install',
+    notNow: 'Not Now',
+    installed: 'Installed',
+    installSuccess: 'Installation successful!',
+    installFailed: 'Installation failed',
+    offlineAvailable: 'Available offline',
+    addToHomeScreen: 'Add to Home Screen',
+    installPrompt: 'Install PWA App'
   }
 }
 
