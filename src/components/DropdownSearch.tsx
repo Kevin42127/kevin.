@@ -38,7 +38,7 @@ export default function DropdownSearch() {
       description: t('search.aboutDescription', '了解我的背景、技能和專業經驗'),
       icon: 'person',
       href: '#about',
-      color: 'text-[#ff4d2d]',
+      color: 'text-[var(--color-primary)]',
       bgColor: 'bg-[var(--color-accent-soft)]'
     },
     {
@@ -47,7 +47,7 @@ export default function DropdownSearch() {
       description: t('search.portfolioDescription', '查看我的精選專案和作品集'),
       icon: 'work',
       href: '#portfolio',
-      color: 'text-[#1d47ff]',
+      color: 'text-[var(--color-secondary)]',
       bgColor: 'bg-[var(--color-accent-cool)]'
     },
     {
@@ -56,7 +56,7 @@ export default function DropdownSearch() {
       description: t('search.skillsDescription', '了解我的技術能力和專業技能'),
       icon: 'terminal',
       href: '#skills',
-      color: 'text-[#00a19a]',
+      color: 'text-[var(--color-accent)]',
       bgColor: 'bg-[var(--color-accent-mint)]'
     },
     {
@@ -65,7 +65,7 @@ export default function DropdownSearch() {
       description: t('search.contactDescription', '透過各種方式與我聯繫'),
       icon: 'mail',
       href: '#contact',
-      color: 'text-[#ff4d2d]',
+      color: 'text-[var(--color-primary)]',
       bgColor: 'bg-[var(--color-accent-soft)]'
     }
   ]
@@ -442,9 +442,6 @@ export default function DropdownSearch() {
                     onClick={() => handleQuickLinkClick(link.href)}
                     className="group w-full flex items-center gap-3 px-4 py-2.5 hover:bg-[var(--color-surface-variant)] transition-colors duration-300 rounded-xl"
                   >
-                    <div className={`w-8 h-8 flex items-center justify-center border border-[var(--color-divider)] ${link.bgColor} ${link.color} rounded-lg`}>
-                      <span className="material-symbols-outlined text-base">{link.icon}</span>
-                    </div>
                     <div className="flex-1 text-left min-w-0">
                       <div className="font-medium text-[rgb(var(--foreground-rgb))] text-sm">{link.name}</div>
                       <div className="text-xs text-[var(--color-text-muted)] truncate">{link.description}</div>

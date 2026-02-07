@@ -53,16 +53,16 @@
   --color-surface: #1e293b;
   --color-surface-variant: #334155;
   --color-divider: #475569;
-  --color-primary: #f97316;
-  --color-primary-light: #fb923c;
-  --color-primary-dark: #ea580c;
+  --color-primary: #3b82f6;
+  --color-primary-light: #60a5fa;
+  --color-primary-dark: #2563eb;
   --color-secondary: #3b82f6;
   --color-accent: #14b8a6;
   --color-text-muted: #94a3b8;
   --ai-accent: #3b82f6;
   --ai-accent-dark: #2563eb;
-  --ai-accent-complement: #f97316;
-  --ai-accent-complement-dark: #ea580c;
+  --ai-accent-complement: #3b82f6;
+  --ai-accent-complement-dark: #2563eb;
   --ai-surface-variant: #1e40af;
   --ai-divider: #475569;
   --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
@@ -581,7 +581,7 @@ a:focus {
     background-color: var(--color-surface);
     color: var(--color-text-muted);
     border: 1px solid var(--color-divider);
-    border-radius: 12px;
+    border-radius: 50px;
   }
   
   .btn-icon:hover {
@@ -590,6 +590,15 @@ a:focus {
     border-color: var(--color-primary);
   }
 
+  .dark .btn-icon {
+    border-radius: 50px;
+  }
+
+  .dark .btn-icon:hover {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    border-color: var(--color-primary);
+  }
   
   .btn-icon-sm {
     @apply w-10 h-10 min-w-[40px] min-h-[40px]
@@ -598,7 +607,17 @@ a:focus {
     background-color: var(--color-surface);
     color: var(--color-text-muted);
     border: 1px solid var(--color-divider);
-    border-radius: 12px;
+    border-radius: 50px;
+  }
+
+  .dark .btn-icon-sm {
+    border-radius: 50px;
+  }
+
+  .dark .btn-icon-sm:hover {
+    background-color: var(--color-secondary);
+    color: #ffffff;
+    border-color: var(--color-secondary);
   }
   
   .btn-icon-sm:hover {
@@ -651,11 +670,23 @@ a:focus {
     color: var(--color-primary);
     text-decoration: underline;
     text-underline-offset: 2px;
-    transition: color 0.2s ease;
+    text-decoration-color: var(--color-primary);
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
   }
 
   .text-link:hover {
     color: var(--color-primary-dark);
+    text-decoration-color: var(--color-primary-dark);
+  }
+
+  .dark .text-link {
+    color: white;
+    text-decoration-color: white;
+  }
+
+  .dark .text-link:hover {
+    color: rgb(var(--foreground-rgb));
+    text-decoration-color: rgb(var(--foreground-rgb));
   }
 
   .scrollbar-hide {

@@ -920,35 +920,33 @@ export default function AIAssistant() {
             className="fixed bottom-[160px] sm:bottom-[180px] right-4 sm:right-6 z-50"
           >
             <AnimatePresence>
-              {showBubble && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.5, y: 20, x: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
-                  exit={{ opacity: 0, scale: 0.5, y: 20, x: 20 }}
-                  className="absolute bottom-full right-0 mb-4 cursor-pointer"
-                  onClick={handleOpen}
-                >
-                  <div className="relative bg-[var(--color-surface)] text-[rgb(var(--foreground-rgb))] px-4 py-3 rounded-2xl border border-[var(--ai-divider)] whitespace-nowrap group">
-                    <div className="flex items-center gap-2">
-                      <span className="text-base">👋</span>
-                      <p className="text-sm font-bold tracking-tight">
-                        {t('aiAssistant.greeting', '嗨！我是 Kevin 的 AI')}
-                      </p>
-                      <button 
-                        onClick={(e) => {
-                          e.stopPropagation()
-                          setShowBubble(false)
-                        }}
-                        className="ml-1 p-0.5 rounded-full opacity-0 group-hover:opacity-100"
-                        aria-label={t('aiAssistant.closeTooltip', '關閉提示')}
-                      >
-                        <span className="material-symbols-outlined text-sm">close</span>
-                      </button>
-                    </div>
-                    <div className="absolute top-full right-6 w-3 h-3 bg-[var(--color-surface)] border-r border-b border-[var(--ai-divider)] transform rotate-45 -translate-y-1.5" />
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5, y: 20, x: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
+                exit={{ opacity: 0, scale: 0.5, y: 20, x: 20 }}
+                className="absolute bottom-full right-0 mb-4 cursor-pointer"
+                onClick={handleOpen}
+              >
+                <div className="relative bg-[var(--color-surface)] text-[rgb(var(--foreground-rgb))] px-4 py-3 rounded-2xl border border-[var(--ai-divider)] whitespace-nowrap group">
+                  <div className="flex items-center gap-2">
+                    <span className="text-base">👋</span>
+                    <p className="text-sm font-bold tracking-tight">
+                      {t('aiAssistant.greeting', '嗨！我是 Kevin 的 AI')}
+                    </p>
+                    <button 
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setShowBubble(false)
+                      }}
+                      className="ml-1 p-0.5 rounded-full opacity-0 group-hover:opacity-100"
+                      aria-label={t('aiAssistant.closeTooltip', '關閉提示')}
+                    >
+                      <span className="material-symbols-outlined text-sm">close</span>
+                    </button>
                   </div>
-                </motion.div>
-              )}
+                  <div className="absolute top-full right-6 w-3 h-3 bg-[var(--color-surface)] border-r border-b border-[var(--ai-divider)] transform rotate-45 -translate-y-1.5" />
+                </div>
+              </motion.div>
             </AnimatePresence>
 
             <motion.button
@@ -1469,7 +1467,7 @@ export default function AIAssistant() {
         )}
       </AnimatePresence>
     </>
-  )
+  );
 }
 
 

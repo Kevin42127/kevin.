@@ -12,7 +12,7 @@ export default function About() {
       icon: 'palette',
       title: t('about.uiDesign.title', 'UI/UX 設計'),
       description: t('about.uiDesign.description', '專注於使用者體驗設計，創造直觀且美觀的介面'),
-      color: '#ffe3d1'
+      color: 'var(--ai-accent-complement)'
     },
     {
       icon: 'track_changes',
@@ -24,7 +24,7 @@ export default function About() {
       icon: 'verified',
       title: t('about.qualityControl.title', '品質控制'),
       description: t('about.qualityControl.description', '透過系統性測試確保產品穩定性，優化使用者體驗'),
-      color: '#fff1c7'
+      color: 'var(--ai-accent-complement)'
     },
     {
       icon: 'diversity_3',

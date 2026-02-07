@@ -87,11 +87,11 @@ export default function Skills() {
                   >
                     <div className="flex justify-between items-center mb-2">
                       <span className="text-[rgb(var(--foreground-rgb))] font-medium">{skill.name}</span>
-                      <span className="text-[#ff4d2d] font-semibold">{skill.level}%</span>
+                      <span className="text-[var(--color-primary)] font-semibold">{skill.level}%</span>
                     </div>
                     <div className="w-full bg-[var(--color-surface-variant)] border border-[var(--color-divider)] h-2.5 relative overflow-hidden rounded-full">
                       <div
-                        className="bg-[#ff4d2d] h-full transition-all duration-500 rounded-full"
+                        className="bg-[var(--color-primary)] h-full transition-all duration-500 rounded-full"
                         style={{ width: `${skill.level}%` }}
                       ></div>
                     </div>

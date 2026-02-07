@@ -90,7 +90,6 @@ export default function Experience() {
         <div className="space-y-16">
           <motion.div transition={{ duration: 0.8 }}>
             <div className="flex items-center gap-3 mb-8">
-              <Icon name="language" color="#ff4d2d" />
               <h3 className="text-3xl font-bold text-[rgb(var(--foreground-rgb))]">
                 {t('experience.languageSkills', '語言能力')}
               </h3>
@@ -107,7 +106,7 @@ export default function Experience() {
                   </span>
                   <div className="flex items-center justify-between">
                     <p className="text-2xl font-semibold text-[rgb(var(--foreground-rgb))]">{skill.language}</p>
-                    <span className="text-[#ff4d2d] font-semibold">{skill.level}</span>
+                    <span className="text-[var(--color-primary)] font-semibold">{skill.level}</span>
                   </div>
                 </motion.article>
               ))}
@@ -116,7 +115,6 @@ export default function Experience() {
 
           <motion.div transition={{ duration: 0.8 }}>
             <div className="flex items-center gap-3 mb-8">
-              <Icon name="workspace_premium" color="#1d47ff" />
               <h3 className="text-3xl font-bold text-[rgb(var(--foreground-rgb))]">
                 {t('experience.certifications.title', '證照與認證')}
               </h3>
@@ -157,7 +155,6 @@ export default function Experience() {
 
           <motion.div transition={{ duration: 0.8 }}>
             <div className="flex items-center gap-3 mb-8">
-              <Icon name="flag" color="#00a19a" />
               <h3 className="text-3xl font-bold text-[rgb(var(--foreground-rgb))]">
                 {t('experience.activities.title', '課外活動')}
               </h3>
@@ -173,13 +170,13 @@ export default function Experience() {
                     <div className="flex items-center justify-between text-sm text-[var(--color-text-muted)]">
                       <span className="tracking-[0.3em] uppercase">{activity.type}</span>
                       <div className="flex items-center gap-1">
-                        <Icon name="event" size="18px" color="#1d47ff" />
+                        <Icon name="event" size="18px" color="var(--color-secondary)" />
                         <span>{activity.period}</span>
                       </div>
                     </div>
                     <h4 className="text-2xl font-semibold text-[rgb(var(--foreground-rgb))]">{activity.title}</h4>
                     <p className="text-[rgb(var(--foreground-rgb))]">{activity.description}</p>
-                    <span className="text-[#f97316] font-semibold uppercase tracking-wide">{activity.achievement}</span>
+                    <span className="text-[var(--ai-accent-complement)] font-semibold uppercase tracking-wide">{activity.achievement}</span>
                   </div>
 
                   {activity.responsibilities && (
@@ -190,7 +187,7 @@ export default function Experience() {
                       <ul className="grid grid-cols-1 gap-2">
                         {activity.responsibilities.map((responsibility, idx) => (
                           <li key={idx} className="flex items-start text-[rgb(var(--foreground-rgb))] gap-3">
-                            <span className="w-1.5 h-1.5 bg-[#ff4d2d] mt-2"></span>
+                            <span className="w-1.5 h-1.5 bg-[var(--color-primary)] mt-2"></span>
                             {responsibility}
                           </li>
                         ))}

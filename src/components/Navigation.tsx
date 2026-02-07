@@ -166,7 +166,7 @@ export default function Navigation() {
                     <button
                       key={item.name}
                       onClick={() => handleNavigation(item.href)}
-                      className="block w-full text-left px-4 py-3 text-base font-medium text-[rgb(var(--foreground-rgb))] hover:text-[var(--color-primary)] hover:bg-[var(--color-surface-variant)] transition-colors border border-transparent"
+                      className="block w-full text-left px-4 py-3 text-base font-medium text-[rgb(var(--foreground-rgb))] hover:text-white hover:bg-[var(--color-primary)] transition-colors border border-transparent rounded-lg"
                     >
                       {item.name}
                     </button>
@@ -175,7 +175,7 @@ export default function Navigation() {
                     <button
                       key={item.name}
                       onClick={() => handleNavigation(item.href, item.external)}
-                      className="block w-full text-left px-4 py-3 text-base font-medium text-[rgb(var(--foreground-rgb))] hover:text-[var(--color-primary)] hover:bg-[var(--color-surface-variant)] transition-colors border border-transparent"
+                      className="block w-full text-left px-4 py-3 text-base font-medium text-[rgb(var(--foreground-rgb))] hover:text-white hover:bg-[var(--color-primary)] transition-colors border border-transparent rounded-lg"
                     >
                       {item.name}
                     </button>
