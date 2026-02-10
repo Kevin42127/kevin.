@@ -15,6 +15,7 @@ interface FormData {
   email: string
   subject: string
   message: string
+  agreeToTerms: boolean
 }
 
 interface FormErrors {
@@ -22,6 +23,7 @@ interface FormErrors {
   email?: string
   subject?: string
   message?: string
+  agreeToTerms?: string
 }
 
 const STORAGE_KEY = 'ai-assistant-messages'
@@ -212,7 +214,8 @@ export default function AIAssistant() {
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
+    agreeToTerms: false
   })
   const [formErrors, setFormErrors] = useState<FormErrors>({})
   const [isSubmittingForm, setIsSubmittingForm] = useState(false)
@@ -760,15 +763,15 @@ export default function AIAssistant() {
     setMessages([getDefaultMessage()])
     localStorage.removeItem(STORAGE_KEY)
     setShowContactForm(false)
-    setFormData({ name: '', email: '', subject: '', message: '' })
+    setFormData({ name: '', email: '', subject: '', message: '', agreeToTerms: false })
     setFormErrors({})
   }
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
+    const { name, value, type, checked } = e.target
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: type === 'checkbox' ? checked : value
     }))
     if (formErrors[name as keyof FormErrors]) {
       setFormErrors(prev => ({
@@ -813,6 +816,10 @@ export default function AIAssistant() {
       newErrors.message = t('contact.validation.messageRequired', '請填寫訊息內容')
     }
     
+    if (!formData.agreeToTerms) {
+      newErrors.agreeToTerms = t('contact.validation.termsRequired', '請同意服務條款')
+    }
+    
     setFormErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
@@ -847,7 +854,7 @@ export default function AIAssistant() {
           type: 'success',
           message: t('contact.success', '訊息已發送！')
         })
-        setFormData({ name: '', email: '', subject: '', message: '' })
+        setFormData({ name: '', email: '', subject: '', message: '', agreeToTerms: false })
         setFormErrors({})
         setShowContactForm(false)
         
@@ -1305,7 +1312,7 @@ export default function AIAssistant() {
                 
                 {formToast.show && (
                   <div className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-xs ${
-                    formToast.type === 'success' ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-red-50 text-red-700 border border-red-200'
+                    formToast.type === 'success' ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-700' : 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-700'
                   }`}>
                     <span className="material-symbols-outlined text-sm">
                       {formToast.type === 'success' ? 'check_circle' : 'error'}
@@ -1405,6 +1412,28 @@ export default function AIAssistant() {
                       <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
                         <span className="material-symbols-outlined text-xs">error</span>
                         {formErrors.message}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* 同意條款勾選 */}
+                  <div>
+                    <label className="flex items-start gap-2 cursor-pointer group">
+                      <input
+                        type="checkbox"
+                        name="agreeToTerms"
+                        checked={formData.agreeToTerms}
+                        onChange={handleFormChange}
+                        className="mt-0.5 w-3 h-3 text-[var(--ai-accent)] border-gray-300 rounded focus:ring-[var(--ai-accent)] focus:ring-1"
+                      />
+                      <span className="text-xs text-[rgb(var(--foreground-rgb))] leading-relaxed">
+                        {t('contact.agreeTerms', '我同意我的資訊將被用於聯繫目的，並了解我會收到確認信和回覆郵件。')}
+                      </span>
+                    </label>
+                    {formErrors.agreeToTerms && (
+                      <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
+                        <span className="material-symbols-outlined text-xs">error</span>
+                        {formErrors.agreeToTerms}
                       </p>
                     )}
                   </div>

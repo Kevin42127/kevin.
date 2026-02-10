@@ -9,12 +9,14 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: ''
+    subject: '',
+    agreeToTerms: false
   })
   const [errors, setErrors] = useState<{
     name?: string
     email?: string
     subject?: string
+    agreeToTerms?: string
   }>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [toast, setToast] = useState<{
@@ -37,10 +39,10 @@ export default function Contact() {
   }, [toast])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
+    const { name, value, type, checked } = e.target
     setFormData({
       ...formData,
-      [name]: value
+      [name]: type === 'checkbox' ? checked : value
     })
     if (errors[name as keyof typeof errors]) {
       setErrors({
@@ -87,6 +89,10 @@ export default function Contact() {
       newErrors.subject = t('contact.validation.subjectRequired', '請選擇一個主題')
     }
     
+    if (!formData.agreeToTerms) {
+      newErrors.agreeToTerms = t('contact.validation.termsRequired', '請同意服務條款')
+    }
+    
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
@@ -121,7 +127,7 @@ export default function Contact() {
           type: 'success',
           message: t('contact.success', '訊息已發送！')
         })
-        setFormData({ name: '', email: '', subject: '' })
+        setFormData({ name: '', email: '', subject: '', agreeToTerms: false })
         setErrors({})
       } else {
         setToast({
@@ -148,7 +154,7 @@ export default function Contact() {
         <div className="fixed top-20 right-4 sm:top-24 sm:right-6 z-[10001]">
           <div
             className={`flex items-center space-x-3 px-6 py-4 border border-[var(--color-divider)] shadow-[0_20px_45px_rgba(15,15,40,0.12)] bg-[var(--color-surface)] rounded-xl ${
-              toast.type === 'success' ? 'text-[#0c5b3a]' : 'text-[#ef4444]'
+              toast.type === 'success' ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
             }`}
           >
             <span className="material-symbols-outlined text-base">
@@ -281,6 +287,28 @@ export default function Contact() {
                 )}
               </div>
               
+              {/* 同意條款勾選 */}
+              <div className="form-field">
+                <label className="flex items-start gap-3 cursor-pointer group">
+                  <input
+                    type="checkbox"
+                    name="agreeToTerms"
+                    checked={formData.agreeToTerms}
+                    onChange={handleChange}
+                    className="mt-1 w-4 h-4 text-[var(--color-primary)] border-gray-300 rounded focus:ring-[var(--color-primary)] focus:ring-2"
+                  />
+                  <span className="text-sm text-[rgb(var(--foreground-rgb))] leading-relaxed">
+                    {t('contact.agreeTerms', '我同意我的資訊將被用於聯繫目的，並了解我會收到確認信和回覆郵件。')}
+                  </span>
+                </label>
+                {errors.agreeToTerms && (
+                  <p className="text-sm text-[#ef4444] mt-2 flex items-center gap-1">
+                    <span className="material-symbols-outlined text-sm">error</span>
+                    {errors.agreeToTerms}
+                  </p>
+                )}
+              </div>
+              
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -301,6 +329,19 @@ export default function Contact() {
                 )}
               </button>
             </form>
+            
+            {/* 郵件流程說明 */}
+            <div className="mt-6 p-4 bg-gray-50 rounded-xl border border-gray-200">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="material-symbols-outlined text-gray-600">info</span>
+                <span className="text-sm font-medium text-gray-700">{t('contact.emailFlow', '郵件流程說明')}</span>
+              </div>
+              <div className="text-xs text-gray-600 space-y-1">
+                <p>• 送出表單後，我會立即收到您的訊息</p>
+                <p>• 您會收到系統自動發送的確認信</p>
+                <p>• 我會在 24-48 小時內親自回覆您</p>
+              </div>
+            </div>
           </motion.div>
         </div>
         </div>

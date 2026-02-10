@@ -113,12 +113,16 @@ export default function Navigation() {
             <div className="lg:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="w-10 h-10 text-[rgb(var(--foreground-rgb))] hover:text-[var(--color-primary)] transition-colors flex items-center justify-center"
+                className="w-10 h-10 text-[rgb(var(--foreground-rgb))] hover:text-[var(--color-primary)] transition-all duration-200 ease-out flex items-center justify-center"
                 aria-label={t('navigation.openMenu', '打開選單')}
               >
-                <span className="material-symbols-outlined text-2xl">
+                <motion.span 
+                  className="material-symbols-outlined text-2xl block"
+                  animate={{ rotate: isMenuOpen ? 90 : 0 }}
+                  transition={{ duration: 0.2, ease: 'easeInOut' }}
+                >
                   {isMenuOpen ? 'close' : 'menu'}
-                </span>
+                </motion.span>
               </button>
             </div>
           </div>
@@ -133,7 +137,7 @@ export default function Navigation() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.15 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
               className="fixed inset-0 bg-black/40"
               style={{ zIndex: 9998 }}
               onClick={() => setIsMenuOpen(false)}
@@ -142,7 +146,7 @@ export default function Navigation() {
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
-              transition={{ duration: 0.15 }}
+              transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="fixed top-0 right-0 h-screen w-80 bg-[var(--color-page)] flex flex-col shadow-2xl border-l border-[var(--color-divider)]"
               style={{ zIndex: 9999 }}
               role="dialog"
@@ -162,23 +166,37 @@ export default function Navigation() {
               
               <div className="flex-1 overflow-y-auto">
                 <nav className="p-4">
-                  {navItems.map((item) => (
-                    <button
+                  {navItems.map((item, index) => (
+                    <motion.button
                       key={item.name}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ 
+                        duration: 0.2, 
+                        delay: index * 0.05,
+                        ease: [0.25, 0.46, 0.45, 0.94]
+                      }}
                       onClick={() => handleNavigation(item.href)}
-                      className="block w-full text-left px-4 py-3 text-base font-medium text-[rgb(var(--foreground-rgb))] hover:text-white hover:bg-[var(--color-primary)] transition-colors border border-transparent rounded-lg"
+                      className="block w-full text-left px-4 py-3 text-base font-medium text-[rgb(var(--foreground-rgb))] hover:text-white hover:bg-[var(--color-primary)] transition-all duration-200 ease-out border border-transparent rounded-lg"
                     >
                       {item.name}
-                    </button>
+                    </motion.button>
                   ))}
-                  {externalLinks.map((item) => (
-                    <button
+                  {externalLinks.map((item, index) => (
+                    <motion.button
                       key={item.name}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ 
+                        duration: 0.2, 
+                        delay: (navItems.length + index) * 0.05,
+                        ease: [0.25, 0.46, 0.45, 0.94]
+                      }}
                       onClick={() => handleNavigation(item.href, item.external)}
-                      className="block w-full text-left px-4 py-3 text-base font-medium text-[rgb(var(--foreground-rgb))] hover:text-white hover:bg-[var(--color-primary)] transition-colors border border-transparent rounded-lg"
+                      className="block w-full text-left px-4 py-3 text-base font-medium text-[rgb(var(--foreground-rgb))] hover:text-white hover:bg-[var(--color-primary)] transition-all duration-200 ease-out border border-transparent rounded-lg"
                     >
                       {item.name}
-                    </button>
+                    </motion.button>
                   ))}
                 </nav>
 
