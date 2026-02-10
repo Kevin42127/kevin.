@@ -74,7 +74,7 @@ export default function Skills() {
             <motion.article
               key={category.title}
               transition={{ duration: 0.8 }}
-              className="border border-[var(--color-divider)] bg-[var(--color-surface)] p-6 flex flex-col gap-4 shadow-[0_20px_45px_rgba(15,15,40,0.08)]"
+              className="border border-[var(--color-divider)] bg-[var(--color-surface)] p-6 flex flex-col gap-4 shadow-[0_20px_45px_rgba(15,15,40,0.08)] rounded-2xl"
             >
               <h3 className="text-2xl font-bold text-[rgb(var(--foreground-rgb))] tracking-tight">
                 {category.title}
