@@ -12,10 +12,20 @@ export default function Navigation() {
   const { t, i18n } = useTranslationSafe()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isClient, setIsClient] = useState(false)
+  const [isMenuReady, setIsMenuReady] = useState(false)
 
   useEffect(() => {
     setIsClient(true)
   }, [])
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      setIsMenuReady(true)
+    } else {
+      const timer = setTimeout(() => setIsMenuReady(false), 300)
+      return () => clearTimeout(timer)
+    }
+  }, [isMenuOpen])
 
   const navItems: Array<{ name: string; href: string }> = useMemo(() => [
     { name: t('navigation.home', '首頁'), href: '#home' },
@@ -130,7 +140,7 @@ export default function Navigation() {
       </nav>
 
       {isClient && (
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {isMenuOpen && (
           <>
             <motion.div
@@ -169,11 +179,14 @@ export default function Navigation() {
                   {navItems.map((item, index) => (
                     <motion.button
                       key={item.name}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
+                      initial={false}
+                      animate={{ 
+                        opacity: isMenuReady ? 1 : 0,
+                        x: isMenuReady ? 0 : 20
+                      }}
                       transition={{ 
                         duration: 0.2, 
-                        delay: index * 0.05,
+                        delay: isMenuReady ? index * 0.05 : 0,
                         ease: [0.25, 0.46, 0.45, 0.94]
                       }}
                       onClick={() => handleNavigation(item.href)}
@@ -185,11 +198,14 @@ export default function Navigation() {
                   {externalLinks.map((item, index) => (
                     <motion.button
                       key={item.name}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
+                      initial={false}
+                      animate={{ 
+                        opacity: isMenuReady ? 1 : 0,
+                        x: isMenuReady ? 0 : 20
+                      }}
                       transition={{ 
                         duration: 0.2, 
-                        delay: (navItems.length + index) * 0.05,
+                        delay: isMenuReady ? (navItems.length + index) * 0.05 : 0,
                         ease: [0.25, 0.46, 0.45, 0.94]
                       }}
                       onClick={() => handleNavigation(item.href, item.external)}
