@@ -198,6 +198,13 @@ const zhResources = {
       emailInvalid: '請輸入有效的電子郵件地址',
       subjectRequired: '請填寫主題',
       messageRequired: '請填寫訊息內容'
+    },
+    consent: '我同意我的資訊將被用於聯繫目的，並了解我會收到確認信和回覆郵件。',
+    emailProcess: {
+      title: '郵件流程說明',
+      step1: '送出表單後，我會立即收到您的訊息',
+      step2: '您會收到系統自動發送的確認信',
+      step3: '我會在 24-48 小時內親自回覆您'
     }
   },
   theme: {
@@ -231,7 +238,9 @@ const zhResources = {
     backupLink: '前往正式網域',
     primaryMessage: '檢測到正式網域可能出現問題，建議',
     primaryLink: '前往備用網域',
-    close: '關閉'
+    close: '關閉',
+    primaryDomain: 'kevinoffical.vercel.app',
+    backupDomain: 'kevin42127.github.io'
   },
   welcome: {
     chatTitle: '歡迎',
@@ -851,6 +860,13 @@ const enResources = {
       emailInvalid: 'Please enter a valid email address',
       subjectRequired: 'Please enter a subject',
       messageRequired: 'Please enter your message'
+    },
+    consent: 'I agree that my information will be used for contact purposes and understand that I will receive confirmation and reply emails.',
+    emailProcess: {
+      title: 'Email Process Explanation',
+      step1: 'After submitting the form, I will immediately receive your message',
+      step2: 'You will receive an automatically sent confirmation email',
+      step3: 'I will personally reply to you within 24-48 hours'
     }
   },
   theme: {
@@ -884,7 +900,9 @@ const enResources = {
     backupLink: 'going to the primary domain',
     primaryMessage: 'The primary domain may be experiencing issues. We recommend',
     primaryLink: 'going to the backup domain',
-    close: 'Close'
+    close: 'Close',
+    primaryDomain: 'kevinoffical.vercel.app',
+    backupDomain: 'kevin42127.github.io'
   },
   welcome: {
     chatTitle: 'Welcome',

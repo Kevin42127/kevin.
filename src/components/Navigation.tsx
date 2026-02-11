@@ -36,7 +36,7 @@ export default function Navigation() {
     { name: t('navigation.contact', '聯繫'), href: '#contact' },
   ], [t, i18n.language])
 
-  const externalLinks: Array<{ name: string; href: string; external: boolean }> = []
+  const externalLinks: Array<{ name: string; href: string; external: boolean }> = useMemo(() => [], [])
 
   const scrollToSection = (href: string) => {
     smoothScrollToElement(href, 64)
