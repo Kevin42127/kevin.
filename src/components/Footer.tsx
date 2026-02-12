@@ -36,7 +36,7 @@ export default function Footer() {
                 onClick={() => window.open(clientConfig.site.primaryDomain, '_blank', 'noopener,noreferrer')}
                 className="text-xs text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors duration-300 bg-transparent border-0 cursor-pointer p-0 font-inherit"
               >
-                正式網域
+                {t('footer.primaryDomain', '正式網域')}
               </button>
               <span className="text-xs text-[var(--color-text-muted)]">|</span>
               <button
@@ -44,7 +44,7 @@ export default function Footer() {
                 onClick={() => window.open(clientConfig.site.backupDomain, '_blank', 'noopener,noreferrer')}
                 className="text-xs text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors duration-300 bg-transparent border-0 cursor-pointer p-0 font-inherit"
               >
-                備用網域
+                {t('footer.backupDomain', '備用網域')}
               </button>
             </div>
           </div>
@@ -52,13 +52,13 @@ export default function Footer() {
           <div className="flex flex-col items-center gap-2">
             <button
               type="button"
-              title="DMCA.com Protection Status"
+              title={t('footer.dmcaBadgeTitle', 'DMCA.com Protection Status')}
               className="dmca-badge opacity-90 hover:opacity-100 transition-opacity duration-300 bg-transparent border-0 cursor-pointer p-0"
               onClick={() => window.open('https://www.dmca.com/r/l1wqqed', '_blank', 'noopener,noreferrer')}
             >
               <img 
                 src="https://images.dmca.com/Badges/dmca_protected_sml_120m.png?ID=c23022d2-174a-45f3-a198-188a70313323"
-                alt="DMCA.com Protection Status"
+                alt={t('footer.dmcaBadgeAlt', 'DMCA.com Protection Status')}
                 className="h-12 w-auto"
               />
             </button>

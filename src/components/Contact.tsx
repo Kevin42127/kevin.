@@ -86,7 +86,7 @@ export default function Contact() {
     }
     
     if (!formData.subject.trim()) {
-      newErrors.subject = t('contact.validation.subjectRequired', '請選擇一個主題')
+      newErrors.subject = t('contact.validation.subjectRequired', '請填寫主題')
     }
     
     if (!formData.agreeToTerms) {
@@ -115,7 +115,7 @@ export default function Contact() {
         // 發送給 API 時，將 subject 同時作為 message 發送（因為 API 驗證需要 message）
         body: JSON.stringify({
           ...formData,
-          message: `${t('contact.sendMessage', '來自聯繫表單的訊息')}：${formData.subject}`
+          message: `${t('contact.messagePrefix', '來自聯繫表單的訊息')}：${formData.subject}`
         }),
       })
 
@@ -137,11 +137,11 @@ export default function Contact() {
         })
       }
     } catch (error) {
-      console.error('發送錯誤:', error)
+      console.error('Send error:', error)
       setToast({
         show: true,
         type: 'error',
-        message: t('contact.error', '發送失敗，請檢查網路連線後再試')
+        message: t('contact.networkError', '發送失敗，請檢查網路連線後再試')
       })
     } finally {
       setIsSubmitting(false)
@@ -184,7 +184,7 @@ export default function Contact() {
               {t('contact.title', '聯繫我')}
             </h2>
             <p className="text-base sm:text-lg text-[rgb(var(--foreground-rgb))] mb-6 sm:mb-8 leading-relaxed">
-              {t('contact.lowFrictionNote', '懶得打字？選一個標籤直接聯繫我。')}
+              {t('contact.lowFrictionNote', '懶得打字？選完標籤後，再填寫右邊表單。')}
             </p>
 
             {/* AI 助理引導 */}
@@ -290,13 +290,26 @@ export default function Contact() {
               {/* 同意條款勾選 */}
               <div className="form-field">
                 <label className="flex items-start gap-3 cursor-pointer group">
-                  <input
-                    type="checkbox"
-                    name="agreeToTerms"
-                    checked={formData.agreeToTerms}
-                    onChange={handleChange}
-                    className="mt-1 w-4 h-4 text-[var(--color-primary)] border-gray-300 rounded focus:ring-[var(--color-primary)] focus:ring-2"
-                  />
+                  <div className="relative">
+                    <input
+                      type="checkbox"
+                      name="agreeToTerms"
+                      checked={formData.agreeToTerms}
+                      onChange={handleChange}
+                      className="sr-only"
+                    />
+                    <div className={`w-5 h-5 mt-1 border-2 rounded transition-all duration-200 flex items-center justify-center ${
+                      formData.agreeToTerms 
+                        ? 'bg-[var(--color-primary)] border-[var(--color-primary)]' 
+                        : 'border-gray-300 bg-white hover:border-[var(--color-primary)]'
+                    }`}>
+                      {formData.agreeToTerms && (
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="white" className="w-4 h-4">
+                          <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>
+                        </svg>
+                      )}
+                    </div>
+                  </div>
                   <span className="text-sm text-[rgb(var(--foreground-rgb))] leading-relaxed">
                     {t('contact.agreeTerms', '我同意我的資訊將被用於聯繫目的，並了解我會收到確認信和回覆郵件。')}
                   </span>
@@ -324,7 +337,7 @@ export default function Contact() {
                 ) : (
                   <div className="flex items-center gap-2">
                     <span className="material-symbols-outlined">send</span>
-                    <span>{t('contact.sendMessage', '傳送訊息')}</span>
+                    <span>{t('contact.sendMessage', '發送訊息')}</span>
                   </div>
                 )}
               </button>
@@ -337,9 +350,9 @@ export default function Contact() {
                 <span className="text-sm font-medium text-gray-700">{t('contact.emailFlow', '郵件流程說明')}</span>
               </div>
               <div className="text-xs text-gray-600 space-y-1">
-                <p>• 送出表單後，我會立即收到您的訊息</p>
-                <p>• 您會收到系統自動發送的確認信</p>
-                <p>• 我會在 24-48 小時內親自回覆您</p>
+                <p>• {t('contact.emailProcess.step1', '送出表單後，我會立即收到您的訊息')}</p>
+                <p>• {t('contact.emailProcess.step2', '您會收到系統自動發送的確認信')}</p>
+                <p>• {t('contact.emailProcess.step3', '我會在 24-48 小時內親自回覆您')}</p>
               </div>
             </div>
           </motion.div>

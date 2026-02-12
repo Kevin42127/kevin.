@@ -189,7 +189,6 @@ const zhResources = {
     emailPlaceholder: 'your@email.com',
     subjectPlaceholder: '訊息主題',
     messagePlaceholder: '請描述您的需求或想法...',
-    sending: '發送中...',
     success: '訊息已發送！',
     error: '發送失敗，請稍後再試',
     validation: {
@@ -197,11 +196,15 @@ const zhResources = {
       emailRequired: '請填寫電子郵件',
       emailInvalid: '請輸入有效的電子郵件地址',
       subjectRequired: '請填寫主題',
-      messageRequired: '請填寫訊息內容'
+      messageRequired: '請填寫訊息內容',
+      termsRequired: '請同意服務條款'
     },
-    consent: '我同意我的資訊將被用於聯繫目的，並了解我會收到確認信和回覆郵件。',
+    agreeTerms: '我同意我的資訊將被用於聯繫目的，並了解我會收到確認信和回覆郵件。',
+    messagePrefix: '來自聯繫表單的訊息',
+    networkError: '發送失敗，請檢查網路連線後再試',
+    sending: '傳送中...',
+    emailFlow: '郵件流程說明',
     emailProcess: {
-      title: '郵件流程說明',
       step1: '送出表單後，我會立即收到您的訊息',
       step2: '您會收到系統自動發送的確認信',
       step3: '我會在 24-48 小時內親自回覆您'
@@ -231,7 +234,11 @@ const zhResources = {
     note: '備註：如果網頁打開是空白畫面，請按 Ctrl + F5 重新整理',
     scrollToTop: '返回頂部',
     rightsReserved: 'All Rights Reserved',
-    dmcaProtected: '本網站受 DMCA 保護'
+    dmcaProtected: '本網站受 DMCA 保護',
+    primaryDomain: '正式網域',
+    backupDomain: '備用網域',
+    dmcaBadgeTitle: 'DMCA.com Protection Status',
+    dmcaBadgeAlt: 'DMCA.com Protection Status'
   },
   domainRedirect: {
     backupMessage: '檢測到您正在使用備用網域，建議',
@@ -851,7 +858,6 @@ const enResources = {
     emailPlaceholder: 'your@email.com',
     subjectPlaceholder: 'Message subject',
     messagePlaceholder: 'Please describe your needs or ideas...',
-    sending: 'Sending...',
     success: 'Message sent successfully!',
     error: 'Failed to send message, please try again later',
     validation: {
@@ -859,11 +865,15 @@ const enResources = {
       emailRequired: 'Please enter your email',
       emailInvalid: 'Please enter a valid email address',
       subjectRequired: 'Please enter a subject',
-      messageRequired: 'Please enter your message'
+      messageRequired: 'Please enter your message',
+      termsRequired: 'Please agree to the terms of service'
     },
-    consent: 'I agree that my information will be used for contact purposes and understand that I will receive confirmation and reply emails.',
+    agreeTerms: 'I agree that my information will be used for contact purposes and understand that I will receive confirmation and reply emails.',
+    messagePrefix: 'Message from contact form',
+    networkError: 'Failed to send, please check your network connection and try again',
+    sending: 'Sending...',
+    emailFlow: 'Email Process Explanation',
     emailProcess: {
-      title: 'Email Process Explanation',
       step1: 'After submitting the form, I will immediately receive your message',
       step2: 'You will receive an automatically sent confirmation email',
       step3: 'I will personally reply to you within 24-48 hours'
@@ -893,7 +903,11 @@ const enResources = {
     note: 'Note: If the page appears blank, please press Ctrl + F5 to refresh',
     scrollToTop: 'TOP',
     rightsReserved: 'All Rights Reserved',
-    dmcaProtected: 'This website is protected by DMCA'
+    dmcaProtected: 'This website is protected by DMCA',
+    primaryDomain: 'Primary Domain',
+    backupDomain: 'Backup Domain',
+    dmcaBadgeTitle: 'DMCA.com Protection Status',
+    dmcaBadgeAlt: 'DMCA.com Protection Status'
   },
   domainRedirect: {
     backupMessage: 'You are currently using a backup domain. We recommend',

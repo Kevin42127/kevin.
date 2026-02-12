@@ -1422,13 +1422,26 @@ export default function AIAssistant() {
                   {/* 同意條款勾選 */}
                   <div>
                     <label className="flex items-start gap-2 cursor-pointer group">
-                      <input
-                        type="checkbox"
-                        name="agreeToTerms"
-                        checked={formData.agreeToTerms}
-                        onChange={handleFormChange}
-                        className="mt-0.5 w-3 h-3 text-[var(--ai-accent)] border-gray-300 rounded focus:ring-[var(--ai-accent)] focus:ring-1"
-                      />
+                      <div className="relative">
+                        <input
+                          type="checkbox"
+                          name="agreeToTerms"
+                          checked={formData.agreeToTerms}
+                          onChange={handleFormChange}
+                          className="sr-only"
+                        />
+                        <div className={`w-4 h-4 mt-0.5 border-2 rounded transition-all duration-200 flex items-center justify-center ${
+                          formData.agreeToTerms 
+                            ? 'bg-[var(--ai-accent)] border-[var(--ai-accent)]' 
+                            : 'border-gray-300 bg-white hover:border-[var(--ai-accent)]'
+                        }`}>
+                          {formData.agreeToTerms && (
+                            <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px" fill="white" className="w-3 h-3">
+                              <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>
+                            </svg>
+                          )}
+                        </div>
+                      </div>
                       <span className="text-xs text-[rgb(var(--foreground-rgb))] leading-relaxed">
                         {t('contact.agreeTerms', '我同意我的資訊將被用於聯繫目的，並了解我會收到確認信和回覆郵件。')}
                       </span>
