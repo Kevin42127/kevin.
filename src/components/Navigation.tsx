@@ -108,7 +108,7 @@ export default function Navigation() {
               <ThemeToggle />
               <LanguageSwitcher />
               <a
-                href="https://github.com/Kevin42127/kevin."
+                href="https://github.com/Kevin42127"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 text-[rgb(var(--foreground-rgb))] hover:text-[var(--color-primary)] transition-colors flex items-center justify-center"
@@ -240,7 +240,7 @@ export default function Navigation() {
                         GitHub
                       </span>
                       <a
-                        href="https://github.com/Kevin42127/kevin."
+                        href="https://github.com/Kevin42127"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-10 h-10 text-[rgb(var(--foreground-rgb))] hover:text-[var(--color-primary)] transition-colors flex items-center justify-center"

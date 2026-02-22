@@ -75,7 +75,7 @@ src/
 
 - **電子郵件**：tyouxipindao@gmail.com
 - **網站**：https://kevinoffical.vercel.app
-- **GitHub**：https://github.com/Kevin42127/kevin
+- **GitHub**：https://github.com/Kevin42127
 
 ## 📄 授權
 
