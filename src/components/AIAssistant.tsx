@@ -333,6 +333,10 @@ export default function AIAssistant() {
     const timer = setTimeout(() => {
       if (!isOpen) {
         setShowBubble(true)
+        // 5秒後自動消失
+        setTimeout(() => {
+          setShowBubble(false)
+        }, 5000)
       }
     }, 0)
     return () => clearTimeout(timer)
@@ -935,27 +939,19 @@ export default function AIAssistant() {
                 animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
                 exit={{ opacity: 0, scale: 0.5, y: 20, x: 20 }}
                 className="absolute bottom-full right-0 mb-4"
-                onClick={(e) => {
-                  e.stopPropagation()
-                  handleOpen()
-                }}
               >
-                <div className="relative bg-[var(--color-surface)] text-[rgb(var(--foreground-rgb))] px-4 py-3 rounded-2xl border border-[var(--ai-divider)] whitespace-nowrap group">
+                <div 
+                  className="relative bg-[var(--color-surface)] text-[rgb(var(--foreground-rgb))] px-4 py-3 rounded-2xl border border-[var(--ai-divider)] whitespace-nowrap group cursor-pointer"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    handleOpen()
+                  }}
+                >
                   <div className="flex items-center gap-2">
                     <span className="text-base">👋</span>
                     <p className="text-sm font-bold tracking-tight">
                       {t('aiAssistant.greeting', '嗨！我是 Kevin 的 AI')}
                     </p>
-                    <button 
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        setShowBubble(false)
-                      }}
-                      className="ml-1 p-0.5 rounded-full opacity-0 group-hover:opacity-100 hover:bg-[var(--color-surface-hover)] transition-all duration-200"
-                      aria-label={t('aiAssistant.closeTooltip', '關閉提示')}
-                    >
-                      <span className="material-symbols-outlined text-sm">close</span>
-                    </button>
                   </div>
                   <div className="absolute top-full right-6 w-3 h-3 bg-[var(--color-surface)] border-r border-b border-[var(--ai-divider)] transform rotate-45 -translate-y-1.5" />
                 </div>
