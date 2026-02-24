@@ -12,20 +12,10 @@ export default function Navigation() {
   const { t, i18n } = useTranslationSafe()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isClient, setIsClient] = useState(false)
-  const [isMenuReady, setIsMenuReady] = useState(false)
 
   useEffect(() => {
     setIsClient(true)
   }, [])
-
-  useEffect(() => {
-    if (isMenuOpen) {
-      setIsMenuReady(true)
-    } else {
-      const timer = setTimeout(() => setIsMenuReady(false), 300)
-      return () => clearTimeout(timer)
-    }
-  }, [isMenuOpen])
 
   const navItems: Array<{ name: string; href: string }> = useMemo(() => [
     { name: t('navigation.home', '首頁'), href: '#home' },
@@ -176,43 +166,23 @@ export default function Navigation() {
               
               <div className="flex-1 overflow-y-auto">
                 <nav className="p-4">
-                  {navItems.map((item, index) => (
-                    <motion.button
+                  {navItems.map((item) => (
+                    <button
                       key={item.name}
-                      initial={false}
-                      animate={{ 
-                        opacity: isMenuReady ? 1 : 0,
-                        x: isMenuReady ? 0 : 20
-                      }}
-                      transition={{ 
-                        duration: 0.2, 
-                        delay: isMenuReady ? index * 0.05 : 0,
-                        ease: [0.25, 0.46, 0.45, 0.94]
-                      }}
                       onClick={() => handleNavigation(item.href)}
                       className="block w-full text-left px-4 py-3 text-base font-medium text-[rgb(var(--foreground-rgb))] hover:text-white hover:bg-[var(--color-primary)] transition-all duration-200 ease-out border border-transparent rounded-lg"
                     >
                       {item.name}
-                    </motion.button>
+                    </button>
                   ))}
-                  {externalLinks.map((item, index) => (
-                    <motion.button
+                  {externalLinks.map((item) => (
+                    <button
                       key={item.name}
-                      initial={false}
-                      animate={{ 
-                        opacity: isMenuReady ? 1 : 0,
-                        x: isMenuReady ? 0 : 20
-                      }}
-                      transition={{ 
-                        duration: 0.2, 
-                        delay: isMenuReady ? (navItems.length + index) * 0.05 : 0,
-                        ease: [0.25, 0.46, 0.45, 0.94]
-                      }}
                       onClick={() => handleNavigation(item.href, item.external)}
                       className="block w-full text-left px-4 py-3 text-base font-medium text-[rgb(var(--foreground-rgb))] hover:text-white hover:bg-[var(--color-primary)] transition-all duration-200 ease-out border border-transparent rounded-lg"
                     >
                       {item.name}
-                    </motion.button>
+                    </button>
                   ))}
                 </nav>
 
