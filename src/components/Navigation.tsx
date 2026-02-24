@@ -24,6 +24,7 @@ export default function Navigation() {
     { name: t('navigation.skills', '技能'), href: '#skills' },
     { name: t('navigation.experience', '經驗'), href: '#experience' },
     { name: t('navigation.contact', '聯繫'), href: '#contact' },
+    { name: t('navigation.changelog', '更新日誌'), href: '/changelog' },
   ], [t, i18n.language])
 
   const externalLinks: Array<{ name: string; href: string; external: boolean }> = useMemo(() => [], [])

@@ -10,6 +10,7 @@ const zhResources = {
     skills: '技能',
     experience: '經驗',
     contact: '聯繫',
+    changelog: '更新日誌',
     kevin: 'Kevin.',
     menu: '選單',
     settings: '設定',
@@ -666,6 +667,17 @@ const zhResources = {
     offlineAvailable: '離線可用',
     addToHomeScreen: '加入主畫面',
     installPrompt: '安裝 PWA 應用'
+  },
+  changelog: {
+    title: '更新日誌',
+    subtitle: '查看網站的最新更新與改進',
+    backToHome: '返回首頁',
+    major: '重大更新',
+    minor: '功能更新',
+    patch: '修復更新',
+    unknown: '未知',
+    changes: '項更新',
+    footer: '持續改進中，敬請期待更多功能'
   }
 }
 
@@ -677,6 +689,7 @@ const enResources = {
     skills: 'Skills',
     experience: 'Experience',
     contact: 'Contact',
+    changelog: 'Changelog',
     kevin: 'Kevin.',
     menu: 'Menu',
     settings: 'Settings',
@@ -1326,15 +1339,26 @@ const enResources = {
   },
   pwa: {
     installTitle: 'Install App',
-    installDescription: 'Install Kevin\'s personal website on your device for a faster experience!',
+    installDescription: 'Install Kevin\'s personal website to your device for a faster experience!',
     install: 'Install',
     notNow: 'Not Now',
     installed: 'Installed',
-    installSuccess: 'Installation successful!',
-    installFailed: 'Installation failed',
-    offlineAvailable: 'Available offline',
+    installSuccess: 'Installation Successful!',
+    installFailed: 'Installation Failed',
+    offlineAvailable: 'Available Offline',
     addToHomeScreen: 'Add to Home Screen',
     installPrompt: 'Install PWA App'
+  },
+  changelog: {
+    title: 'Changelog',
+    subtitle: 'View the latest updates and improvements to the website',
+    backToHome: 'Back to Home',
+    major: 'Major Update',
+    minor: 'Feature Update',
+    patch: 'Bug Fix',
+    unknown: 'Unknown',
+    changes: 'updates',
+    footer: 'Continuously improving, stay tuned for more features'
   }
 }
 
