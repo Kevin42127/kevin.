@@ -934,8 +934,11 @@ export default function AIAssistant() {
                 initial={{ opacity: 0, scale: 0.5, y: 20, x: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
                 exit={{ opacity: 0, scale: 0.5, y: 20, x: 20 }}
-                className="absolute bottom-full right-0 mb-4 cursor-pointer"
-                onClick={handleOpen}
+                className="absolute bottom-full right-0 mb-4"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  handleOpen()
+                }}
               >
                 <div className="relative bg-[var(--color-surface)] text-[rgb(var(--foreground-rgb))] px-4 py-3 rounded-2xl border border-[var(--ai-divider)] whitespace-nowrap group">
                   <div className="flex items-center gap-2">
@@ -948,7 +951,7 @@ export default function AIAssistant() {
                         e.stopPropagation()
                         setShowBubble(false)
                       }}
-                      className="ml-1 p-0.5 rounded-full opacity-0 group-hover:opacity-100"
+                      className="ml-1 p-0.5 rounded-full opacity-0 group-hover:opacity-100 hover:bg-[var(--color-surface-hover)] transition-all duration-200"
                       aria-label={t('aiAssistant.closeTooltip', '關閉提示')}
                     >
                       <span className="material-symbols-outlined text-sm">close</span>
