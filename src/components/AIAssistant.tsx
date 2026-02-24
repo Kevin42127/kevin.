@@ -1006,7 +1006,7 @@ export default function AIAssistant() {
             <div className="flex items-center gap-0.5 sm:gap-1">
               <button
                 onClick={handleClear}
-                className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-xl text-[var(--color-text-muted)]"
+                className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-xl text-[var(--color-text-muted)] hover:text-red-500 transition-colors duration-200"
                 aria-label={t('aiAssistant.clearConversation', '清除對話')}
               >
                 <span className="material-symbols-outlined text-lg sm:text-xl">
@@ -1015,7 +1015,7 @@ export default function AIAssistant() {
               </button>
               <button
                 onClick={handleClose}
-                className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-xl text-[var(--color-text-muted)]"
+                className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-xl text-[var(--color-text-muted)] hover:text-red-500 transition-colors duration-200"
                 aria-label={t('aiAssistant.close', '關閉')}
               >
                 <span className="material-symbols-outlined text-lg sm:text-xl">
@@ -1100,8 +1100,8 @@ export default function AIAssistant() {
                       <div
                         className={`inline-block ${
                           message.role === 'user'
-                            ? 'bg-[var(--ai-accent)] text-white rounded-2xl'
-                            : 'bg-[var(--color-chip)] text-[rgb(var(--foreground-rgb))] border border-[var(--color-divider)] rounded-2xl'
+                            ? 'bg-[#0084FF] text-white rounded-2xl'
+                            : 'bg-[#E4E6EB] text-[#050505] rounded-2xl dark:bg-[#374151] dark:text-[#F9FAFB]'
                         }`}
                         style={{
                           padding: '10px 12px',
@@ -1126,7 +1126,7 @@ export default function AIAssistant() {
                             key={index}
                             onClick={() => handleQuickQuestion(question)}
                             disabled={isLoading || isStreaming}
-                            className="w-full px-4 py-3 text-sm text-left bg-[var(--color-surface)] border border-[var(--ai-divider)] text-[rgb(var(--foreground-rgb))] hover:border-[var(--ai-accent)] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed rounded-2xl font-medium"
+                            className="w-full px-4 py-3 text-sm text-left bg-[var(--color-surface)] border border-[var(--ai-divider)] text-[rgb(var(--foreground-rgb))] hover:bg-[var(--ai-accent)] hover:text-white hover:border-[var(--ai-accent)] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed rounded-2xl font-medium"
                           >
                             {question}
                           </button>
@@ -1147,13 +1147,13 @@ export default function AIAssistant() {
                         }
                         const resumeFile = resumeFiles[currentLanguage as keyof typeof resumeFiles] || resumeFiles.zh
                         formatted = formatted.replace(/\[DOWNLOAD_RESUME_ZH\]/g, 
-                          '<a href="' + resumeFile.path + '" download="' + resumeFile.fileName + '" style="color: var(--ai-accent); text-decoration: underline; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.opacity=\'0.7\';" onmouseout="this.style.opacity=\'1\';">' + t('hero.downloadCV', '下載履歷') + '</a>')
+                          '<a href="' + resumeFile.path + '" download="' + resumeFile.fileName + '" class="text-link" style="cursor: pointer;" onmouseover="this.style.opacity=\'0.7\'" onmouseout="this.style.opacity=\'1\'">' + t('hero.downloadCV', '下載履歷') + '</a>')
                         
                         formatted = formatted.replace(/\[VIEW_PORTFOLIO\]/g, 
-                          '<a onclick="document.getElementById(\'portfolio\')?.scrollIntoView({behavior: \'smooth\'})" style="color: var(--ai-accent); text-decoration: underline; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.opacity=\'0.7\';" onmouseout="this.style.opacity=\'1\';">' + t('portfolio.viewProject', '查看專案') + '</a>')
+                          '<a onclick="document.getElementById(\'portfolio\')?.scrollIntoView({behavior: \'smooth\'})" class="text-link" style="cursor: pointer;" onmouseover="this.style.opacity=\'0.7\';" onmouseout="this.style.opacity=\'1\';">' + t('portfolio.viewProject', '查看專案') + '</a>')
                         
                         formatted = formatted.replace(/\[CONTACT_FORM\]/g, 
-                          '<a onclick="window.showContactForm && window.showContactForm()" style="color: var(--ai-accent); text-decoration: underline; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.opacity=\'0.7\';" onmouseout="this.style.opacity=\'1\';">' + t('contact.sendMessage', '發送訊息') + '</a>')
+                          '<a onclick="window.showContactForm && window.showContactForm()" class="text-link" style="cursor: pointer;" onmouseover="this.style.opacity=\'0.7\';" onmouseout="this.style.opacity=\'1\';">' + t('contact.sendMessage', '發送訊息') + '</a>')
                         
                         return formatted
                       }
@@ -1270,7 +1270,7 @@ export default function AIAssistant() {
                       </div>
                     </div>
                       {message.role === 'user' && (
-                        <div className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0 flex items-center justify-center bg-[var(--ai-accent)] text-white rounded-full">
+                        <div className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0 flex items-center justify-center bg-[#0084FF] text-white rounded-full">
                           <span className="material-symbols-outlined text-sm sm:text-base">
                             person
                           </span>
@@ -1286,11 +1286,11 @@ export default function AIAssistant() {
                 <div className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0 rounded-full bg-[var(--ai-accent)] flex items-center justify-center text-white">
                   <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor"><path d="M440-120v-80h320v-284q0-117-81.5-198.5T480-764q-117 0-198.5 81.5T200-484v244h-40q-33 0-56.5-23.5T80-320v-80q0-21 10.5-39.5T120-469l3-53q8-68 39.5-126t79-101q47.5-43 109-67T480-840q68 0 129 24t109 66.5Q766-707 797-649t40 126l3 52q19 9 29.5 27t10.5 38v92q0 20-10.5 38T840-249v49q0 33-23.5 56.5T760-120H440Zm-80-280q-17 0-28.5-11.5T320-440q0-17 11.5-28.5T360-480q17 0 28.5 11.5T400-440q0 17-11.5 28.5T360-400Zm240 0q-17 0-28.5-11.5T560-440q0-17 11.5-28.5T600-480q17 0 28.5 11.5T640-440q0 17-11.5 28.5T600-400Zm-359-62q-7-106 64-182t177-76q89 0 156.5 56.5T720-519q-91-1-167.5-49T435-698q-16 80-67.5 142.5T241-462Z"/></svg>
                 </div>
-                <div className="bg-[var(--color-chip)] border border-[var(--color-divider)] px-4 sm:px-5 py-2.5 sm:py-3 rounded-2xl">
+                <div className="bg-[#E4E6EB] border border-[#E4E6EB] px-4 sm:px-5 py-2.5 sm:py-3 rounded-2xl dark:bg-[#374151] dark:border-[#374151]">
                   <div className="flex gap-1.5">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[var(--ai-accent)] rounded-full animate-bounce"></div>
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[var(--ai-accent)] rounded-full animate-bounce" style={{ animationDelay: '0.15s' }}></div>
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[var(--ai-accent)] rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></div>
+                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#65676B] dark:bg-[#F9FAFB] rounded-full animate-bounce"></div>
+                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#65676B] dark:bg-[#F9FAFB] rounded-full animate-bounce" style={{ animationDelay: '0.15s' }}></div>
+                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#65676B] dark:bg-[#F9FAFB] rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></div>
                   </div>
                 </div>
               </div>

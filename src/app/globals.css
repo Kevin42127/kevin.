@@ -679,14 +679,27 @@ a:focus {
     text-decoration-color: var(--color-primary-dark);
   }
 
+  /* 深色模式：正常狀態白色 */
   .dark .text-link {
-    color: white;
-    text-decoration-color: white;
+    color: white !important;
+    text-decoration-color: white !important;
   }
 
   .dark .text-link:hover {
     color: rgb(var(--foreground-rgb));
     text-decoration-color: rgb(var(--foreground-rgb));
+  }
+
+  /* 防止移動端輸入框自動放大，但允許用戶縮放 */
+  @media (max-width: 768px) {
+    input[type="text"],
+    input[type="email"],
+    input[type="search"],
+    input[type="url"],
+    input[type="tel"],
+    textarea {
+      font-size: 16px !important;
+    }
   }
 
   .scrollbar-hide {
