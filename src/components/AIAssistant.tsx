@@ -931,7 +931,7 @@ export default function AIAssistant() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed bottom-[160px] sm:bottom-[180px] right-4 sm:right-6 z-50"
+            className="fixed bottom-[160px] sm:bottom-[180px] right-4 sm:right-6 z-[10000]"
           >
             <AnimatePresence>
               <motion.div

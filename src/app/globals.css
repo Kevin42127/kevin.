@@ -690,7 +690,7 @@ a:focus {
     text-decoration-color: rgb(var(--foreground-rgb));
   }
 
-  /* 防止移動端輸入框自動放大，但允許用戶縮放 */
+  /* 防止移動端輸入框自動放大 */
   @media (max-width: 768px) {
     input[type="text"],
     input[type="email"],
