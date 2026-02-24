@@ -677,7 +677,163 @@ const zhResources = {
     patch: '修復更新',
     unknown: '未知',
     changes: '項更新',
-    footer: '持續改進中，敬請期待更多功能'
+    footer: '持續改進中，敬請期待更多功能',
+    versions: {
+      '3.0.0': {
+        changes: [
+          'AI 助理提示泡泡優化：移除關閉按鈕，添加5秒自動消失',
+          '移除側邊欄導航項目逐個出現動畫',
+          '更新職稱為 AI 工程師',
+          '更新 GitHub 連結'
+        ]
+      },
+      '2.8.0': {
+        changes: [
+          '統一深色模式顏色系統：將橘色改為藍色系統',
+          '提升文字可讀性',
+          '更新翻譯系統：完成英文翻譯並修復語言檢測'
+        ]
+      },
+      '2.7.0': {
+        changes: [
+          '優化聯繫表單與導航體驗',
+          '修正生產環境漸進式動畫閃爍問題',
+          '移除 AI 職缺配對功能，恢復原始設計'
+        ]
+      },
+      '2.6.0': {
+        changes: [
+          '修復 AIAssistant 組件語法錯誤',
+          '更新 PWA 配置：修改標題為 Kevin.',
+          '移除安裝提示，使用完整圖標集合'
+        ]
+      },
+      '2.5.0': {
+        changes: [
+          '完成 AI 助理聯絡表單與郵件系統多語言支援',
+          '在導覽列添加 GitHub 圖示連結',
+          'AI 助理：鈴鐺圖示、訊息氣泡常見色'
+        ]
+      },
+      '2.4.0': {
+        changes: [
+          '新增歡迎視窗：對話框樣式、入場動畫、翻譯',
+          '移除 title 訊息',
+          '導覽列背景改為與頁腳統一使用 --color-page'
+        ]
+      },
+      '2.3.0': {
+        changes: [
+          '新增 ChatFlow 作品',
+          '更新分類篩選功能',
+          '優化 AI 助理和導覽列位置',
+          '優化移動端導覽列：背景延伸到狀態列'
+        ]
+      },
+      '2.2.0': {
+        changes: [
+          '更新頁腳布局與功能',
+          '添加域名重定向功能',
+          '優化動畫效果',
+          '移除提示橫幅組件'
+        ]
+      },
+      '2.1.0': {
+        changes: [
+          '新增 TaskMate 桌面應用作品',
+          '更新 AI 助理資訊',
+          '將分類篩選的 Web 應用改為網站'
+        ]
+      },
+      '2.0.0': {
+        changes: [
+          '實作 Vercel Edge Functions 保護 AI API',
+          '重構 AI API 路由使用官方 groq-sdk',
+          '升級模型至 llama-3.3-70b',
+          '更新郵件系統：統一現代卡片風格',
+          '雙向發送功能與感謝信回覆',
+          '優化聯繫表單與AI助理：低摩擦力設計'
+        ]
+      },
+      '1.9.0': {
+        changes: [
+          '為 AI 聊天介面添加完整響應式設計',
+          '改用自動調整高度的 textarea',
+          '優化訊息氣泡樣式',
+          '修復域名檢查邏輯'
+        ]
+      },
+      '1.8.0': {
+        changes: [
+          '新增 Cloudflare Turnstile 驗證功能到聯繫表單',
+          '修復 Contact 組件的 TypeScript 類型錯誤',
+          '後續移除 Cloudflare Turnstile 驗證功能'
+        ]
+      },
+      '1.7.0': {
+        changes: [
+          '新增 AI 助理功能',
+          '支援流式回應與對話歷史',
+          '整合 Groq API',
+          '新增快捷問題建議'
+        ]
+      },
+      '1.6.0': {
+        changes: [
+          '新增進階圖片保護系統',
+          '新增 TinyLink 作品',
+          '新增 Experience 區塊',
+          '優化作品集展示'
+        ]
+      },
+      '1.5.0': {
+        changes: [
+          '移除深色模式並添加浮動標籤到聯絡表單',
+          '統一卡片樣式和按鈕設計',
+          '簡化設計：移除重陰影/漸層效果'
+        ]
+      },
+      '1.4.0': {
+        changes: [
+          '優化移動端選單：語言選擇器向上展開',
+          '側邊欄支援垂直滾動',
+          '語言選擇器和主題切換移至菜單'
+        ]
+      },
+      '1.3.0': {
+        changes: [
+          '更新個人網站連結',
+          '在 protected-image 中加入白名單',
+          '優化代碼：移除所有註釋並優化搜索框UI'
+        ]
+      },
+      '1.2.0': {
+        changes: [
+          '新增分享功能',
+          '新增履歷下載按鈕',
+          '整合 Web Share API',
+          '新增社交媒體分享'
+        ]
+      },
+      '1.1.0': {
+        changes: [
+          '更新履歷下載功能',
+          '語言選擇器優化',
+          '表單驗證改進',
+          '統一卡片樣式和輸入邊框'
+        ]
+      },
+      '1.0.0': {
+        changes: [
+          '網站正式上線',
+          '基本個人介紹功能',
+          '作品集展示',
+          '響應式設計',
+          '國際化支援',
+          'Vercel 部署配置'
+        ]
+      }
+    }
   }
 }
 
@@ -1358,7 +1514,163 @@ const enResources = {
     patch: 'Bug Fix',
     unknown: 'Unknown',
     changes: 'updates',
-    footer: 'Continuously improving, stay tuned for more features'
+    footer: 'Continuously improving, stay tuned for more features',
+    versions: {
+      '3.0.0': {
+        changes: [
+          'AI assistant bubble optimization: removed close button, added 5-second auto-dismiss',
+          'Removed sidebar navigation items sequential appearance animation',
+          'Updated job title to AI Engineer',
+          'Updated GitHub link'
+        ]
+      },
+      '2.8.0': {
+        changes: [
+          'Unified dark mode color system: changed orange to blue system',
+          'Improved text readability',
+          'Updated translation system: completed English translation and fixed language detection'
+        ]
+      },
+      '2.7.0': {
+        changes: [
+          'Optimized contact form and navigation experience',
+          'Fixed production environment progressive animation flickering issue',
+          'Removed AI job matching feature, restored original design'
+        ]
+      },
+      '2.6.0': {
+        changes: [
+          'Fixed AIAssistant component syntax error',
+          'Updated PWA configuration: changed title to Kevin.',
+          'Removed installation prompt, using complete icon set'
+        ]
+      },
+      '2.5.0': {
+        changes: [
+          'Completed AI assistant contact form and email system multi-language support',
+          'Added GitHub icon link to navigation bar',
+          'AI assistant: bell icon, message bubble common colors'
+        ]
+      },
+      '2.4.0': {
+        changes: [
+          'Added welcome window: dialog style, entrance animation, translation',
+          'Removed title message',
+          'Navigation bar background changed to use --color-page like footer'
+        ]
+      },
+      '2.3.0': {
+        changes: [
+          'Added ChatFlow project',
+          'Updated category filtering functionality',
+          'Optimized AI assistant and navigation bar position',
+          'Optimized mobile navigation: background extends to status bar'
+        ]
+      },
+      '2.2.0': {
+        changes: [
+          'Updated footer layout and functionality',
+          'Added domain redirect functionality',
+          'Optimized animation effects',
+          'Removed banner component'
+        ]
+      },
+      '2.1.0': {
+        changes: [
+          'Added TaskMate desktop application project',
+          'Updated AI assistant information',
+          'Changed category filter Web application to Website'
+        ]
+      },
+      '2.0.0': {
+        changes: [
+          'Implemented Vercel Edge Functions to protect AI API',
+          'Refactored AI API routing using official groq-sdk',
+          'Upgraded model to llama-3.3-70b',
+          'Updated email system: unified modern card style',
+          'Two-way sending functionality and thank-you reply',
+          'Optimized contact form and AI assistant: low-friction design'
+        ]
+      },
+      '1.9.0': {
+        changes: [
+          'Added complete responsive design for AI chat interface',
+          'Changed to auto-adjusting height textarea',
+          'Optimized message bubble style',
+          'Fixed domain check logic'
+        ]
+      },
+      '1.8.0': {
+        changes: [
+          'Added Cloudflare Turnstile verification to contact form',
+          'Fixed Contact component TypeScript type error',
+          'Subsequently removed Cloudflare Turnstile verification'
+        ]
+      },
+      '1.7.0': {
+        changes: [
+          'Added AI assistant functionality',
+          'Supported streaming responses and conversation history',
+          'Integrated Groq API',
+          'Added quick question suggestions'
+        ]
+      },
+      '1.6.0': {
+        changes: [
+          'Added advanced image protection system',
+          'Added TinyLink project',
+          'Added Experience section',
+          'Optimized portfolio display'
+        ]
+      },
+      '1.5.0': {
+        changes: [
+          'Removed dark mode and added floating labels to contact form',
+          'Unified card style and button design',
+          'Simplified design: removed heavy shadows/gradient effects'
+        ]
+      },
+      '1.4.0': {
+        changes: [
+          'Optimized mobile menu: language selector expands upward',
+          'Sidebar supports vertical scrolling',
+          'Language selector and theme toggle moved to menu'
+        ]
+      },
+      '1.3.0': {
+        changes: [
+          'Updated personal website link',
+          'Added whitelist to protected-image',
+          'Optimized code: removed all comments and optimized search box UI'
+        ]
+      },
+      '1.2.0': {
+        changes: [
+          'Added sharing functionality',
+          'Added resume download button',
+          'Integrated Web Share API',
+          'Added social media sharing'
+        ]
+      },
+      '1.1.0': {
+        changes: [
+          'Updated resume download functionality',
+          'Language selector optimization',
+          'Form validation improvements',
+          'Unified card style and input borders'
+        ]
+      },
+      '1.0.0': {
+        changes: [
+          'Website officially launched',
+          'Basic personal introduction functionality',
+          'Portfolio display',
+          'Responsive design',
+          'Internationalization support',
+          'Vercel deployment configuration'
+        ]
+      }
+    }
   }
 }
 

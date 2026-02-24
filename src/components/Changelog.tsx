@@ -20,10 +20,10 @@ export default function Changelog() {
       date: '2026-02-24',
       type: 'major',
       changes: [
-        'AI 助理提示泡泡優化：移除關閉按鈕，添加5秒自動消失',
-        '移除側邊欄導航項目逐個出現動畫',
-        '更新職稱為 AI 工程師',
-        '更新 GitHub 連結'
+        t('changelog.versions.3.0.0.changes.0', 'AI 助理提示泡泡優化：移除關閉按鈕，添加5秒自動消失'),
+        t('changelog.versions.3.0.0.changes.1', '移除側邊欄導航項目逐個出現動畫'),
+        t('changelog.versions.3.0.0.changes.2', '更新職稱為 AI 工程師'),
+        t('changelog.versions.3.0.0.changes.3', '更新 GitHub 連結')
       ]
     },
     {
@@ -31,9 +31,9 @@ export default function Changelog() {
       date: '2026-02-18',
       type: 'minor',
       changes: [
-        '統一深色模式顏色系統：將橘色改為藍色系統',
-        '提升文字可讀性',
-        '更新翻譯系統：完成英文翻譯並修復語言檢測'
+        t('changelog.versions.2.8.0.changes.0', '統一深色模式顏色系統：將橘色改為藍色系統'),
+        t('changelog.versions.2.8.0.changes.1', '提升文字可讀性'),
+        t('changelog.versions.2.8.0.changes.2', '更新翻譯系統：完成英文翻譯並修復語言檢測')
       ]
     },
     {
@@ -41,9 +41,9 @@ export default function Changelog() {
       date: '2026-02-10',
       type: 'minor',
       changes: [
-        '優化聯繫表單與導航體驗',
-        '修正生產環境漸進式動畫閃爍問題',
-        '移除 AI 職缺配對功能，恢復原始設計'
+        t('changelog.versions.2.7.0.changes.0', '優化聯繫表單與導航體驗'),
+        t('changelog.versions.2.7.0.changes.1', '修正生產環境漸進式動畫閃爍問題'),
+        t('changelog.versions.2.7.0.changes.2', '移除 AI 職缺配對功能，恢復原始設計')
       ]
     },
     {
@@ -51,9 +51,9 @@ export default function Changelog() {
       date: '2026-02-07',
       type: 'minor',
       changes: [
-        '修復 AIAssistant 組件語法錯誤',
-        '更新 PWA 配置：修改標題為 Kevin.',
-        '移除安裝提示，使用完整圖標集合'
+        t('changelog.versions.2.6.0.changes.0', '修復 AIAssistant 組件語法錯誤'),
+        t('changelog.versions.2.6.0.changes.1', '更新 PWA 配置：修改標題為 Kevin.'),
+        t('changelog.versions.2.6.0.changes.2', '移除安裝提示，使用完整圖標集合')
       ]
     },
     {
@@ -61,9 +61,9 @@ export default function Changelog() {
       date: '2026-02-03',
       type: 'minor',
       changes: [
-        '完成 AI 助理聯絡表單與郵件系統多語言支援',
-        '在導覽列添加 GitHub 圖示連結',
-        'AI 助理：鈴鐺圖示、訊息氣泡常見色'
+        t('changelog.versions.2.5.0.changes.0', '完成 AI 助理聯絡表單與郵件系統多語言支援'),
+        t('changelog.versions.2.5.0.changes.1', '在導覽列添加 GitHub 圖示連結'),
+        t('changelog.versions.2.5.0.changes.2', 'AI 助理：鈴鐺圖示、訊息氣泡常見色')
       ]
     },
     {
@@ -71,9 +71,9 @@ export default function Changelog() {
       date: '2026-01-30',
       type: 'minor',
       changes: [
-        '新增歡迎視窗：對話框樣式、入場動畫、翻譯',
-        '移除 title 訊息',
-        '導覽列背景改為與頁腳統一使用 --color-page'
+        t('changelog.versions.2.4.0.changes.0', '新增歡迎視窗：對話框樣式、入場動畫、翻譯'),
+        t('changelog.versions.2.4.0.changes.1', '移除 title 訊息'),
+        t('changelog.versions.2.4.0.changes.2', '導覽列背景改為與頁腳統一使用 --color-page')
       ]
     },
     {
@@ -81,10 +81,10 @@ export default function Changelog() {
       date: '2026-01-24',
       type: 'minor',
       changes: [
-        '新增 ChatFlow 作品',
-        '更新分類篩選功能',
-        '優化 AI 助理和導覽列位置',
-        '優化移動端導覽列：背景延伸到狀態列'
+        t('changelog.versions.2.3.0.changes.0', '新增 ChatFlow 作品'),
+        t('changelog.versions.2.3.0.changes.1', '更新分類篩選功能'),
+        t('changelog.versions.2.3.0.changes.2', '優化 AI 助理和導覽列位置'),
+        t('changelog.versions.2.3.0.changes.3', '優化移動端導覽列：背景延伸到狀態列')
       ]
     },
     {
@@ -92,10 +92,10 @@ export default function Changelog() {
       date: '2026-01-19',
       type: 'minor',
       changes: [
-        '更新頁腳布局與功能',
-        '添加域名重定向功能',
-        '優化動畫效果',
-        '移除提示橫幅組件'
+        t('changelog.versions.2.2.0.changes.0', '更新頁腳布局與功能'),
+        t('changelog.versions.2.2.0.changes.1', '添加域名重定向功能'),
+        t('changelog.versions.2.2.0.changes.2', '優化動畫效果'),
+        t('changelog.versions.2.2.0.changes.3', '移除提示橫幅組件')
       ]
     },
     {
@@ -103,9 +103,9 @@ export default function Changelog() {
       date: '2026-01-18',
       type: 'minor',
       changes: [
-        '新增 TaskMate 桌面應用作品',
-        '更新 AI 助理資訊',
-        '將分類篩選的 Web 應用改為網站'
+        t('changelog.versions.2.1.0.changes.0', '新增 TaskMate 桌面應用作品'),
+        t('changelog.versions.2.1.0.changes.1', '更新 AI 助理資訊'),
+        t('changelog.versions.2.1.0.changes.2', '將分類篩選的 Web 應用改為網站')
       ]
     },
     {
@@ -113,12 +113,12 @@ export default function Changelog() {
       date: '2026-01-11',
       type: 'major',
       changes: [
-        '實作 Vercel Edge Functions 保護 AI API',
-        '重構 AI API 路由使用官方 groq-sdk',
-        '升級模型至 llama-3.3-70b',
-        '更新郵件系統：統一現代卡片風格',
-        '雙向發送功能與感謝信回覆',
-        '優化聯繫表單與AI助理：低摩擦力設計'
+        t('changelog.versions.2.0.0.changes.0', '實作 Vercel Edge Functions 保護 AI API'),
+        t('changelog.versions.2.0.0.changes.1', '重構 AI API 路由使用官方 groq-sdk'),
+        t('changelog.versions.2.0.0.changes.2', '升級模型至 llama-3.3-70b'),
+        t('changelog.versions.2.0.0.changes.3', '更新郵件系統：統一現代卡片風格'),
+        t('changelog.versions.2.0.0.changes.4', '雙向發送功能與感謝信回覆'),
+        t('changelog.versions.2.0.0.changes.5', '優化聯繫表單與AI助理：低摩擦力設計')
       ]
     },
     {
@@ -126,10 +126,10 @@ export default function Changelog() {
       date: '2026-01-07',
       type: 'minor',
       changes: [
-        '為 AI 聊天介面添加完整響應式設計',
-        '改用自動調整高度的 textarea',
-        '優化訊息氣泡樣式',
-        '修復域名檢查邏輯'
+        t('changelog.versions.1.9.0.changes.0', '為 AI 聊天介面添加完整響應式設計'),
+        t('changelog.versions.1.9.0.changes.1', '改用自動調整高度的 textarea'),
+        t('changelog.versions.1.9.0.changes.2', '優化訊息氣泡樣式'),
+        t('changelog.versions.1.9.0.changes.3', '修復域名檢查邏輯')
       ]
     },
     {
@@ -137,9 +137,9 @@ export default function Changelog() {
       date: '2025-12-22',
       type: 'minor',
       changes: [
-        '新增 Cloudflare Turnstile 驗證功能到聯繫表單',
-        '修復 Contact 組件的 TypeScript 類型錯誤',
-        '後續移除 Cloudflare Turnstile 驗證功能'
+        t('changelog.versions.1.8.0.changes.0', '新增 Cloudflare Turnstile 驗證功能到聯繫表單'),
+        t('changelog.versions.1.8.0.changes.1', '修復 Contact 組件的 TypeScript 類型錯誤'),
+        t('changelog.versions.1.8.0.changes.2', '後續移除 Cloudflare Turnstile 驗證功能')
       ]
     },
     {
@@ -147,10 +147,10 @@ export default function Changelog() {
       date: '2025-11-29',
       type: 'minor',
       changes: [
-        '新增 AI 助理功能',
-        '支援流式回應與對話歷史',
-        '整合 Groq API',
-        '新增快捷問題建議'
+        t('changelog.versions.1.7.0.changes.0', '新增 AI 助理功能'),
+        t('changelog.versions.1.7.0.changes.1', '支援流式回應與對話歷史'),
+        t('changelog.versions.1.7.0.changes.2', '整合 Groq API'),
+        t('changelog.versions.1.7.0.changes.3', '新增快捷問題建議')
       ]
     },
     {
@@ -158,10 +158,10 @@ export default function Changelog() {
       date: '2025-11-25',
       type: 'minor',
       changes: [
-        '新增進階圖片保護系統',
-        '新增 TinyLink 作品',
-        '新增 Experience 區塊',
-        '優化作品集展示'
+        t('changelog.versions.1.6.0.changes.0', '新增進階圖片保護系統'),
+        t('changelog.versions.1.6.0.changes.1', '新增 TinyLink 作品'),
+        t('changelog.versions.1.6.0.changes.2', '新增 Experience 區塊'),
+        t('changelog.versions.1.6.0.changes.3', '優化作品集展示')
       ]
     },
     {
@@ -169,9 +169,9 @@ export default function Changelog() {
       date: '2025-11-16',
       type: 'minor',
       changes: [
-        '移除深色模式並添加浮動標籤到聯絡表單',
-        '統一卡片樣式和按鈕設計',
-        '簡化設計：移除重陰影/漸層效果'
+        t('changelog.versions.1.5.0.changes.0', '移除深色模式並添加浮動標籤到聯絡表單'),
+        t('changelog.versions.1.5.0.changes.1', '統一卡片樣式和按鈕設計'),
+        t('changelog.versions.1.5.0.changes.2', '簡化設計：移除重陰影/漸層效果')
       ]
     },
     {
@@ -179,9 +179,9 @@ export default function Changelog() {
       date: '2025-11-03',
       type: 'minor',
       changes: [
-        '優化移動端選單：語言選擇器向上展開',
-        '側邊欄支援垂直滾動',
-        '語言選擇器和主題切換移至菜單'
+        t('changelog.versions.1.4.0.changes.0', '優化移動端選單：語言選擇器向上展開'),
+        t('changelog.versions.1.4.0.changes.1', '側邊欄支援垂直滾動'),
+        t('changelog.versions.1.4.0.changes.2', '語言選擇器和主題切換移至菜單')
       ]
     },
     {
@@ -189,9 +189,9 @@ export default function Changelog() {
       date: '2025-10-30',
       type: 'minor',
       changes: [
-        '更新個人網站連結',
-        '在 protected-image 中加入白名單',
-        '優化代碼：移除所有註釋並優化搜索框UI'
+        t('changelog.versions.1.3.0.changes.0', '更新個人網站連結'),
+        t('changelog.versions.1.3.0.changes.1', '在 protected-image 中加入白名單'),
+        t('changelog.versions.1.3.0.changes.2', '優化代碼：移除所有註釋並優化搜索框UI')
       ]
     },
     {
@@ -199,10 +199,10 @@ export default function Changelog() {
       date: '2025-10-15',
       type: 'minor',
       changes: [
-        '新增分享功能',
-        '新增履歷下載按鈕',
-        '整合 Web Share API',
-        '新增社交媒體分享'
+        t('changelog.versions.1.2.0.changes.0', '新增分享功能'),
+        t('changelog.versions.1.2.0.changes.1', '新增履歷下載按鈕'),
+        t('changelog.versions.1.2.0.changes.2', '整合 Web Share API'),
+        t('changelog.versions.1.2.0.changes.3', '新增社交媒體分享')
       ]
     },
     {
@@ -210,10 +210,10 @@ export default function Changelog() {
       date: '2025-10-08',
       type: 'minor',
       changes: [
-        '更新履歷下載功能',
-        '語言選擇器優化',
-        '表單驗證改進',
-        '統一卡片樣式和輸入邊框'
+        t('changelog.versions.1.1.0.changes.0', '更新履歷下載功能'),
+        t('changelog.versions.1.1.0.changes.1', '語言選擇器優化'),
+        t('changelog.versions.1.1.0.changes.2', '表單驗證改進'),
+        t('changelog.versions.1.1.0.changes.3', '統一卡片樣式和輸入邊框')
       ]
     },
     {
@@ -221,12 +221,12 @@ export default function Changelog() {
       date: '2025-09-12',
       type: 'major',
       changes: [
-        '網站正式上線',
-        '基本個人介紹功能',
-        '作品集展示',
-        '響應式設計',
-        '國際化支援',
-        'Vercel 部署配置'
+        t('changelog.versions.1.0.0.changes.0', '網站正式上線'),
+        t('changelog.versions.1.0.0.changes.1', '基本個人介紹功能'),
+        t('changelog.versions.1.0.0.changes.2', '作品集展示'),
+        t('changelog.versions.1.0.0.changes.3', '響應式設計'),
+        t('changelog.versions.1.0.0.changes.4', '國際化支援'),
+        t('changelog.versions.1.0.0.changes.5', 'Vercel 部署配置')
       ]
     }
   ]
