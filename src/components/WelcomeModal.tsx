@@ -47,10 +47,10 @@ export default function WelcomeModal() {
   return (
     <>
       <div 
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9998] animate-fade-in"
+        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[10001] animate-fade-in"
         onClick={handleClose}
       />
-      <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 pointer-events-none">
+      <div className="fixed inset-0 z-[10002] flex items-center justify-center p-4 pointer-events-none">
         <div 
           className="bg-[var(--color-surface)] rounded-3xl shadow-[0_25px_50px_rgba(0,0,0,0.25)] max-w-lg w-full flex flex-col overflow-hidden pointer-events-auto animate-scale-in sm:max-h-[85vh]"
           onClick={(e) => e.stopPropagation()}
