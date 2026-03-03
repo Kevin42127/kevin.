@@ -3,12 +3,15 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import I18nProvider from '../components/I18nProvider'
 import GsapProvider from '../components/GsapProvider'
+import MotionProvider from '../components/MotionProvider'
 import SmoothScrollProvider from '../components/SmoothScrollProvider'
 import { ThemeProvider } from '../components/ThemeProvider'
 
 const inter = Inter({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700']
+  weight: ['400', '600', '700'],
+  display: 'swap',
+  fallback: ['system-ui', 'arial', 'sans-serif']
 })
 
 export const metadata: Metadata = {
@@ -81,13 +84,15 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <SmoothScrollProvider>
-            <GsapProvider>
-              <I18nProvider>
-                {children}
-              </I18nProvider>
-            </GsapProvider>
-          </SmoothScrollProvider>
+          <MotionProvider>
+            <SmoothScrollProvider>
+              <GsapProvider>
+                <I18nProvider>
+                  {children}
+                </I18nProvider>
+              </GsapProvider>
+            </SmoothScrollProvider>
+          </MotionProvider>
         </ThemeProvider>
       </body>
     </html>

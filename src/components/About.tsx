@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 import { useProtectedImage } from '../hooks/useProtectedImage'
 
@@ -66,9 +67,11 @@ export default function About() {
                     <div className="w-16 h-16 bg-[var(--color-surface)]"></div>
                   </div>
                 ) : (
-                  <img
+                  <Image
                     src={imageUrl}
                     alt="Kevin 陳梓敬"
+                    width={192}
+                    height={192}
                     className="w-full h-full object-cover pointer-events-none"
                     onContextMenu={(e) => e.preventDefault()}
                     onDragStart={(e) => e.preventDefault()}
@@ -83,6 +86,7 @@ export default function About() {
                       WebkitUserDrag: 'none',
                       WebkitTouchCallout: 'none'
                     } as React.CSSProperties}
+                    priority
                   />
                 )}
               </div>

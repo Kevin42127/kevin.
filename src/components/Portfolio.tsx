@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 
 type CategoryKey = 'all' | 'chrome' | 'bot' | 'web' | 'desktop' | 'mobile'
@@ -196,9 +197,11 @@ export default function Portfolio() {
               >
               <figure className="h-48 border border-[var(--color-divider)] overflow-hidden flex items-center justify-center bg-[var(--color-panel)] rounded-xl">
                 {project.image ? (
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.title}
+                    width={400}
+                    height={192}
                     className="w-full h-full object-cover pointer-events-none"
                     onContextMenu={(e) => e.preventDefault()}
                     onDragStart={(e) => e.preventDefault()}
@@ -210,6 +213,7 @@ export default function Portfolio() {
                       WebkitUserDrag: 'none',
                       WebkitTouchCallout: 'none'
                     } as React.CSSProperties}
+                    loading="lazy"
                   />
                 ) : (
                   <span className="text-[var(--color-secondary)] text-center text-sm tracking-wide px-4">
