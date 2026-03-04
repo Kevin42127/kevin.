@@ -34,7 +34,7 @@ export default function Portfolio() {
     {
       id: 2,
       title: t('portfolio.lineBot.title', 'LINE BOT'),
-      description: t('portfolio.lineBot.description', '運用 TypeScript 與 Express 打造的 LINE 聊天機器人，整合 AI 協作功能'),
+      description: t('portfolio.lineBot.description', '運用 TypeScript 與 Express 打造的 LINE 聊天機器人，整合 AI 協作功能，提供智能對話服務與自動化回應系統'),
       image: '/LINE BOT.png',
       technologies: ['TypeScript', 'Express', t('portfolio.aiCollaboration', 'AI協作')],
       github: '#',
@@ -44,7 +44,7 @@ export default function Portfolio() {
     {
       id: 3,
       title: t('portfolio.chefAI.title', 'ChefAI'),
-      description: t('portfolio.chefAI.description', '運用 Vue 與 Vite 打造 AI 食譜生成平台'),
+      description: t('portfolio.chefAI.description', '運用 Vue 與 Vite 打造 AI 食譜生成平台，整合智能推薦系統，提供個性化料理建議與營養分析功能'),
       image: '/ChefAI.png',
       technologies: ['Vue', 'Vite', t('portfolio.aiCollaboration', 'AI協作')],
       github: '#',
@@ -54,7 +54,7 @@ export default function Portfolio() {
     {
       id: 4,
       title: t('portfolio.aiTeacher.title', 'AI老師'),
-      description: t('portfolio.aiTeacher.description', '運用 Vue 與 Vite 打造的 AI 協作專案'),
+      description: t('portfolio.aiTeacher.description', '運用 Vue 與 Vite 打造的 AI 協作專案，結合教育科技與人工智能，提供個人化學習輔助與智能問答系統'),
       image: '/AI老師.png',
       technologies: ['Vue', 'Vite', t('portfolio.aiCollaboration', 'AI協作')],
       github: '#',
@@ -64,7 +64,7 @@ export default function Portfolio() {
     {
       id: 5,
       title: t('portfolio.sumVid.title', 'SumVid'),
-      description: t('portfolio.sumVid.description', '讓 AI 為您快速提取影片重點'),
+      description: t('portfolio.sumVid.description', '讓 AI 為您快速提取影片重點，整合自然語言處理技術，提供智能摘要與關鍵資訊提取功能'),
       image: '/SumVid.png',
       technologies: ['HTML', 'CSS', 'JavaScript', 'Chrome Extension API', t('portfolio.aiCollaboration', 'AI協作')],
       github: '#',
@@ -83,18 +83,18 @@ export default function Portfolio() {
     },
     {
       id: 7,
-      title: t('portfolio.acadAI.title', 'AcadAI'),
-      description: t('portfolio.acadAI.description', 'AI 自動幫你整理商品重點'),
-      image: '/AcadAI.png',
+      title: t('portfolio.winTab.title', 'WinTab'),
+      description: t('portfolio.winTab.description', 'Windows 10 風格新分頁：時鐘、搜尋、捷徑和開始選單，整合現代化設計與實用工具，提供經典桌面體驗'),
+      image: '/WinTab.png',
       technologies: ['HTML', 'CSS', 'JavaScript', 'Chrome Extension API', t('portfolio.aiCollaboration', 'AI協作')],
       github: '#',
-      demo: 'https://chromewebstore.google.com/detail/acadai/accefaglmgngpkinapofhodbkpafmjok',
+      demo: 'https://chromewebstore.google.com/detail/wintab/ajmlpeoammknndeeibjejeknlkgohmdj',
       featured: true
     },
     {
       id: 8,
       title: t('portfolio.taiwanWeatherAI.title', '臺灣氣象AI助手'),
-      description: t('portfolio.taiwanWeatherAI.description', '查詢天氣與 AI 問答'),
+      description: t('portfolio.taiwanWeatherAI.description', '查詢天氣與 AI 問答，結合氣象數據分析與人工智能，提供準確天氣預報與個人化建議服務'),
       image: '/臺灣氣象AI助手.png',
       technologies: ['HTML', 'CSS', 'JavaScript', 'Chrome Extension API', t('portfolio.aiCollaboration', 'AI協作')],
       github: '#',
@@ -226,7 +226,7 @@ export default function Portfolio() {
                 <h3 className="text-2xl font-semibold text-[rgb(var(--foreground-rgb))] tracking-tight">
                   {project.title}
                 </h3>
-                <p className="text-base text-[rgb(var(--foreground-rgb))] leading-relaxed">
+                <p className="text-base text-[rgb(var(--foreground-rgb))] leading-relaxed min-h-[3.5rem]">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2">

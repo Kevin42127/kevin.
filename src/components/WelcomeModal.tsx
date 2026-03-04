@@ -22,6 +22,13 @@ export default function WelcomeModal() {
 
   useEffect(() => {
     if (!mounted) return
+    
+    // 檢查用戶是否已經看過歡迎視窗
+    const hasSeenWelcome = localStorage.getItem('hasSeenWelcome')
+    if (hasSeenWelcome === 'true') {
+      return // 用戶已經看過，不再顯示
+    }
+    
     const timer = setTimeout(() => {
       setIsVisible(true)
     }, 1000)
@@ -30,10 +37,14 @@ export default function WelcomeModal() {
 
   const handleClose = () => {
     setIsVisible(false)
+    // 標記用戶已經看過歡迎視窗
+    localStorage.setItem('hasSeenWelcome', 'true')
   }
 
   const handleTryAI = () => {
     setIsVisible(false)
+    // 標記用戶已經看過歡迎視窗
+    localStorage.setItem('hasSeenWelcome', 'true')
     const aiButton = document.querySelector('[aria-label*="AI"]') as HTMLButtonElement
     if (aiButton) {
       aiButton.click()

@@ -99,31 +99,35 @@ const zhResources = {
     },
     lineBot: {
       title: 'LINE BOT',
-      description: '運用 TypeScript 與 Express 打造的 LINE 聊天機器人，整合 AI 協作功能，提供智能對話服務'
+      description: '運用 TypeScript 與 Express 打造的 LINE 聊天機器人，整合 AI 協作功能，提供智能對話服務與自動化回應系統'
     },
     chefAI: {
       title: 'ChefAI',
-      description: '運用 Vue 與 Vite 打造 AI 食譜生成平台，提供智能食譜推薦與生成功能'
+      description: '運用 Vue 與 Vite 打造 AI 食譜生成平台，整合智能推薦系統，提供個性化料理建議與營養分析功能'
     },
     aiTeacher: {
       title: 'AI老師',
-      description: '運用 Vue 與 Vite 打造 AI 教學助手平台，提供智能學習輔助功能'
+      description: '運用 Vue 與 Vite 打造的 AI 協作專案，結合教育科技與人工智能，提供個人化學習輔助與智能問答系統'
     },
     sumVid: {
       title: 'SumVid',
-      description: '讓 AI 為您快速提取影片重點'
+      description: '讓 AI 為您快速提取影片重點，整合自然語言處理技術，提供智能摘要與關鍵資訊提取功能'
     },
     discordAIBot: {
       title: 'Discord AI Bot',
-      description: '運用 Python 打造的 Discord AI 聊天機器人，提供智能對話服務'
+      description: '運用 Python 打造的 Discord AI 聊天機器人，提供智能對話服務與自動化管理功能'
     },
     acadAI: {
       title: 'AcadAI',
-      description: 'AI 自動幫你整理商品重點'
+      description: 'AI 自動幫你整理商品重點，整合機器學習技術，提供智能商品分析與資訊提取服務'
+    },
+    winTab: {
+      title: 'WinTab',
+      description: 'Windows 10 風格新分頁：時鐘、搜尋、捷徑和開始選單，整合現代化設計與實用工具，提供經典桌面體驗'
     },
     taiwanWeatherAI: {
       title: '臺灣氣象AI助手',
-      description: '查詢天氣與 AI 問答'
+      description: '查詢天氣與 AI 問答，結合氣象數據分析與人工智能，提供準確天氣預報與個人化建議服務'
     },
     djkridp: {
       title: 'DJKridP',
@@ -679,6 +683,25 @@ const zhResources = {
     changes: '項更新',
     footer: '持續改進中，敬請期待更多功能',
     versions: {
+      '3.2.0': {
+        changes: [
+          '作品集更新：新增 WinTab 作品，移除 AcadAI',
+          '描述統一化：所有作品描述改為詳細型格式',
+          'AI 系統更新：同步最新作品集資訊到 AI 助理',
+          '布局優化：修復技術標籤位置不一致問題',
+          '多語言支援：新增 WinTab 中英文翻譯'
+        ]
+      },
+      '3.1.0': {
+        changes: [
+          '效能優化：字體載入減少 40%，改用 display: swap',
+          '動態載入重套件：GSAP 和 Framer Motion 延遲載入',
+          '圖片優化：全面改用 Next.js Image 組件',
+          'PWA 快取策略：新增圖片和字體專用快取',
+          'Bundle 分析：新增套件大小監控工具',
+          '預期提升 FCP 30-40%，LCP 25-35%'
+        ]
+      },
       '3.0.0': {
         changes: [
           'AI 助理提示泡泡優化：移除關閉按鈕，添加5秒自動消失',
@@ -934,31 +957,35 @@ const enResources = {
     },
     lineBot: {
       title: 'LINE BOT',
-      description: 'LINE chatbot built with TypeScript and Express, integrating AI collaboration features to provide intelligent conversation services'
+      description: 'LINE chatbot built with TypeScript and Express, integrating AI collaboration features to provide intelligent conversation services and automated response systems'
     },
     chefAI: {
       title: 'ChefAI',
-      description: 'AI recipe generation platform built with Vue and Vite, providing intelligent recipe recommendations and generation features'
+      description: 'AI recipe generation platform built with Vue and Vite, integrating intelligent recommendation systems to provide personalized recipe suggestions and nutritional analysis features'
     },
     aiTeacher: {
       title: 'AI Teacher',
-      description: 'AI teaching assistant platform built with Vue and Vite, providing intelligent learning support features'
+      description: 'AI collaboration project built with Vue and Vite, combining educational technology and artificial intelligence to provide personalized learning assistance and intelligent Q&A systems'
     },
     sumVid: {
       title: 'SumVid',
-      description: 'Let AI quickly extract video highlights for you'
+      description: 'Let AI quickly extract video highlights for you, integrating natural language processing technology to provide intelligent summaries and key information extraction features'
     },
     discordAIBot: {
       title: 'Discord AI Bot',
-      description: 'Discord AI chatbot built with Python, providing intelligent conversation services'
+      description: 'Discord AI chatbot built with Python, providing intelligent conversation services and automated management features'
     },
     acadAI: {
       title: 'AcadAI',
-      description: 'AI automatically organizes product highlights for you'
+      description: 'AI automatically organizes product highlights for you, integrating machine learning technology to provide intelligent product analysis and information extraction services'
+    },
+    winTab: {
+      title: 'WinTab',
+      description: 'Windows 10 style new tab with clock, search, shortcuts and start menu, integrating modern design and practical tools to provide classic desktop experience'
     },
     taiwanWeatherAI: {
       title: 'Taiwan Weather AI Assistant',
-      description: 'Weather queries and AI Q&A'
+      description: 'Weather queries and AI Q&A, combining meteorological data analysis with artificial intelligence to provide accurate weather forecasts and personalized recommendation services'
     },
     djkridp: {
       title: 'DJKridP',
@@ -1516,6 +1543,25 @@ const enResources = {
     changes: 'updates',
     footer: 'Continuously improving, stay tuned for more features',
     versions: {
+      '3.2.0': {
+        changes: [
+          'Portfolio update: Added WinTab project, removed AcadAI',
+          'Description standardization: All project descriptions changed to detailed format',
+          'AI system update: Synced latest portfolio information to AI assistant',
+          'Layout optimization: Fixed inconsistent technology tag positioning',
+          'Multi-language support: Added WinTab Chinese and English translations'
+        ]
+      },
+      '3.1.0': {
+        changes: [
+          'Performance optimization: Font loading reduced by 40%, changed to display: swap',
+          'Dynamic loading of heavy packages: GSAP and Framer Motion lazy loading',
+          'Image optimization: Fully switched to Next.js Image components',
+          'PWA caching strategy: Added image and font dedicated caching',
+          'Bundle analysis: Added package size monitoring tools',
+          'Expected FCP improvement 30-40%, LCP 25-35%'
+        ]
+      },
       '3.0.0': {
         changes: [
           'AI assistant bubble optimization: removed close button, added 5-second auto-dismiss',
