@@ -1,6 +1,5 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
-import LanguageDetector from 'i18next-browser-languagedetector'
 
 const zhResources = {
   navigation: {
@@ -1721,24 +1720,54 @@ const enResources = {
 }
 
 if (typeof window !== 'undefined') {
+  // 手動偵測瀏覽器語言
+  const detectLanguage = () => {
+    const browserLang = navigator.language || navigator.languages?.[0] || 'en';
+    console.log('Browser language:', browserLang);
+    
+    // 大陸、香港、澳門、台灣地區使用繁體中文
+    const chineseRegions = ['zh-CN', 'zh-SG', 'zh-HK', 'zh-MO', 'zh-TW', 'zh', 'zh-Hans', 'zh-Hant'];
+    // 英語系國家使用英文
+    const englishRegions = ['en', 'en-US', 'en-GB', 'en-AU', 'en-CA', 'en-NZ', 'en-IE', 'en-ZA', 'en-IN'];
+    
+    // 檢查是否為中文地區
+    if (chineseRegions.some(region => browserLang.toLowerCase().includes(region.toLowerCase()))) {
+      console.log('Using Chinese (zh) for:', browserLang);
+      return 'zh';
+    }
+    
+    // 檢查是否為英語地區
+    if (englishRegions.some(region => browserLang.toLowerCase().includes(region.toLowerCase()))) {
+      console.log('Using English (en) for:', browserLang);
+      return 'en';
+    }
+    
+    // 其他國外語言統一使用英文
+    console.log('Using English (en) as fallback for:', browserLang);
+    return 'en';
+  };
+
   i18n
-    .use(LanguageDetector)
     .use(initReactI18next)
     .init({
       resources: {
         zh: { translation: zhResources },
         en: { translation: enResources }
       },
-      fallbackLng: 'zh',
+      fallbackLng: 'en',
       debug: false,
       interpolation: {
         escapeValue: false
-      },
-      detection: {
-        order: ['navigator', 'htmlTag'],
-        caches: []
       }
     })
+    .then(() => {
+      // 初始化完成後設置語言
+      const detectedLang = detectLanguage();
+      i18n.changeLanguage(detectedLang);
+    })
+    .catch((error) => {
+      console.error('i18n initialization error:', error);
+    });
 } else {
   i18n
     .use(initReactI18next)
@@ -1747,7 +1776,7 @@ if (typeof window !== 'undefined') {
         zh: { translation: zhResources },
         en: { translation: enResources }
       },
-      fallbackLng: 'zh',
+      fallbackLng: 'en',
       lng: 'zh', // 服務端預設使用中文
       debug: false,
       interpolation: {

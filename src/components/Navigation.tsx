@@ -4,7 +4,6 @@ import { useState, useEffect, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { smoothScrollToElement } from '../lib/smoothScrollUtils'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
-import LanguageSwitcher from './LanguageSwitcher'
 import DropdownSearch from './DropdownSearch'
 import { ThemeToggle } from './ThemeToggle'
 
@@ -129,7 +128,7 @@ export default function Navigation() {
             <div className="hidden lg:flex items-center space-x-4">
               <DropdownSearch />
               <ThemeToggle />
-              <LanguageSwitcher />
+              {/* LanguageSwitcher 已隱藏 - 使用自動語言偵測 */}
               <a
                 href="https://github.com/Kevin42127"
                 target="_blank"
@@ -228,12 +227,7 @@ export default function Navigation() {
                     {t('navigation.settings', '設定')}
                   </h3>
                   
-                  <div className="flex items-center justify-between px-4 py-2">
-                    <span className="text-[rgb(var(--foreground-rgb))] font-medium">
-                      {t('navigation.language', '語言')}
-                    </span>
-                    <LanguageSwitcher />
-                  </div>
+                  {/* 語言選擇器已隱藏 - 使用自動語言偵測 */}
 
                   <div className="flex items-center justify-between px-4 py-2">
                     <span className="text-[rgb(var(--foreground-rgb))] font-medium">
