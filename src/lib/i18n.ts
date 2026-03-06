@@ -186,6 +186,8 @@ const zhResources = {
     subject: '主題',
     message: '訊息',
     lowFrictionNote: '懶得打字？選完標籤後，再填寫右邊表單。',
+    aiAssistantGuide: '更快速的方式：使用 AI 助理',
+    aiAssistantDesc: '點擊右下角的 AI 助理圖示，直接在對話中填寫表單',
     tags: {
       interview: '面試邀約'
     },
