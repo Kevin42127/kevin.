@@ -1,8 +1,7 @@
 'use client'
 
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { smoothScrollToElement } from '../lib/smoothScrollUtils'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 import DropdownSearch from './DropdownSearch'
 import { ThemeToggle } from './ThemeToggle'
@@ -11,35 +10,35 @@ export default function Navigation() {
   const { t, i18n } = useTranslationSafe()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isClient, setIsClient] = useState(false)
+  const scrollYRef = useRef(0)
+  const pendingScrollRef = useRef<string | null>(null)
 
   useEffect(() => {
     setIsClient(true)
   }, [])
 
   useEffect(() => {
-    // 防止背景滾動
     if (isMenuOpen) {
+      scrollYRef.current = window.scrollY
       document.body.style.overflow = 'hidden'
-      document.body.style.position = 'fixed'
-      document.body.style.width = '100%'
-      document.body.style.top = `-${window.scrollY}px`
     } else {
-      const scrollY = document.body.style.top
       document.body.style.overflow = ''
-      document.body.style.position = ''
-      document.body.style.width = ''
-      document.body.style.top = ''
-      if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY || '0', 10) * -1)
+
+      if (pendingScrollRef.current) {
+        const targetId = pendingScrollRef.current
+        pendingScrollRef.current = null
+        requestAnimationFrame(() => {
+          const el = document.querySelector(targetId)
+          if (el) {
+            const top = el.getBoundingClientRect().top + window.pageYOffset - 64
+            window.scrollTo({ top, behavior: 'smooth' })
+          }
+        })
       }
     }
 
-    // 清理函數
     return () => {
       document.body.style.overflow = ''
-      document.body.style.position = ''
-      document.body.style.width = ''
-      document.body.style.top = ''
     }
   }, [isMenuOpen])
 
@@ -55,33 +54,28 @@ export default function Navigation() {
 
   const externalLinks: Array<{ name: string; href: string; external: boolean }> = useMemo(() => [], [])
 
-  const scrollToSection = (href: string) => {
-    smoothScrollToElement(href, 64)
-    setIsMenuOpen(false)
-    // 清理背景滾動鎖定
-    document.body.style.overflow = ''
-    document.body.style.position = ''
-    document.body.style.width = ''
-    document.body.style.top = ''
-  }
-
-  const handleNavigation = (href: string, external: boolean = false) => {
+  const handleNavigation = useCallback((href: string, external: boolean = false) => {
     if (external) {
-      window.location.href = href
-    } else if (href.startsWith('/')) {
-      window.location.href = href
-    } else if (href.startsWith('#')) {
-      const element = document.querySelector(href)
-      if (element) {
-        scrollToSection(href)
-      } else {
-        window.location.href = `/${href}`
-      }
-    } else {
-      scrollToSection(href)
+      window.open(href, '_blank', 'noopener,noreferrer')
+      return
     }
-    setIsMenuOpen(false)
-  }
+    if (href.startsWith('/')) {
+      window.location.href = href
+      return
+    }
+    if (href.startsWith('#')) {
+      if (isMenuOpen) {
+        pendingScrollRef.current = href
+        setIsMenuOpen(false)
+      } else {
+        const el = document.querySelector(href)
+        if (el) {
+          const top = el.getBoundingClientRect().top + window.pageYOffset - 64
+          window.scrollTo({ top, behavior: 'smooth' })
+        }
+      }
+    }
+  }, [isMenuOpen])
 
   return (
     <>

@@ -1,17 +1,5 @@
-declare global {
-  interface Window {
-    __lenis?: {
-      scrollTo: (target: string | Element | number, options?: { offset?: number }) => void
-    }
-  }
-}
-
 export const locoScrollTo = (target: string | Element | number, options: { offset?: number; duration?: number } = {}) => {
-  if (typeof window !== 'undefined' && window.__lenis) {
-    window.__lenis.scrollTo(target, { offset: options.offset })
-    return
-  }
-  // Native smooth scroll with optional offset
+  // 完全使用原生滾動，不使用 Lenis
   if (typeof target === 'number') {
     window.scrollTo({ top: target, behavior: 'smooth' })
     return
