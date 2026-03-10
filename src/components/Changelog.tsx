@@ -16,6 +16,18 @@ export default function Changelog() {
 
   const changelogData: ChangelogItem[] = [
     {
+      version: '3.3.0',
+      date: '2026-03-10',
+      type: 'minor',
+      changes: [
+        '滾動體驗升級：從 Lenis 改用 LocomotiveScroll',
+        '混合滾動方案：主頁面使用 LocomotiveScroll，快捷導航使用原生滾動',
+        '解決滾動抖動問題：優化滾動初始化和事件處理',
+        '作品篩選優化：修復深色模式下白色外框問題',
+        'TypeScript 類型修正：解決 LocomotiveScroll 配置錯誤'
+      ]
+    },
+    {
       version: '3.2.0',
       date: '2026-03-04',
       type: 'minor',

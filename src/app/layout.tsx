@@ -4,7 +4,7 @@ import './globals.css'
 import I18nProvider from '../components/I18nProvider'
 import GsapProvider from '../components/GsapProvider'
 import MotionProvider from '../components/MotionProvider'
-import SmoothScrollProvider from '../components/SmoothScrollProvider'
+import LocomotiveScrollProvider from '../components/LocomotiveScrollProvider'
 import { ThemeProvider } from '../components/ThemeProvider'
 
 const inter = Inter({
@@ -85,13 +85,13 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <MotionProvider>
-            <SmoothScrollProvider>
+            <LocomotiveScrollProvider>
               <GsapProvider>
                 <I18nProvider>
                   {children}
                 </I18nProvider>
               </GsapProvider>
-            </SmoothScrollProvider>
+            </LocomotiveScrollProvider>
           </MotionProvider>
         </ThemeProvider>
       </body>

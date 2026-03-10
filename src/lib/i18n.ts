@@ -684,6 +684,15 @@ const zhResources = {
     changes: '項更新',
     footer: '持續改進中，敬請期待更多功能',
     versions: {
+      '3.3.0': {
+        changes: [
+          '滾動體驗升級：從 Lenis 改用 LocomotiveScroll',
+          '混合滾動方案：主頁面使用 LocomotiveScroll，快捷導航使用原生滾動',
+          '解決滾動抖動問題：優化滾動初始化和事件處理',
+          '作品篩選優化：修復深色模式下白色外框問題',
+          'TypeScript 類型修正：解決 LocomotiveScroll 配置錯誤'
+        ]
+      },
       '3.2.0': {
         changes: [
           '作品集更新：新增 WinTab 作品，移除 AcadAI',
@@ -1544,6 +1553,15 @@ const enResources = {
     changes: 'updates',
     footer: 'Continuously improving, stay tuned for more features',
     versions: {
+      '3.3.0': {
+        changes: [
+          'Scroll experience upgrade: Switched from Lenis to LocomotiveScroll',
+          'Hybrid scroll solution: LocomotiveScroll for page scrolling, native scroll for quick navigation',
+          'Fixed scroll jitter: Optimized scroll initialization and event handling',
+          'Portfolio filter optimization: Fixed white outline issue in dark mode',
+          'TypeScript type fix: Resolved LocomotiveScroll configuration errors'
+        ]
+      },
       '3.2.0': {
         changes: [
           'Portfolio update: Added WinTab project, removed AcadAI',

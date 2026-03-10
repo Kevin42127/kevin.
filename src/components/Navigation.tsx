@@ -28,6 +28,7 @@ export default function Navigation() {
         const targetId = pendingScrollRef.current
         pendingScrollRef.current = null
         requestAnimationFrame(() => {
+          // 使用瀏覽器原生滾動
           const el = document.querySelector(targetId)
           if (el) {
             const top = el.getBoundingClientRect().top + window.pageYOffset - 64
@@ -68,6 +69,7 @@ export default function Navigation() {
         pendingScrollRef.current = href
         setIsMenuOpen(false)
       } else {
+        // 使用瀏覽器原生滾動
         const el = document.querySelector(href)
         if (el) {
           const top = el.getBoundingClientRect().top + window.pageYOffset - 64

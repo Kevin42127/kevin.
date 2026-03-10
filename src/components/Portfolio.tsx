@@ -163,10 +163,11 @@ export default function Portfolio() {
               {categories.map((categoryKey) => (
                 <button
                   key={categoryKey}
+                  data-category-filter
                   onClick={() => setSelectedCategory(categoryKey)}
-                  className={`flex-shrink-0 px-3 sm:px-4 md:px-4 lg:px-5 py-1.5 sm:py-2 md:py-2 lg:py-2.5 rounded-full text-xs sm:text-sm md:text-sm lg:text-base font-medium transition-all duration-200 whitespace-nowrap ${
+                  className={`flex-shrink-0 px-3 sm:px-4 md:px-4 lg:px-5 py-1.5 sm:py-2 md:py-2 lg:py-2.5 rounded-full text-xs sm:text-sm md:text-sm lg:text-base font-medium transition-all duration-200 whitespace-nowrap outline-none focus:outline-none focus:ring-0 focus:ring-offset-0 ${
                     selectedCategory === categoryKey
-                      ? 'bg-[var(--color-secondary)] text-white'
+                      ? 'bg-[var(--color-secondary)] text-white border-2 border-[var(--color-secondary)]'
                       : 'bg-[var(--color-surface)] text-[rgb(var(--foreground-rgb))] border border-[var(--color-divider)] hover:bg-[var(--color-secondary)] hover:text-white hover:border-[var(--color-secondary)]'
                   }`}
                 >

@@ -710,5 +710,50 @@ a:focus {
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
+  /* 禁止篩選按鈕的所有 focus 樣式 */
+  button[data-category-filter],
+  button[data-category-filter]:focus,
+  button[data-category-filter]:focus-visible,
+  button[data-category-filter]:focus-within {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: inherit !important;
+  }
+
+  /* 針對所有可能的 focus 狀態 */
+  button:focus:not(:focus-visible) {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  button:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  /* 移動設備上隱藏自定義游標 */
+  @media (hover: none) and (pointer: coarse) {
+    .custom-cursor,
+    .custom-cursor-dot {
+      display: none !important;
+    }
+    
+    body {
+      cursor: auto !important;
+    }
+  }
+
+  /* 觸摸設備上恢復原生游標 */
+  @media (max-width: 768px) {
+    body {
+      cursor: auto !important;
+    }
+    
+    .custom-cursor,
+    .custom-cursor-dot {
+      display: none !important;
+    }
+  }
 }
 

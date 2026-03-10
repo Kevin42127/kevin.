@@ -13,17 +13,33 @@ import WelcomeModal from '@/components/WelcomeModal'
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <>
       <Navigation />
-      <Hero />
-      <About />
-      <Portfolio />
-      <Skills />
-      <Experience />
-      <Contact />
-      <Footer />
-      <AIAssistant />
       <WelcomeModal />
-    </main>
+      <AIAssistant />
+      <main>
+        <div data-scroll-section>
+          <Hero />
+        </div>
+        <div data-scroll-section>
+          <About />
+        </div>
+        <div data-scroll-section>
+          <Portfolio />
+        </div>
+        <div data-scroll-section>
+          <Skills />
+        </div>
+        <div data-scroll-section>
+          <Experience />
+        </div>
+        <div data-scroll-section>
+          <Contact />
+        </div>
+        <div data-scroll-section>
+          <Footer />
+        </div>
+      </main>
+    </>
   )
 }
