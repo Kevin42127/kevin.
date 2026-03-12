@@ -26,7 +26,7 @@ const LocomotiveScrollProvider = ({ children }: LocomotiveScrollProviderProps) =
         const LocomotiveScroll = LocomotiveScrollModule.default
 
         // 初始化 LocomotiveScroll
-        scrollInstanceRef.current = new (LocomotiveScroll as any)({
+        scrollInstanceRef.current = new LocomotiveScroll({
           el: scrollRef.current,
           smooth: true,
           multiplier: 0.8,
@@ -44,12 +44,12 @@ const LocomotiveScrollProvider = ({ children }: LocomotiveScrollProviderProps) =
 
         window.locomotiveScroll = scrollInstanceRef.current
 
-        // 等待下一幀更新
-        requestAnimationFrame(() => {
-          if (scrollInstanceRef.current) {
+        // 等待初始化完成後再更新
+        setTimeout(() => {
+          if (scrollInstanceRef.current && typeof scrollInstanceRef.current.update === 'function') {
             scrollInstanceRef.current.update()
           }
-        })
+        }, 100)
 
       } catch (error) {
         console.error('Failed to initialize LocomotiveScroll:', error)
@@ -65,7 +65,9 @@ const LocomotiveScrollProvider = ({ children }: LocomotiveScrollProviderProps) =
       
       if (scrollInstanceRef.current) {
         try {
-          scrollInstanceRef.current.destroy()
+          if (typeof scrollInstanceRef.current.destroy === 'function') {
+            scrollInstanceRef.current.destroy()
+          }
         } catch (error) {
           console.error('Error destroying LocomotiveScroll:', error)
         }

@@ -16,6 +16,19 @@ export default function Changelog() {
 
   const changelogData: ChangelogItem[] = [
     {
+      version: '3.4.0',
+      date: '2026-03-12',
+      type: 'minor',
+      changes: [
+        '新增 AI 字體推薦系統：智能分析專案需求，推薦最適合的字體組合',
+        'Google Fonts 整合：支援 10 種專業字體，包含 Inter、Roboto、Noto Sans TC 等',
+        '智能推薦邏輯：根據專案類型、設計風格、目標語言等條件推薦字體',
+        '雙語言支援：完整的中文和英文翻譯系統',
+        '響應式設計：支援桌面版和移動端的完整體驗',
+        '導覽更新：新增字體推薦連結，並添加 New 標籤提示'
+      ]
+    },
+    {
       version: '3.3.0',
       date: '2026-03-10',
       type: 'minor',
@@ -299,18 +312,22 @@ export default function Changelog() {
   }
 
   return (
-    <section id="changelog" className="py-16 sm:py-20 bg-[var(--color-section-soft)]">
+    <section id="changelog" className="py-16 sm:py-20 bg-[var(--color-section-soft)] relative">
+      {/* 返回首頁按鈕 - 左上角 */}
+      <div className="absolute top-8 left-8 z-20">
+        <button
+          onClick={() => window.location.href = '/'}
+          className="p-2 rounded-lg transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+            <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/>
+          </svg>
+        </button>
+      </div>
+
       <div className="w-full max-w-full px-6 sm:px-8 lg:px-12">
         <div className="section-surface w-full">
           <div className="text-center mb-12 sm:mb-14 md:mb-16">
-            <div className="mb-6">
-              <button
-                onClick={() => window.location.href = '/'}
-                className="btn-secondary"
-              >
-                {t('changelog.backToHome', '返回首頁')}
-              </button>
-            </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[rgb(var(--foreground-rgb))] mb-3 sm:mb-4 px-4">
               {t('changelog.title', '更新日誌')}
             </h2>

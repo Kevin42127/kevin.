@@ -10,6 +10,7 @@ const zhResources = {
     experience: '經驗',
     contact: '聯繫',
     changelog: '更新日誌',
+    fontRecommendation: '字體推薦',
     kevin: 'Kevin.',
     menu: '選單',
     settings: '設定',
@@ -18,6 +19,120 @@ const zhResources = {
     openMenu: '打開選單',
     closeMenu: '關閉選單',
     selectLanguage: '選擇語言'
+  },
+  fontRecommendation: {
+    hero: {
+      title: 'AI 字體推薦系統',
+      description: '運用人工智慧技術，為您的專案推薦最適合的字體組合。<br />分析網站風格、內容類型與使用者體驗，打造完美的視覺呈現。',
+      startAnalysis: '開始分析',
+      backToHome: '返回首頁',
+      instantResults: '即時分析 · 智能推薦 · 一鍵套用'
+    },
+    analyzer: {
+      title: '智能分析',
+      subtitle: '告訴我們您的專案需求，AI 將為您推薦最適合的字體組合',
+      selectOption: '請選擇...',
+      labels: {
+        projectType: '專案類型',
+        style: '設計風格',
+        language: '主要語言',
+        targetAudience: '目標受眾'
+      },
+      projectTypes: {
+        portfolio: '個人作品集',
+        blog: '部落格',
+        ecommerce: '電商網站',
+        corporate: '企業官網',
+        education: '教育平台',
+        tech: '技術文件'
+      },
+      styles: {
+        modern: '現代簡約',
+        classic: '經典優雅',
+        playful: '活潑創意',
+        professional: '專業商務',
+        minimal: '極簡主義',
+        bold: '大膽前衛'
+      },
+      languages: {
+        zh: '中文為主',
+        en: '英文為主',
+        mixed: '中英混合',
+        ja: '日文為主'
+      },
+      audiences: {
+        general: '一般大眾',
+        professional: '專業人士',
+        young: '年輕族群',
+        academic: '學術界'
+      },
+      startAnalysis: '開始分析',
+      analyzing: '分析中...'
+    },
+    recommendations: {
+      title: 'AI 推薦字體',
+      subtitle: '基於您的需求分析，我們為您推薦以下字體組合',
+      noAnalysis: '請先完成上方分析表單，獲取專屬字體推薦',
+      categories: {
+        sansSerif: '無襯線字體',
+        chinese: '中文字體',
+        mono: '等寬字體'
+      },
+      description: '描述',
+      reason: '推薦理由',
+      preview: '字體預覽',
+      inter: {
+        description: '現代化的無襯線字體，專為數位螢幕設計',
+        reason: '極佳的可讀性與現代感，適合各種數位產品'
+      },
+      notoSans: {
+        description: 'Google 開發的開源中文字體，支援完整字集',
+        reason: '完整的中文字元支援，與 Inter 搭配使用效果絕佳'
+      },
+      jetbrains: {
+        description: '專為程式碼設計的等寬字體',
+        reason: '清晰的字元區分，適合程式碼與技術文件展示'
+      },
+      roboto: {
+        description: 'Google 開發的現代化無襯線字體，廣泛用於 Android 系統',
+        reason: '友善的設計和優秀的可讀性，適合各種數位介面'
+      },
+      openSans: {
+        description: '人機化設計的無襯線字體，專為網頁和行動裝置優化',
+        reason: '極佳的螢幕可讀性，適合長文本閱讀'
+      },
+      sourceHanSans: {
+        description: 'Adobe 開發的開源中文字體，現代化設計風格',
+        reason: '與西文字體搭配和諧，支援多種字重'
+      },
+      firaCode: {
+        description: '專為程式設計師設計的等寬字體，包含程式碼連字功能',
+        reason: '連字功能提升程式碼可讀性，適合開發者使用'
+      },
+      sourceCodePro: {
+        description: 'Adobe 開發的等寬字體，專為程式碼顯示優化',
+        reason: '清晰的字元區分和舒適的閱讀體驗'
+      },
+      lato: {
+        description: '優雅而友好的無襯線字體，適合商務和專業場合',
+        reason: '專業的視覺形象，適合企業和商務網站'
+      },
+      montserrat: {
+        description: '現代化的幾何無襯線字體，適用於標題和內文',
+        reason: '清晰的字元區分和優秀的可讀性，適合各種數位介面'
+      },
+      merriweather: {
+        description: '經典的襯線字體，適用於長文本閱讀',
+        reason: '優秀的可讀性和舒適的閱讀體驗，適合長文本閱讀'
+      },
+      raleway: {
+        description: '優雅的襯線字體，適用於標題和內文',
+        reason: '清晰的字元區分和優秀的可讀性，適合各種數位介面'
+      },
+      emptyTitle: '等待分析結果',
+      emptyDescription: '請先完成上方的需求分析表單，AI 將為您推薦最適合的字體組合',
+      goToAnalysis: '前往分析'
+    }
   },
   hero: {
     title: 'Kevin.',
@@ -684,6 +799,16 @@ const zhResources = {
     changes: '項更新',
     footer: '持續改進中，敬請期待更多功能',
     versions: {
+      '3.4.0': {
+        changes: [
+          '新增 AI 字體推薦系統：智能分析專案需求，推薦最適合的字體組合',
+          'Google Fonts 整合：支援 10 種專業字體，包含 Inter、Roboto、Noto Sans TC 等',
+          '智能推薦邏輯：根據專案類型、設計風格、目標語言等條件推薦字體',
+          '雙語言支援：完整的中文和英文翻譯系統',
+          '響應式設計：支援桌面版和移動端的完整體驗',
+          '導覽更新：新增字體推薦連結，並添加 New 標籤提示'
+        ]
+      },
       '3.3.0': {
         changes: [
           '滾動體驗升級：從 Lenis 改用 LocomotiveScroll',
@@ -879,6 +1004,7 @@ const enResources = {
     experience: 'Experience',
     contact: 'Contact',
     changelog: 'Changelog',
+    fontRecommendation: 'Font Recommendation',
     kevin: 'Kevin.',
     menu: 'Menu',
     settings: 'Settings',
@@ -887,6 +1013,107 @@ const enResources = {
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
     selectLanguage: 'Select language'
+  },
+  fontRecommendation: {
+    hero: {
+      title: 'AI Font Recommendation System',
+      description: 'Use AI technology to recommend the most suitable font combinations for your projects.<br />Analyze website style, content type, and user experience to create perfect visual presentation.',
+      startAnalysis: 'Start Analysis',
+      backToHome: 'Back to Home',
+      instantResults: 'Instant Analysis · Smart Recommendations · One-Click Apply'
+    },
+    analyzer: {
+      title: 'Intelligent Analysis',
+      subtitle: 'Tell us your project requirements, and AI will recommend the most suitable font combinations',
+      selectOption: 'Please select...',
+      labels: {
+        projectType: 'Project Type',
+        style: 'Design Style',
+        language: 'Primary Language',
+        targetAudience: 'Target Audience'
+      },
+      projectTypes: {
+        portfolio: 'Personal Portfolio',
+        blog: 'Blog',
+        ecommerce: 'E-commerce Website',
+        corporate: 'Corporate Website',
+        education: 'Education Platform',
+        tech: 'Technical Documentation'
+      },
+      styles: {
+        modern: 'Modern Minimal',
+        classic: 'Classic Elegant',
+        playful: 'Playful Creative',
+        professional: 'Professional Business',
+        minimal: 'Minimalist',
+        bold: 'Bold Avant-garde'
+      },
+      languages: {
+        zh: 'Chinese Primary',
+        en: 'English Primary',
+        mixed: 'Chinese-English Mixed',
+        ja: 'Japanese Primary'
+      },
+      audiences: {
+        general: 'General Public',
+        professional: 'Professionals',
+        young: 'Young Demographics',
+        academic: 'Academia'
+      },
+      startAnalysis: 'Start Analysis',
+      analyzing: 'Analyzing...'
+    },
+    recommendations: {
+      title: 'AI Recommended Fonts',
+      subtitle: 'Based on your requirements analysis, we recommend the following font combinations',
+      noAnalysis: 'Please complete the analysis form above to get personalized font recommendations',
+      categories: {
+        sansSerif: 'Sans-serif',
+        chinese: 'Chinese Font',
+        mono: 'Monospace'
+      },
+      description: 'Description',
+      reason: 'Recommendation Reason',
+      inter: {
+        description: 'Modern sans-serif font designed specifically for digital screens',
+        reason: 'Excellent readability and modern feel, suitable for all digital products'
+      },
+      notoSans: {
+        description: 'Open-source Chinese font developed by Google with complete character set',
+        reason: 'Complete Chinese character support, works perfectly with Inter'
+      },
+      jetbrains: {
+        description: 'Monospace font designed specifically for code',
+        reason: 'Clear character differentiation, suitable for code and technical documentation'
+      },
+      roboto: {
+        description: 'Modern sans-serif font developed by Google, widely used in Android system',
+        reason: 'Friendly design and excellent readability, suitable for various digital interfaces'
+      },
+      openSans: {
+        description: 'Humanist sans-serif font optimized for web and mobile devices',
+        reason: 'Excellent screen readability, suitable for long-form text reading'
+      },
+      sourceHanSans: {
+        description: 'Open-source Chinese font developed by Adobe with modern design style',
+        reason: 'Harmonious pairing with Latin fonts, supports multiple weights'
+      },
+      firaCode: {
+        description: 'Monospace font designed for programmers with programming ligatures',
+        reason: 'Ligature features enhance code readability, perfect for developers'
+      },
+      sourceCodePro: {
+        description: 'Monospace font developed by Adobe, optimized for code display',
+        reason: 'Clear character differentiation and comfortable reading experience'
+      },
+      lato: {
+        description: 'Elegant and friendly sans-serif font, suitable for business and professional contexts',
+        reason: 'Professional visual image, suitable for corporate and business websites'
+      },
+      emptyTitle: 'Waiting for Analysis Results',
+      emptyDescription: 'Please complete the requirements analysis form above, and AI will recommend the most suitable font combinations',
+      goToAnalysis: 'Go to Analysis'
+    }
   },
   hero: {
     title: 'Kevin.',
@@ -1553,6 +1780,16 @@ const enResources = {
     changes: 'updates',
     footer: 'Continuously improving, stay tuned for more features',
     versions: {
+      '3.4.0': {
+        changes: [
+          'Added AI Font Recommendation System: Intelligent analysis of project requirements to recommend the most suitable font combinations',
+          'Google Fonts Integration: Support for 10 professional fonts including Inter, Roboto, Noto Sans TC, etc.',
+          'Smart Recommendation Logic: Recommend fonts based on project type, design style, target language and other conditions',
+          'Bilingual Support: Complete Chinese and English translation system',
+          'Responsive Design: Full experience support for desktop and mobile',
+          'Navigation Update: Added font recommendation link with New tag indicator'
+        ]
+      },
       '3.3.0': {
         changes: [
           'Scroll experience upgrade: Switched from Lenis to LocomotiveScroll',

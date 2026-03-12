@@ -50,6 +50,7 @@ export default function Navigation() {
     { name: t('navigation.skills', '技能'), href: '#skills' },
     { name: t('navigation.experience', '經驗'), href: '#experience' },
     { name: t('navigation.contact', '聯繫'), href: '#contact' },
+    { name: t('navigation.fontRecommendation', '字體推薦'), href: '/font-recommendation' },
     { name: t('navigation.changelog', '更新日誌'), href: '/changelog' },
   ], [t, i18n.language])
 
@@ -100,9 +101,14 @@ export default function Navigation() {
                   <button
                     key={item.name}
                     onClick={() => handleNavigation(item.href)}
-                    className="btn-nav-pill"
+                    className="btn-nav-pill group"
                   >
                     {item.name}
+                    {item.href === '/font-recommendation' && (
+                      <span className="ml-2 text-xs font-semibold text-[var(--color-primary)] group-hover:text-white">
+                        New
+                      </span>
+                    )}
                   </button>
                 ))}
                 {externalLinks.map((item) => (
@@ -202,9 +208,16 @@ export default function Navigation() {
                     <button
                       key={item.name}
                       onClick={() => handleNavigation(item.href)}
-                      className="block w-full text-left px-4 py-3 text-base font-medium text-[rgb(var(--foreground-rgb))] hover:text-white hover:bg-[var(--color-primary)] transition-all duration-200 ease-out border border-transparent rounded-lg"
+                      className="block w-full text-left px-4 py-3 text-base font-medium text-[rgb(var(--foreground-rgb))] hover:text-white hover:bg-[var(--color-primary)] transition-all duration-200 ease-out border border-transparent rounded-lg group"
                     >
-                      {item.name}
+                      <div className="flex items-center justify-between">
+                        <span>{item.name}</span>
+                        {item.href === '/font-recommendation' && (
+                          <span className="text-xs font-semibold text-[var(--color-primary)] group-hover:text-white">
+                            New
+                          </span>
+                        )}
+                      </div>
                     </button>
                   ))}
                   {externalLinks.map((item) => (
