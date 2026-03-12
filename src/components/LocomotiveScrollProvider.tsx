@@ -27,7 +27,7 @@ const LocomotiveScrollProvider = ({ children }: LocomotiveScrollProviderProps) =
 
         // 初始化 LocomotiveScroll
         scrollInstanceRef.current = new LocomotiveScroll({
-          el: scrollRef.current,
+          container: scrollRef.current,
           smooth: true,
           multiplier: 0.8,
           smartphone: {
@@ -40,7 +40,7 @@ const LocomotiveScrollProvider = ({ children }: LocomotiveScrollProviderProps) =
           touchMultiplier: 2,
           resetNativeScroll: true,
           lerp: 0.1,
-        })
+        } as any)
 
         window.locomotiveScroll = scrollInstanceRef.current
 
