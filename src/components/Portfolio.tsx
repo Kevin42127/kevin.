@@ -53,12 +53,12 @@ export default function Portfolio() {
     },
     {
       id: 4,
-      title: t('portfolio.aiTeacher.title', 'AI老師'),
-      description: t('portfolio.aiTeacher.description', '運用 Vue 與 Vite 打造的 AI 協作專案，結合教育科技與人工智能，提供個人化學習輔助與智能問答系統'),
-      image: '/AI老師.png',
-      technologies: ['Vue', 'Vite', t('portfolio.aiCollaboration', 'AI協作')],
+      title: t('portfolio.aiTeacher.title', 'ArtAI'),
+      description: t('portfolio.aiTeacher.description', 'AI 圖像生成平台，運用 React 與 AI 協作打造，整合先進的人工智能技術，提供高品質的圖像生成與藝術創作服務'),
+      image: '/ArtAI.png',
+      technologies: ['React', 'AI', t('portfolio.aiCollaboration', 'AI協作')],
       github: '#',
-      demo: 'https://homeaiofficial.vercel.app/',
+      demo: 'https://artai-roan.vercel.app/',
       featured: true
     },
     {

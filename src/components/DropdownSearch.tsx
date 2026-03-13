@@ -249,8 +249,8 @@ export default function DropdownSearch() {
     },
     {
       id: 'aiteacher',
-      title: t('portfolio.aiTeacher.title', 'AI老師'),
-      description: t('portfolio.aiTeacher.description', '運用 Vue 與 Vite 打造的 AI 協作專案'),
+      title: t('portfolio.aiTeacher.title', 'ArtAI'),
+      description: t('portfolio.aiTeacher.description', 'AI 圖像生成平台，運用 React 與 AI 協作打造'),
       type: 'project',
       href: '#portfolio',
       icon: typeIconMap.project

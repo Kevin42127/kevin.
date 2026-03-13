@@ -220,8 +220,8 @@ const zhResources = {
       description: '運用 Vue 與 Vite 打造 AI 食譜生成平台，整合智能推薦系統，提供個性化料理建議與營養分析功能'
     },
     aiTeacher: {
-      title: 'AI老師',
-      description: '運用 Vue 與 Vite 打造的 AI 協作專案，結合教育科技與人工智能，提供個人化學習輔助與智能問答系統'
+      title: 'ArtAI',
+      description: 'AI 圖像生成平台，運用 React 與 AI 協作打造，整合先進的人工智能技術，提供高品質的圖像生成與藝術創作服務'
     },
     sumVid: {
       title: 'SumVid',
@@ -1201,8 +1201,8 @@ const enResources = {
       description: 'AI recipe generation platform built with Vue and Vite, integrating intelligent recommendation systems to provide personalized recipe suggestions and nutritional analysis features'
     },
     aiTeacher: {
-      title: 'AI Teacher',
-      description: 'AI collaboration project built with Vue and Vite, combining educational technology and artificial intelligence to provide personalized learning assistance and intelligent Q&A systems'
+      title: 'ArtAI',
+      description: 'AI image generation platform built with React and AI collaboration, integrating advanced artificial intelligence technology to provide high-quality image generation and artistic creation services'
     },
     sumVid: {
       title: 'SumVid',
