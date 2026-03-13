@@ -55,7 +55,7 @@ export default function Portfolio() {
       id: 4,
       title: t('portfolio.aiTeacher.title', 'ArtAI'),
       description: t('portfolio.aiTeacher.description', 'AI 圖像生成平台，運用 React 與 AI 協作打造，整合先進的人工智能技術，提供高品質的圖像生成與藝術創作服務'),
-      image: '/ArtAI.png',
+      image: '/artai.png',
       technologies: ['React', 'AI', t('portfolio.aiCollaboration', 'AI協作')],
       github: '#',
       demo: 'https://artai-roan.vercel.app/',
