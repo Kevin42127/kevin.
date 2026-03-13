@@ -31,6 +31,22 @@ const zhResources = {
     analyzer: {
       title: '智能分析',
       subtitle: '告訴我們您的專案需求，AI 將為您推薦最適合的字體組合',
+      chat: {
+        welcome: '您好！我是 AI 字體推薦助手。為了給您推薦最適合的字體，我需要了解一些關於您專案的資訊。讓我們開始吧！',
+        acknowledge: '了解了！',
+        complete: '很好！我已經收集到所有必要資訊，現在為您分析最適合的字體組合...',
+        analyzing: '🤖 正在分析您的需求，為您推薦最適合的字體組合...',
+        recommendationReady: '✨ 分析完成！我已為您推薦了最適合的字體組合：',
+        noRecommendations: '抱歉，無法為您推薦字體。請確保提供了完整的專案資訊。',
+        inputPlaceholder: '請輸入您的回答...',
+        send: '發送',
+        questions: {
+          projectType: '請問您的專案是什麼類型？例如：個人作品集、部落格、電商網站、企業官網、教育平台、技術文件等',
+          style: '您希望呈現什麼樣的設計風格？例如：現代簡約、經典優雅、活潑創意、專業商務、極簡主義、大膽前衛等',
+          language: '您的專案主要使用什麼語言？例如：中文為主、英文為主、中英混合、日文為主等',
+          targetAudience: '您的目標受眾是誰？例如：一般大眾、專業人士、年輕族群、學術界等'
+        }
+      },
       selectOption: '請選擇...',
       labels: {
         projectType: '專案類型',
@@ -44,7 +60,7 @@ const zhResources = {
         ecommerce: '電商網站',
         corporate: '企業官網',
         education: '教育平台',
-        tech: '技術文件'
+        tech: '文件'
       },
       styles: {
         modern: '現代簡約',
@@ -58,7 +74,7 @@ const zhResources = {
         zh: '中文為主',
         en: '英文為主',
         mixed: '中英混合',
-        ja: '日文為主'
+        international: '國際化'
       },
       audiences: {
         general: '一般大眾',
@@ -1023,14 +1039,23 @@ const enResources = {
       instantResults: 'Instant Analysis · Smart Recommendations · One-Click Apply'
     },
     analyzer: {
-      title: 'Intelligent Analysis',
+      title: 'Smart Analysis',
       subtitle: 'Tell us your project requirements, and AI will recommend the most suitable font combinations',
-      selectOption: 'Please select...',
-      labels: {
-        projectType: 'Project Type',
-        style: 'Design Style',
-        language: 'Primary Language',
-        targetAudience: 'Target Audience'
+      chat: {
+        welcome: 'Hello! I am the AI Font Recommendation Assistant. To recommend the most suitable fonts for you, I need to understand some information about your project. Let\'s start!',
+        acknowledge: 'Got it!',
+        complete: 'Great! I have collected all necessary information, now analyzing the most suitable font combinations for you...',
+        analyzing: '🤖 Analyzing your needs and recommending the most suitable font combinations...',
+        recommendationReady: '✨ Analysis complete! I have recommended the most suitable font combinations for you:',
+        noRecommendations: 'Sorry, unable to recommend fonts. Please ensure complete project information is provided.',
+        inputPlaceholder: 'Please enter your answer...',
+        send: 'Send',
+        questions: {
+          projectType: 'What type of project is yours? For example: personal portfolio, blog, e-commerce website, corporate website, education platform, technical documentation, etc.',
+          style: 'What kind of design style do you want to present? For example: modern minimalist, classic elegant, playful creative, professional business, minimalism, bold avant-garde, etc.',
+          language: 'What language does your project mainly use? For example: Chinese-based, English-based, Chinese-English mixed, Japanese-based, etc.',
+          targetAudience: 'Who is your target audience? For example: general public, professionals, young people, academia, etc.'
+        }
       },
       projectTypes: {
         portfolio: 'Personal Portfolio',
@@ -1038,27 +1063,33 @@ const enResources = {
         ecommerce: 'E-commerce Website',
         corporate: 'Corporate Website',
         education: 'Education Platform',
-        tech: 'Technical Documentation'
+        tech: 'Documentation'
       },
       styles: {
-        modern: 'Modern Minimal',
+        modern: 'Modern Minimalist',
         classic: 'Classic Elegant',
         playful: 'Playful Creative',
         professional: 'Professional Business',
-        minimal: 'Minimalist',
+        minimal: 'Minimalism',
         bold: 'Bold Avant-garde'
       },
       languages: {
-        zh: 'Chinese Primary',
-        en: 'English Primary',
+        zh: 'Chinese-based',
+        en: 'English-based',
         mixed: 'Chinese-English Mixed',
-        ja: 'Japanese Primary'
+        international: 'International'
       },
       audiences: {
         general: 'General Public',
         professional: 'Professionals',
-        young: 'Young Demographics',
+        young: 'Young People',
         academic: 'Academia'
+      },
+      labels: {
+        projectType: 'Project Type',
+        style: 'Design Style',
+        language: 'Primary Language',
+        targetAudience: 'Target Audience'
       },
       startAnalysis: 'Start Analysis',
       analyzing: 'Analyzing...'

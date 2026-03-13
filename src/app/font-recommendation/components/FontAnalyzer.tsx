@@ -69,7 +69,7 @@ export default function FontAnalyzer({ onAnalysisComplete }: FontAnalyzerProps) 
     { value: 'ecommerce', label: t('fontRecommendation.analyzer.projectTypes.ecommerce', '電商網站') },
     { value: 'corporate', label: t('fontRecommendation.analyzer.projectTypes.corporate', '企業官網') },
     { value: 'education', label: t('fontRecommendation.analyzer.projectTypes.education', '教育平台') },
-    { value: 'tech', label: t('fontRecommendation.analyzer.projectTypes.tech', '技術文件') }
+    { value: 'tech', label: t('fontRecommendation.analyzer.projectTypes.tech', '文件') }
   ]
 
   const styles: DropdownOption[] = [
@@ -85,7 +85,7 @@ export default function FontAnalyzer({ onAnalysisComplete }: FontAnalyzerProps) 
     { value: 'zh', label: t('fontRecommendation.analyzer.languages.zh', '中文為主') },
     { value: 'en', label: t('fontRecommendation.analyzer.languages.en', '英文為主') },
     { value: 'mixed', label: t('fontRecommendation.analyzer.languages.mixed', '中英混合') },
-    { value: 'ja', label: t('fontRecommendation.analyzer.languages.ja', '日文為主') }
+    { value: 'international', label: t('fontRecommendation.analyzer.languages.international', '國際化') }
   ]
 
   const audiences: DropdownOption[] = [
@@ -114,7 +114,26 @@ export default function FontAnalyzer({ onAnalysisComplete }: FontAnalyzerProps) 
   }
 
   return (
-    <section id="font-analyzer" className="py-20 bg-[var(--color-page)]">
+    <section id="font-analyzer" className="min-h-screen py-20 bg-[var(--color-page)] relative">
+      {/* 返回首頁按鈕 - 左上角 */}
+      <div className="absolute top-8 left-8 z-20">
+        <button
+          onClick={() => window.location.href = '/'}
+          className="p-2 rounded-lg transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+            <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/>
+          </svg>
+        </button>
+      </div>
+
+      {/* Beta 標籤 - 右上角 */}
+      <div className="absolute top-8 right-8 z-20">
+        <span className="px-3 py-1 text-sm font-semibold text-[var(--color-primary)] border border-[var(--color-primary)] rounded-full">
+          Beta
+        </span>
+      </div>
+
       <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -124,7 +143,7 @@ export default function FontAnalyzer({ onAnalysisComplete }: FontAnalyzerProps) 
           className="text-center mb-12"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-[rgb(var(--foreground-rgb))]">
-            {t('fontRecommendation.analyzer.title', '智能分析')}
+            {t('fontRecommendation.hero.title', 'AI 字體推薦系統')}
           </h2>
           <p className="text-lg text-[var(--color-text-muted)] max-w-2xl mx-auto">
             {t('fontRecommendation.analyzer.subtitle', '告訴我們您的專案需求，AI 將為您推薦最適合的字體組合')}

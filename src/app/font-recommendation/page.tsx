@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import FontRecommendationHero from './components/FontRecommendationHero'
 import FontAnalyzer from './components/FontAnalyzer'
 import FontRecommendations from './components/FontRecommendations'
 
@@ -21,9 +20,6 @@ export default function FontRecommendationPage() {
 
   return (
     <main className="min-h-screen">
-      <div data-scroll-section>
-        <FontRecommendationHero />
-      </div>
       <div data-scroll-section>
         <FontAnalyzer onAnalysisComplete={handleAnalysisComplete} />
       </div>
