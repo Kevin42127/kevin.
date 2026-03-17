@@ -20,7 +20,10 @@ export default function Navigation() {
   useEffect(() => {
     if (isMenuOpen) {
       scrollYRef.current = window.scrollY
-      document.body.style.overflow = 'hidden'
+      // 只在桌面端禁用主頁面滾動，移動端保持正常
+      if (window.innerWidth > 1024) {
+        document.body.style.overflow = 'hidden'
+      }
     } else {
       document.body.style.overflow = ''
 
@@ -185,7 +188,8 @@ export default function Navigation() {
               style={{ 
                 zIndex: 9999,
                 maxHeight: '100vh',
-                height: '100vh'
+                height: '100vh',
+                touchAction: 'pan-y' // 允許垂直滾動
               }}
               role="dialog"
               aria-modal="true"
@@ -202,7 +206,7 @@ export default function Navigation() {
                 </button>
               </div>
               
-              <div className="flex-1 overflow-y-auto">
+              <div className="flex-1 overflow-y-auto" style={{ touchAction: 'pan-y' }}>
                 <nav className="p-4">
                   {navItems.map((item) => (
                     <button

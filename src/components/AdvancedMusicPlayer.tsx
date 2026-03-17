@@ -13,12 +13,7 @@ export default function AdvancedMusicPlayer() {
   const { t } = useTranslationSafe()
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [isDragging, setIsDragging] = useState(false)
-  const [isDragFromBottom, setIsDragFromBottom] = useState(false)
   const [currentSongIndex, setCurrentSongIndex] = useState(0)
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [currentTime, setCurrentTime] = useState(0)
-  const [duration, setDuration] = useState(0)
-  
   const dragRef = useRef<HTMLDivElement>(null)
   const audioRef = useRef<HTMLAudioElement>(null)
   const startPos = useRef({ x: 0, y: 0 })
@@ -41,46 +36,41 @@ export default function AdvancedMusicPlayer() {
   const currentSong = songs[currentSongIndex]
 
   useEffect(() => {
-    // 初始化位置到底部中央
+    // 初始化位置到右下角
     const updateInitialPosition = () => {
       if (dragRef.current) {
         const rect = dragRef.current.getBoundingClientRect()
         const viewportWidth = window.innerWidth
         const viewportHeight = window.innerHeight
         
-        // 設定到底部中央，留出邊距
-        const initialX = (viewportWidth - rect.width) / 2
+        // 設定到右下角，留出邊距
+        const playerWidth = Math.min(280, viewportWidth * 0.9) // 響應式寬度
+        const initialX = viewportWidth - playerWidth - 16 // 16px = 1rem
         const initialY = viewportHeight - rect.height - 16 // 16px = 1rem
         
-        setPosition({ x: initialX, y: initialY })
-        setIsDragFromBottom(false)
+        setPosition({ x: Math.max(8, initialX), y: Math.max(8, initialY) }) // 確保不會超出邊界
       }
     }
 
     updateInitialPosition()
-    window.addEventListener('resize', updateInitialPosition)
     
-    return () => window.removeEventListener('resize', updateInitialPosition)
+    return () => {
+      // 清理函數
+    }
   }, [])
 
   useEffect(() => {
     const audio = audioRef.current
     if (!audio) return
 
-    const updateTime = () => setCurrentTime(audio.currentTime)
-    const updateDuration = () => setDuration(audio.duration)
     const handleEnded = () => {
       // 播放下一首
       playNextSong()
     }
 
-    audio.addEventListener('timeupdate', updateTime)
-    audio.addEventListener('loadedmetadata', updateDuration)
     audio.addEventListener('ended', handleEnded)
 
     return () => {
-      audio.removeEventListener('timeupdate', updateTime)
-      audio.removeEventListener('loadedmetadata', updateDuration)
       audio.removeEventListener('ended', handleEnded)
     }
   }, [currentSongIndex])
@@ -89,7 +79,6 @@ export default function AdvancedMusicPlayer() {
     if (!dragRef.current) return
     
     setIsDragging(true)
-    setIsDragFromBottom(false)
     
     const rect = dragRef.current.getBoundingClientRect()
     startPos.current = { x: rect.left, y: rect.top }
@@ -102,7 +91,6 @@ export default function AdvancedMusicPlayer() {
     if (!dragRef.current) return
     
     setIsDragging(true)
-    setIsDragFromBottom(false)
     
     const touch = e.touches[0]
     const rect = dragRef.current.getBoundingClientRect()
@@ -121,14 +109,20 @@ export default function AdvancedMusicPlayer() {
     const newX = startPos.current.x + deltaX
     const newY = startPos.current.y + deltaY
     
-    // 限制在視窗範圍內
+    // 獲取播放器尺寸
     const rect = dragRef.current.getBoundingClientRect()
-    const maxX = window.innerWidth - rect.width
-    const maxY = window.innerHeight - rect.height
+    const playerWidth = rect.width
+    const playerHeight = rect.height
+    
+    // 嚴格限制在視窗範圍內，留出安全邊距
+    const maxX = window.innerWidth - playerWidth - 8 // 右邊留 8px 邊距
+    const maxY = window.innerHeight - playerHeight - 8 // 底部留 8px 邊距
+    const minX = 8 // 左邊留 8px 邊距
+    const minY = 8 // 頂部留 8px 邊距
     
     setPosition({
-      x: Math.max(0, Math.min(newX, maxX)),
-      y: Math.max(0, Math.min(newY, maxY))
+      x: Math.max(minX, Math.min(newX, maxX)),
+      y: Math.max(minY, Math.min(newY, maxY))
     })
   }
 
@@ -142,14 +136,20 @@ export default function AdvancedMusicPlayer() {
     const newX = startPos.current.x + deltaX
     const newY = startPos.current.y + deltaY
     
-    // 限制在視窗範圍內
+    // 獲取播放器尺寸
     const rect = dragRef.current.getBoundingClientRect()
-    const maxX = window.innerWidth - rect.width
-    const maxY = window.innerHeight - rect.height
+    const playerWidth = rect.width
+    const playerHeight = rect.height
+    
+    // 嚴格限制在視窗範圍內，留出安全邊距
+    const maxX = window.innerWidth - playerWidth - 8 // 右邊留 8px 邊距
+    const maxY = window.innerHeight - playerHeight - 8 // 底部留 8px 邊距
+    const minX = 8 // 左邊留 8px 邊距
+    const minY = 8 // 頂部留 8px 邊距
     
     setPosition({
-      x: Math.max(0, Math.min(newX, maxX)),
-      y: Math.max(0, Math.min(newY, maxY))
+      x: Math.max(minX, Math.min(newX, maxX)),
+      y: Math.max(minY, Math.min(newY, maxY))
     })
     
     e.preventDefault()
@@ -212,13 +212,11 @@ export default function AdvancedMusicPlayer() {
   const playNextSong = () => {
     const nextIndex = (currentSongIndex + 1) % songs.length
     setCurrentSongIndex(nextIndex)
-    setCurrentTime(0)
     
     // 延迟播放新歌曲
     setTimeout(() => {
       if (audioRef.current) {
         audioRef.current.play()
-        setIsPlaying(true)
       }
     }, 100)
   }
@@ -226,48 +224,19 @@ export default function AdvancedMusicPlayer() {
   const playPreviousSong = () => {
     const prevIndex = currentSongIndex === 0 ? songs.length - 1 : currentSongIndex - 1
     setCurrentSongIndex(prevIndex)
-    setCurrentTime(0)
     
     // 延迟播放新歌曲
     setTimeout(() => {
       if (audioRef.current) {
         audioRef.current.play()
-        setIsPlaying(true)
       }
     }, 100)
-  }
-
-  const togglePlayPause = () => {
-    if (!audioRef.current) return
-    
-    if (isPlaying) {
-      audioRef.current.pause()
-      setIsPlaying(false)
-    } else {
-      audioRef.current.play()
-      setIsPlaying(true)
-    }
-  }
-
-  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newTime = parseFloat(e.target.value)
-    if (audioRef.current) {
-      audioRef.current.currentTime = newTime
-      setCurrentTime(newTime)
-    }
-  }
-
-  const formatTime = (time: number) => {
-    if (isNaN(time)) return '0:00'
-    const minutes = Math.floor(time / 60)
-    const seconds = Math.floor(time % 60)
-    return `${minutes}:${seconds.toString().padStart(2, '0')}`
   }
 
   return (
     <div
       ref={dragRef}
-      className={`fixed z-50 bg-[var(--color-surface)] border border-[var(--color-divider)] rounded-lg p-4 shadow-[0_25px_45px_rgba(15,15,40,0.12)] transition-shadow ${
+      className={`fixed z-50 bg-[var(--color-surface)] border border-[var(--color-divider)] rounded-lg p-3 sm:p-4 shadow-[0_25px_45px_rgba(15,15,40,0.12)] transition-shadow ${
         isDragging ? 'cursor-grabbing shadow-[0_35px_65px_rgba(15,15,40,0.18)]' : 'cursor-grab'
       }`}
       style={{
@@ -275,7 +244,8 @@ export default function AdvancedMusicPlayer() {
         top: `${position.y}px`,
         transition: isDragging ? 'none' : 'box-shadow 0.2s ease',
         touchAction: 'none',
-        width: '320px'
+        width: '280px',
+        maxWidth: '90vw'
       }}
       onMouseDown={handleMouseDown}
       onTouchStart={handleTouchStart}
@@ -287,6 +257,9 @@ export default function AdvancedMusicPlayer() {
           <span className="material-symbols-outlined text-sm">drag_indicator</span>
           <span className="hidden sm:inline">{t('musicPlayer.dragToMove', '拖動移動')}</span>
           <span className="sm:hidden">{t('musicPlayer.holdToMove', '按住移動')}</span>
+          <span className="ml-auto inline-flex items-center px-2 py-0.5 text-xs font-medium bg-[var(--color-primary)] text-white rounded-full">
+            NEW
+          </span>
         </div>
 
         {/* 歌曲資訊 */}
@@ -299,58 +272,36 @@ export default function AdvancedMusicPlayer() {
           </div>
         </div>
 
-        {/* 進度條 */}
+        {/* 原生音樂播放器 */}
         <div className="mb-2">
-          <input
-            type="range"
-            min="0"
-            max={duration || 0}
-            value={currentTime}
-            onChange={handleSeek}
-            className="w-full h-1 bg-[var(--color-divider)] rounded-lg appearance-none cursor-pointer slider"
-            style={{
-              background: `linear-gradient(to right, var(--color-primary) 0%, var(--color-primary) ${(currentTime / duration) * 100}%, var(--color-divider) ${(currentTime / duration) * 100}%, var(--color-divider) 100%)`
-            }}
-          />
-          <div className="flex justify-between text-xs text-[var(--color-text-muted)] mt-1">
-            <span>{formatTime(currentTime)}</span>
-            <span>{formatTime(duration)}</span>
-          </div>
+          <audio
+            ref={audioRef}
+            src={currentSong.src}
+            controls
+            className="w-full h-8 sm:h-10 rounded-lg"
+            preload="metadata"
+          >
+            {t('musicPlayer.browserNotSupported', '您的瀏覽器不支援音樂播放')}
+          </audio>
         </div>
 
-        {/* 控制按鈕 - 放在時間下方 */}
-        <div className="flex items-center justify-center gap-2 mb-2">
+        {/* 控制按鈕 */}
+        <div className="flex items-center justify-center gap-2">
           <button
             onClick={playPreviousSong}
-            className="w-7 h-7 flex items-center justify-center rounded-full bg-[var(--color-surface-variant)] hover:bg-[var(--color-primary)] hover:text-white transition-colors"
+            className="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center rounded-full bg-[var(--color-surface-variant)] hover:bg-[var(--color-primary)] hover:text-white transition-colors"
           >
-            <span className="material-symbols-outlined text-sm">skip_previous</span>
-          </button>
-          
-          <button
-            onClick={togglePlayPause}
-            className="w-9 h-9 flex items-center justify-center rounded-full bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-dark)] transition-colors"
-          >
-            <span className="material-symbols-outlined text-lg">
-              {isPlaying ? 'pause' : 'play_arrow'}
-            </span>
+            <span className="material-symbols-outlined text-xs sm:text-sm">skip_previous</span>
           </button>
           
           <button
             onClick={playNextSong}
-            className="w-7 h-7 flex items-center justify-center rounded-full bg-[var(--color-surface-variant)] hover:bg-[var(--color-primary)] hover:text-white transition-colors"
+            className="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center rounded-full bg-[var(--color-surface-variant)] hover:bg-[var(--color-primary)] hover:text-white transition-colors"
           >
-            <span className="material-symbols-outlined text-sm">skip_next</span>
+            <span className="material-symbols-outlined text-xs sm:text-sm">skip_next</span>
           </button>
         </div>
       </div>
-
-      {/* 隱藏的 audio 元素 */}
-      <audio
-        ref={audioRef}
-        src={currentSong.src}
-        preload="metadata"
-      />
     </div>
   )
 }
