@@ -519,8 +519,16 @@ export default function AIAssistant() {
   }, [messages])
 
   useEffect(() => {
+    // 檢測是否為移動端
+    const isMobile = () => {
+      return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    }
+
     if (isOpen) {
-      document.body.style.overflow = 'hidden'
+      // 只有在移動端才禁用滾動
+      if (isMobile()) {
+        document.body.style.overflow = 'hidden'
+      }
       setTimeout(() => {
         try {
           virtualizer.measure()

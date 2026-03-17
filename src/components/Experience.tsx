@@ -139,7 +139,7 @@ export default function Experience() {
                       <button
                         type="button"
                         onClick={() => window.open(cert.certificateUrl!, '_blank', 'noopener,noreferrer')}
-                        className="inline-flex items-center gap-2 px-5 py-2 border border-[var(--color-primary)] text-[var(--color-primary)] text-sm font-semibold tracking-wide uppercase transition-all duration-200 hover:bg-[var(--color-primary)] hover:text-white min-w-[140px] justify-center rounded-[24px] bg-transparent cursor-pointer"
+                        className="inline-flex items-center gap-2 px-5 py-2 border border-[var(--color-primary)] text-white text-sm font-semibold tracking-wide uppercase transition-all duration-200 hover:bg-[var(--color-primary-dark)] hover:border-[var(--color-primary-dark)] min-w-[140px] justify-center rounded-[12px] bg-[var(--color-primary)] cursor-pointer"
                       >
                         <span>{t('experience.certifications.viewCertificate', '查看')}</span>
                         <span className="material-symbols-outlined text-base text-inherit transition-colors duration-200">

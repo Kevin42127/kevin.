@@ -1008,6 +1008,11 @@ const zhResources = {
         ]
       }
     }
+  },
+  musicPlayer: {
+    dragToMove: '拖動移動',
+    holdToMove: '按住移動',
+    browserNotSupported: '您的瀏覽器不支援音樂播放'
   }
 }
 
@@ -2004,6 +2009,11 @@ const enResources = {
         ]
       }
     }
+  },
+  musicPlayer: {
+    dragToMove: 'Drag to move',
+    holdToMove: 'Hold to move',
+    browserNotSupported: 'Your browser does not support audio playback'
   }
 }
 

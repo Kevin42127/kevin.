@@ -6,6 +6,7 @@ import GsapProvider from '../components/GsapProvider'
 import MotionProvider from '../components/MotionProvider'
 import LocomotiveScrollProvider from '../components/LocomotiveScrollProvider'
 import { ThemeProvider } from '../components/ThemeProvider'
+import AdvancedMusicPlayer from '../components/AdvancedMusicPlayer'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -62,7 +63,7 @@ export default function RootLayout({
   return (
     <html lang="zh-TW" suppressHydrationWarning>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximumScale=1, user-scalable=no, viewport-fit=cover" />
         <meta name='dmca-site-verification' content='cUJNbDlnbmtMTWdCYTdUL0hUQUhnYVQ4ditXeC9QQnk1Ym5lY2VjcllnQT01' />
         <meta name="theme-color" content="#3b82f6" />
         <meta name="mobile-web-app-capable" content="yes" />
@@ -94,6 +95,9 @@ export default function RootLayout({
             </LocomotiveScrollProvider>
           </MotionProvider>
         </ThemeProvider>
+        
+        {/* 進階音樂播放器 */}
+        <AdvancedMusicPlayer />
       </body>
     </html>
   )

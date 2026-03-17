@@ -296,16 +296,16 @@ a:focus {
     @apply px-6 py-3 font-semibold
            inline-flex items-center justify-center gap-2
            min-h-[44px] transition-all duration-200;
-    background-color: transparent;
-    color: var(--color-primary);
+    background-color: var(--color-primary);
+    color: #ffffff;
     border: 2px solid var(--color-primary);
-    border-radius: 24px;
+    border-radius: 12px;
     box-shadow: none;
   }
   
   .btn-secondary:hover {
-    background-color: var(--color-primary);
-    border-color: var(--color-primary);
+    background-color: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
     color: #ffffff;
   }
   
@@ -754,6 +754,37 @@ a:focus {
     .custom-cursor-dot {
       display: none !important;
     }
+  }
+
+  /* 音樂播放器進度條樣式 */
+  .slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    background: var(--color-primary-dark);
+  }
+
+  .slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+  }
+
+  .slider::-moz-range-thumb:hover {
+    transform: scale(1.2);
+    background: var(--color-primary-dark);
   }
 }
 
