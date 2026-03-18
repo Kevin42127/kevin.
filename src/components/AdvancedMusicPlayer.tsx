@@ -14,6 +14,7 @@ export default function AdvancedMusicPlayer() {
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [isDragging, setIsDragging] = useState(false)
   const [currentSongIndex, setCurrentSongIndex] = useState(0)
+  const [showPlaylist, setShowPlaylist] = useState(false)
   const dragRef = useRef<HTMLDivElement>(null)
   const audioRef = useRef<HTMLAudioElement>(null)
   const startPos = useRef({ x: 0, y: 0 })
@@ -30,25 +31,30 @@ export default function AdvancedMusicPlayer() {
       src: '/Rival, Cadmium, Harley Bird - Seasons (feat. Harley Bird) [NCS Release].mp3',
       title: 'Seasons',
       artist: 'Rival, Cadmium, Harley Bird'
+    },
+    {
+      src: '/デイドリーム.mp3',
+      title: 'デイドリーム',
+      artist: 'デイドリーム'
     }
   ]
 
   const currentSong = songs[currentSongIndex]
 
   useEffect(() => {
-    // 初始化位置到右下角
+    // 初始化位置到左下角
     const updateInitialPosition = () => {
       if (dragRef.current) {
         const rect = dragRef.current.getBoundingClientRect()
         const viewportWidth = window.innerWidth
         const viewportHeight = window.innerHeight
         
-        // 設定到右下角，留出邊距
+        // 設定到左下角，留出邊距
         const playerWidth = Math.min(280, viewportWidth * 0.9) // 響應式寬度
-        const initialX = viewportWidth - playerWidth - 16 // 16px = 1rem
-        const initialY = viewportHeight - rect.height - 16 // 16px = 1rem
+        const initialX = 16 // 左邊留 16px = 1rem
+        const initialY = viewportHeight - rect.height - 16 // 底部留 16px = 1rem
         
-        setPosition({ x: Math.max(8, initialX), y: Math.max(8, initialY) }) // 確保不會超出邊界
+        setPosition({ x: initialX, y: Math.max(8, initialY) }) // 確保不會超出邊界
       }
     }
 
@@ -209,6 +215,18 @@ export default function AdvancedMusicPlayer() {
     }
   }, [isDragging])
 
+  const playPreviousSong = () => {
+    const prevIndex = currentSongIndex === 0 ? songs.length - 1 : currentSongIndex - 1
+    setCurrentSongIndex(prevIndex)
+    
+    // 延迟播放新歌曲
+    setTimeout(() => {
+      if (audioRef.current) {
+        audioRef.current.play()
+      }
+    }, 100)
+  }
+
   const playNextSong = () => {
     const nextIndex = (currentSongIndex + 1) % songs.length
     setCurrentSongIndex(nextIndex)
@@ -221,9 +239,8 @@ export default function AdvancedMusicPlayer() {
     }, 100)
   }
 
-  const playPreviousSong = () => {
-    const prevIndex = currentSongIndex === 0 ? songs.length - 1 : currentSongIndex - 1
-    setCurrentSongIndex(prevIndex)
+  const playSong = (index: number) => {
+    setCurrentSongIndex(index)
     
     // 延迟播放新歌曲
     setTimeout(() => {
@@ -286,7 +303,7 @@ export default function AdvancedMusicPlayer() {
         </div>
 
         {/* 控制按鈕 */}
-        <div className="flex items-center justify-center gap-2">
+        <div className="flex items-center justify-center gap-2 mb-2">
           <button
             onClick={playPreviousSong}
             className="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center rounded-full bg-[var(--color-surface-variant)] hover:bg-[var(--color-primary)] hover:text-white transition-colors"
@@ -295,11 +312,64 @@ export default function AdvancedMusicPlayer() {
           </button>
           
           <button
+            onClick={() => setShowPlaylist(!showPlaylist)}
+            className="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center rounded-full bg-[var(--color-surface-variant)] hover:bg-[var(--color-primary)] hover:text-white transition-colors"
+          >
+            <span className="material-symbols-outlined text-xs sm:text-sm">list</span>
+          </button>
+          
+          <button
             onClick={playNextSong}
             className="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center rounded-full bg-[var(--color-surface-variant)] hover:bg-[var(--color-primary)] hover:text-white transition-colors"
           >
             <span className="material-symbols-outlined text-xs sm:text-sm">skip_next</span>
           </button>
+        </div>
+
+        {/* 歌曲列表 */}
+        {showPlaylist && (
+          <div className="border-t border-[var(--color-divider)] pt-2">
+            <div className="max-h-32 overflow-y-auto">
+              {songs.map((song, index) => (
+                <button
+                  key={index}
+                  onClick={() => playSong(index)}
+                  className={`w-full text-left px-2 py-1 text-xs rounded transition-colors ${
+                    index === currentSongIndex
+                      ? 'bg-[var(--color-primary)] text-white'
+                      : 'hover:bg-[var(--color-surface-variant)] text-[rgb(var(--foreground-rgb))]'
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="material-symbols-outlined text-xs">
+                      {index === currentSongIndex ? 'play_arrow' : 'music_note'}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <div className="truncate font-medium">{song.title}</div>
+                      <div className="truncate opacity-75">{song.artist}</div>
+                    </div>
+                    {index === currentSongIndex && (
+                      <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                    )}
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* 版權資訊 */}
+        <div className="border-t border-[var(--color-divider)] pt-2 mt-2">
+          <div className="text-xs text-center">
+            <a 
+              href="https://www.youtube.com/@NoCopyrightSounds" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-[var(--color-text-muted)] hover:text-[var(--color-primary)] hover:underline transition-colors"
+            >
+              NoCopyrightSounds
+            </a>
+          </div>
         </div>
       </div>
     </div>
