@@ -815,23 +815,34 @@ const zhResources = {
     changes: '項更新',
     footer: '持續改進中，敬請期待更多功能',
     versions: {
+      '3.5.0': {
+        changes: [
+          '深色模式配色系統升級：採用標準 Material Design 色彩調色板',
+          '背景色改為 #121212 (Material Design 標準)',
+          '表面色更新為 #1e1e1e (VS Code 風格)',
+          '文字色優化為 #e0e0e0 (標準深色模式文字)',
+          '主要色調更新為 #007acc (VS Code 藍色)',
+          '移除 Hero 區塊裝飾性漸層圓圈，設計更簡潔',
+          '增強視覺舒適度和現代美感'
+        ]
+      },
       '3.4.0': {
         changes: [
           '新增 AI 字體推薦系統：智能分析專案需求，推薦最適合的字體組合',
           'Google Fonts 整合：支援 10 種專業字體，包含 Inter、Roboto、Noto Sans TC 等',
           '智能推薦邏輯：根據專案類型、設計風格、目標語言等條件推薦字體',
-          '雙語言支援：完整的中文和英文翻譯系統',
-          '響應式設計：支援桌面版和移動端的完整體驗',
-          '導覽更新：新增字體推薦連結，並添加 New 標籤提示'
+          '雙語支援：完整的中文與英文翻譯系統',
+          '響應式設計：桌面與行動裝置完整體驗支援',
+          '導覽更新：新增字體推薦連結與 New 標籤指示器'
         ]
       },
       '3.3.0': {
         changes: [
-          '滾動體驗升級：從 Lenis 改用 LocomotiveScroll',
-          '混合滾動方案：主頁面使用 LocomotiveScroll，快捷導航使用原生滾動',
-          '解決滾動抖動問題：優化滾動初始化和事件處理',
-          '作品篩選優化：修復深色模式下白色外框問題',
-          'TypeScript 類型修正：解決 LocomotiveScroll 配置錯誤'
+          '滾動體驗升級：從 Lenis 切換到 LocomotiveScroll',
+          '混合滾動方案：頁面滾動使用 LocomotiveScroll，快速導航使用原生滾動',
+          '修復滾動抖動：優化滾動初始化和事件處理',
+          '作品集篩選優化：修復深色模式下的白色輪廓問題',
+          'TypeScript 類型修復：解決 LocomotiveScroll 配置錯誤'
         ]
       },
       '3.2.0': {
@@ -1816,6 +1827,17 @@ const enResources = {
     changes: 'updates',
     footer: 'Continuously improving, stay tuned for more features',
     versions: {
+      '3.5.0': {
+        changes: [
+          'Dark mode color system upgrade: Adopted standard Material Design color palette',
+          'Background color changed to #121212 (Material Design standard)',
+          'Surface color updated to #1e1e1e (VS Code style)',
+          'Text color optimized to #e0e0e0 (standard dark mode text)',
+          'Primary color updated to #007acc (VS Code blue)',
+          'Removed Hero section decorative gradient circles for cleaner design',
+          'Enhanced visual comfort and modern aesthetic'
+        ]
+      },
       '3.4.0': {
         changes: [
           'Added AI Font Recommendation System: Intelligent analysis of project requirements to recommend the most suitable font combinations',
