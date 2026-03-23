@@ -814,6 +814,17 @@ const zhResources = {
     unknown: '未知',
     changes: '項更新',
     footer: '持續改進中，敬請期待更多功能',
+    v3_5_0: {
+      changes: [
+        '深色模式配色系統升級：採用標準 Material Design 色彩調色板',
+        '背景色改為 #121212 (Material Design 標準)',
+        '表面色更新為 #1e1e1e (VS Code 風格)',
+        '文字色優化為 #e0e0e0 (標準深色模式文字)',
+        '主要色調更新為 #007acc (VS Code 藍色)',
+        '移除 Hero 區塊裝飾性漸層圓圈，設計更簡潔',
+        '增強視覺舒適度和現代美感'
+      ]
+    },
     versions: {
       '3.5.0': {
         changes: [
@@ -1826,6 +1837,17 @@ const enResources = {
     unknown: 'Unknown',
     changes: 'updates',
     footer: 'Continuously improving, stay tuned for more features',
+    v3_5_0: {
+      changes: [
+        'Dark mode color system upgrade: Adopted standard Material Design color palette',
+        'Background color changed to #121212 (Material Design standard)',
+        'Surface color updated to #1e1e1e (VS Code style)',
+        'Text color optimized to #e0e0e0 (standard dark mode text)',
+        'Primary color updated to #007acc (VS Code blue)',
+        'Removed Hero section decorative gradient circles for cleaner design',
+        'Enhanced visual comfort and modern aesthetic'
+      ]
+    },
     versions: {
       '3.5.0': {
         changes: [

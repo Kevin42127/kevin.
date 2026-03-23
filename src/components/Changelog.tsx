@@ -16,6 +16,20 @@ export default function Changelog() {
 
   const changelogData: ChangelogItem[] = [
     {
+      version: '3.5.0',
+      date: '2026-03-23',
+      type: 'minor',
+      changes: [
+        t('changelog.v3_5_0.changes.0', '深色模式配色系統升級：採用標準 Material Design 色彩調色板'),
+        t('changelog.v3_5_0.changes.1', '背景色改為 #121212 (Material Design 標準)'),
+        t('changelog.v3_5_0.changes.2', '表面色更新為 #1e1e1e (VS Code 風格)'),
+        t('changelog.v3_5_0.changes.3', '文字色優化為 #e0e0e0 (標準深色模式文字)'),
+        t('changelog.v3_5_0.changes.4', '主要色調更新為 #007acc (VS Code 藍色)'),
+        t('changelog.v3_5_0.changes.5', '移除 Hero 區塊裝飾性漸層圓圈，設計更簡潔'),
+        t('changelog.v3_5_0.changes.6', '增強視覺舒適度和現代美感')
+      ]
+    },
+    {
       version: '3.4.0',
       date: '2026-03-12',
       type: 'minor',

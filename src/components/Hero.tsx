@@ -50,10 +50,7 @@ export default function Hero() {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative pt-28 pb-20 bg-[var(--color-page)]">
-      <div className="absolute inset-0 pointer-events-none opacity-50 overflow-hidden">
-        <div className="w-full h-full mix-blend-multiply" style={{ backgroundImage: 'radial-gradient(circle at 20% 20%, rgba(255,77,45,0.08), transparent 45%), radial-gradient(circle at 80% 10%, rgba(29,71,255,0.08), transparent 40%), radial-gradient(circle at 50% 80%, rgba(0,161,154,0.08), transparent 45%)' }} />
-      </div>
-      <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 text-center w-full relative z-10">
+            <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 text-center w-full relative z-10">
         <motion.div>
           <SplitText
             text={t('hero.title', 'Kevin.')}
