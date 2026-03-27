@@ -10,11 +10,40 @@ export default function Navigation() {
   const { t, i18n } = useTranslationSafe()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isClient, setIsClient] = useState(false)
+  const [activeSection, setActiveSection] = useState('home')
   const scrollYRef = useRef(0)
   const pendingScrollRef = useRef<string | null>(null)
 
   useEffect(() => {
     setIsClient(true)
+  }, [])
+
+  // 偵測當前滾動位置來設置活躍的導覽項目
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'portfolio', 'skills', 'experience', 'contact']
+      const scrollPosition = window.scrollY + 100
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i])
+        if (section) {
+          const sectionTop = section.offsetTop
+          const sectionBottom = sectionTop + section.offsetHeight
+          
+          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+            setActiveSection(sections[i])
+            break
+          }
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    handleScroll() // 初始檢查
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
   }, [])
 
   useEffect(() => {
@@ -46,15 +75,15 @@ export default function Navigation() {
     }
   }, [isMenuOpen])
 
-  const navItems: Array<{ name: string; href: string }> = useMemo(() => [
-    { name: t('navigation.home', '首頁'), href: '#home' },
-    { name: t('navigation.about', '關於'), href: '#about' },
-    { name: t('navigation.portfolio', '作品'), href: '#portfolio' },
-    { name: t('navigation.skills', '技能'), href: '#skills' },
-    { name: t('navigation.experience', '經驗'), href: '#experience' },
-    { name: t('navigation.contact', '聯繫'), href: '#contact' },
-    { name: t('navigation.fontRecommendation', '字體推薦'), href: '/font-recommendation' },
-    { name: t('navigation.changelog', '更新日誌'), href: '/changelog' },
+  const navItems: Array<{ name: string; href: string; id: string }> = useMemo(() => [
+    { name: t('navigation.home', '首頁'), href: '#home', id: 'home' },
+    { name: t('navigation.about', '關於'), href: '#about', id: 'about' },
+    { name: t('navigation.portfolio', '作品'), href: '#portfolio', id: 'portfolio' },
+    { name: t('navigation.skills', '技能'), href: '#skills', id: 'skills' },
+    { name: t('navigation.experience', '經驗'), href: '#experience', id: 'experience' },
+    { name: t('navigation.contact', '聯繫'), href: '#contact', id: 'contact' },
+    { name: t('navigation.fontRecommendation', '字體推薦'), href: '/font-recommendation', id: 'font-recommendation' },
+    { name: t('navigation.changelog', '更新日誌'), href: '/changelog', id: 'changelog' },
   ], [t, i18n.language])
 
   const externalLinks: Array<{ name: string; href: string; external: boolean }> = useMemo(() => [], [])
@@ -99,16 +128,18 @@ export default function Navigation() {
                 {t('navigation.kevin', 'Kevin.')}
               </button>
               
-              <div className="hidden lg:flex items-center space-x-3 ml-10">
+              <div className="hidden lg:flex items-center space-x-6 ml-10">
                 {navItems.map((item) => (
                   <button
                     key={item.name}
                     onClick={() => handleNavigation(item.href)}
-                    className="btn-nav-pill group"
+                    className={`nav-item group relative px-1 py-4 text-[rgb(var(--foreground-rgb))] hover:text-[var(--color-primary)] transition-colors duration-200 font-medium ${
+                      activeSection === item.id ? 'active' : ''
+                    }`}
                   >
                     {item.name}
                     {item.href === '/font-recommendation' && (
-                      <span className="ml-2 text-xs font-semibold text-[var(--color-primary)] group-hover:text-white">
+                      <span className="ml-2 text-xs font-semibold text-[var(--color-primary)]">
                         New
                       </span>
                     )}
@@ -118,7 +149,7 @@ export default function Navigation() {
                   <button
                     key={item.name}
                     onClick={() => handleNavigation(item.href, item.external)}
-                    className="btn-nav-pill"
+                    className="nav-item group relative px-1 py-4 text-[rgb(var(--foreground-rgb))] hover:text-[var(--color-primary)] transition-colors duration-200 font-medium"
                   >
                     {item.name}
                   </button>
@@ -212,12 +243,16 @@ export default function Navigation() {
                     <button
                       key={item.name}
                       onClick={() => handleNavigation(item.href)}
-                      className="block w-full text-left px-4 py-3 text-base font-medium text-[rgb(var(--foreground-rgb))] hover:text-white hover:bg-[var(--color-primary)] transition-all duration-200 ease-out border border-transparent rounded-lg group"
+                      className={`block w-full text-left px-4 py-3 text-base font-medium transition-colors duration-200 ${
+                        activeSection === item.id 
+                          ? 'text-[var(--color-primary)]' 
+                          : 'text-[rgb(var(--foreground-rgb))] hover:text-[var(--color-primary)]'
+                      }`}
                     >
                       <div className="flex items-center justify-between">
                         <span>{item.name}</span>
                         {item.href === '/font-recommendation' && (
-                          <span className="text-xs font-semibold text-[var(--color-primary)] group-hover:text-white">
+                          <span className="text-xs font-semibold text-[var(--color-primary)]">
                             New
                           </span>
                         )}
@@ -228,7 +263,7 @@ export default function Navigation() {
                     <button
                       key={item.name}
                       onClick={() => handleNavigation(item.href, item.external)}
-                      className="block w-full text-left px-4 py-3 text-base font-medium text-[rgb(var(--foreground-rgb))] hover:text-white hover:bg-[var(--color-primary)] transition-all duration-200 ease-out border border-transparent rounded-lg"
+                      className="block w-full text-left px-4 py-3 text-base font-medium text-[rgb(var(--foreground-rgb))] hover:text-[var(--color-primary)] transition-colors duration-200"
                     >
                       {item.name}
                     </button>

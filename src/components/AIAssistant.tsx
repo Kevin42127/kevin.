@@ -1014,7 +1014,7 @@ export default function AIAssistant() {
             <div className="flex items-center gap-0.5 sm:gap-1">
               <button
                 onClick={handleClear}
-                className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-xl text-[var(--color-text-muted)] hover:text-red-500 transition-colors duration-200"
+                className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-xl text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors duration-200"
                 aria-label={t('aiAssistant.clearConversation', '清除對話')}
               >
                 <span className="material-symbols-outlined text-lg sm:text-xl">
@@ -1023,7 +1023,7 @@ export default function AIAssistant() {
               </button>
               <button
                 onClick={handleClose}
-                className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-xl text-[var(--color-text-muted)] hover:text-red-500 transition-colors duration-200"
+                className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-xl text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors duration-200"
                 aria-label={t('aiAssistant.close', '關閉')}
               >
                 <span className="material-symbols-outlined text-lg sm:text-xl">

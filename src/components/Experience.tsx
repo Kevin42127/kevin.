@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 
-const Icon = ({ name, size = '28px', color = '#ff4d2d' }: { name: string; size?: string; color?: string }) => (
+const Icon = ({ name, size = '28px', color = 'var(--color-primary)' }: { name: string; size?: string; color?: string }) => (
   <span className="material-symbols-outlined" style={{ fontSize: size, color, display: 'inline-flex' }}>
     {name}
   </span>
