@@ -5,14 +5,14 @@
 
 :root {
   --foreground-rgb: 20, 21, 29;
-  --color-background: #f8fafc;
-  --color-page: #f8fafc;
-  --color-section-soft: #f1f5f9;
-  --color-section-alt: #e2e8f0;
+  --color-background: #ffffff;
+  --color-page: #ffffff;
+  --color-section-soft: #f8fafc;
+  --color-section-alt: #f1f5f9;
   --color-panel: #ffffff;
-  --color-chip: #e2e8f0;
-  --color-placeholder: #f1f5f9;
-  --color-accent-soft: #e2e8f0;
+  --color-chip: #f1f5f9;
+  --color-placeholder: #f8fafc;
+  --color-accent-soft: #f1f5f9;
   --color-accent-cool: #f0f9ff;
   --color-accent-mint: #f0fdfa;
   --color-surface: #ffffff;
