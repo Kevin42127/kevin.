@@ -4,7 +4,7 @@ import { useTheme } from 'next-themes'
 import { useEffect, useState, useRef } from 'react'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 
-export function ThemeToggle() {
+export default function SidebarThemeToggle() {
   const [mounted, setMounted] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const { theme, setTheme, systemTheme, resolvedTheme } = useTheme()
@@ -66,17 +66,17 @@ export function ThemeToggle() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="btn-icon"
+        className="w-8 h-8 text-[rgb(var(--foreground-rgb))] hover:text-[var(--color-primary)] transition-colors duration-200 flex items-center justify-center"
         aria-label={getThemeLabel()}
         title={getThemeLabel()}
       >
-        <span className="material-symbols-outlined text-base text-inherit">
+        <span className="material-symbols-outlined text-base">
           {getThemeIcon()}
         </span>
       </button>
 
       {isOpen && (
-        <div className="absolute top-full right-0 mt-2 bg-[var(--color-surface)] border border-[var(--color-divider)] shadow-[0_20px_45px_rgba(15,15,40,0.12)] rounded-xl z-[100] min-w-[140px] overflow-hidden">
+        <div className="absolute bottom-full right-0 mb-2 bg-[var(--color-surface)] border border-[var(--color-divider)] shadow-[0_20px_45px_rgba(15,15,40,0.12)] rounded-xl z-[100] min-w-[140px] overflow-hidden">
           <div className="py-1">
             <button
               onClick={() => handleThemeSelect('light')}

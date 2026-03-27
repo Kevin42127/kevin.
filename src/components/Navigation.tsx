@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslationSafe } from '../hooks/useTranslationSafe'
 import DropdownSearch from './DropdownSearch'
 import { ThemeToggle } from './ThemeToggle'
+import SidebarThemeToggle from './SidebarThemeToggle'
 
 export default function Navigation() {
   const { t, i18n } = useTranslationSafe()
@@ -281,7 +282,7 @@ export default function Navigation() {
                     <span className="text-[rgb(var(--foreground-rgb))] font-medium">
                       {t('navigation.theme', '主題')}
                     </span>
-                    <ThemeToggle />
+                    <SidebarThemeToggle />
                   </div>
 
                   <div className="flex items-center justify-between px-4 py-2">

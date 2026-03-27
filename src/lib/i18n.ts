@@ -348,7 +348,10 @@ const zhResources = {
     }
   },
   theme: {
-    toggle: '切換深淺模式'
+    toggle: '切換深淺模式',
+    light: '淺色模式',
+    dark: '深色模式',
+    system: '跟隨系統'
   },
   aiAssistant: {
     greeting: '嗨！我是 Kevin 的 AI',
@@ -1371,7 +1374,10 @@ const enResources = {
     }
   },
   theme: {
-    toggle: 'Toggle dark/light mode'
+    toggle: 'Toggle dark/light mode',
+    light: 'Light mode',
+    dark: 'Dark mode',
+    system: 'System'
   },
   aiAssistant: {
     greeting: 'Hi! I\'m Kevin\'s AI',
