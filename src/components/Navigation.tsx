@@ -116,7 +116,7 @@ export default function Navigation() {
   return (
     <>
       <nav 
-        className="fixed w-full top-0 left-0 right-0 z-[105] bg-[var(--color-page)] border-b border-[var(--color-divider)] shadow-[0_10px_25px_rgba(15,15,40,0.06)]" 
+        className="fixed w-full top-0 left-0 right-0 z-[105] bg-[var(--color-page)] border-b border-[var(--color-divider)]" 
         style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}
       >
         <div className="w-full px-4 sm:px-6 lg:px-12 py-4">
